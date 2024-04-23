@@ -14,4 +14,5 @@ export default defineConfig({
       "@design": "/src/design",
     },
   },
+  server: { host: true },
 });
