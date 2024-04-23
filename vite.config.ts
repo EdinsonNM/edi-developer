@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/edi-developer/",
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,5 +14,4 @@ export default defineConfig({
       "@design": "/src/design",
     },
   },
-  server: { host: true },
 });
