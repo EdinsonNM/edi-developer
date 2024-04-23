@@ -5,7 +5,7 @@ import useScrollAnimation from "../hooks/use-scroll-animation";
 import { useThree } from "@react-three/fiber";
 
 function Models3D() {
-  const { groupRef, timeline } = useScrollAnimation();
+  const { groupRef } = useScrollAnimation();
   const { camera } = useThree();
 
   const showInfo = () => {
@@ -22,21 +22,6 @@ function Models3D() {
       ease: "power3.inOut", // Tipo de easing para suavizar la transición
       onComplete: () => console.log("rotation completada"), // Callback al completar la animación
     });
-    /*
-    if (!timeline.current.isActive()) {
-      gsap.killTweensOf(groupRef.current!.rotation);
-      gsap.killTweensOf(groupRef.current!.position);
-      gsap.to(groupRef.current!.position, {
-        duration: 1,
-        x: -5.5, // Animando la subpropiedad x de position
-        ease: "power2.out",
-      });
-      gsap.to(groupRef.current!.rotation, {
-        duration: 2,
-        y: 1.2, // Asumiendo que la rotación en y es lo que quieres animar
-        ease: "power2.out",
-      });
-    }*/
   };
   return (
     <group

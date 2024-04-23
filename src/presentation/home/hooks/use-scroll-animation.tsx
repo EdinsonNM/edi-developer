@@ -10,7 +10,7 @@ function useScrollAnimation() {
 
   const timeline = useRef<any>(null);
 
-  const groupRef = useRef<Group<Object3DEventMap>>();
+  const groupRef = useRef<Group<Object3DEventMap>>(null);
 
   useFrame(() => {
     timeline.current.seek(scroll.offset * timeline.current.duration());

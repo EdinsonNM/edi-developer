@@ -28,7 +28,7 @@ function Technologies({ onSelect = () => {} }: Props) {
         const z = radius * Math.sin(angleStep * index);
         return (
           <Technology
-            key={`tech-${index}`}
+            key={`tech-${item}`}
             position={[x, 0, z]}
             onClick={selectedTech.bind(null, index)}
             selected={selected === index}

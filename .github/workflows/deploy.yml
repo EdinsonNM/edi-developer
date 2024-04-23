@@ -1,0 +1,24 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main # Asegúrate de que esto coincida con la rama donde subes tus cambios
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Agrega pasos para instalar dependencias y construir tu proyecto si es necesario
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build # Asegúrate de que tu proyecto tiene un script de build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Asegúrate de que esto coincida con el directorio de salida de tu build
