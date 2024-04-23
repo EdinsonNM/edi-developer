@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main # Asegúrate de que esto coincida con la rama donde subes tus cambios
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
