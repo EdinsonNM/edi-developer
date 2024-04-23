@@ -8,7 +8,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
       # Agrega pasos para instalar dependencias y construir tu proyecto si es necesario
       - name: Install Dependencies
@@ -18,7 +19,7 @@ jobs:
         run: npm run build # Asegúrate de que tu proyecto tiene un script de build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Asegúrate de que esto coincida con el directorio de salida de tu build
+          branch: main
+          folder: ./dist # Asegúrate de que esto coincida con el directorio de salida de tu build
