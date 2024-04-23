@@ -52,7 +52,7 @@ function Home() {
           <Environment
             background={false}
             files="environment_4k.hdr"
-            path="/edi-developer/"
+            path={import.meta.env.VITE_ASSETS}
             backgroundIntensity={0.2}
           />
         </Canvas>{" "}

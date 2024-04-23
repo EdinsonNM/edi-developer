@@ -14,15 +14,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Agrega pasos para instalar dependencias y construir tu proyecto si es necesario
+      - name: Create .env file
+        run: |
+          echo VITE_API_KEY=${{ secrets.VITE_ASSETS }} > .env
+
       - name: Install Dependencies
         run: npm install
 
       - name: Build
-        run: npm run build # Asegúrate de que tu proyecto tiene un script de build
+        run: npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist # Asegúrate de que esto coincida con el directorio de salida de tu build
+          folder: dist
