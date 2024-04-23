@@ -52,7 +52,7 @@ function Home() {
           <Environment
             background={false}
             files="environment_4k.hdr"
-            path="/"
+            path="/edi-developer/"
             backgroundIntensity={0.2}
           />
         </Canvas>{" "}
