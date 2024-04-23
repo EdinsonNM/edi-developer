@@ -1,30 +1,61 @@
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
-import { OrbitControls } from "@react-three/drei";
-import { Developer } from "./components/developer";
+import {
+  Environment,
+  OrbitControls,
+  Scroll,
+  ScrollControls,
+} from "@react-three/drei";
+import Models3D from "./components/models-3d";
+import "./home.css";
 
 function Home() {
-  const [hovered, setHover] = useState(false);
+  const showDeveloper = () => {};
 
   return (
     <>
-      <div className="relative w-full h-full overflow-hidden"></div>
-      <div className="absolute w-full h-full left-0 top-0">
+      <div
+        className="fixed w-full h-full overflow-hidden pt-40 z-40"
+        style={{ pointerEvents: "none" }}
+      >
+        <h1 className="text-5xl"></h1>
+      </div>
+      <div className="relative w-full h-full left-0 top-0">
         <Canvas
-          camera={{ fov: 45, near: 0.1, far: 200, position: [0, 5, 5] }}
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
+          gl={{ alpha: true }}
+          style={{ background: "transparent" }}
+          camera={{ position: [0, 0, 15], fov: 45 }}
         >
-          <color attach="background" args={["transparent"]} />
-          <OrbitControls />
-          <ambientLight intensity={Math.PI / 2} />
+          <OrbitControls enableZoom={false} enableRotate={false} />
+          <ambientLight intensity={0.1} />
           <directionalLight position={[0, 0, 10]} />
-          <mesh position={[0, 0, 5]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-          </mesh>
-          <Developer />
-        </Canvas>
+
+          <ScrollControls pages={2} damping={0.25}>
+            <Models3D />
+            <Scroll html>
+              <div
+                id="scroll-container"
+                className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden pb-32"
+                style={{ pointerEvents: "auto" }}
+              >
+                <h1 className="block text-5xl">Hello World</h1>
+                <div className="block">
+                  <a className="arrow scrolly" onClick={showDeveloper}></a>
+                </div>
+              </div>{" "}
+              <div className="h-screen w-screen flex justify-end items-end">
+                aaa
+              </div>
+              <div id="destino"></div>
+            </Scroll>
+          </ScrollControls>
+
+          <Environment
+            background={false}
+            files="environment_4k.hdr"
+            path="/"
+            backgroundIntensity={0.2}
+          />
+        </Canvas>{" "}
       </div>
     </>
   );
