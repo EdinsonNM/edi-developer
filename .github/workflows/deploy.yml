@@ -22,4 +22,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main
-          folder: ./dist # Asegúrate de que esto coincida con el directorio de salida de tu build
+          folder: dist # Asegúrate de que esto coincida con el directorio de salida de tu build
