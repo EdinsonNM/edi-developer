@@ -17,7 +17,7 @@ function Models3D() {
       ease: "power3.inOut", // Tipo de easing para suavizar la transición
       onComplete: () => console.log("position completada"), // Callback al completar la animación
     });
-    gsap.to(groupRef.current.rotation, {
+    gsap.to((groupRef.current as any).rotation, {
       y: Math.PI * 2 * 0.2,
       duration: 2, // Duración de la animación en segundos
       ease: "power3.inOut", // Tipo de easing para suavizar la transición
