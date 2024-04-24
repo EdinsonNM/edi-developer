@@ -16,8 +16,8 @@ function Technologies({ onSelect = () => {} }: Props) {
   const technologies: TechnologyProps[] = [
     { key: "ang", path: "angular.gltf", name: "angular" },
   ];
-  const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
-  const radius = 5;
+  //const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
+  //const radius = 5;
   const selectedTech = (index: number) => {
     setSelected(index);
     onSelect();
@@ -25,8 +25,8 @@ function Technologies({ onSelect = () => {} }: Props) {
   return (
     <>
       {technologies.map((item: TechnologyProps, index: number) => {
-        const x = radius * Math.cos(angleStep * index);
-        const z = radius * Math.sin(angleStep * index);
+        //const x = radius * Math.cos(angleStep * index);
+        //const z = radius * Math.sin(angleStep * index);
         return (
           <Technology
             position={[0, 0, 0]}

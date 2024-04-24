@@ -1,7 +1,6 @@
 import { Vector3, useFrame, useLoader } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import gsap from "gsap";
 
 type Props = {
   position?: Vector3;
@@ -10,9 +9,9 @@ type Props = {
   path: string;
 };
 
-const Technology = ({ position, onClick, selected = false, path }: Props) => {
+const Technology = ({ position, onClick, path }: Props) => {
   const ref = useRef(null);
-  const [hovered, setHover] = useState(false);
+  const [, setHover] = useState(false);
 
   const gltf = useLoader(GLTFLoader, `./${path}`);
 
@@ -23,14 +22,11 @@ const Technology = ({ position, onClick, selected = false, path }: Props) => {
     else gsap.to(ref.current.scale, { duration: 0.5, x: 1, y: 1, z: 1 });
   }, [ref, selected]);*/
 
-  const selectTech = (event: any) => {
-    console.log("click", gltf);
-  };
   useFrame(() => {
     // Asegúrate de que el objeto no sea nulo
     if (ref.current) {
       // Incrementa la rotación en el eje Y
-      ref.current.rotation.y += 0.01;
+      (ref.current as any).rotation.y += 0.01;
     }
   });
   return (

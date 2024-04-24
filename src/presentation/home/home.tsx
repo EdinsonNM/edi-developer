@@ -1,10 +1,5 @@
-import { Canvas, useThree } from "@react-three/fiber";
-import {
-  Environment,
-  OrbitControls,
-  Scroll,
-  ScrollControls,
-} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls, ScrollControls } from "@react-three/drei";
 import Models3D from "./components/models-3d";
 import "./home.css";
 import Overlay from "./components/overlay";

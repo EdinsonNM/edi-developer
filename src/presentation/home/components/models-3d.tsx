@@ -3,7 +3,6 @@ import gsap from "gsap";
 import Technologies from "./technologies";
 import useScrollAnimation from "../hooks/use-scroll-animation";
 import { useThree } from "@react-three/fiber";
-import { useEffect } from "react";
 
 function Models3D() {
   const { groupRef } = useScrollAnimation();
