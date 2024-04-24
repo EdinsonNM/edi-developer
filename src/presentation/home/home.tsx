@@ -12,13 +12,11 @@ function Home() {
           gl={{ alpha: true }}
           style={{ background: "transparent" }}
           camera={{
-            fov: 45,
-            rotation: [0, 0.25 * Math.PI, 0],
-            position: [0, 0, 10],
+            fov: 55,
+            rotation: [Math.PI * 0.3, 0, 0],
+            position: [0, 1, 11],
           }}
         >
-          <OrbitControls target={[0, 8, 5]} />
-
           <ScrollControls pages={0} damping={0.25}>
             <Models3D />
             <Overlay />

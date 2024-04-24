@@ -10,21 +10,20 @@ function Models3D() {
 
   const showInfo = () => {
     gsap.to(camera.position, {
-      x: -40, // Nueva posición en el eje z
+      x: 6, // Nueva posición en el eje z
       z: 20,
-      y: 5,
+      y: 4,
       duration: 2, // Duración de la animación en segundos
       ease: "power3.inOut", // Tipo de easing para suavizar la transición
       onComplete: () => console.log("position completada"), // Callback al completar la animación
     });
-    gsap.to(camera.rotation, {
-      y: 1.8, // Nueva posición en el eje z
+    gsap.to(groupRef.current.rotation, {
+      y: Math.PI * 2 * 0.2,
       duration: 2, // Duración de la animación en segundos
       ease: "power3.inOut", // Tipo de easing para suavizar la transición
-      onComplete: () => console.log("rotation completada"), // Callback al completar la animación
+      onComplete: () => console.log("position completada"), // Callback al completar la animación
     });
   };
-
   return (
     <group ref={groupRef} dispose={null}>
       <Developer />

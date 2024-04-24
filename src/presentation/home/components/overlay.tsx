@@ -9,8 +9,16 @@ function Overlay() {
   const showProfile = () => {
     gsap.to(camera.position, {
       x: 0,
+      y: 5,
       z: 30,
-      y: 2,
+      duration: 2,
+      ease: "power3.inOut",
+      onComplete: () => console.log("position completada"),
+    });
+    gsap.to(camera.rotation, {
+      x: 0,
+      z: 0,
+      y: 0,
       duration: 2,
       ease: "power3.inOut",
       onComplete: () => console.log("position completada"),
@@ -25,8 +33,6 @@ function Overlay() {
         console.log("Animación completada");
       },
     });
-    camera.lookAt(0, 25, 0);
-    camera.updateMatrixWorld();
   };
   useEffect(() => {
     if (refArrow.current === null) return;
