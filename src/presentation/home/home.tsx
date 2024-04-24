@@ -7,12 +7,6 @@ import Overlay from "./components/overlay";
 function Home() {
   return (
     <>
-      <div
-        className="fixed w-full h-full overflow-hidden pt-40 z-40"
-        style={{ pointerEvents: "none" }}
-      >
-        <h1 className="text-5xl"></h1>
-      </div>
       <div className="relative w-full h-full left-0 top-0">
         <Canvas
           gl={{ alpha: true }}
@@ -31,10 +25,11 @@ function Home() {
           </ScrollControls>
 
           <Environment
-            background={true}
+            background={false}
             files="environment_4k.hdr"
             path={import.meta.env.VITE_ASSETS}
             backgroundIntensity={0.2}
+            environmentIntensity={0.4}
           />
         </Canvas>
       </div>
