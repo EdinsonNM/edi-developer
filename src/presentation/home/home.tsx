@@ -23,11 +23,7 @@ function Home() {
             position: [0, 0, 10],
           }}
         >
-          <OrbitControls
-            enableZoom={false}
-            enableRotate={false}
-            target={[0, 8, 5]}
-          />
+          <OrbitControls target={[0, 8, 5]} />
 
           <ScrollControls pages={0} damping={0.25}>
             <Models3D />
