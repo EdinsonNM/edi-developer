@@ -31,10 +31,10 @@ function Home() {
           </ScrollControls>
 
           <Environment
-            background={false}
+            background={true}
             files="environment_4k.hdr"
             path={import.meta.env.VITE_ASSETS}
-            backgroundIntensity={0.6}
+            backgroundIntensity={0.2}
           />
         </Canvas>
       </div>
