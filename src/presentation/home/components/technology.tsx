@@ -1,7 +1,7 @@
 import { Vector3, useFrame, useLoader } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
+import gsap from "gsap";
 type Props = {
   position?: Vector3;
   onClick: (event: any) => void;
@@ -9,18 +9,19 @@ type Props = {
   path: string;
 };
 
-const Technology = ({ position, onClick, path }: Props) => {
+const Technology = ({ position, selected, onClick, path }: Props) => {
   const ref = useRef(null);
-  const [, setHover] = useState(false);
+  const [hovered, setHover] = useState(false);
 
   const gltf = useLoader(GLTFLoader, `./${path}`);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (ref.current === null) return;
-    if (selected)
-      gsap.to(ref.current.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5 });
-    else gsap.to(ref.current.scale, { duration: 0.5, x: 1, y: 1, z: 1 });
-  }, [ref, selected]);*/
+    if (selected || hovered) {
+      gsap.to(ref.current.scale, { duration: 0.5, x: 1.2, y: 1.2, z: 1.2 });
+    } else
+      gsap.to(ref.current.scale, { duration: 0.5, x: 0.9, y: 0.9, z: 0.9 });
+  }, [ref, selected, hovered]);
 
   useFrame(() => {
     // Asegúrate de que el objeto no sea nulo
@@ -31,7 +32,6 @@ const Technology = ({ position, onClick, path }: Props) => {
   });
   return (
     <primitive
-      scale={[1, 1, 1]}
       ref={ref}
       position={position}
       object={gltf.scene}

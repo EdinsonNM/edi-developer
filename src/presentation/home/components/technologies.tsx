@@ -14,7 +14,13 @@ type TechnologyProps = {
 function Technologies({ onSelect = () => {} }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
   const technologies: TechnologyProps[] = [
+    { key: "react", path: "react.gltf", name: "react" },
+    { key: "js", path: "js.gltf", name: "javascript" },
+    { key: "flutter", path: "flutter.gltf", name: "flutter" },
+    { key: "node", path: "node.gltf", name: "node" },
+    { key: "ts", path: "ts.gltf", name: "ts" },
     { key: "ang", path: "angular.gltf", name: "angular" },
+    { key: "three", path: "threejs.gltf", name: "threejs" },
   ];
   //const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
   //const radius = 5;
