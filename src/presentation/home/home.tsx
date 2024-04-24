@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import {
   Environment,
   OrbitControls,
@@ -7,10 +7,9 @@ import {
 } from "@react-three/drei";
 import Models3D from "./components/models-3d";
 import "./home.css";
+import Overlay from "./components/overlay";
 
 function Home() {
-  const showDeveloper = () => {};
-
   return (
     <>
       <div
@@ -23,39 +22,30 @@ function Home() {
         <Canvas
           gl={{ alpha: true }}
           style={{ background: "transparent" }}
-          camera={{ position: [0, 0, 15], fov: 45 }}
+          camera={{
+            fov: 45,
+            rotation: [0, 0.25 * Math.PI, 0],
+            position: [0, 0, 10],
+          }}
         >
-          <OrbitControls enableZoom={false} enableRotate={false} />
-          <ambientLight intensity={0.1} />
-          <directionalLight position={[0, 0, 10]} />
+          <OrbitControls
+            enableZoom={false}
+            enableRotate={false}
+            target={[0, 8, 5]}
+          />
 
-          <ScrollControls pages={2} damping={0.25}>
+          <ScrollControls pages={0} damping={0.25}>
             <Models3D />
-            <Scroll html>
-              <div
-                id="scroll-container"
-                className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden pb-32"
-                style={{ pointerEvents: "auto" }}
-              >
-                <h1 className="block text-5xl">Hello World</h1>
-                <div className="block">
-                  <a className="arrow scrolly" onClick={showDeveloper}></a>
-                </div>
-              </div>{" "}
-              <div className="h-screen w-screen flex justify-end items-end">
-                aaa
-              </div>
-              <div id="destino"></div>
-            </Scroll>
+            <Overlay />
           </ScrollControls>
 
           <Environment
             background={false}
             files="environment_4k.hdr"
             path={import.meta.env.VITE_ASSETS}
-            backgroundIntensity={0.2}
+            backgroundIntensity={0.6}
           />
-        </Canvas>{" "}
+        </Canvas>
       </div>
     </>
   );

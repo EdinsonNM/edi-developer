@@ -4,16 +4,17 @@ import Technology from "./technology";
 type Props = {
   onSelect: () => void;
 };
+
+type TechnologyProps = {
+  key: string;
+  path: string;
+  name: string;
+};
+
 function Technologies({ onSelect = () => {} }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
-  const technologies = [
-    "js",
-    "typescript",
-    "flutter",
-    "react",
-    "angular",
-    "NodeJS",
-    "C#",
+  const technologies: TechnologyProps[] = [
+    { key: "ang", path: "angular.gltf", name: "angular" },
   ];
   const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
   const radius = 5;
@@ -23,15 +24,15 @@ function Technologies({ onSelect = () => {} }: Props) {
   };
   return (
     <>
-      {technologies.map((item: string, index: number) => {
+      {technologies.map((item: TechnologyProps, index: number) => {
         const x = radius * Math.cos(angleStep * index);
         const z = radius * Math.sin(angleStep * index);
         return (
           <Technology
-            key={`tech-${item}`}
-            position={[x, 0, z]}
+            position={[0, 0, 0]}
             onClick={selectedTech.bind(null, index)}
             selected={selected === index}
+            {...item}
           />
         );
       })}

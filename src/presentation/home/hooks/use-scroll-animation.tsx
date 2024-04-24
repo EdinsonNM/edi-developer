@@ -18,20 +18,16 @@ function useScrollAnimation() {
 
   useLayoutEffect(() => {
     timeline.current = gsap.timeline();
+    //timeline.current.to(camera!.position, { duration: 1, y: 10, z: 45 }, 0.5);
     timeline.current.to(
-      groupRef.current!.position,
-      { duration: 1, y: -5, z: -4 },
-      0.5
-    );
-    timeline.current.to(
-      groupRef.current!.rotation,
-      { duration: 1, z: 0, y: 0, x: -0.05 },
+      camera!.rotation,
+      { duration: 1, z: 0, y: 0, x: 0 },
       0.5
     );
   }, []);
   useEffect(() => {
     return scroll.el.addEventListener("scroll", () => {
-      if (scroll.offset < 1) {
+      /* if (scroll.offset < 1) {
         gsap.to(camera.rotation, {
           x: 0,
           y: 0,
@@ -47,7 +43,7 @@ function useScrollAnimation() {
           duration: 1.5,
           ease: "power3.inOut",
         });
-      }
+      }*/
     });
   }, [scroll, camera]);
   return { timeline, groupRef };
