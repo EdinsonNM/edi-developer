@@ -22,6 +22,7 @@ function Technologies({ onSelect = () => {} }: Props) {
     { key: "ang", path: "angular.gltf", name: "angular" },
     { key: "three", path: "threejs.gltf", name: "threejs" },
     { key: "gmaps", path: "gmaps.gltf", name: "gmaps" },
+    { key: "blender", path: "blender.gltf", name: "blender" },
   ];
   //const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
   //const radius = 5;

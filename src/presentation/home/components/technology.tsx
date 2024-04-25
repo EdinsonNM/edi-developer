@@ -20,16 +20,16 @@ const Technology = ({ position, selected, onClick, path }: Props) => {
     if (selected || hovered) {
       gsap.to((ref.current as any).scale, {
         duration: 0.5,
-        x: 1.2,
-        y: 1.2,
-        z: 1.2,
+        x: 1,
+        y: 1,
+        z: 1,
       });
     } else
       gsap.to((ref.current as any).scale, {
         duration: 0.5,
-        x: 0.9,
-        y: 0.9,
-        z: 0.9,
+        x: 0.7,
+        y: 0.7,
+        z: 0.7,
       });
   }, [ref, selected, hovered]);
 
