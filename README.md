@@ -1,30 +1,62 @@
-# React + TypeScript + Vite
+# edi-developer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido al repositorio de "edi-developer", mi sitio web personal y portafolio interactivo que destaca mis habilidades y experiencia en desarrollo frontend. Este proyecto utiliza tecnologías avanzadas como React, Vite.js, Three.js, GSAP, Tailwind CSS y TypeScript para ofrecer una experiencia de usuario tridimensional y animada de alta calidad.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visita [(https://edinsonnm.github.io/edi-developer/#/home)] para explorar el portafolio en línea.
 
-## Expanding the ESLint configuration
+## Tecnologías Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Un framework de JavaScript para construir interfaces de usuario con componentes eficientes y reactivos.
+- **Vite.js**: Una herramienta de construcción moderna que proporciona un entorno de desarrollo rápido y un rendimiento optimizado en producción.
+- **Three.js**: Librería de JavaScript para crear y mostrar gráficos animados en 3D en un navegador web.
+- **GSAP**: Plataforma de animación que permite animaciones complejas y de alto rendimiento en la web.
+- **Tailwind CSS**: Un framework de CSS que permite diseñar sitios rápidamente sin salir del HTML, usando clases de utilidad.
+- **TypeScript**: Un superconjunto de JavaScript que añade tipos estáticos y objetos basados en clases, mejorando la calidad del código y la experiencia de desarrollo.
 
-- Configure the top-level `parserOptions` property like this:
+## Características
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Navegación tridimensional para una exploración interactiva de mis proyectos y experiencia.
+- Animaciones fluidas y atractivas diseñadas con GSAP para una experiencia de usuario inmersiva.
+- Diseño responsive utilizando Tailwind CSS, asegurando una visualización óptima en todos los dispositivos y resoluciones de pantalla.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Instalación Local
+
+Sigue estos pasos para configurar el proyecto localmente. Necesitarás [Node.js](https://nodejs.org/en/) y [npm](https://www.npmjs.com/) instalados en tu sistema.
+
+1. Clona el repositorio:
+
+   ```bash
+   git clone https://github.com/tu-usuario/edi-developer.git
+   cd edi-developer
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Ejecuta el entorno de desarrollo local:
+   ```bash
+   npm run dev
+   ```
+
+Visita [http://localhost:3000](http://localhost:3000) en tu navegador para ver el proyecto en desarrollo.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, lee el archivo `CONTRIBUTING.md` para obtener más información sobre cómo puedes aportar al proyecto.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo `LICENSE.md` para más detalles.
+
+## Contacto
+
+Si tienes preguntas o deseas conectarte conmigo, puedes enviarme un correo electrónico a [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com).
+
+---
+
+Creado con ❤️ por Edinson Nuñez
