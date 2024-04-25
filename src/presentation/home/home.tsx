@@ -16,7 +16,6 @@ function Home() {
             rotation: [Math.PI * 0.3, 0, 0],
             position: [0, 1, 11],
           }}
-          shadows
         >
           <ambientLight intensity={0.8} />
           <directionalLight position={[0, 0, 10]} intensity={1} />
@@ -25,13 +24,6 @@ function Home() {
             intensity={1}
             color={"#fff"}
             castShadow
-          />
-          <Grid
-            cellSize={10}
-            cellColor={"#c1c1c1"}
-            infiniteGrid
-            sectionColor={"#f2f2f2"}
-            receiveShadow
           />
 
           <ScrollControls pages={0} damping={0.25}>

@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="fixed w-full flex flex-col md:flex-row items-center justify-center z-40 py-4 px-10">
-      <div className="flex-grow md:flex-shrink lg:flex lg:items-center lg:justify-center">
+    <nav className="fixed w-full flex flex-col md:flex-row z-40 py-4 px-10">
+      <div className="flex flex-grow md:flex-shrink items-center justify-center md:items-start md:justify-start text-white">
         <LogoIcon size={160} />
       </div>
       <div className="flex-shrink md:flex-grow"></div>
-      <div className="hidden md:block flex-grow">
-        <ul className="flex flex-row gap-8">
+      <div className="hidden md:block md:flex-shrink flex-grow lg:justify-end">
+        <ul className="flex flex-row gap-8 justify-end text-white">
           <li>
             <NavLink to={"home"}> Inicio</NavLink>
           </li>

@@ -9,7 +9,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  background-color: white;
   color: black;
 }
 
@@ -59,4 +58,12 @@ html {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+body {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 31, 41, 1) 100%
+  );
 }
