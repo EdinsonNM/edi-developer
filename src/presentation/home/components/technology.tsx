@@ -18,9 +18,19 @@ const Technology = ({ position, selected, onClick, path }: Props) => {
   useEffect(() => {
     if (ref.current === null) return;
     if (selected || hovered) {
-      gsap.to(ref.current.scale, { duration: 0.5, x: 1.2, y: 1.2, z: 1.2 });
+      gsap.to((ref.current as any).scale, {
+        duration: 0.5,
+        x: 1.2,
+        y: 1.2,
+        z: 1.2,
+      });
     } else
-      gsap.to(ref.current.scale, { duration: 0.5, x: 0.9, y: 0.9, z: 0.9 });
+      gsap.to((ref.current as any).scale, {
+        duration: 0.5,
+        x: 0.9,
+        y: 0.9,
+        z: 0.9,
+      });
   }, [ref, selected, hovered]);
 
   useFrame(() => {
