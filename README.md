@@ -4,7 +4,7 @@ Bienvenido al repositorio de "edi-developer", mi sitio web personal y portafolio
 
 ## Demo
 
-Visita [(https://edinsonnm.github.io/edi-developer/#/home)] para explorar el portafolio en línea.
+Visita [(https://edinsonnm.github.io/edi-developer/)] para explorar el portafolio en línea.
 
 ## Tecnologías Utilizadas
 
