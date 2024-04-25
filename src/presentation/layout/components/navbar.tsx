@@ -11,17 +11,17 @@ function NavBar() {
       <div className="hidden md:block md:flex-shrink flex-grow lg:justify-end">
         <ul className="flex flex-row gap-8 justify-end text-black">
           <li>
-            <NavLink to={"home"}> Inicio</NavLink>
+            <NavLink to={"/"}> Inicio</NavLink>
           </li>
           <li>
             <NavLink to={"only-for-devs"}>Only for Devs</NavLink>
           </li>
           <li>
-            <NavLink to={"home"}>About me</NavLink>
+            <NavLink to={"/"}>About me</NavLink>
           </li>
           <li>
             {" "}
-            <NavLink to={"home"}>Contact</NavLink>
+            <NavLink to={"/"}>Contact</NavLink>
           </li>
         </ul>
       </div>
