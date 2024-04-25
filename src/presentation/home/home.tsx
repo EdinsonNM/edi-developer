@@ -25,6 +25,12 @@ function Home() {
             color={"#fff"}
             castShadow
           />
+          <Grid
+            cellSize={10}
+            cellColor={"#fff"}
+            infiniteGrid
+            sectionColor={"#f2f2f2"}
+          />
 
           <ScrollControls pages={0} damping={0.25}>
             <Models3D />

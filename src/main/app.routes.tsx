@@ -11,7 +11,7 @@ export const router = createHashRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
         index: true,
       },
