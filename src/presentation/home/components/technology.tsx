@@ -48,6 +48,7 @@ const Technology = ({ position, selected, onClick, path }: Props) => {
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
       onClick={onClick}
+      castsShadow
     />
   );
 };

@@ -3,5 +3,5 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export function Developer() {
   const gltf = useLoader(GLTFLoader, `./developer.gltf`);
-  return <primitive object={gltf.scene} />;
+  return <primitive object={gltf.scene} castShadow />;
 }

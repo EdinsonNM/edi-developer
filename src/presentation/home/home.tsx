@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment, ScrollControls } from "@react-three/drei";
+import { Environment, Grid, ScrollControls } from "@react-three/drei";
 import Models3D from "./components/models-3d";
 import "./home.css";
 import Overlay from "./components/overlay";
@@ -16,19 +16,28 @@ function Home() {
             rotation: [Math.PI * 0.3, 0, 0],
             position: [0, 1, 11],
           }}
+          shadows
         >
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[0, 0, 10]} intensity={1} />
+          <directionalLight
+            position={[10, 0, 0]}
+            intensity={1}
+            color={"#fff"}
+            castShadow
+          />
+          <Grid
+            cellSize={10}
+            cellColor={"#c1c1c1"}
+            infiniteGrid
+            sectionColor={"#f2f2f2"}
+            receiveShadow
+          />
+
           <ScrollControls pages={0} damping={0.25}>
             <Models3D />
             <Overlay />
           </ScrollControls>
-
-          <Environment
-            background={true}
-            files="environment_4k.hdr"
-            path={import.meta.env.VITE_ASSETS}
-            backgroundIntensity={0.2}
-            environmentIntensity={0.4}
-          />
         </Canvas>
       </div>
     </>

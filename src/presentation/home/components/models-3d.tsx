@@ -25,7 +25,7 @@ function Models3D() {
     });
   };
   return (
-    <group ref={groupRef} dispose={null}>
+    <group ref={groupRef} dispose={null} castShadow>
       <Developer />
       <Technologies onSelect={showInfo} />
     </group>

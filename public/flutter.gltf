@@ -57,6 +57,11 @@
     "materials" : [
         {
             "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
             "extensions" : {
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 1

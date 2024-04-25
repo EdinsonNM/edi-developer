@@ -59,6 +59,11 @@
             "alphaCutoff" : 0.5,
             "alphaMode" : "MASK",
             "doubleSided" : true,
+            "emissiveFactor" : [
+                0.5814197063446045,
+                0.5814197063446045,
+                0.5814197063446045
+            ],
             "extensions" : {
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 1
