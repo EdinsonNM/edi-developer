@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment, Grid, ScrollControls } from "@react-three/drei";
+import { Grid, ScrollControls } from "@react-three/drei";
 import Models3D from "./components/models-3d";
 import "./home.css";
 import Overlay from "./components/overlay";
