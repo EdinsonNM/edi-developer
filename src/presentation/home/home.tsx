@@ -1,44 +1,27 @@
 import { Canvas } from "@react-three/fiber";
-import { Grid, ScrollControls } from "@react-three/drei";
-import Models3D from "./components/models-3d";
-import "./home.css";
 import Overlay from "./components/overlay";
+import HomeContent from "./components/home-content";
+import { HomeContextProvider } from "./home.context";
+import CubeLoader from "@design/atoms/cube-loader/cube-loader";
+import { Suspense } from "react";
+import "./home.css";
 
 function Home() {
   return (
-    <>
-      <div className="relative w-full h-full left-0 top-0">
+    <HomeContextProvider>
+      <div className="absolute w-full h-full left-0 top-0">
         <Canvas
           gl={{ alpha: true }}
           style={{ background: "transparent" }}
-          camera={{
-            fov: 55,
-            rotation: [Math.PI * 0.3, 0, 0],
-            position: [0, 1, 11],
-          }}
+          shadows
         >
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[0, 0, 10]} intensity={1} />
-          <directionalLight
-            position={[10, 0, 0]}
-            intensity={1}
-            color={"#fff"}
-            castShadow
-          />
-          <Grid
-            cellSize={10}
-            cellColor={"#fff"}
-            infiniteGrid
-            sectionColor={"#f2f2f2"}
-          />
-
-          <ScrollControls pages={0} damping={0.25}>
-            <Models3D />
-            <Overlay />
-          </ScrollControls>
+          <Suspense fallback={<CubeLoader />}>
+            <HomeContent />
+          </Suspense>{" "}
         </Canvas>
       </div>
-    </>
+      <Overlay />
+    </HomeContextProvider>
   );
 }
 export default Home;

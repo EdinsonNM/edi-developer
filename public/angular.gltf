@@ -3,6 +3,10 @@
         "generator" : "Khronos glTF Blender I/O v3.4.50",
         "version" : "2.0"
     },
+    "extensionsUsed" : [
+        "KHR_materials_transmission",
+        "KHR_materials_ior"
+    ],
     "scene" : 0,
     "scenes" : [
         {
@@ -17,10 +21,10 @@
             "mesh" : 0,
             "name" : "angular",
             "rotation" : [
-                0.2803654670715332,
-                -0.6491496562957764,
-                0.649149477481842,
-                0.28036564588546753
+                0,
+                0.70710688829422,
+                -0.7071066498756409,
+                5.3385068810030134e-08
             ],
             "scale" : [
                 21.54591178894043,
@@ -28,9 +32,9 @@
                 21.54591178894043
             ],
             "translation" : [
-                5.201639175415039,
-                0.9976015090942383,
-                2.580056667327881
+                0,
+                1,
+                0
             ]
         }
     ],
@@ -52,18 +56,27 @@
         {
             "doubleSided" : true,
             "emissiveFactor" : [
-                1,
-                1,
-                1
+                0,
+                0,
+                0.00636592973023653
             ],
+            "extensions" : {
+                "KHR_materials_transmission" : {
+                    "transmissionFactor" : 1
+                },
+                "KHR_materials_ior" : {
+                    "ior" : 1.4500000476837158
+                }
+            },
             "name" : "letra",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0,
-                    0,
-                    0,
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
                     1
-                ]
+                ],
+                "metallicFactor" : 0
             }
         },
         {

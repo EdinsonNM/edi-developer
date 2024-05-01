@@ -1,8 +1,8 @@
 import { Navigate, createHashRouter } from "react-router-dom";
 import { NotFound } from "../design/templates/notfound/notfound";
-import Home from "@presentation/home/home";
 import Layout from "@presentation/layout/layout";
 import OnlyForDevs from "@presentation/only-for-devs/only-for-devs";
+import Home from "@presentation/home/home";
 
 export const router = createHashRouter([
   {

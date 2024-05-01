@@ -1,7 +1,7 @@
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useGLTF } from "@react-three/drei";
 
 export function Developer() {
-  const gltf = useLoader(GLTFLoader, `./developer.gltf`);
+  const gltf = useGLTF(`./developer.gltf`);
+  console.log(gltf);
   return <primitive object={gltf.scene} castShadow />;
 }
