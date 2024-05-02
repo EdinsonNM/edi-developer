@@ -6,7 +6,7 @@ export function Developer() {
   return (
     <group>
       <primitive object={gltf.scene} castShadow />;
-      <Html center position={[0, -7, 0]} className="w-[250px] md:w-[500px]">
+      <Html center position={[0, -6, 0]} className="w-[250px] md:w-[500px]">
         <h1 className="text-3xl font-bold">
           Bienvenido{" "}
           <span className="hidden md:inline-block">a Mi Mundo Digital</span>

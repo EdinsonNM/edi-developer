@@ -4,12 +4,12 @@ import HomeContext from "../home.context";
 import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
 import { cameraPositions } from "../utils/contants";
-//import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
+import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function HomeContent() {
   const { cameraControls } = useContext(HomeContext);
 
-  //useCameraControlHelper();
+  useCameraControlHelper();
   useEffect(() => {
     cameraControls!.current!.setLookAt(...cameraPositions.intro, false);
   }, []);
