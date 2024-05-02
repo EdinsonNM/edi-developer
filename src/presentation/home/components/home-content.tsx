@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
 import { cameraPositions } from "../utils/contants";
 import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
+import { Leva } from "leva";
 
 function HomeContent() {
   const { cameraControls } = useContext(HomeContext);
@@ -16,7 +17,7 @@ function HomeContent() {
   return (
     <>
       <HomeLights />
-
+      <Leva hidden />
       <CameraControls ref={cameraControls} />
       <Grid
         cellSize={10}
