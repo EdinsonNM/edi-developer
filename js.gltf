@@ -16,10 +16,16 @@
         {
             "mesh" : 0,
             "name" : "javascript",
+            "rotation" : [
+                0,
+                -1,
+                0,
+                7.549790126404332e-08
+            ],
             "translation" : [
                 0,
                 1,
-                -6
+                0
             ]
         }
     ],
