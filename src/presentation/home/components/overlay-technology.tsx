@@ -1,9 +1,6 @@
 import classNames from "classnames";
-import { useContext } from "react";
-import HomeContext from "../home.context";
 
 function OverlayTechnology() {
-  const { background } = useContext(HomeContext);
   return (
     <section
       className={classNames("relative w-screen h-screen", {

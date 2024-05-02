@@ -8,8 +8,8 @@ const HomeContext = createContext<{
   modelRef?: React.MutableRefObject<Group<Object3DEventMap> | null>;
   cameraControls?: React.MutableRefObject<CameraControls | null>;
   page: number;
-  changePage: (page: number) => void;
-}>({});
+  changePage?: (page: number) => void;
+}>({ page: 0 });
 type ContextProvider = {
   children: React.ReactNode;
 };
