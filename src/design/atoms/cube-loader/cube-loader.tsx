@@ -36,7 +36,11 @@ function CubeLoader() {
         <boxGeometry />
         <meshNormalMaterial />
       </mesh>
-      <Html className="w-[300px] mt-10 text-gray-500" position={[-1, -0.5, 0]}>
+      <Html
+        className="w-[300px] mt-10 text-gray-500"
+        center
+        position={[0, -0.5, 0]}
+      >
         <div className="text-sm">{currentMessage}</div>
         <div className="w-full bg-gray-200 rounded-full h-4.5 dark:bg-gray-700">
           <div
