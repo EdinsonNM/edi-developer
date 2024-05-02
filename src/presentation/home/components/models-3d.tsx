@@ -5,9 +5,10 @@ import Technologies from "./technologies";
 import { useContext } from "react";
 
 function Models3D() {
-  const { cameraControls } = useContext(HomeContext);
+  const { cameraControls, changePage } = useContext(HomeContext);
   const showTechnology = () => {
     cameraControls!.current!.setLookAt(...cameraPositions.technologies, true);
+    changePage!(1);
   };
   return (
     <group dispose={null} castShadow>

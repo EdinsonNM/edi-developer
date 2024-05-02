@@ -3,6 +3,7 @@ import gsap from "gsap";
 import HomeContext from "../home.context";
 import { cameraPositions } from "../utils/contants";
 import { useProgress } from "@react-three/drei";
+import "./overlay-home.css";
 function OverlayHome() {
   const { cameraControls } = useContext(HomeContext);
   const { progress } = useProgress();
@@ -25,10 +26,19 @@ function OverlayHome() {
   useEffect(() => {
     if (progress === 100) setIsVisibleWelcome(true);
   }, [progress]);
-
+  useEffect(() => {
+    if (!isVisibleWelcome) return;
+    gsap.to(refWelcome.current!, {
+      y: -20, // Sube el div 20px
+      repeat: -1, // Repite la animación infinitamente
+      yoyo: true, // Hace que la animación se invierta alternativamente
+      duration: 0.5, // Duración de un ciclo de la animación en segundos
+      ease: "sine.inOut", // Tipo de "ease" para suavizar la transición
+    });
+  }, [isVisibleWelcome]);
   return (
     <section
-      className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden pb-32 z-50"
+      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden pb-32 z-50"
       style={{ pointerEvents: "none" }}
     >
       {isVisibleWelcome && (

@@ -12,8 +12,7 @@
         {
             "name" : "Scene",
             "nodes" : [
-                0,
-                1
+                0
             ]
         }
     ],
@@ -21,25 +20,16 @@
         {
             "mesh" : 0,
             "name" : "Roundcube.004",
-            "translation" : [
-                2.6817028522491455,
-                1,
-                -5.640827178955078
-            ]
-        },
-        {
-            "mesh" : 1,
-            "name" : "blender.256x239",
             "rotation" : [
-                0.7071068286895752,
                 0,
+                1,
                 0,
-                0.7071068286895752
+                7.549790126404332e-08
             ],
             "translation" : [
-                2.6817028522491455,
-                1.0929889678955078,
-                -6.672856330871582
+                0,
+                1,
+                0
             ]
         }
     ],
@@ -90,23 +80,19 @@
                 {
                     "attributes" : {
                         "POSITION" : 0,
-                        "NORMAL" : 1
+                        "TEXCOORD_0" : 1,
+                        "NORMAL" : 2
                     },
-                    "indices" : 2,
+                    "indices" : 3,
                     "material" : 0
-                }
-            ]
-        },
-        {
-            "name" : "blender.256x239",
-            "primitives" : [
+                },
                 {
                     "attributes" : {
-                        "POSITION" : 3,
-                        "TEXCOORD_0" : 4,
-                        "NORMAL" : 5
+                        "POSITION" : 4,
+                        "TEXCOORD_0" : 5,
+                        "NORMAL" : 6
                     },
-                    "indices" : 6,
+                    "indices" : 7,
                     "material" : 1
                 }
             ]
@@ -146,44 +132,50 @@
             "bufferView" : 1,
             "componentType" : 5126,
             "count" : 600,
-            "type" : "VEC3"
+            "type" : "VEC2"
         },
         {
             "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 600,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
             "componentType" : 5123,
             "count" : 900,
             "type" : "SCALAR"
         },
         {
-            "bufferView" : 3,
+            "bufferView" : 4,
             "componentType" : 5126,
             "count" : 4,
             "max" : [
                 0.5355648398399353,
-                0,
-                0.5
+                0.5929889678955078,
+                -1.032029151916504
             ],
             "min" : [
                 -0.5355648398399353,
-                0,
-                -0.5
+                -0.4070110321044922,
+                -1.032029151916504
             ],
             "type" : "VEC3"
-        },
-        {
-            "bufferView" : 4,
-            "componentType" : 5126,
-            "count" : 4,
-            "type" : "VEC2"
         },
         {
             "bufferView" : 5,
             "componentType" : 5126,
             "count" : 4,
-            "type" : "VEC3"
+            "type" : "VEC2"
         },
         {
             "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 4,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 7,
             "componentType" : 5123,
             "count" : 6,
             "type" : "SCALAR"
@@ -198,38 +190,44 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 7200,
+            "byteLength" : 4800,
             "byteOffset" : 7200,
             "target" : 34962
         },
         {
             "buffer" : 0,
+            "byteLength" : 7200,
+            "byteOffset" : 12000,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
             "byteLength" : 1800,
-            "byteOffset" : 14400,
+            "byteOffset" : 19200,
             "target" : 34963
         },
         {
             "buffer" : 0,
             "byteLength" : 48,
-            "byteOffset" : 16200,
+            "byteOffset" : 21000,
             "target" : 34962
         },
         {
             "buffer" : 0,
             "byteLength" : 32,
-            "byteOffset" : 16248,
+            "byteOffset" : 21048,
             "target" : 34962
         },
         {
             "buffer" : 0,
             "byteLength" : 48,
-            "byteOffset" : 16280,
+            "byteOffset" : 21080,
             "target" : 34962
         },
         {
             "buffer" : 0,
             "byteLength" : 12,
-            "byteOffset" : 16328,
+            "byteOffset" : 21128,
             "target" : 34963
         }
     ],
@@ -243,7 +241,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 16340,
+            "byteLength" : 21140,
             "uri" : "blender.bin"
         }
     ]

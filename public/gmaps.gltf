@@ -12,8 +12,7 @@
         {
             "name" : "Scene",
             "nodes" : [
-                0,
-                1
+                0
             ]
         }
     ],
@@ -21,30 +20,16 @@
         {
             "mesh" : 0,
             "name" : "Roundcube.006",
-            "translation" : [
-                -2.977616310119629,
-                1,
-                -5.141473293304443
-            ]
-        },
-        {
-            "mesh" : 1,
-            "name" : "google_maps_icon_130921",
             "rotation" : [
                 0,
-                0.7071067690849304,
-                -0.7071068286895752,
-                5.338508302088485e-08
-            ],
-            "scale" : [
-                1.4289627075195312,
-                1.4289627075195312,
-                1.4289627075195312
+                1,
+                0,
+                7.549790126404332e-08
             ],
             "translation" : [
-                -2.977616310119629,
-                0.9999998211860657,
-                -6.14147424697876
+                0,
+                1,
+                0
             ]
         }
     ],
@@ -100,12 +85,7 @@
                     },
                     "indices" : 3,
                     "material" : 0
-                }
-            ]
-        },
-        {
-            "name" : "google_maps_icon_130921",
-            "primitives" : [
+                },
                 {
                     "attributes" : {
                         "POSITION" : 4,
@@ -169,29 +149,29 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 1020,
+            "count" : 1021,
             "max" : [
-                0.5000035762786865,
-                0.006997466087341309,
-                0.5000020265579224
+                0.7144879698753357,
+                0.7144871354103088,
+                -1.0099985599517822
             ],
             "min" : [
-                -0.5000021457672119,
-                0.0069963932037353516,
-                -0.5000041723251343
+                -0.7144829034805298,
+                -0.714484453201294,
+                -1.0100001096725464
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 1020,
+            "count" : 1021,
             "type" : "VEC2"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 1020,
+            "count" : 1021,
             "type" : "VEC3"
         },
         {
@@ -228,26 +208,26 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 12240,
+            "byteLength" : 12252,
             "byteOffset" : 21000,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 8160,
-            "byteOffset" : 33240,
+            "byteLength" : 8168,
+            "byteOffset" : 33252,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 12240,
-            "byteOffset" : 41400,
+            "byteLength" : 12252,
+            "byteOffset" : 41420,
             "target" : 34962
         },
         {
             "buffer" : 0,
             "byteLength" : 3072,
-            "byteOffset" : 53640,
+            "byteOffset" : 53672,
             "target" : 34963
         }
     ],
@@ -261,7 +241,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 56712,
+            "byteLength" : 56744,
             "uri" : "gmaps.bin"
         }
     ]

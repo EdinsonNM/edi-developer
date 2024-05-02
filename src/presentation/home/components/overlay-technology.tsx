@@ -12,7 +12,7 @@ function OverlayTechnology() {
         flex: true,
         "items-center": true,
         "justify-end": true,
-        "backdrop-filter backdrop-blur": background !== "transparent",
+        "backdrop-filter backdrop-blur": true,
       })}
     >
       <div
