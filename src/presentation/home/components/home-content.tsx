@@ -5,7 +5,6 @@ import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
 import { HomeAnimationStates, cameraPositions } from "../utils/contants";
 import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
-import { Leva } from "leva";
 
 function HomeContent() {
   const { cameraControls, changePage } = useContext(HomeContext);
