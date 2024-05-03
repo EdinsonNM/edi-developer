@@ -1,15 +1,16 @@
 import { createContext, useCallback, useMemo, useRef, useState } from "react";
 import { Group, Object3DEventMap } from "three";
 import { CameraControls } from "@react-three/drei";
+import { HomeAnimationStates } from "./utils/contants";
 
 const HomeContext = createContext<{
   background?: string;
   setBackground?: (color: string) => void;
   modelRef?: React.MutableRefObject<Group<Object3DEventMap> | null>;
   cameraControls?: React.MutableRefObject<CameraControls | null>;
-  page: number;
-  changePage?: (page: number) => void;
-}>({ page: 0 });
+  page: string;
+  changePage?: (page: string) => void;
+}>({ page: HomeAnimationStates.INTRO });
 type ContextProvider = {
   children: React.ReactNode;
 };
@@ -17,8 +18,8 @@ export const HomeContextProvider = ({ children }: ContextProvider) => {
   const cameraControls = useRef<CameraControls>(null);
   const modelRef = useRef<Group<Object3DEventMap>>(null);
   const [background, setBackground] = useState("transparent");
-  const [page, setPage] = useState(0);
-  const changePage = useCallback((page: number) => setPage(page), []);
+  const [page, setPage] = useState(HomeAnimationStates.INTRO);
+  const changePage = useCallback((page: string) => setPage(page), []);
   const contextValue = useMemo(
     () => ({
       background,

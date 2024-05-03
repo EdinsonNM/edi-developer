@@ -42,3 +42,9 @@ export const technologies: TechnologyProps[] = [
     color: "#f5792a22",
   },
 ];
+export const HomeAnimationStates = {
+  INTRO: "intro",
+  DEVELOPER: "developer",
+  TECHNOLOGIES: "technologies",
+  SELECTEDTECH: "selectedTech",
+};

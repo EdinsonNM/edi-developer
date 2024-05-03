@@ -3,21 +3,21 @@ function HomeLights() {
     <>
       <pointLight
         position={[6, 8, 7]}
-        intensity={150}
+        intensity={300}
         castShadow
         color={"#FF5400"}
       />
       <pointLight
         position={[-6, 8, 7]}
-        intensity={150}
+        intensity={300}
         castShadow
         color={"#332CFF"}
       />
       <pointLight
         position={[0, 16, 7]}
-        intensity={150}
+        intensity={100}
         castShadow
-        color={"#CEF5FF"}
+        color={"#fff"}
       />
     </>
   );

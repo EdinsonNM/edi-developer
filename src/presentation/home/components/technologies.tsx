@@ -11,7 +11,7 @@ function Technologies({ onSelect = () => {} }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
 
   const angleStep = (2 * Math.PI) / technologies.length; // Ángulo en radianes
-  const radius = 5;
+  const radius = 6;
   const selectedTech = (index: number) => {
     setSelected(index);
     onSelect();

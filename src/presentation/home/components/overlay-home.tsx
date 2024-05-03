@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import HomeContext from "../home.context";
-import { cameraPositions } from "../utils/contants";
+import { HomeAnimationStates, cameraPositions } from "../utils/contants";
 import { useProgress } from "@react-three/drei";
 import "./overlay-home.css";
 function OverlayHome() {
-  const { cameraControls } = useContext(HomeContext);
+  const { cameraControls, changePage } = useContext(HomeContext);
   const { progress } = useProgress();
   const refWelcome = useRef(null);
   const [isVisibleWelcome, setIsVisibleWelcome] = useState(false);
@@ -20,6 +20,9 @@ function OverlayHome() {
     gsap.to(refWelcome.current, {
       opacity: 0, // Cambia la opacidad a 0 para "desvanecerlo"
       duration: 1, // Duración de la animación en segundos
+      onComplete: () => {
+        changePage!(HomeAnimationStates.DEVELOPER);
+      },
     });
   };
 

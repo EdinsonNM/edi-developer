@@ -1,19 +1,24 @@
+import TechLoader from "@design/atoms/loaders/tech-loader";
 import HomeContext from "../home.context";
-import { cameraPositions } from "../utils/contants";
+import { HomeAnimationStates } from "../utils/contants";
 import { Developer } from "./developer";
 import Technologies from "./technologies";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 
 function Models3D() {
-  const { cameraControls, changePage } = useContext(HomeContext);
+  const { changePage, page } = useContext(HomeContext);
   const showTechnology = () => {
-    cameraControls!.current!.setLookAt(...cameraPositions.technologies, true);
-    changePage!(1);
+    //cameraControls!.current!.setLookAt(...cameraPositions.technologies, true);
+    changePage!(HomeAnimationStates.SELECTEDTECH);
   };
   return (
     <group dispose={null} castShadow>
       <Developer />
-      <Technologies onSelect={showTechnology!} />
+      {page !== HomeAnimationStates.INTRO && (
+        <Suspense fallback={<TechLoader />}>
+          <Technologies onSelect={showTechnology!} />
+        </Suspense>
+      )}
     </group>
   );
 }

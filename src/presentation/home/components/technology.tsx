@@ -1,7 +1,7 @@
 import { Vector3, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Html, useCursor, useGLTF } from "@react-three/drei";
+import { useCursor, useGLTF } from "@react-three/drei";
 import { Group, Object3DEventMap } from "three";
 type Props = {
   position?: Vector3;
@@ -11,7 +11,7 @@ type Props = {
   name: string;
 };
 
-const Technology = ({ position, selected, onClick, name, path }: Props) => {
+const Technology = ({ position, selected, onClick, path }: Props) => {
   const ref = useRef<Group<Object3DEventMap>>(null);
   const [hovered, setHover] = useState(false);
   const gltf = useGLTF(`./${path}`);
@@ -47,15 +47,11 @@ const Technology = ({ position, selected, onClick, name, path }: Props) => {
     // Asegúrate de que el objeto no sea nulo
     if (ref.current) {
       // Incrementa la rotación en el eje Y
-      (ref.current as any).rotation.y += 0.005;
+      (ref.current as any).rotation.y += 0.005 + 0.01 * Math.random();
     }
   });
-  console.log("Technology", name, gltf);
   return (
     <group ref={ref} position={position}>
-      <Html occlude>
-        <div className="mt-2">{name}</div>
-      </Html>
       <primitive
         object={gltf.scene}
         onPointerOver={(e: MouseEvent) => {
