@@ -3,7 +3,7 @@ import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
-import { HomeAnimationStates, cameraPositions } from "../utils/contants";
+import { HomeAnimationStates } from "../utils/contants";
 import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function HomeContent() {

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import HomeContext from "../home.context";
-import { HomeAnimationStates, cameraPositions } from "../utils/contants";
+import { HomeAnimationStates } from "../utils/contants";
 import { useProgress } from "@react-three/drei";
 import "./overlay-home.css";
 function OverlayHome() {
-  const { cameraControls, changePage } = useContext(HomeContext);
+  const { changePage } = useContext(HomeContext);
   const { progress } = useProgress();
   const refWelcome = useRef(null);
   const [isVisibleWelcome, setIsVisibleWelcome] = useState(false);
