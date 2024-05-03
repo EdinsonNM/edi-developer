@@ -6,7 +6,7 @@ import HomeContext from "../home.context";
 function OverlayTechnology() {
   const { changePage } = useContext(HomeContext);
   const goBack = () => {
-    changePage!(HomeAnimationStates.DEVELOPER);
+    changePage!(HomeAnimationStates.DEVELOPER, true);
   };
   return (
     <section

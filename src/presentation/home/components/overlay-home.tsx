@@ -10,8 +10,9 @@ function OverlayHome() {
   const refWelcome = useRef(null);
   const [isVisibleWelcome, setIsVisibleWelcome] = useState(false);
   const onSelectWelcome = () => {
-    cameraControls!.current!.setLookAt(...cameraPositions.developer, true);
-
+    //changePage!(HomeAnimationStates.DEVELOPER, true);
+    //cameraControls!.current!.setLookAt(...cameraPositions.developer, true);
+    changePage!(HomeAnimationStates.DEVELOPER, true);
     gsap.to(refWelcome.current, {
       y: -100, // Mueve el div 100px hacia arriba
       opacity: 0, // Cambia la opacidad a 0 para "desvanecerlo"
@@ -21,7 +22,7 @@ function OverlayHome() {
       opacity: 0, // Cambia la opacidad a 0 para "desvanecerlo"
       duration: 1, // Duración de la animación en segundos
       onComplete: () => {
-        changePage!(HomeAnimationStates.DEVELOPER);
+        changePage!(HomeAnimationStates.DEVELOPER, true);
       },
     });
   };

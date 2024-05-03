@@ -1,14 +1,7 @@
 import { Html, useProgress } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
 
 function TechLoader() {
   const { progress } = useProgress();
-  const ref = useRef<any>(null);
-  useFrame(() => {
-    (ref.current as any).rotation.y += (0.3 * progress) / 100;
-  });
-
   return (
     <group position={[0, 0, 0]}>
       <Html

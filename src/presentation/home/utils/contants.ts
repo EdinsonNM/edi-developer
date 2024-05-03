@@ -15,7 +15,20 @@ export const cameraPositions: Record<string, CameraPositionType> = {
     8.961658575728134, 1.6577715783944247, 7.296601928950036,
   ],
 };
-
+export const cameraPositionsResponsive: Record<string, CameraPositionType> = {
+  intro: [
+    0, -1.3888580904037795, 12.5065139318218, 0, 19.53492597783932,
+    4.025931745379569,
+  ],
+  developer: [
+    -0.4466519528389527, 4.97100657628403, 30.37443466021406,
+    -0.08397356126678833, 0.6364447722187185, -4.053039656924131,
+  ],
+  technologies: [
+    -14.523654996161131, 5.446598781359635, 13.472883454830743,
+    8.961658575728134, 1.6577715783944247, 7.296601928950036,
+  ],
+};
 export const technologies: TechnologyProps[] = [
   { key: "reactjs", path: "react.gltf", name: "React JS", color: "#61dafb43" },
   {

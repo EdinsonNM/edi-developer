@@ -3,21 +3,21 @@ import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
-import { cameraPositions } from "../utils/contants";
+import { HomeAnimationStates, cameraPositions } from "../utils/contants";
 import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 import { Leva } from "leva";
 
 function HomeContent() {
-  const { cameraControls } = useContext(HomeContext);
+  const { cameraControls, changePage } = useContext(HomeContext);
 
   useCameraControlHelper();
   useEffect(() => {
-    cameraControls!.current!.setLookAt(...cameraPositions.intro, false);
+    changePage!(HomeAnimationStates.INTRO, true);
+    //cameraControls!.current!.setLookAt(...cameraPositions.intro, false);
   }, []);
   return (
     <>
       <HomeLights />
-      <Leva hidden />
       <CameraControls ref={cameraControls} />
       <Grid
         cellSize={10}

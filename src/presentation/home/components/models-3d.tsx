@@ -9,7 +9,7 @@ function Models3D() {
   const { changePage, page } = useContext(HomeContext);
   const showTechnology = () => {
     //cameraControls!.current!.setLookAt(...cameraPositions.technologies, true);
-    changePage!(HomeAnimationStates.SELECTEDTECH);
+    changePage!(HomeAnimationStates.SELECTEDTECH, true);
   };
   return (
     <group dispose={null} castShadow>
