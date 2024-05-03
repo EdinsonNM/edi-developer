@@ -4,12 +4,12 @@ import HomeContext from "../home.context";
 import { useContext, useEffect } from "react";
 import Models3D from "./models-3d";
 import { HomeAnimationStates } from "../utils/contants";
-import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
+//import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function HomeContent() {
   const { cameraControls, changePage } = useContext(HomeContext);
 
-  useCameraControlHelper();
+  //useCameraControlHelper();
   useEffect(() => {
     changePage!(HomeAnimationStates.INTRO, true);
     //cameraControls!.current!.setLookAt(...cameraPositions.intro, false);
