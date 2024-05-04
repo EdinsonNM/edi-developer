@@ -1,6 +1,7 @@
 function HomeLights() {
   return (
     <>
+      <ambientLight intensity={1} color={"#debe82"} />
       <pointLight
         position={[6, 8, 7]}
         intensity={300}

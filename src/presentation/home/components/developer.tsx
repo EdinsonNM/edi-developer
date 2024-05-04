@@ -1,16 +1,21 @@
-import { Html, useGLTF } from "@react-three/drei";
-import { useContext } from "react";
+import { Html, useAnimations, useCursor, useGLTF } from "@react-three/drei";
+import { useContext, useState } from "react";
 import HomeContext from "../home.context";
 import { HomeAnimationStates } from "../utils/contants";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 export function Developer() {
+  const [hovered, setHover] = useState(false);
+  useCursor(hovered);
+
   const { page } = useContext(HomeContext);
   const { scene, animations } = useGLTF(`./optimize developer.gltf`);
-
+  const { changePage } = useContext(HomeContext);
+  const data = useAnimations(animations);
+  console.log(data);
   const onSelectDeveloper = () => {
     if (page === HomeAnimationStates.INTRO) {
-      //changePage!(HomeAnimationStates.DEVELOPER);
+      changePage!(HomeAnimationStates.DEVELOPER, true);
     }
   };
 
@@ -28,7 +33,19 @@ export function Developer() {
   });
   return (
     <group>
-      <primitive object={scene} castShadow onClick={onSelectDeveloper} />
+      <primitive
+        object={scene}
+        castShadow
+        onClick={onSelectDeveloper}
+        onPointerOver={(e: MouseEvent) => {
+          e.stopPropagation();
+          setHover(true);
+        }}
+        onPointerOut={(e: MouseEvent) => {
+          e.stopPropagation();
+          setHover(false);
+        }}
+      />
 
       {page !== HomeAnimationStates.SELECTEDTECH && (
         <Html center position={[0, -6, 0]} className="w-[250px] md:w-[500px]">
