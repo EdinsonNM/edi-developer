@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const Insect = () => {
   const { scene } = useGLTF("./bug.gltf");
-  const mesh = useRef();
+  const mesh = useRef(null);
   const velocity = useRef([0, 0, 0]);
   const maxSpeed = 0.1;
 
@@ -19,7 +19,7 @@ const Insect = () => {
 
   // Movimiento orgánico del insecto utilizando caminata aleatoria
   useFrame(() => {
-    const [vx, vy, vz] = velocity.current;
+    const [vx, , vz] = velocity.current;
     (mesh.current as any).position.x += vx;
     (mesh.current as any).position.y += 0;
     (mesh.current as any).position.z += vz;
