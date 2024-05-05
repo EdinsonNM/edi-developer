@@ -37,6 +37,7 @@ export function Developer() {
         object={scene}
         castShadow
         onClick={onSelectDeveloper}
+        onTouchStart={onSelectDeveloper}
         onPointerOver={(e: MouseEvent) => {
           e.stopPropagation();
           setHover(true);
@@ -49,7 +50,7 @@ export function Developer() {
 
       {page !== HomeAnimationStates.SELECTEDTECH && (
         <Html center position={[0, -10, 0]} className="w-[250px] md:w-[500px]">
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold text-yellow-400">
             Bienvenido{" "}
             <span className="hidden md:inline-block">a Mi Mundo Digital</span>
           </h1>
