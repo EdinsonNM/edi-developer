@@ -48,19 +48,26 @@ export function Developer() {
       />
 
       {page !== HomeAnimationStates.SELECTEDTECH && (
-        <Html center position={[0, -6, 0]} className="w-[250px] md:w-[500px]">
+        <Html center position={[0, -10, 0]} className="w-[250px] md:w-[500px]">
           <h1 className="text-3xl font-bold">
             Bienvenido{" "}
             <span className="hidden md:inline-block">a Mi Mundo Digital</span>
           </h1>
           <h2>Descubre Mi Pasión por la Tecnología y Más Allá</h2>
 
-          <a
-            href="#/contacto"
-            className="mt-4 inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-          >
-            Conéctate conmigo
-          </a>
+          {page === HomeAnimationStates.INTRO && (
+            <a
+              onClick={onSelectDeveloper}
+              className="mt-4 inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+            >
+              Conéctate conmigo
+            </a>
+          )}
+          {page === HomeAnimationStates.DEVELOPER && (
+            <p className="text-sm text-gray-400">
+              Selecciona un cubo para conocer más sobre mi experiencia
+            </p>
+          )}
         </Html>
       )}
     </group>

@@ -11,18 +11,18 @@ function HomeContent() {
 
   //useCameraControlHelper();
   useEffect(() => {
-    changePage!(HomeAnimationStates.INTRO, true);
+    changePage!(HomeAnimationStates.INTRO, true, false);
     //cameraControls!.current!.setLookAt(...cameraPositions.intro, false);
   }, []);
   return (
     <>
       <HomeLights />
-      <CameraControls ref={cameraControls} />
+      <CameraControls ref={cameraControls} boundaryEnclosesCamera />
       <Grid
         cellSize={10}
-        cellColor={"#fff"}
+        cellColor={"#454545"}
         infiniteGrid
-        sectionColor={"#f2f2f2"}
+        sectionColor={"#454545"}
         receiveShadow
         visible={true}
       />

@@ -49,7 +49,10 @@ function OverlayHome() {
         <div ref={refWelcome} style={{ pointerEvents: "auto" }}>
           <h1 className="block text-5xl pt-20 welcome">Hello World</h1>
           <div className="block">
-            <a className="arrow scrolly" onClick={onSelectWelcome}></a>
+            <a
+              className="arrow scrolly text-white"
+              onClick={onSelectWelcome}
+            ></a>
           </div>
         </div>
       )}

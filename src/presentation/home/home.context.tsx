@@ -3,6 +3,7 @@ import { Group, Object3DEventMap } from "three";
 import { CameraControls } from "@react-three/drei";
 import {
   HomeAnimationStates,
+  SMALL_SCREEN_THRESHOLD,
   cameraPositions,
   cameraPositionsResponsive,
 } from "./utils/contants";
@@ -13,28 +14,34 @@ const HomeContext = createContext<{
   modelRef?: React.MutableRefObject<Group<Object3DEventMap> | null>;
   cameraControls?: React.MutableRefObject<CameraControls | null>;
   page: string;
-  changePage?: (page: string, changeCamera?: boolean) => void;
+  changePage?: (
+    page: string,
+    changeCamera?: boolean,
+    includeAnimation?: boolean
+  ) => void;
 }>({ page: HomeAnimationStates.INTRO });
 type ContextProvider = {
   children: React.ReactNode;
 };
 
-const SMALL_SCREEN_THRESHOLD = 768;
 export const HomeContextProvider = ({ children }: ContextProvider) => {
   const cameraControls = useRef<CameraControls>(null);
   const modelRef = useRef<Group<Object3DEventMap>>(null);
   const [background, setBackground] = useState("transparent");
   const [page, setPage] = useState(HomeAnimationStates.INTRO);
   const changePage = useCallback(
-    (page: string, changeCamera: boolean = false) => {
+    (page: string, changeCamera: boolean = false, includeAnimation = true) => {
       setPage(page);
       if (changeCamera) {
         if (window.innerWidth > SMALL_SCREEN_THRESHOLD) {
-          cameraControls!.current!.setLookAt(...cameraPositions[page], true);
+          cameraControls!.current!.setLookAt(
+            ...cameraPositions[page],
+            includeAnimation
+          );
         } else {
           cameraControls!.current!.setLookAt(
             ...cameraPositionsResponsive[page],
-            true
+            includeAnimation
           );
         }
       }

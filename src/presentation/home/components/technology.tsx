@@ -53,7 +53,7 @@ const Technology = ({ position, selected, onClick, path }: Props) => {
   return (
     <group ref={ref} position={position}>
       <primitive
-        object={gltf.scene}
+        object={gltf.scene.clone()}
         onPointerOver={(e: MouseEvent) => {
           e.stopPropagation();
           setHover(true);
