@@ -7,6 +7,7 @@ function HomeLights() {
         castShadow
         color={"#fff"}
       />
+      <ambientLight intensity={0.1} />
     </>
   );
 }

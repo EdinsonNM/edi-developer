@@ -6,7 +6,7 @@
   font-weight: 700;
   line-height: 1.5;
   font-weight: 400;
-  font-family: "PT Sans", sans-serif;
+  font-family: "Ubuntu Sans Mono", monospace;
   color-scheme: light dark;
   color: black;
 }
@@ -59,10 +59,5 @@ html {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 body {
-  background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(227, 227, 227, 1) 100%
-  );
+  background: #2f2f2f;
 }

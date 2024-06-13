@@ -1,62 +1,79 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
-import HomeContext from "../home.context";
-import { HomeAnimationStates } from "../utils/contants";
-import { useProgress } from "@react-three/drei";
-import "./overlay-home.css";
-function OverlayHome() {
-  const { changePage } = useContext(HomeContext);
-  const { progress } = useProgress();
-  const refWelcome = useRef(null);
-  const [isVisibleWelcome, setIsVisibleWelcome] = useState(false);
-  const onSelectWelcome = () => {
-    //changePage!(HomeAnimationStates.DEVELOPER, true);
-    //cameraControls!.current!.setLookAt(...cameraPositions.developer, true);
-    changePage!(HomeAnimationStates.DEVELOPER, true);
-    gsap.to(refWelcome.current, {
-      y: -100, // Mueve el div 100px hacia arriba
-      opacity: 0, // Cambia la opacidad a 0 para "desvanecerlo"
-      duration: 1, // Duración de la animación en segundos
-    });
-    gsap.to(refWelcome.current, {
-      opacity: 0, // Cambia la opacidad a 0 para "desvanecerlo"
-      duration: 1, // Duración de la animación en segundos
-      onComplete: () => {
-        changePage!(HomeAnimationStates.DEVELOPER, true);
-      },
-    });
-  };
+import { useGSAP } from "@gsap/react";
+import { FaWhatsapp, FaLinkedin, FaTiktok } from "react-icons/fa";
+import Title from "@design/atoms/page/title";
+import Subtitle from "@design/atoms/page/subtitle";
+import Description from "@design/atoms/page/description";
+import Page from "@design/atoms/page/page";
+import Container from "@design/atoms/page/container";
 
-  useEffect(() => {
-    if (progress === 100) setIsVisibleWelcome(true);
-  }, [progress]);
-  useEffect(() => {
-    if (!isVisibleWelcome) return;
-    gsap.to(refWelcome.current!, {
-      y: -20, // Sube el div 20px
-      repeat: -1, // Repite la animación infinitamente
-      yoyo: true, // Hace que la animación se invierta alternativamente
-      duration: 0.5, // Duración de un ciclo de la animación en segundos
-      ease: "sine.inOut", // Tipo de "ease" para suavizar la transición
-    });
-  }, [isVisibleWelcome]);
+function OverlayHome() {
+  const titleRef = useRef(null);
+  const container = useRef(null);
+
+  useGSAP(
+    () => {
+      // gsap code here...
+      gsap.from(".title", { x: 2000, duration: 1 }); // <-- automatically reverted
+      gsap.from(".subtitle", { x: -10, duration: 0.5 }); // <-- automatically reverted
+      gsap.from(".desc", { duration: 0.5, opacity: 2 }); // <-- automatically reverted
+    },
+    { scope: container }
+  ); // <-- scope is for selector text (optional)
   return (
-    <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden pb-32 z-50"
-      style={{ pointerEvents: "none" }}
-    >
-      {isVisibleWelcome && (
-        <div ref={refWelcome} style={{ pointerEvents: "auto" }}>
-          <h1 className="block text-5xl pt-20 welcome">Hello World</h1>
-          <div className="block">
-            <a
-              className="arrow scrolly text-white"
-              onClick={onSelectWelcome}
-            ></a>
+    <Page>
+      <Container>
+        <Title>
+          Construyendo el
+          <br />
+          <span className="text-violet-500">Futuro</span> de la Web
+        </Title>
+        <Subtitle>"Un Código a la Vez"</Subtitle>
+
+        <Description>
+          Explora cómo más de una década de innovación en desarrollo frontend me
+          ha permitido liderar proyectos que transforman y enriquecen la
+          experiencia digital. Sumérgete en un viaje a través de tecnologías
+          punteras y descubre cómo cada línea de código contribuye a forjar un
+          internet más interactivo y accesible.
+        </Description>
+        <a className="mt-4 inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors pointer-events-all cursor-pointer">
+          Conéctate conmigo
+        </a>
+        <div className="flex flex-row gap-10 mt-6">
+          <div>
+            <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
+              Proyectos desarrollados
+            </h3>
+            <p className="text-5xl text-center">+300</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
+              Desarrolladores capacitados
+            </h3>
+            <p className="text-5xl text-center">+60</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
+              Años de experiencia
+            </h3>
+            <p className="text-5xl text-center">+14</p>
+          </div>
+          <div>
+            <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
+              Talleres brindados
+            </h3>
+            <p className="text-5xl text-center">+15</p>
           </div>
         </div>
-      )}
-    </section>
+        <div className="flex flex-row gap-5 text-2xl mt-3">
+          <FaLinkedin className="text-blue-500" />
+          <FaWhatsapp className=" text-green-500" />
+          <FaTiktok />
+        </div>
+      </Container>
+    </Page>
   );
 }
 export default OverlayHome;
