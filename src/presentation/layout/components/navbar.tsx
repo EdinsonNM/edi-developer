@@ -1,5 +1,4 @@
 import LogoIcon from "@design/atoms/icons/logo-icon";
-import { NavLink } from "react-router-dom";
 import "./navbar.css";
 function NavBar() {
   return (
