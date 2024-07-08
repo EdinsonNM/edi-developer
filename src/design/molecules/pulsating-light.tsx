@@ -11,7 +11,7 @@ const PulsatingLight = (props: PointLightProps) => {
     from: { intensity: 0.5 },
     to: async (next) => {
       while (1) {
-        await next({ intensity: 10.5 });
+        await next({ intensity: 100.5 });
         await next({ intensity: 0.5 });
       }
     },

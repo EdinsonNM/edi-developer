@@ -1,6 +1,12 @@
 import { Gltf } from "@react-three/drei";
+import Monitor from "./monitor";
 
 function Scenery() {
-  return <Gltf src="./models/scene.glb" receiveShadow />;
+  return (
+    <group>
+      <Gltf src="./models/scene.glb" receiveShadow />
+      <Monitor />
+    </group>
+  );
 }
 export default Scenery;

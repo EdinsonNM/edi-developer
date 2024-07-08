@@ -1,12 +1,12 @@
 import PulsatingLight from "@design/molecules/pulsating-light";
 import { useEffect, useRef } from "react";
-import { SpotLight } from "three";
+import { PointLight, SpotLight } from "three";
 
 function HomeLights() {
-  const lampRef = useRef<SpotLight>(null);
+  const lampRef = useRef<PointLight>(null);
 
   useEffect(() => {
-    lampRef!.current!.target!.position.set(-4.5, 1, 0.5);
+    //lampRef!.current!.target!.position.set(-4.5, 1, 0.5);
   }, []);
   return (
     <>
@@ -29,16 +29,14 @@ function HomeLights() {
         receiveShadow
       />
 
-      <spotLight
+      <pointLight
         ref={lampRef}
         color={"yellow"}
-        position={[-5, 2.6, 1.4]}
-        intensity={500}
-        decay={5}
+        position={[-4.2, 2.4, 1.4]}
+        intensity={10}
+        decay={1}
         castShadow
-        penumbra={0.5}
-        distance={2}
-        angle={Math.PI / 4}
+        distance={0}
       />
       <spotLight
         intensity={100}

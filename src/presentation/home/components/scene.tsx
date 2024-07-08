@@ -1,4 +1,8 @@
-import { CameraControls, ScrollControls, Stars } from "@react-three/drei";
+import {
+  CameraControls,
+  OrbitControls,
+  ScrollControls,
+} from "@react-three/drei";
 import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { Suspense, useContext, useEffect } from "react";
@@ -8,8 +12,10 @@ import Overlay from "./overlay";
 import CubeLoader from "@design/atoms/loaders/cube-loader";
 import Scenery from "./scenery";
 import { Developer } from "./developer";
+import Stars from "./stars";
+//import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
-function HomeContent() {
+function Scene() {
   const { cameraControls, changePage } = useContext(HomeContext);
 
   //useCameraControlHelper();
@@ -45,4 +51,4 @@ function HomeContent() {
     </>
   );
 }
-export default HomeContent;
+export default Scene;

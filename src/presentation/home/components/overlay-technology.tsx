@@ -5,10 +5,10 @@ import Title from "@design/atoms/page/title";
 function OverlayTechnology() {
   return (
     <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-black bg-opacity-75"
+      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-black bg-opacity-55"
       style={{ pointerEvents: "auto" }}
     >
-      <div className="w-full max-w-[1024px] p-8 md:p-5 flex flex-col items-center md:items-end text-start">
+      <div className="w-full max-w-[1024px] p-8 md:p-5 flex flex-col items-center md:items-start text-start">
         <div className="w-full max-w-[600px] gap-4 ">
           <Title>
             El <span className="text-violet-500">arsenal</span> del

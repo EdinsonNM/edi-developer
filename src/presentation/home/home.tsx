@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
-import HomeContent from "./components/home-content";
 import { HomeContextProvider } from "./home.context";
 import "./home.css";
+import Scene from "./components/scene";
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
           style={{ background: "#00000a" }}
           camera={{ fov: 45, position: [0, 0, 30] }}
         >
-          <HomeContent />
+          <Scene />
         </Canvas>
       </div>
     </HomeContextProvider>

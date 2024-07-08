@@ -3,15 +3,15 @@ import { CameraPositionType, TechnologyProps } from "./types";
 export const cameraPositions: Record<string, CameraPositionType> = {
   page0: [0, 3, -5, 0, 9, 0],
   page1: [0, 3, -25, 0, 9, 0],
-  page2: [12, 4, -7, 3, 1, 0],
+  page2: [6, 3, -5, 3, 2, 0],
   page3: [-5, 4, 6, 3, 0, 0],
-  page4: [-6, 3, -1, -5, 2.5, 0], //printer position
+  page4: [-6, 3, -1, -4, 2.5, 0], //printer position
 };
 export const cameraPositionsResponsive: Record<string, CameraPositionType> = {
   page0: [0, 3, -5, 0, 9, 0],
-  page1: [0, 3, -25, 0, 9, 0],
-  page2: [12, 4, -7, 3, 1, 0],
-  page3: [-5, 4, 6, 3, 0, 0],
+  page1: [0, 3, -30, 0, 9, 0],
+  page2: [6, 3, -10, 2, 2, 0],
+  page3: [-5, 4, 6, 1, 0, 0],
   page4: [-6, 3, -1, -5, 2.5, 0], //printer position
 };
 export const technologies: TechnologyProps[] = [
