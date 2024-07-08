@@ -48,7 +48,7 @@ function OverlayHome() {
             <FaTiktok />
           </div>
         </div>
-        <div className="w-[300px]">
+        <div className="w-auto md:w-[300px]">
           <div className="flex flex-row gap-10 mt-6 flex-wrap items-end justify-end">
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
