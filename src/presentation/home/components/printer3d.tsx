@@ -10,7 +10,7 @@ function Printer3D(props: GroupProps) {
   useEffect(() => {
     console.log(actions);
     actions["printing"]?.play();
-    actions["NurbsPathAction"]?.play();
+    actions["printing.001"]?.play();
   }, []);
   return (
     <group ref={ref} {...props}>
