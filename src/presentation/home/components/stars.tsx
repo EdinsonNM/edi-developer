@@ -1,8 +1,9 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
+import { Points } from "three";
 
 const Stars = () => {
-  const starsRef = useRef();
+  const starsRef = useRef<Points<any>>(null);
   const starCount = 6000;
 
   // Generar posiciones aleatorias para las estrellas

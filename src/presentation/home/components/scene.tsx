@@ -1,8 +1,4 @@
-import {
-  CameraControls,
-  OrbitControls,
-  ScrollControls,
-} from "@react-three/drei";
+import { CameraControls, ScrollControls } from "@react-three/drei";
 import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { Suspense, useContext, useEffect } from "react";
