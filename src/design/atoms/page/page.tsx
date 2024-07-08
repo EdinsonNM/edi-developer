@@ -4,7 +4,7 @@ type Props = {
 function Page({ children }: Props) {
   return (
     <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center overflow-hidden"
+      className="pt-20 md:pt-0 overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center overflow-hidden"
       style={{ pointerEvents: "all" }}
     >
       {children}

@@ -9,7 +9,7 @@ function OverlayHome() {
   return (
     <Page>
       <Container>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 md:gap-6">
           <Title>
             Construyendo el
             <br />
@@ -36,31 +36,31 @@ function OverlayHome() {
             <FaTiktok />
           </div>
         </div>
-        <div className="w-auto md:w-[300px] justify-center items-center">
-          <div className="flex flex-row gap-10 mt-6 flex-wrap items-end justify-end">
+        <div className="w-full md:w-[300px] justify-center items-center">
+          <div className="flex flex-row gap-8 md:gap-10 mt-6 flex-wrap items-end justify-end">
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
                 Proyectos desarrollados
               </h3>
-              <p className="text-5xl text-center">+300</p>
+              <p className="text-3xl md:text-5xl text-center">+300</p>
             </div>
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
                 Desarrolladores capacitados
               </h3>
-              <p className="text-5xl text-center">+60</p>
+              <p className="text-3xl md:text-5xl text-center">+60</p>
             </div>
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
                 Años de experiencia
               </h3>
-              <p className="text-5xl text-center">+14</p>
+              <p className="text-3xl md:text-5xl text-center">+14</p>
             </div>
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
                 Talleres brindados
               </h3>
-              <p className="text-5xl text-center">+15</p>
+              <p className="text-3xl md:text-5xl text-center">+15</p>
             </div>
           </div>
         </div>

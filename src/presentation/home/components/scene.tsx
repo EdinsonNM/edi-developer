@@ -9,15 +9,19 @@ import Scenery from "./scenery";
 import { Developer } from "./developer";
 import Stars from "./stars";
 import Printer3D from "./printer3d";
+import { useLocation } from "react-router-dom";
 //import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function Scene() {
   const { cameraControls, changePage } = useContext(HomeContext);
 
   //useCameraControlHelper();
+  let location = useLocation();
+
   useEffect(() => {
-    changePage!(HomeAnimationStates.PAGE1, true, false);
-  }, []);
+    console.log("location changed", location);
+    changePage!(location.pathname.substring(1), true, true);
+  }, [location]);
   return (
     <>
       <CameraControls
