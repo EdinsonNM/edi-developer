@@ -1,7 +1,7 @@
 function OverlayExperience() {
   return (
     <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-[#23232300] backdrop-blur-sm backdrop-brightness-50"
+      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-[#23232300] bg-black bg-opacity-75"
       style={{ pointerEvents: "auto" }}
     >
       <div className="w-full max-w-[1024px] flex flex-col items-center text-center">
