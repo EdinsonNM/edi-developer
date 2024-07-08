@@ -15,7 +15,7 @@ function HomeMenu() {
     changePage!(url, true, true);
   };
   return (
-    <div className="fixed top-24 md:top-0 right-0 h-20  flex flex-col justify-center items-center z-50 text-xs md:text-lg">
+    <div className="fixed top-24 md:top-0 left-0 md:left-auto right-0 h-20 flex flex-col justify-center items-center z-50 text-xs md:text-lg">
       <nav className="w-full flex gap-4 justify-center items-center py-4 px-2 md:px-8">
         <ul className="flex flex-row mx-auto gap-0 md:gap-4">
           {navigation.map((item) => (

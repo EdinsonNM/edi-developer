@@ -37,7 +37,7 @@ function OverlayHome() {
           </div>
         </div>
         <div className="w-full md:w-[300px] justify-center items-center">
-          <div className="flex flex-row gap-8 md:gap-10 mt-6 flex-wrap items-end justify-end">
+          <div className="flex flex-row gap-8 md:gap-10 mt-6 flex-wrap items-center justify-center md:justify-end">
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">
                 Proyectos desarrollados
