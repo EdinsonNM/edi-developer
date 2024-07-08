@@ -1,10 +1,9 @@
-import { CameraControls, ScrollControls } from "@react-three/drei";
+import { CameraControls } from "@react-three/drei";
 import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { Suspense, useContext, useEffect } from "react";
 import { HomeAnimationStates } from "../utils/contants";
 //import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
-import Overlay from "./overlay";
 import CubeLoader from "@design/atoms/loaders/cube-loader";
 import Scenery from "./scenery";
 import { Developer } from "./developer";
@@ -37,13 +36,10 @@ function Scene() {
       />
       <HomeLights />
       <Stars />
-      <ScrollControls pages={4}>
-        <Suspense fallback={<CubeLoader />}>
-          <Developer />
-          <Scenery />
-        </Suspense>
-        <Overlay />
-      </ScrollControls>
+      <Suspense fallback={<CubeLoader />}>
+        <Developer />
+        <Scenery />
+      </Suspense>
     </>
   );
 }

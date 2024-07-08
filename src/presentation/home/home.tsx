@@ -2,6 +2,8 @@ import { Canvas } from "@react-three/fiber";
 import { HomeContextProvider } from "./home.context";
 import "./home.css";
 import Scene from "./components/scene";
+import { Outlet } from "react-router-dom";
+import HomeMenu from "./components/home-menu";
 
 function Home() {
   return (
@@ -15,6 +17,8 @@ function Home() {
           <Scene />
         </Canvas>
       </div>
+      <Outlet />
+      <HomeMenu />
     </HomeContextProvider>
   );
 }
