@@ -2,8 +2,6 @@ import { CameraControls } from "@react-three/drei";
 import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { Suspense, useContext, useEffect } from "react";
-import { HomeAnimationStates } from "../utils/contants";
-//import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 import CubeLoader from "@design/atoms/loaders/cube-loader";
 import Scenery from "./scenery";
 import { Developer } from "./developer";
