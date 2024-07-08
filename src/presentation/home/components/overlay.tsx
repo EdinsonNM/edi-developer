@@ -17,21 +17,22 @@ function Overlay() {
 
   const handleScroll = () => {
     const offset = roundTo(scroll.offset, 2);
+    console.log(offset);
     if (offset > 0.75) {
-      changePage!(HomeAnimationStates.RIGHT, true, true);
+      changePage!(HomeAnimationStates.PAGE4, true, true);
       return;
     }
     if (offset > 0.5) {
-      changePage!(HomeAnimationStates.TECHNOLOGIES, true, true);
+      changePage!(HomeAnimationStates.PAGE3, true, true);
       return;
     }
 
     if (offset > 0.25) {
-      changePage!(HomeAnimationStates.LEFT, true, true);
+      changePage!(HomeAnimationStates.PAGE2, true, true);
       return;
     }
 
-    changePage!(HomeAnimationStates.INTRO, true, true);
+    changePage!(HomeAnimationStates.PAGE1, true, true);
   };
   useFrame(() => {
     handleScroll();

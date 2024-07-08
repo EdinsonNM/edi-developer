@@ -19,7 +19,7 @@ const HomeContext = createContext<{
     changeCamera?: boolean,
     includeAnimation?: boolean
   ) => void;
-}>({ page: HomeAnimationStates.INTRO });
+}>({ page: HomeAnimationStates.PAGE1 });
 type ContextProvider = {
   children: React.ReactNode;
 };
@@ -28,7 +28,7 @@ export const HomeContextProvider = ({ children }: ContextProvider) => {
   const cameraControls = useRef<CameraControls>(null);
   const modelRef = useRef<Group<Object3DEventMap>>(null);
   const [background, setBackground] = useState("transparent");
-  const [page, setPage] = useState(HomeAnimationStates.INTRO);
+  const [page, setPage] = useState(HomeAnimationStates.PAGE0);
   const changePage = useCallback(
     (page: string, changeCamera: boolean = false, includeAnimation = true) => {
       setPage(page);

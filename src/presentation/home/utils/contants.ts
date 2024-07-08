@@ -1,34 +1,18 @@
 import { CameraPositionType, TechnologyProps } from "./types";
 
 export const cameraPositions: Record<string, CameraPositionType> = {
-  intro: [0, 3, -25, 0, 9, 0],
-  left: [12, 4, -5, 0, 3, 0],
-  developer: [12, 4, -7, 3, 1, 0],
-
-  technologies: [-5, 4, 6, 3, 0, 0],
-  right: [-6, 3, -1, -5, 2.5, 0], //printer position
+  page0: [0, 3, -5, 0, 9, 0],
+  page1: [0, 3, -25, 0, 9, 0],
+  page2: [12, 4, -7, 3, 1, 0],
+  page3: [-5, 4, 6, 3, 0, 0],
+  page4: [-6, 3, -1, -5, 2.5, 0], //printer position
 };
 export const cameraPositionsResponsive: Record<string, CameraPositionType> = {
-  intro: [
-    2.1583460110983212, 11.53091277798614, 25.78159870887731,
-    -1.519522624555155, 17.87554329337756, -13.431393050371469,
-  ],
-  left: [
-    2.1583460110983212, 11.53091277798614, 25.78159870887731,
-    -1.519522624555155, 17.87554329337756, -13.431393050371469,
-  ],
-  developer: [
-    -0.3421222150656285, 3.7217162428370205, 20.45188358964041,
-    -0.08397356126678833, 0.6364447722187185, -4.053039656924131,
-  ],
-  technologies: [
-    2.1583460110983212, 11.53091277798614, 25.78159870887731,
-    -1.519522624555155, 17.87554329337756, -13.431393050371469,
-  ],
-  right: [
-    2.1583460110983212, 11.53091277798614, 25.78159870887731,
-    -1.519522624555155, 17.87554329337756, -13.431393050371469,
-  ],
+  page0: [0, 3, -5, 0, 9, 0],
+  page1: [0, 3, -25, 0, 9, 0],
+  page2: [12, 4, -7, 3, 1, 0],
+  page3: [-5, 4, 6, 3, 0, 0],
+  page4: [-6, 3, -1, -5, 2.5, 0], //printer position
 };
 export const technologies: TechnologyProps[] = [
   { key: "reactjs", path: "react.gltf", name: "React JS", color: "#61dafb43" },
@@ -57,12 +41,11 @@ export const technologies: TechnologyProps[] = [
   },
 ];
 export const HomeAnimationStates = {
-  INTRO: "intro",
-  LEFT: "left",
-  RIGHT: "right",
-  DEVELOPER: "developer",
-  TECHNOLOGIES: "technologies",
-  SELECTEDTECH: "technologies",
+  PAGE0: "page0",
+  PAGE1: "page1",
+  PAGE2: "page2",
+  PAGE3: "page3",
+  PAGE4: "page4",
 };
 
 export const SMALL_SCREEN_THRESHOLD = 768;

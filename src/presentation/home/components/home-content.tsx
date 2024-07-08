@@ -14,7 +14,7 @@ function HomeContent() {
 
   //useCameraControlHelper();
   useEffect(() => {
-    changePage!(HomeAnimationStates.INTRO, true, false);
+    changePage!(HomeAnimationStates.PAGE1, true, false);
   }, []);
   return (
     <>
@@ -35,7 +35,7 @@ function HomeContent() {
       />
       <HomeLights />
       <Stars />
-      <ScrollControls pages={2}>
+      <ScrollControls pages={4}>
         <Suspense fallback={<CubeLoader />}>
           <Developer />
           <Scenery />
