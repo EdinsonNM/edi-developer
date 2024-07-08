@@ -11,7 +11,7 @@ function NavBar() {
       </div>
       <div className="flex-shrink md:flex-grow"></div>
       <div className="hidden md:block md:flex-shrink flex-grow lg:justify-end">
-        <ul className={`flex flex-row gap-8 justify-end `}>
+        {/*<ul className={`flex flex-row gap-8 justify-end `}>
           <li>
             <NavLink to={"/"}> Inicio</NavLink>
           </li>
@@ -25,7 +25,7 @@ function NavBar() {
             {" "}
             <NavLink to={"/"}>Contact</NavLink>
           </li>
-        </ul>
+  </ul>*/}
       </div>
     </nav>
   );

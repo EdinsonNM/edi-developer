@@ -34,6 +34,7 @@ function Scene() {
           two: 0,
           three: 0,
         }}
+        azimuthAngle={Math.PI / 4}
       />
       <HomeLights />
       <Stars />

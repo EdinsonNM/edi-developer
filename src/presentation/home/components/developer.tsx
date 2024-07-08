@@ -6,7 +6,7 @@ export function Developer() {
   const [hovered, setHover] = useState(false);
   useCursor(hovered);
 
-  const { scene, animations } = useGLTF(`./models/steve.glb`);
+  const { scene, animations } = useGLTF(`./models/steve2.glb`);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
