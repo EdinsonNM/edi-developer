@@ -1,6 +1,3 @@
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { FaWhatsapp, FaLinkedin, FaTiktok } from "react-icons/fa";
 import Title from "@design/atoms/page/title";
 import Subtitle from "@design/atoms/page/subtitle";
@@ -9,21 +6,10 @@ import Page from "@design/atoms/page/page";
 import Container from "@design/atoms/page/container";
 
 function OverlayHome() {
-  const container = useRef(null);
-
-  useGSAP(
-    () => {
-      // gsap code here...
-      gsap.from(".title", { x: 2000, duration: 1 }); // <-- automatically reverted
-      gsap.from(".subtitle", { x: -10, duration: 0.5 }); // <-- automatically reverted
-      gsap.from(".desc", { duration: 0.5, opacity: 2 }); // <-- automatically reverted
-    },
-    { scope: container }
-  ); // <-- scope is for selector text (optional)
   return (
     <Page>
       <Container>
-        <div>
+        <div className="flex flex-col gap-6">
           <Title>
             Construyendo el
             <br />
@@ -38,9 +24,11 @@ function OverlayHome() {
             punteras y descubre cómo cada línea de código contribuye a forjar un
             internet más interactivo y accesible.
           </Description>
-          <a className="mt-4 inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors pointer-events-all cursor-pointer">
-            Conéctate conmigo
-          </a>
+          <div>
+            <a className="mt-4 inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors pointer-events-all cursor-pointer">
+              Conéctate conmigo
+            </a>
+          </div>
 
           <div className="flex flex-row gap-5 text-2xl mt-3">
             <FaLinkedin className="text-blue-500" />
@@ -48,7 +36,7 @@ function OverlayHome() {
             <FaTiktok />
           </div>
         </div>
-        <div className="w-auto md:w-[300px]">
+        <div className="w-auto md:w-[300px] justify-center items-center">
           <div className="flex flex-row gap-10 mt-6 flex-wrap items-end justify-end">
             <div>
               <h3 className="text-sm text-yellow-500 w-28 text-center mb-3">

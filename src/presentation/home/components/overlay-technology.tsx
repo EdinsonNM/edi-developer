@@ -5,13 +5,13 @@ import Title from "@design/atoms/page/title";
 function OverlayTechnology() {
   return (
     <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-black bg-opacity-55"
+      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden p-8 bg-black bg-opacity-55"
       style={{ pointerEvents: "auto" }}
     >
       <div className="w-full max-w-[1024px] p-8 md:p-5 flex flex-col items-center md:items-start text-start">
-        <div className="w-full max-w-[600px] gap-4 ">
+        <div className="w-full flex flex-col gap-8">
           <Title>
-            El <span className="text-violet-500">arsenal</span> del
+            El <span className="text-orange-500">arsenal</span> del
             <br />
             desarrollador...
           </Title>
@@ -24,10 +24,10 @@ function OverlayTechnology() {
             Angular y Flutter, equipándome con un arsenal de herramientas tan
             indispensable como mi cafetera diaria.
           </Description>
-          <a className="mt-4 inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors pointer-events-auto z-10">
-            Revisemos juntos...
-          </a>
         </div>
+        <a className="mt-4 inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors pointer-events-auto z-10">
+          Revisemos juntos...
+        </a>
       </div>
     </section>
   );

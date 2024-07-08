@@ -8,6 +8,7 @@ import CubeLoader from "@design/atoms/loaders/cube-loader";
 import Scenery from "./scenery";
 import { Developer } from "./developer";
 import Stars from "./stars";
+import Printer3D from "./printer3d";
 //import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function Scene() {
@@ -39,6 +40,11 @@ function Scene() {
       <Suspense fallback={<CubeLoader />}>
         <Developer />
         <Scenery />
+        <Printer3D
+          position={[-4.2, 1.8, 1]}
+          scale={[0.6, 0.6, 0.6]}
+          rotation={[0, Math.PI, 0]}
+        />
       </Suspense>
     </>
   );

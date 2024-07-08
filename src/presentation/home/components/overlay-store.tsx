@@ -5,7 +5,7 @@ import Title from "@design/atoms/page/title";
 function OverlayStore() {
   return (
     <section
-      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center overflow-hidden bg-black bg-opacity-55"
+      className="overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center overflow-hidden bg-black bg-opacity-65"
       style={{ pointerEvents: "auto" }}
     >
       <div className="w-full max-w-[1024px] p-8 md:p-5 flex flex-col items-center md:items-start justify-start text-start gap-4 mt-8 md:mt-0">
