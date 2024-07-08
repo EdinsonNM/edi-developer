@@ -9,7 +9,7 @@ function Home() {
       <div className="absolute w-full h-full left-0 top-0">
         <Canvas
           gl={{ alpha: true }}
-          style={{ background: "transparent" }}
+          style={{ background: "#00000a" }}
           camera={{ fov: 45, position: [0, 0, 30] }}
         >
           <HomeContent />

@@ -7,17 +7,15 @@ import HomeContext from "../home.context";
 import { HomeAnimationStates } from "../utils/contants";
 import OverlayExperience from "./overlay-experience";
 import OverlayStore from "./overlay-store";
-function roundTo(n, decimals) {
-  const factor = Math.pow(10, decimals);
-  return Math.round(n * factor) / factor;
-}
+import { roundTo } from "@core/utils/math";
+
 function Overlay() {
   const scroll = useScroll();
 
   const { changePage } = useContext(HomeContext);
   console.log(scroll.offset);
 
-  const handleScroll = (e) => {
+  const handleScroll = () => {
     const offset = roundTo(scroll.offset, 2);
     if (offset > 0.75) {
       changePage!(HomeAnimationStates.RIGHT, true, true);
@@ -36,8 +34,7 @@ function Overlay() {
     changePage!(HomeAnimationStates.INTRO, true, true);
   };
   useFrame(() => {
-    const offset = roundTo(scroll.offset, 2);
-    handleScroll(null);
+    handleScroll();
   });
 
   return (

@@ -1,21 +1,13 @@
-import {
-  CameraControls,
-  Environment,
-  Grid,
-  Scroll,
-  ScrollControls,
-  useScroll,
-} from "@react-three/drei";
+import { CameraControls, ScrollControls, Stars } from "@react-three/drei";
 import HomeLights from "./home-lights";
 import HomeContext from "../home.context";
 import { Suspense, useContext, useEffect } from "react";
 import { HomeAnimationStates } from "../utils/contants";
 //import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 import Overlay from "./overlay";
-import { Developer } from "./developer";
 import CubeLoader from "@design/atoms/loaders/cube-loader";
-import Tools from "./tools";
-import Like from "./like";
+import Scenery from "./scenery";
+import { Developer } from "./developer";
 
 function HomeContent() {
   const { cameraControls, changePage } = useContext(HomeContext);
@@ -26,16 +18,6 @@ function HomeContent() {
   }, []);
   return (
     <>
-      <HomeLights />
-
-      <Grid
-        cellSize={10}
-        cellColor={"#454545"}
-        infiniteGrid
-        sectionColor={"#454545"}
-        receiveShadow
-        visible={true}
-      />
       <CameraControls
         ref={cameraControls} // disable all mouse buttons
         mouseButtons={{
@@ -51,15 +33,15 @@ function HomeContent() {
           three: 0,
         }}
       />
-      <ScrollControls pages={4} damping={0.5}>
+      <HomeLights />
+      <Stars />
+      <ScrollControls pages={2}>
         <Suspense fallback={<CubeLoader />}>
           <Developer />
+          <Scenery />
         </Suspense>
         <Overlay />
-        <Tools />
-        <Like />
       </ScrollControls>
-      {true && <Environment files="golden_bay_4k.hdr" />}
     </>
   );
 }

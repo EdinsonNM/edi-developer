@@ -1,29 +1,20 @@
 import { useAnimations, useCursor, useGLTF } from "@react-three/drei";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
 export function Developer() {
-  const ref = useRef(null);
+  const group = useRef(null);
   const [hovered, setHover] = useState(false);
   useCursor(hovered);
 
-  const { scene, animations } = useGLTF(`./optimize developer.gltf`);
+  const { scene, animations } = useGLTF(`./models/steve.glb`);
+  const { actions } = useAnimations(animations, group);
 
-  let mixer: any;
-  if (animations.length) {
-    mixer = new THREE.AnimationMixer(scene);
-    animations.forEach((clip) => {
-      const action = mixer.clipAction(clip);
-      action.play();
-    });
-  }
-
-  useFrame((_, delta) => {
-    mixer?.update(delta);
-  });
+  useEffect(() => {
+    console.log(actions);
+    actions["developing"]?.play();
+  }, []);
   return (
-    <group ref={ref}>
+    <group ref={group} position={[0, -0.2, 0.2]}>
       <primitive
         object={scene}
         castShadow
