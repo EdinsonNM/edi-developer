@@ -2,7 +2,7 @@ import PulsatingLight from "@design/molecules/pulsating-light";
 import { useEffect, useRef } from "react";
 import { PointLight } from "three";
 
-function HomeLights() {
+function Lights() {
   const lampRef = useRef<PointLight>(null);
 
   useEffect(() => {
@@ -57,4 +57,4 @@ function HomeLights() {
     </>
   );
 }
-export default HomeLights;
+export default Lights;

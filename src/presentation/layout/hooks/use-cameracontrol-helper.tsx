@@ -1,10 +1,10 @@
 import { button, useControls } from "leva";
-import HomeContext from "../home.context";
+import LayoutContext from "../layout.context";
 import { useContext } from "react";
 import { Vector3 } from "three";
 
 function useCameraControlHelper() {
-  const { cameraControls } = useContext(HomeContext);
+  const { cameraControls } = useContext(LayoutContext);
   useControls("Helper", {
     getLookAt: button(() => {
       const position = cameraControls!.current!.getPosition(new Vector3());

@@ -1,12 +1,10 @@
 import { Navigate, createHashRouter } from "react-router-dom";
 import { NotFound } from "../design/templates/notfound/notfound";
 import Layout from "@presentation/layout/layout";
-import OnlyForDevs from "@presentation/only-for-devs/only-for-devs";
 import Home from "@presentation/home/home";
-import OverlayHome from "@presentation/home/components/overlay-home";
-import OverlayExperience from "@presentation/home/components/overlay-experience";
-import OverlayTechnology from "@presentation/home/components/overlay-technology";
-import OverlayStore from "@presentation/home/components/overlay-store";
+import Technology from "@presentation/technology/technology";
+import Experience from "@presentation/experience/experience";
+import Store from "@presentation/store/store";
 
 export const router = createHashRouter([
   {
@@ -15,36 +13,20 @@ export const router = createHashRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "/",
+        path: "/page1",
         element: <Home />,
-        children: [
-          {
-            element: <Navigate to="/page1" replace />,
-            index: true,
-          },
-          {
-            path: "/page1",
-            element: <OverlayHome />,
-            index: true,
-          },
-          {
-            path: "/page2",
-            element: <OverlayTechnology />,
-          },
-          {
-            path: "/page3",
-            element: <OverlayExperience />,
-          },
-          {
-            path: "/page4",
-            element: <OverlayStore />,
-          },
-        ],
       },
       {
-        path: "/only-for-devs",
-        element: <OnlyForDevs />,
-        index: true,
+        path: "/page2",
+        element: <Technology />,
+      },
+      {
+        path: "/page3",
+        element: <Experience />,
+      },
+      {
+        path: "/page4",
+        element: <Store />,
       },
       {
         path: "*",

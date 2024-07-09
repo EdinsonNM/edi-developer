@@ -8,7 +8,6 @@ function Printer3D(props: GroupProps) {
   const { scene, animations } = useGLTF("./models/printer3D.glb");
   const { actions } = useAnimations(animations, ref);
   useEffect(() => {
-    console.log(actions);
     actions["printing"]?.play();
     actions["printing.001"]?.play();
   }, []);

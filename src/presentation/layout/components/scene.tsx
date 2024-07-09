@@ -1,6 +1,6 @@
 import { CameraControls } from "@react-three/drei";
-import HomeLights from "./home-lights";
-import HomeContext from "../home.context";
+import Lights from "./lights";
+import LayoutContext from "../layout.context";
 import { Suspense, useContext, useEffect } from "react";
 import CubeLoader from "@design/atoms/loaders/cube-loader";
 import Scenery from "./scenery";
@@ -11,13 +11,12 @@ import { useLocation } from "react-router-dom";
 //import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
 
 function Scene() {
-  const { cameraControls, changePage } = useContext(HomeContext);
+  const { cameraControls, changePage } = useContext(LayoutContext);
 
   //useCameraControlHelper();
   let location = useLocation();
 
   useEffect(() => {
-    console.log("location changed", location);
     changePage!(location.pathname.substring(1), true, true);
   }, [location]);
   return (
@@ -38,7 +37,7 @@ function Scene() {
         }}
         azimuthAngle={Math.PI / 4}
       />
-      <HomeLights />
+      <Lights />
       <Stars />
       <Suspense fallback={<CubeLoader />}>
         <Developer />

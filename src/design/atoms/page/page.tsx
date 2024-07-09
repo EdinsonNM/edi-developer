@@ -1,10 +1,11 @@
 type Props = {
   children?: React.ReactNode;
+  className?: string;
 };
-function Page({ children }: Props) {
+function Page({ children, className }: Props) {
   return (
     <section
-      className="pt-20 md:pt-0 overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center overflow-hidden"
+      className={`pt-20 md:pt-0 overlay-home relative w-screen h-screen flex flex-col items-center justify-center md:justify-center ${className}`}
       style={{ pointerEvents: "all" }}
     >
       {children}

@@ -10,7 +10,6 @@ export function Developer() {
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    console.log(actions);
     actions["developing"]?.play();
   }, []);
   return (

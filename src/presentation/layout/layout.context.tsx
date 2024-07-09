@@ -6,9 +6,9 @@ import {
   SMALL_SCREEN_THRESHOLD,
   cameraPositions,
   cameraPositionsResponsive,
-} from "./utils/contants";
+} from "./utils/constants";
 
-const HomeContext = createContext<{
+const LayoutContext = createContext<{
   background?: string;
   setBackground?: (color: string) => void;
   modelRef?: React.MutableRefObject<Group<Object3DEventMap> | null>;
@@ -24,7 +24,7 @@ type ContextProvider = {
   children: React.ReactNode;
 };
 
-export const HomeContextProvider = ({ children }: ContextProvider) => {
+export const LayoutContextProvider = ({ children }: ContextProvider) => {
   const cameraControls = useRef<CameraControls>(null);
   const modelRef = useRef<Group<Object3DEventMap>>(null);
   const [background, setBackground] = useState("transparent");
@@ -60,8 +60,10 @@ export const HomeContextProvider = ({ children }: ContextProvider) => {
     [background, setBackground, modelRef, cameraControls, page, changePage]
   );
   return (
-    <HomeContext.Provider value={contextValue}>{children}</HomeContext.Provider>
+    <LayoutContext.Provider value={contextValue}>
+      {children}
+    </LayoutContext.Provider>
   );
 };
 
-export default HomeContext;
+export default LayoutContext;
