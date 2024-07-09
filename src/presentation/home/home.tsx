@@ -10,7 +10,7 @@ import { Button as ButtonUI } from "@headlessui/react";
 
 function OverlayHome() {
   return (
-    <Page>
+    <Page className="bg-black bg-opacity-75 md:bg-opacity-0">
       <Container>
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-8">
