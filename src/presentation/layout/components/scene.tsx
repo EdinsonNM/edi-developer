@@ -17,7 +17,8 @@ function Scene() {
   let location = useLocation();
 
   useEffect(() => {
-    changePage!(location.pathname.substring(1), true, true);
+    const page = location.pathname.substring(1);
+    changePage!(page, true, true);
   }, [location]);
   return (
     <>

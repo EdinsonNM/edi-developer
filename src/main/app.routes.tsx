@@ -13,6 +13,7 @@ export const router = createHashRouter([
     errorElement: <NotFound />,
     children: [
       {
+        index: true,
         path: "/page1",
         element: <Home />,
       },
@@ -29,7 +30,7 @@ export const router = createHashRouter([
         element: <Store />,
       },
       {
-        path: "*",
+        path: "/",
         element: <Navigate to="/page1" replace />,
       },
     ],
