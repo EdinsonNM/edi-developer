@@ -6,6 +6,7 @@ import Page from "@design/atoms/page/page";
 import Container from "@design/atoms/page/container";
 import Stats from "./components/stats";
 import Button from "@design/atoms/button/button";
+import { Button as ButtonUI } from "@headlessui/react";
 
 function OverlayHome() {
   return (
@@ -34,10 +35,38 @@ function OverlayHome() {
           <Button>Conéctate conmigo</Button>
 
           <div className="flex flex-row gap-5 text-2xl mt-3">
-            <FaLinkedin className="text-blue-500 hover:text-2xl" />
-            <FaWhatsapp className=" text-green-500" />
-            <FaTiktok />
-            <FaGithub />
+            <ButtonUI
+              as="a"
+              target="_blank"
+              href="https://www.linkedin.com/in/edinsonnm/"
+              className="inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              <FaLinkedin className="text-blue-500 text-2xl" />
+            </ButtonUI>
+            <ButtonUI
+              as="a"
+              target="_blank"
+              href="https://wa.me/972705736"
+              className="inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              <FaWhatsapp className=" text-green-500 text-2xl" />
+            </ButtonUI>
+            <ButtonUI
+              as="a"
+              target="_blank"
+              href="https://www.tiktok.com/@edinsonnm?is_from_webapp=1&sender_device=pc"
+              className="inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              <FaTiktok className="text-2xl" />
+            </ButtonUI>
+            <ButtonUI
+              as="a"
+              target="_blank"
+              href="https://github.com/EdinsonNM"
+              className="inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              <FaGithub className="text-2xl" />
+            </ButtonUI>
           </div>
         </div>
       </Container>
