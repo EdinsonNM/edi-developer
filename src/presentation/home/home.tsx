@@ -6,7 +6,6 @@ import Page from "@design/atoms/page/page";
 import Container from "@design/atoms/page/container";
 import Stats from "./components/stats";
 import Button from "@design/atoms/button/button";
-import { Button as ButtonUI } from "@headlessui/react";
 import useModal from "@core/ui/hooks/use-modal";
 import About from "./components/about";
 import { motion } from "framer-motion";
