@@ -36,7 +36,7 @@ function About({ layoutId, isOpen, onClose }: Props) {
             <IoClose className="text-2xl" />
           </motion.button>
           <motion.div className="grid grid-cols-12 max-w-5xl gap-4 h-full p-8">
-            <motion.div className="col-span-12 md:col-span-5 h-full flex flex-col justify-center p-12">
+            <motion.div className="col-span-12 md:col-span-5 h-full flex flex-col justify-start p-12 py-2">
               <img src={developer} className="w-full mx-auto" />
             </motion.div>
             <motion.div className="col-span-12 md:col-span-7 flex flex-col gap-4 items-start justify-center">
