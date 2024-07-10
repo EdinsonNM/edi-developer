@@ -44,7 +44,7 @@ function Scene() {
         <Developer />
         <Scenery />
         <Printer3D
-          position={[-4.2, 1.8, 1]}
+          position={[-4.2, 1.7, 1]}
           scale={[0.6, 0.6, 0.6]}
           rotation={[0, Math.PI, 0]}
         />

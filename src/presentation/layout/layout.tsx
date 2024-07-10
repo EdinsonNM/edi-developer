@@ -12,7 +12,7 @@ function Layout() {
           <Canvas
             gl={{ alpha: true }}
             style={{ background: "#00000a" }}
-            camera={{ fov: 45, position: [0, 0, 30] }}
+            camera={{ fov: 45 }}
           >
             <Scene />
           </Canvas>
