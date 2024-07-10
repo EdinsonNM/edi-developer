@@ -28,7 +28,7 @@ function About({ layoutId, isOpen, onClose }: Props) {
         >
           <motion.button
             className="bg-[#f22929] rounded-full w-10 h-10 flex justify-center items-center text-white cursor-pointer absolute top-4 right-4"
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.2, rotate: 360 }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             onClick={onClose}
@@ -56,26 +56,43 @@ function About({ layoutId, isOpen, onClose }: Props) {
               </motion.div>
               <motion.h2 className="text-xl font-bold">Acerca de mi</motion.h2>
               <motion.p className="px-8 py-10 bg-[#f22929] rounded-2xl text-justify">
-                Soy un desarrollador frontend con más de 10 años de experiencia
-                en el desarrollo de aplicaciones web y móviles. Me apasiona
-                crear experiencias digitales que sean atractivas, accesibles y
-                fáciles de usar. Mi enfoque principal es en el desarrollo de
-                aplicaciones web y móviles utilizando tecnologías modernas como
-                React, Angular, Vue.js, Node.js, Express.js, MongoDB, MySQL,
-                Firebase, HTML, CSS, JavaScript, TypeScript, entre otras.
+                ¡Hola! Soy un apasionado Desarrollador Frontend y Chapter Lead
+                con más de 14 años de experiencia en la creación de soluciones
+                web y móviles de alto impacto y rendimiento. Me enorgullezco de
+                mi habilidad para liderar equipos y proyectos con éxito, y de
+                ser un experto en tecnologías clave del frontend, como React,
+                Angular, y múltiples frameworks adicionales. Además, poseo
+                conocimientos en Flutter y Node.js, lo que me permite diseñar y
+                desarrollar aplicaciones versátiles y escalables.
               </motion.p>
-              <motion.h2 className="text-xl font-bold">
-                Habilidades Lenguajes:
-              </motion.h2>
+              <motion.h2 className="text-xl font-bold">Habilidades:</motion.h2>
 
-              <motion.div className="px-8 py-10 bg-[#f22929] rounded-2xl w-full">
+              <motion.div className="px-8 py-10 bg-[#f22929] rounded-2xl w-full mb-8">
+                <div className="text-start font-bold">
+                  Lenguajes de Programación:
+                </div>
                 <ul className="text-start list-disc">
                   <li>JavaScript</li>
-                  <li>TypeScript Frameworks: React</li>
+                  <li>TypeScript</li>
+                  <li>PHP</li>
+                  <li>Node JS</li>
+                </ul>
+                <br />
+                <div className="text-start font-bold">Frameworks:</div>
+                <ul className="text-start list-disc">
+                  <li>React</li>
                   <li>Angular</li>
-                  <li>Flutter, Node.js Desarrollo 3D: Three.js</li>
-                  <li>Blender Metodologías: Ágil, DevOps Pruebas: Jest</li>
-                  <li>Cypress API REST</li>
+                  <li>Svelte</li>
+                  <li>Flutter</li>
+                  <li>Stencil</li>
+                </ul>{" "}
+                <br />
+                <div className="text-start font-bold">Desarrollo 3D:</div>
+                <ul className="text-start list-disc">
+                  <li>Blender</li>
+                  <li>ZBrush</li>
+                  <li>Three JS</li>
+                  <li>React Three Fiber</li>
                 </ul>
               </motion.div>
             </motion.div>

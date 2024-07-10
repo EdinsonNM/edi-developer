@@ -86,8 +86,8 @@ function Stats() {
               </div>
 
               <motion.button
-                className="bg-orange-500 rounded-full w-10 h-10 flex justify-center items-center text-white cursor-pointer absolute top-4 right-4"
-                whileHover={{ scale: 1.2 }}
+                className="bg-[#f22929] rounded-full w-10 h-10 flex justify-center items-center text-white cursor-pointer absolute top-4 right-4"
+                whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 onClick={() => setSelected(null)}
