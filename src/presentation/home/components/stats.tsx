@@ -75,7 +75,7 @@ function Stats() {
         {selected && (
           <motion.div
             layoutId={selected.id as string}
-            className="fixed flex flex-col left-0 top-0 right-0 bottom-0 z-20 bg-opacity-80 bg-black text-white justify-center items-center"
+            className="fixed flex flex-col left-0 top-0 right-0 bottom-0 z-20 bg-opacity-80 bg-black text-white justify-center items-center  backdrop-blur-md"
           >
             <div className="max-w-5xl relative p-8">
               <div className="text-start mb-10">
