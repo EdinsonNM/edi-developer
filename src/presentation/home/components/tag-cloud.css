@@ -1,0 +1,9 @@
+.tagcloud--item {
+  color: cyan;
+  text-transform: uppercase;
+}
+
+.tagcloud--item:hover {
+  color: #ff6347;
+  font-size: 18px;
+}

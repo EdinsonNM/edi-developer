@@ -9,10 +9,13 @@ import Button from "@design/atoms/button/button";
 import useModal from "@core/ui/hooks/use-modal";
 import About from "./components/about";
 import { motion } from "framer-motion";
+
+import Moon from "./components/moon";
+
 function OverlayHome() {
   const { isOpen, toogle } = useModal();
   return (
-    <Page className="bg-black bg-opacity-75 md:bg-opacity-0">
+    <Page className="bg-black bg-opacity-75 md:bg-opacity-0 overflow-auto">
       <Container>
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-8">
@@ -23,6 +26,7 @@ function OverlayHome() {
             </Title>
             <Subtitle>"Un Código a la Vez"</Subtitle>
 
+            <Stats />
             <Description>
               Explora cómo más de una década de innovación en desarrollo
               frontend me ha permitido liderar proyectos que transforman y
@@ -30,7 +34,9 @@ function OverlayHome() {
             </Description>
           </div>
           <div className="col-span-12 md:col-span-4 justify-center items-center flex">
-            <Stats />
+            <div className="w-full h-full fixed top-0 bottom-0 right-0 z-0">
+              <Moon />
+            </div>
           </div>
         </div>
         <div>

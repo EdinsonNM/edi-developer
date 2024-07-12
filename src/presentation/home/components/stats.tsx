@@ -45,7 +45,7 @@ function Stats() {
 
   const items = [
     { id: "stats-1", title: "Proyectos desarrollados", value: 300 },
-    { id: "stats-2", title: "Desarrolladores capacitados", value: 100 },
+    { id: "stats-2", title: "Confian en mi trabajo", value: 100 },
     { id: "stats-3", title: "Años de experiencia", value: 14 },
     { id: "stats-4", title: "Talleres brindados", value: 15 },
   ];
@@ -58,9 +58,10 @@ function Stats() {
     { title: "manipulando huesos", url: p5 },
   ];
   return (
-    <div className="flex flex-row gap-2 md:gap-6 mt-6 flex-wrap items-center justify-center md:justify-end">
-      {items.map((item) => (
+    <div className="flex flex-row gap-2 md:gap-6 mt-6 flex-wrap items-center justify-center md:justify-start">
+      {items.map((item, index) => (
         <motion.div
+          key={index}
           layoutId={item.id}
           onClick={() => setSelected(item)}
           whileHover={{
