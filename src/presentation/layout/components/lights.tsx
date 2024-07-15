@@ -1,54 +1,42 @@
 import PulsatingLight from "@design/molecules/pulsating-light";
-import { useEffect, useRef } from "react";
-import { PointLight } from "three";
 
 function Lights() {
-  const lampRef = useRef<PointLight>(null);
-
-  useEffect(() => {
-    //lampRef!.current!.target!.position.set(-4.5, 1, 0.5);
-  }, []);
   return (
     <>
-      <ambientLight intensity={1} />
-      <directionalLight intensity={1} />
+      <ambientLight />
       <PulsatingLight
-        color={"violet"}
-        position={[2, 1, 2]}
-        intensity={1}
-        decay={2}
+        color={"cyan"}
+        position={[1.4, 1.1, 1.5]}
+        delay={500}
+        frequency={10}
+        maxIntensity={100}
         castShadow
         receiveShadow
       />
       <PulsatingLight
-        color={"red"}
-        position={[-2, 1, 2]}
-        intensity={1}
-        decay={2}
+        color={"hotpink"}
+        position={[-1.4, 1.1, 1.5]}
+        delay={20}
+        frequency={100}
+        maxIntensity={100}
         castShadow
         receiveShadow
       />
 
-      <pointLight
-        ref={lampRef}
+      <PulsatingLight
+        size={0.075}
         color={"yellow"}
-        position={[-4.2, 2.4, 1.4]}
-        intensity={10}
-        decay={1}
+        position={[-4.96, 2.45, 1.4]}
+        delay={100}
+        frequency={1}
+        maxIntensity={100}
         castShadow
-        distance={0}
+        receiveShadow
       />
       <spotLight
         intensity={100}
-        decay={0.5}
-        isLight
-        position={[0, 0, 0]}
-        rotation={[0, 0, 0]}
-      />
-      <spotLight
-        intensity={500}
         distance={8}
-        color={"yellow"}
+        color={"white"}
         position={[0, 5, 2]}
         angle={Math.PI / 8}
         penumbra={0.05}

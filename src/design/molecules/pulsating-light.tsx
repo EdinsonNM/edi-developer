@@ -1,30 +1,47 @@
-import { useRef } from "react";
-import { useSpring, animated } from "@react-spring/three";
-import { PointLightProps, useFrame } from "@react-three/fiber";
-import { PointLight } from "three";
+import { useEffect, useRef } from "react";
+import { GroupProps, useFrame } from "@react-three/fiber";
+import { MeshStandardMaterial } from "three";
 
-const PulsatingLight = (props: PointLightProps) => {
-  const lightRef = useRef<PointLight>(null);
+const PulsatingLight = ({
+  color = "red",
+  delay = 0,
+  frequency = 1,
+  maxIntensity = 10,
+  size = 0.15,
+  ...props
+}: GroupProps & {
+  color: string;
+  delay?: number;
+  frequency?: number;
+  maxIntensity?: number;
+  size?: number;
+}) => {
+  const lightRef = useRef<MeshStandardMaterial>(null);
+  const startTime = useRef(Date.now());
 
-  // Animación de la intensidad utilizando react-spring
-  const { intensity } = useSpring({
-    from: { intensity: 0.5 },
-    to: async (next) => {
-      while (1) {
-        await next({ intensity: 100.5 });
-        await next({ intensity: 0.5 });
-      }
-    },
-    config: { duration: 2000 },
-  });
+  useEffect(() => {
+    startTime.current = Date.now() + delay;
+  }, [delay]);
 
   useFrame(() => {
     if (lightRef.current) {
-      // Aplicar la intensidad animada a la luz
-      lightRef.current.intensity = intensity.get();
+      const elapsedTime = Date.now() - startTime.current;
+      // Simular parpadeo orgánico usando una combinación de seno y ruido
+      const randomFactor = Math.random() * 1; // Factor aleatorio para variabilidad
+      const intensity =
+        ((Math.sin(elapsedTime * 0.002 * frequency + randomFactor) + 1) / 2) *
+        maxIntensity;
+      lightRef.current.emissiveIntensity = intensity;
     }
   });
 
-  return <animated.pointLight ref={lightRef} {...props} />;
+  return (
+    <group {...props}>
+      <mesh>
+        <sphereGeometry args={[size, 32, 32]} />
+        <meshStandardMaterial ref={lightRef} color={color} emissive={color} />
+      </mesh>
+    </group>
+  );
 };
 export default PulsatingLight;

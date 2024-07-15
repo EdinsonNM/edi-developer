@@ -7,7 +7,7 @@ import Title from "@design/atoms/page/title";
 
 function Experience() {
   return (
-    <Page className="bg-black bg-opacity-75">
+    <Page className="bg-black bg-opacity-15">
       <Container>
         <Title>
           El viaje de un <span className="text-violet-500">Coder...</span>

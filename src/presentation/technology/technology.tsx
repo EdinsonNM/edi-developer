@@ -7,7 +7,7 @@ import Title from "@design/atoms/page/title";
 
 function Technology() {
   return (
-    <Page className="bg-black bg-opacity-75">
+    <Page className="bg-black bg-opacity-45 pointer-events-auto">
       <Container>
         <Title>
           El <span className="text-orange-500">arsenal</span> del

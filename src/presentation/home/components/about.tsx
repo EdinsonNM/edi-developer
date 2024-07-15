@@ -13,7 +13,7 @@ function About({ layoutId, isOpen, onClose }: Props) {
       {isOpen && (
         <motion.div
           layoutId={layoutId}
-          className="fixed flex flex-col left-0 top-0 right-0 bottom-0 z-20 overflow-auto"
+          className="fixed flex flex-col left-0 top-0 right-0 bottom-0 z-20 overflow-auto pointer-events-auto"
           style={{
             position: "fixed",
             top: 0,

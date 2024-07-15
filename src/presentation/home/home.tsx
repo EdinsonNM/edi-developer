@@ -10,8 +10,6 @@ import useModal from "@core/ui/hooks/use-modal";
 import About from "./components/about";
 import { motion } from "framer-motion";
 
-import Moon from "./components/moon";
-
 function OverlayHome() {
   const { isOpen, toogle } = useModal();
   return (
@@ -33,13 +31,9 @@ function OverlayHome() {
               enriquecen la experiencia digital.
             </Description>
           </div>
-          <div className="col-span-12 md:col-span-4 justify-center items-center flex">
-            <div className="w-full h-full fixed top-0 bottom-0 right-0 z-0">
-              <Moon />
-            </div>
-          </div>
+          <div className="col-span-12 md:col-span-4 justify-center items-center flex pointer-events-none"></div>
         </div>
-        <div>
+        <div className="pointer-events-auto">
           <motion.a
             layoutId="about"
             onClick={toogle}

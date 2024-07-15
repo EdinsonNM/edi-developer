@@ -3,6 +3,7 @@ import NavBar from "./components/navbar";
 import { LayoutContextProvider } from "@presentation/layout/layout.context";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./components/scene";
+import { Physics } from "@react-three/rapier";
 
 function Layout() {
   return (
@@ -14,10 +15,12 @@ function Layout() {
             style={{ background: "#00000a" }}
             camera={{ fov: 45 }}
           >
-            <Scene />
+            <Physics>
+              <Scene />
+            </Physics>
           </Canvas>
         </div>
-        <main className="relative flex flex-col overflow-hidden h-full w-full">
+        <main className="relative flex flex-col overflow-hidden h-full w-full pointer-events-none">
           <NavBar />
           <Outlet />
         </main>

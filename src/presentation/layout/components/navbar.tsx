@@ -13,7 +13,7 @@ function NavBar() {
   ];
 
   return (
-    <nav className="navbar fixed left-0 top-0 w-full flex flex-col md:flex-row z-10 py-4 px-10">
+    <nav className="navbar fixed left-0 top-0 w-full flex flex-col md:flex-row z-10 py-4 px-10 pointer-events-auto">
       <div
         className={`flex flex-grow md:flex-shrink items-center justify-center md:items-start md:justify-start`}
       >

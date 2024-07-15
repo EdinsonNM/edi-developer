@@ -8,7 +8,8 @@ import { Developer } from "./developer";
 import Stars from "./stars";
 import Printer3D from "./printer3d";
 import { useLocation } from "react-router-dom";
-//import useCameraControlHelper from "../hooks/use-cameracontrol-helper";
+import { MoonScene } from "@presentation/home/components/moon";
+import DraggableBall from "./dragable-ball";
 
 function Scene() {
   const { cameraControls, changePage } = useContext(LayoutContext);
@@ -38,9 +39,9 @@ function Scene() {
         }}
         azimuthAngle={Math.PI / 4}
       />
-      <Lights />
       <Stars />
       <Suspense fallback={<CubeLoader />}>
+        <Lights />
         <Developer />
         <Scenery />
         <Printer3D
@@ -48,6 +49,8 @@ function Scene() {
           scale={[0.6, 0.6, 0.6]}
           rotation={[0, Math.PI, 0]}
         />
+        <MoonScene />
+        <DraggableBall />
       </Suspense>
     </>
   );

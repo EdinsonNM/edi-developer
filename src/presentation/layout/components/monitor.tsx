@@ -13,7 +13,7 @@ function Monitor() {
         <planeGeometry args={[16, 9, 1]} />
         <meshBasicMaterial map={videoTexture} />
       </mesh>
-      <pointLight position={[-0.62, 0.92, 0.13]} color={"green"} />
+      <pointLight position={[1, 2, 1]} color={"red"} intensity={10} />
     </>
   );
 }

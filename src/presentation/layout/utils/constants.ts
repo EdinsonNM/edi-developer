@@ -3,9 +3,9 @@ import { CameraPositionType } from "./types";
 export const cameraPositions: Record<string, CameraPositionType> = {
   page0: [0, 3, -5, 0, 9, 0],
   page1: [0, 3, -25, 0, 9, 0],
-  page2: [6, 3, -5, 3, 3.5, 0],
+  page2: [4, 3, -8, 5, 2.8, -3],
   page3: [-5, 3, 6, 3, 4, 0],
-  page4: [-5, 2, -5, -3, 3.5, 0], //printer position
+  page4: [-7, 2, -8, -9, 2.8, 0], //printer position
 };
 export const cameraPositionsResponsive: Record<string, CameraPositionType> = {
   page0: [0, 3, -5, 0, 9, 0],

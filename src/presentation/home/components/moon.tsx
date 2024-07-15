@@ -1,57 +1,64 @@
 import { PresentationControls, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import { useRef } from "react";
-import { KernelSize } from "postprocessing";
-import { Group } from "three";
+import { useEffect, useRef, useState } from "react";
+import { KernelSize, Resolution } from "postprocessing";
+import { DirectionalLight, Group } from "three";
 
 export function MoonScene() {
+  const [hovered, hover] = useState(false);
+
   const { nodes } = useGLTF("./models/Moon.glb");
   const ref = useRef<Group>(null);
   console.log(nodes);
   useFrame(() => {
     ref.current!.rotation.y += 0.009;
   });
+
+  const lightRef = useRef<DirectionalLight>(null);
+
+  useEffect(() => {
+    if (lightRef.current) {
+      lightRef.current.target.position.set(-8, 10, 10);
+      lightRef.current.target.updateMatrixWorld();
+    }
+  }, []);
   return (
     <>
-      <pointLight
-        position={[-3, 0, 0]}
-        intensity={100}
-        distance={100}
-        color={"#ffd700"}
+      <directionalLight
+        ref={lightRef}
+        color={"#C0C0C0"}
+        position={[0, 50, -30]}
+        intensity={5}
       />
-      <directionalLight intensity={15} position={[-3, 2, 1]} color={"grey"} />
-      <directionalLight intensity={5} position={[-3, 2, 1]} color="cyan" />
-
-      <group ref={ref} position={[2, 0, -2]}>
-        <PresentationControls
-          snap
-          azimuth={[-Math.PI / 4, Math.PI / 4]}
-          polar={[0, 0]}
-        >
-          <EffectComposer>
-            <Bloom
-              intensity={0.2}
-              mipmapBlur={true}
-              kernelSize={KernelSize.VERY_SMALL}
-              luminanceThreshold={1} // luminance threshold. Raise this value to mask out darker elements in the scene.
-              luminanceSmoothing={0.5}
-            />
-            {/* <primitive object={scene} />*/}
+      <group ref={ref} position={[-8, 10, 10]}>
+        <EffectComposer enableNormalPass={false}>
+          {/* <primitive object={scene} />*/}
+          <PresentationControls snap polar={[0, 0]}>
             <mesh
-              geometry={(nodes.Moon as any).geometry}
+              onPointerOver={() => hover(true)}
+              onPointerOut={() => hover(false)}
               castShadow
-              receiveShadow
-              scale={[0.02, 0.02, 0.02]}
+              scale={[0.07, 0.07, 0.07]}
+              geometry={(nodes["Moon"] as any).geometry}
             >
               <meshStandardMaterial
                 emissive="cyan"
-                emissiveIntensity={0.05}
-                toneMapped={false}
+                emissiveIntensity={hovered ? 0.4 : 0.1}
+                color={"#fff"}
               />
             </mesh>
-          </EffectComposer>
-        </PresentationControls>
+          </PresentationControls>
+          <Bloom
+            intensity={0.1}
+            dithering
+            levels={6}
+            mipmapBlur
+            kernelSize={KernelSize.LARGE}
+            resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
+            resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
+          ></Bloom>
+        </EffectComposer>
       </group>
     </>
   );
