@@ -41,6 +41,10 @@ export const router = createHashRouter([
         path: "/",
         element: <Navigate to="/page1" replace />,
       },
+      {
+        path: "*",
+        element: <Navigate to="/page1" replace />,
+      },
     ],
   },
 ]);
