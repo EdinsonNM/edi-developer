@@ -12,7 +12,7 @@ import Projects from "@presentation/projects/projects";
 import Companies from "@presentation/companies/companies";
 import { RiFlutterFill } from "react-icons/ri";
 import { TbBrandThreejs } from "react-icons/tb";
-import { SiNextdotjs, SiNodedotjs, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { SiNodedotjs, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 
 type StatProps = {
