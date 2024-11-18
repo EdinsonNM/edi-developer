@@ -7,14 +7,13 @@ import {
   useMotionValue,
 } from "framer-motion";
 
-import {
-  FaProjectDiagram,
-  FaBuilding,
-  FaBriefcase,
-  FaBlog,
-} from "react-icons/fa";
+import { FaAngular, FaPlus, FaReact } from "react-icons/fa";
 import Projects from "@presentation/projects/projects";
 import Companies from "@presentation/companies/companies";
+import { RiFlutterFill } from "react-icons/ri";
+import { TbBrandThreejs } from "react-icons/tb";
+import { SiNodedotjs, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io5";
 
 type StatProps = {
   id: string;
@@ -33,7 +32,7 @@ function ItemStats({ title, value, icon }: StatProps) {
   return (
     <Button>
       <div className="pointer-events-auto  hover:text-orange-500">
-        <h3 className="text-sm text-gray-500 w-28 text-center mb-3">{title}</h3>
+        <h3 className="text-sm text-white w-28 text-center mb-3">{title}</h3>
         <div className="flex text-3xl md:text-4xl text-center justify-center items-center">
           {icon}
         </div>
@@ -46,31 +45,73 @@ function Stats() {
 
   const items = [
     {
-      id: "stats-1",
-      title: "Proyectos desarrollados",
+      id: "stats-0",
+      title: "Javascript",
       value: 300,
-      icon: <FaProjectDiagram />,
+      icon: <IoLogoJavascript className="text-yellow-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-01",
+      title: "Typescript",
+      value: 300,
+      icon: <SiTypescript className="text-blue-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-1",
+      title: "Angular",
+      value: 300,
+      icon: <FaAngular className="text-red-500" />,
       Screen: Projects,
     },
     {
       id: "stats-2",
-      title: "Confian en mi trabajo",
+      title: "React",
       value: 100,
-      icon: <FaBuilding />,
+      icon: <FaReact className="text-blue-500" />,
       Screen: Companies,
     },
     {
       id: "stats-3",
-      title: "Años de experiencia",
+      title: "Flutter",
       value: 14,
-      icon: <FaBriefcase />,
+      icon: <RiFlutterFill className="text-cyan-500" />,
       Screen: Projects,
     },
     {
       id: "stats-4",
-      title: "Talleres brindados",
+      title: "Three.js",
       value: 15,
-      icon: <FaBlog />,
+      icon: <TbBrandThreejs className="text-purple-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-41",
+      title: "Sass",
+      value: 15,
+      icon: <SiSass className="text-pink-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-42",
+      title: "Tailwind",
+      value: 15,
+      icon: <SiTailwindcss className="text-cyan-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-43",
+      title: "Node.js",
+      value: 15,
+      icon: <SiNodedotjs className="text-green-500" />,
+      Screen: Projects,
+    },
+    {
+      id: "stats-5",
+      title: "More..",
+      value: 15,
+      icon: <FaPlus className="text-cyan-500" />,
       Screen: Projects,
     },
   ];
@@ -82,7 +123,7 @@ function Stats() {
           <motion.div
             key={index}
             layoutId={Item.id}
-            onClick={() => setSelected(Item)}
+          
             whileHover={{
               scale: 1.2,
               transition: { duration: 0.3 },
