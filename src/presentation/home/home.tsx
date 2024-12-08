@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 function OverlayHome() {
   const { isOpen, toogle } = useModal();
   return (
-    <Page className="bg-black bg-opacity-75 md:bg-opacity-50 overflow-auto">
+    <Page className="bg-black bg-opacity-75 md:bg-opacity-50">
       <Container>
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-12">
@@ -45,7 +45,7 @@ function OverlayHome() {
           </div>
           <div className="col-span-12 md:col-span-4 justify-center items-center flex pointer-events-none"></div>
         </div>
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto hidden md:block">
          
           <div className="fixed right-0 top-1/2 transform -translate-y-1/2 flex flex-col gap-5 text-2xl md:right-0 md:top-1/2 md:transform md:-translate-y-1/2 md:flex md:flex-col md:gap-5 md:text-2xl">
             <motion.a
@@ -83,7 +83,6 @@ function OverlayHome() {
           </div>
         </div>
       </Container>
-      <About isOpen={isOpen} layoutId="about" onClose={toogle} />
     </Page>
   );
 }

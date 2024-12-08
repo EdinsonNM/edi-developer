@@ -1,50 +1,34 @@
-import { Navigate, createHashRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NotFound } from "../design/templates/notfound/notfound";
 import Layout from "@presentation/layout/layout";
+import React, { Suspense } from "react";
+import Home from "@presentation/pages/home/home";
 
-export const router = createHashRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        index: true,
-        path: "/page1",
-        async lazy() {
-          let Index = await import("@presentation/home/home");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page2",
-        async lazy() {
-          let Index = await import("@presentation/technology/technology");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page3",
-        async lazy() {
-          let Index = await import("@presentation/experience/experience");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page4",
-        async lazy() {
-          let Index = await import("@presentation/store/store");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "/",
-        element: <Navigate to="/page1" replace />,
-      },
-      {
-        path: "*",
-        element: <Navigate to="/page1" replace />,
-      },
-    ],
-  },
-]);
+const Page1 = React.lazy(() => import("@presentation/home/home"));
+const Page2 = React.lazy(() => import("@presentation/technology/technology"));
+const Page3 = React.lazy(() => import("@presentation/experience/experience"));
+const Page4 = React.lazy(() => import("@presentation/store/store"));
+
+function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
+         {/* <Route path="/" element={<Layout />}>
+            <Route index element={<Page1 />} />
+            <Route path="page2" element={<Page2 />} />
+            <Route path="page3" element={<Page3 />} />
+            <Route path="page4" element={<Page4 />} />
+            <Route path="*" element={<Navigate to="/page1" replace />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />*/}
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
+export default AppRouter;

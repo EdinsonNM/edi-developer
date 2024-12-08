@@ -117,26 +117,20 @@ function Stats() {
   ];
 
   return (
-    <div className="flex flex-row gap-2 md:gap-6 mt-6 flex-wrap items-center justify-center md:justify-start">
+    <div className="flex flex-row gap-2 md:gap-6 mt-6 flex-wrap items-center justify-center md:justify-start max-w-2xl">
       {items.map((Item, index) => (
-        <>
-          <motion.div
-            key={index}
-            layoutId={Item.id}
-          
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 0.3 },
-            }}
-          >
-            <ItemStats {...Item} />
-          </motion.div>
-          <AnimatePresence>
-            {selected && selected.id == Item.id && (
-              <Item.Screen layout={Item.id} onClose={() => setSelected(null)} />
-            )}
-          </AnimatePresence>
-        </>
+        <motion.div
+        key={index}
+        layoutId={Item.id}
+      
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 0.3 },
+        }}
+       
+      >
+        <ItemStats {...Item} />
+      </motion.div>
       ))}
     </div>
   );

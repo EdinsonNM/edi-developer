@@ -18,9 +18,9 @@ function Scene() {
   let location = useLocation();
 
   useEffect(() => {
-    const page = location.pathname.substring(1);
-    changePage!(page, true, true);
-  }, [location]);
+    const page = location.pathname;
+    changePage!('page1', true, true);
+  }, []);
   return (
     <>
       <CameraControls
