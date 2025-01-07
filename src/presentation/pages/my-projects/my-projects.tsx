@@ -13,15 +13,15 @@ export default function MyProjects() {
       <div className="absolute w-full h-full left-0 top-0">
         <Particles />
       </div>
-      <div className="w-full h-full relative flex flex-row justify-center items-center container mx-auto py-10">
-        <div>
+      <div className="w-full h-full relative flex flex-col md:flex-row justify-center items-center container mx-auto py-10">
+        <div className="px-10 md:px-0">
           <TextAnimate
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-left ${isDark ? "text-cyan-500" : "text-green-500"}`}
+            className={`mx-auto mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none ${isDark ? "text-cyan-500" : "text-green-500"}`}
           >
-            Construyendo el Futuro, Un Proyecto a la Vez
+            {`Construyendo el Futuro, un Proyecto a la Vez`}
           </TextAnimate>
 
           <TextAnimate
