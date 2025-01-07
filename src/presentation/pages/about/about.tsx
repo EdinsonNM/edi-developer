@@ -11,7 +11,7 @@ export default function About() {
         <Particles />
       </div>
       <div className="w-full h-full relative flex flex-row justify-center items-center container mx-auto py-10">
-        <div>
+        <div className="px-10 md:px-0 pt-32 md:pt-0">
           <TextAnimate
             animation="slideLeft"
             by="character"
@@ -35,6 +35,7 @@ export default function About() {
             cada línea de código refleja mi compromiso con la innovación."
           </TextAnimate>
           <DockAbout />
+          
         </div>
         <div />
       </div>

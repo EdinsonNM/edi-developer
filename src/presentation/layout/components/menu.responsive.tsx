@@ -9,7 +9,7 @@ function MenuResponsive({ items }: MenuResponsiveProps) {
     <PopoverPanel
       transition
       anchor="bottom"
-      className="divide-y divide-white/5 rounded-xl bg-white/5 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 z-20"
+      className="w-48 divide-y divide-white/5 rounded-xl bg-white/5 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 z-20"
     >
       <div className="p-3">
         {items.map((item) => (
