@@ -9,12 +9,12 @@ export default function MyProjects() {
   const isDark = useDarkMode();
 
   return (
-    <div className="w-full h-full bg-gradient-to-b from-black to-cyan-800">
+    <div className="w-full h-full bg-gradient-to-b from-black to-cyan-800 overflow-y-auto">
       <div className="absolute w-full h-full left-0 top-0">
         <Particles />
       </div>
       <div className="w-full h-full relative flex flex-col md:flex-row justify-center items-center container mx-auto py-10">
-        <div className="px-10 md:px-0">
+        <div className="px-10 md:px-0 pt-32 md:pt-0">
           <TextAnimate
             animation="slideLeft"
             by="character"

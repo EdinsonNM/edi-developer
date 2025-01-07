@@ -45,7 +45,7 @@ let notifications = [
     repository: "https://github.com/juan-pablo-garcia/gpt-r3f",
   },
   {
-    name: "Creando experiencias interactivas en 3D",
+    name: "Experiencias interactivas en 3D",
     description:
       "Esta es una presentación interactiva creada con react, react-three-fiber y three.js",
     time: "2m ago",
@@ -62,7 +62,7 @@ const Notification = ({ name, description, icon, color, time, link }: Item) => {
   return (
     <figure
       className={cn(
-        "relative mx-auto min-h-fit w-full max-w-[600px] cursor-pointer overflow-hidden rounded-2xl p-4",
+        "relative mx-auto min-h-fit w-full md:max-w-[600px] cursor-pointer overflow-hidden rounded-2xl p-4",
         // animation styles
         "transition-all duration-200 ease-in-out hover:scale-[103%]",
         // light styles
@@ -88,9 +88,8 @@ const Notification = ({ name, description, icon, color, time, link }: Item) => {
           <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white ">
             <span className="text-sm sm:text-lg">{name}</span>
             <span className="mx-1">·</span>
-            <span className="text-xs text-gray-500">{time}</span>
           </figcaption>
-          <p className="text-sm font-normal dark:text-white/60">
+          <p className="text-sm font-normal dark:text-white/60 text-start">
             {description}
           </p>
         </div>
@@ -103,7 +102,7 @@ export function Projects({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex w-full h-[500px] flex-col p-6 overflow-hidden rounded-lg",
+        "relative flex w-full max-w-full md:h-[500px] flex-col p-6 overflow-hidden rounded-lg",
         className
       )}
     >
