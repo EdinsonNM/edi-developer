@@ -1,50 +1,29 @@
-import { Navigate, createHashRouter } from "react-router-dom";
-import { NotFound } from "../design/templates/notfound/notfound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@presentation/layout/layout";
+import React, { Suspense } from "react";
+import Home from "@presentation/pages/home/home";
 
-export const router = createHashRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        index: true,
-        path: "/page1",
-        async lazy() {
-          let Index = await import("@presentation/home/home");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page2",
-        async lazy() {
-          let Index = await import("@presentation/technology/technology");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page3",
-        async lazy() {
-          let Index = await import("@presentation/experience/experience");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "page4",
-        async lazy() {
-          let Index = await import("@presentation/store/store");
-          return { Component: Index.default };
-        },
-      },
-      {
-        path: "/",
-        element: <Navigate to="/page1" replace />,
-      },
-      {
-        path: "*",
-        element: <Navigate to="/page1" replace />,
-      },
-    ],
-  },
-]);
+const MyProjects = React.lazy(
+  () => import("@presentation/pages/my-projects/my-projects")
+);
+const About = React.lazy(() => import("@presentation/pages/about/about"));
+const Contact = React.lazy(() => import("@presentation/pages/contact/contact"));
+
+function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="mis-proyectos" element={<MyProjects />} />
+            <Route path="sobre-mi" element={<About />} />
+            <Route path="contacto" element={<Contact />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
+export default AppRouter;

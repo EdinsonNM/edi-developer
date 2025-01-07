@@ -4,18 +4,20 @@ import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { Popover, PopoverButton } from "@headlessui/react";
 import MenuResponsive from "./menu.responsive";
+import useDarkMode from "@presentation/utils/use-dark-mode";
 function NavBar() {
+  const isDark = useDarkMode();
   const navigation = [
-    { url: "page1", title: "Inicio" },
-    { url: "page2", title: "Tecnología" },
-    { url: "page3", title: "Experiencia" },
-    { url: "page4", title: "Store" },
+    { url: "/", title: "Inicio" },
+    { url: "mis-proyectos", title: "Mis Proyectos" },
+    { url: "sobre-mi", title: "Sobre Mi" },
+    { url: "contacto", title: "Contacto" },
   ];
 
   return (
     <nav className="navbar fixed left-0 top-0 w-full flex flex-col md:flex-row z-10 py-4 px-10 pointer-events-auto">
       <div
-        className={`flex flex-grow md:flex-shrink items-center justify-center md:items-start md:justify-start`}
+        className={`flex flex-grow md:flex-shrink items-center justify-center md:items-start md:justify-start ${isDark ? "text-white" : "text-black"}`}
       >
         <LogoIcon size={160} />
       </div>
