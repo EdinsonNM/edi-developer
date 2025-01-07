@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Layout from "@presentation/layout/layout";
 import React, { Suspense } from "react";
 import Home from "@presentation/pages/home/home";
@@ -11,7 +11,7 @@ const Contact = React.lazy(() => import("@presentation/pages/contact/contact"));
 
 function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -22,7 +22,7 @@ function AppRouter() {
           </Route>
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
