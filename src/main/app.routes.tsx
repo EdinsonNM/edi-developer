@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { NotFound } from "../design/templates/notfound/notfound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@presentation/layout/layout";
 import React, { Suspense } from "react";
 import Home from "@presentation/pages/home/home";
 
-const Page1 = React.lazy(() => import("@presentation/home/home"));
-const Page2 = React.lazy(() => import("@presentation/technology/technology"));
-const Page3 = React.lazy(() => import("@presentation/experience/experience"));
-const Page4 = React.lazy(() => import("@presentation/store/store"));
+const MyProjects = React.lazy(
+  () => import("@presentation/pages/my-projects/my-projects")
+);
+const About = React.lazy(() => import("@presentation/pages/about/about"));
+const Contact = React.lazy(() => import("@presentation/pages/contact/contact"));
 
 function AppRouter() {
   return (
@@ -16,15 +16,10 @@ function AppRouter() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="mis-proyectos" element={<MyProjects />} />
+            <Route path="sobre-mi" element={<About />} />
+            <Route path="contacto" element={<Contact />} />
           </Route>
-         {/* <Route path="/" element={<Layout />}>
-            <Route index element={<Page1 />} />
-            <Route path="page2" element={<Page2 />} />
-            <Route path="page3" element={<Page3 />} />
-            <Route path="page4" element={<Page4 />} />
-            <Route path="*" element={<Navigate to="/page1" replace />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />*/}
         </Routes>
       </Suspense>
     </BrowserRouter>

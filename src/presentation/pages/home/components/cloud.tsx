@@ -1,12 +1,12 @@
-import {  useRef, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Object3D } from "three";
 import { useTexture } from "@react-three/drei";
 
 export default function Cloud() {
   const tempObject = useMemo(() => new Object3D(), []);
-  const ref = useRef();
-  const texture = useTexture('images/smoke.png');
+  const ref = useRef<any>();
+  const texture = useTexture("images/smoke.png");
 
   const particles = useMemo(() => {
     const cloudParticles = [];
@@ -22,11 +22,11 @@ export default function Cloud() {
       });
     }
     return cloudParticles;
-  },[]);
+  }, []);
 
-  useFrame((state) => {
+  useFrame(() => {
     particles.forEach((particle, i) => {
-      let { positionX, positionZ, rotationZ } = particle;
+      const { positionX, positionZ, rotationZ } = particle;
       tempObject.position.set(positionX, 0, positionZ);
       tempObject.rotation.set(0, 0, rotationZ);
       tempObject.updateMatrix();
@@ -37,20 +37,17 @@ export default function Cloud() {
   });
 
   return (
-    <instancedMesh ref={ref} args={[null, null, 40]}>
-      
-       <bufferGeometry attach="geometry" >
-        
-        </bufferGeometry>
-       <pointsMaterial
-          size={100}
-          vertexColors
-          map={texture}
-          transparent
-          sizeAttenuation
-          depthWrite={false}
-          opacity={0.5}
-        />
+    <instancedMesh ref={ref} args={[undefined, undefined, 40]}>
+      <bufferGeometry attach="geometry"></bufferGeometry>
+      <pointsMaterial
+        size={100}
+        vertexColors
+        map={texture}
+        transparent
+        sizeAttenuation
+        depthWrite={false}
+        opacity={0.5}
+      />
     </instancedMesh>
   );
 }

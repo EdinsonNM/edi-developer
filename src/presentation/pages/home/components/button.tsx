@@ -1,6 +1,7 @@
-import { Html, RoundedBox, Text, Text3D, useCursor } from "@react-three/drei";
+import { RoundedBox, Text, useCursor } from "@react-three/drei";
 import { useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
+import useDarkMode from "@presentation/utils/use-dark-mode";
 
 type ButtonProps = {
   position: [number, number, number];
@@ -8,16 +9,16 @@ type ButtonProps = {
 };
 
 export default function Button({ position, title }: ButtonProps) {
-  const initialZoffset=Math.random() > 0.5 ? 0.5 : -0.5
+  const initialZoffset = Math.random() > 0.5 ? 0.5 : -0.5;
   const [hovered, setHovered] = useState(false);
   const [zOffset, setZOffset] = useState(initialZoffset);
   const [direction, setDirection] = useState(1);
-
+  const isDark = useDarkMode();
   useCursor(hovered);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDirection((prevDirection) => (Math.random() > 0.5 ? 0.5 : -0.5));
+      setDirection(() => (Math.random() > 0.5 ? 0.5 : -0.5));
     }, 1000); // Change direction every second
     return () => clearInterval(interval);
   }, []);
@@ -31,7 +32,7 @@ export default function Button({ position, title }: ButtonProps) {
       return newZOffset;
     });
   });
-
+  const defaultTextColor = isDark ? "black" : "white";
   return (
     <group
       key={`${position[0]}-${position[1]}`}
@@ -44,18 +45,22 @@ export default function Button({ position, title }: ButtonProps) {
       }}
       position={[position[0], position[1], position[2] + zOffset]}
     >
-      <RoundedBox
-       
-        args={[3, 2, 1]}
-        radius={0.5}
-        smoothness={4}
-       
-      >
-        <meshStandardMaterial color={hovered ? "cyan" : "white"} emissive="cyan" emissiveIntensity={hovered ? 0.5 : 0} emissiveAttenuation={0.5}/>
+      <RoundedBox args={[3, 2, 1]} radius={0.5} smoothness={4}>
+        <meshStandardMaterial
+          color={hovered ? "cyan" : "white"}
+          emissive="cyan"
+          emissiveIntensity={hovered ? 2 : 0}
+        />
       </RoundedBox>
-      <Text color={hovered ? "white" : "black"} anchorX="center" anchorY="middle" fontSize={0.3} position={[0,0,0.6]}>
+      <Text
+        color={hovered ? "cyan" : defaultTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.3}
+        position={[0, 0, 0.6]}
+      >
         {title}
-        </Text>
+      </Text>
     </group>
   );
 }
