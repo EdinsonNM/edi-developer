@@ -1,10 +1,13 @@
 import { PopoverPanel } from "@headlessui/react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import LayoutContext from "../layout.context";
 
 type MenuResponsiveProps = {
   items: { url: string; title: string }[];
 };
 function MenuResponsive({ items }: MenuResponsiveProps) {
+  const { isDark } = useContext(LayoutContext);
   return (
     <PopoverPanel
       transition
@@ -22,7 +25,13 @@ function MenuResponsive({ items }: MenuResponsiveProps) {
                 : "block rounded-lg py-2 px-3 transition hover:bg-orange/5"
             }
           >
-            <p className="font-semibold text-white">{item.title}</p>
+            <p
+              className={`font-semibold ${
+                isDark ? "text-white" : "text-black"
+              }`}
+            >
+              {item.title}
+            </p>
           </NavLink>
         ))}
       </div>

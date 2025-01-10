@@ -3,8 +3,7 @@
 import React from "react";
 
 import { Dock, DockIcon } from "@/components/ui/dock";
-import { LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { FaTiktok } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -13,19 +12,19 @@ export function DockAbout() {
     <div className="relative">
       <Dock direction="middle">
         <DockIcon>
-          <LinkedInLogoIcon className="size-6" />
+          <FaLinkedin className="size-10 text-blue-500" />
         </DockIcon>
         <DockIcon>
-          <Icons.gitHub className="size-6" />
+          <FaGithub className="size-10 text-black" />
         </DockIcon>
         <DockIcon>
-          <FaTiktok className="size-6" />
+          <FaTiktok className="size-10 text-black" />
         </DockIcon>
         <DockIcon>
-          <Icons.x className="size-6" />
+          <Icons.x className="size-10 text-black" />
         </DockIcon>
         <DockIcon>
-          <Icons.whatsapp className="size-6" />
+          <FaWhatsapp className="size-10 text-green-500" />
         </DockIcon>
       </Dock>
     </div>

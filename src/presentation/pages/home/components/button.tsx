@@ -1,7 +1,7 @@
 import { RoundedBox, Text, useCursor } from "@react-three/drei";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useFrame } from "@react-three/fiber";
-import useDarkMode from "@presentation/utils/use-dark-mode";
+import LayoutContext from "@presentation/layout/layout.context";
 
 type ButtonProps = {
   position: [number, number, number];
@@ -9,11 +9,11 @@ type ButtonProps = {
 };
 
 export default function Button({ position, title }: ButtonProps) {
+  const { isDark } = useContext(LayoutContext);
   const initialZoffset = Math.random() > 0.5 ? 0.5 : -0.5;
   const [hovered, setHovered] = useState(false);
   const [zOffset, setZOffset] = useState(initialZoffset);
   const [direction, setDirection] = useState(1);
-  const isDark = useDarkMode();
   useCursor(hovered);
 
   useEffect(() => {
@@ -32,7 +32,23 @@ export default function Button({ position, title }: ButtonProps) {
       return newZOffset;
     });
   });
-  const defaultTextColor = isDark ? "black" : "white";
+
+  let opacity = isDark ? 1 : 0.1;
+  let transparent = isDark ? false : true;
+  let roughness = isDark ? 0 : 0.1;
+  let metalness = isDark ? 0 : 0.9;
+  let materialColor = isDark ? "white" : "cyan";
+  let emissive = isDark ? "cyan" : "orange";
+  let textColor = isDark ? "black" : "cyan";
+  if (hovered) {
+    opacity = 1;
+    transparent = false;
+    roughness = 0;
+    metalness = 0.9;
+    materialColor = isDark ? "cyan" : "orange";
+    emissive = isDark ? "cyan" : "orange";
+    textColor = isDark ? "cyan" : "red";
+  }
   return (
     <group
       key={`${position[0]}-${position[1]}`}
@@ -47,13 +63,17 @@ export default function Button({ position, title }: ButtonProps) {
     >
       <RoundedBox args={[3, 2, 1]} radius={0.5} smoothness={4}>
         <meshStandardMaterial
-          color={hovered ? "cyan" : "white"}
-          emissive="cyan"
+          color={materialColor}
+          emissive={emissive}
           emissiveIntensity={hovered ? 2 : 0}
+          opacity={opacity}
+          transparent={transparent}
+          roughness={roughness}
+          metalness={metalness}
         />
       </RoundedBox>
       <Text
-        color={hovered ? "cyan" : defaultTextColor}
+        color={textColor}
         anchorX="center"
         anchorY="middle"
         fontSize={0.3}

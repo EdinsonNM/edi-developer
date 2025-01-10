@@ -2,14 +2,21 @@
 
 import Particles from "@/components/ui/particles";
 import { TextAnimate } from "@/components/ui/text-animate";
-import useDarkMode from "@presentation/utils/use-dark-mode";
 import { Projects } from "./components/projects";
+import { useContext } from "react";
+import LayoutContext from "@presentation/layout/layout.context";
 
 export default function MyProjects() {
-  const isDark = useDarkMode();
+  const { isDark } = useContext(LayoutContext);
 
   return (
-    <div className="w-full h-full bg-gradient-to-b from-black to-cyan-800 overflow-y-auto">
+    <div
+      className={`w-full h-full overflow-y-auto ${
+        isDark
+          ? "bg-gradient-to-b from-black to-cyan-800"
+          : "bg-gradient-to-b from-blue-300 via-yellow-200 to-white"
+      }`}
+    >
       <div className="absolute w-full h-full left-0 top-0">
         <Particles />
       </div>
@@ -19,7 +26,9 @@ export default function MyProjects() {
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mx-auto mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none ${isDark ? "text-cyan-500" : "text-green-500"}`}
+            className={`mx-auto mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none ${
+              isDark ? "text-cyan-500" : "text-green-500"
+            }`}
           >
             {`Construyendo el Futuro, un Proyecto a la Vez`}
           </TextAnimate>
@@ -30,7 +39,9 @@ export default function MyProjects() {
             as={"h2"}
             duration={1500}
             delay={500}
-            className={`pointer-events-none text-sm md:text-xl text-start max-w-3xl ${isDark ? "text-white" : "text-black"}`}
+            className={`pointer-events-none text-sm md:text-xl text-start max-w-3xl ${
+              isDark ? "text-white" : "text-black"
+            }`}
           >
             "Aquí encontrarás una selección de proyectos en los que he
             trabajado. Cada línea de código representa una idea convertida en
