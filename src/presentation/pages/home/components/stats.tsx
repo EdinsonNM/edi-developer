@@ -32,7 +32,9 @@ function ItemStats({ title, value, icon }: StatProps) {
   return (
     <Button>
       <div className="pointer-events-auto  hover:text-orange-500">
-        <h3 className="text-sm text-white w-28 text-center mb-3">{title}</h3>
+        <h3 className="text-sm text-black dark:text-white w-28 text-center mb-3">
+          {title}
+        </h3>
         <div className="flex text-3xl md:text-4xl text-center justify-center items-center">
           {icon}
         </div>

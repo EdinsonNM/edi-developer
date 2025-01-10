@@ -3,7 +3,7 @@ import { TextAnimate } from "@/components/ui/text-animate";
 import useDarkMode from "@presentation/utils/use-dark-mode";
 
 export default function Contact() {
-  const isDark = useDarkMode();
+  const { isDark } = useDarkMode();
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-black to-blue-900">
@@ -16,7 +16,9 @@ export default function Contact() {
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center ${isDark ? "text-cyan-500" : "text-green-500"}`}
+            className={`mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center ${
+              isDark ? "text-cyan-500" : "text-green-500"
+            }`}
           >
             Contáctame
           </TextAnimate>
@@ -27,7 +29,9 @@ export default function Contact() {
             as={"h2"}
             duration={1500}
             delay={500}
-            className={`text-sm md:text-xl text-center max-w-5xl ${isDark ? "text-white" : "text-black"}`}
+            className={`text-sm md:text-xl text-center max-w-5xl ${
+              isDark ? "text-white" : "text-black"
+            }`}
           >
             Estoy aquí para ayudarte. Por favor, completa el formulario a
             continuación y me pondré en contacto contigo lo antes posible.

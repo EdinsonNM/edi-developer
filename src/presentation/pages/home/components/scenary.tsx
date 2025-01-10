@@ -1,8 +1,9 @@
 import { useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Vector3 } from "three";
 import Button from "./button";
 import Cloud from "./cloud";
+import LayoutContext from "@presentation/layout/layout.context";
 
 type ScenaryProps = {
   mousePosition: [number, number, number];
@@ -11,7 +12,7 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
   const z = useMemo(() => Math.random() * 5 - 2.5, []);
   const { camera } = useThree();
   const [lightPosition, setLightPosition] = useState([5, 0, 0]);
-
+  const { isDark } = useContext(LayoutContext);
   useEffect(() => {
     const [x, y] = mousePosition;
     if (!x && !y) {
@@ -78,7 +79,7 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
     "Unreal Engine",
     "TensorFlow",
     "PyTorch",
-    "Keras",
+    "Astro",
     "OpenCV",
     "Blender",
     "Babylon.js",
@@ -95,6 +96,7 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
     "WebXR",
     "WebGPU",
   ];
+  const colorLight = isDark ? "cyan" : "orange";
   return (
     <>
       <ambientLight intensity={0.01} />
@@ -102,8 +104,8 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
         position={
           new Vector3(lightPosition[0], lightPosition[1], lightPosition[2])
         }
-        intensity={10}
-        color="cyan"
+        intensity={15}
+        color={colorLight}
         distance={15}
         decay={2}
       />

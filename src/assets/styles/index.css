@@ -63,9 +63,7 @@ html {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-body {
-  background: #2f2f2f;
-}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
