@@ -27,7 +27,14 @@ function NavBar() {
         <LogoIcon size={160} />
       </div>
       <div className="flex-grow"></div>
-      <div className="md:hidden block fixed right-2">
+      <div className="md:hidden flex flex-row fixed right-2">
+        <button
+          onClick={toggleDarkMode}
+          className="mx-4 py-2 rounded-md hover:text-cyan-700 hover:bg-opacity-80 text-gray-800 dark:text-white font-bold flex flex-row items-center gap-2"
+        >
+          <SunIcon className="hidden dark:block text-4xl size-6" />
+          <MoonIcon className="block dark:hidden text-4xl size-6" />
+        </button>
         <Popover>
           <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
             <BiMenu className="text-4xl" />
