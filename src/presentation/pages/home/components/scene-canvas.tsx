@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 export const SceneCanvas = () => {
-  const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0]);
+  const [mousePosition, setMousePosition] = useState<[number, number,0]>([0, 0,0]);
 
 
   const handleMouseMove = (event: React.MouseEvent) => {
@@ -16,7 +16,7 @@ export const SceneCanvas = () => {
     const { width, height } = event.currentTarget.getBoundingClientRect();
     const x = (clientX / width) * 2 - 1;
     const y = -(clientY / height) * 2 + 1;
-    setMousePosition([x, y]);
+    setMousePosition([x, y, 0]);
   };
 
 
