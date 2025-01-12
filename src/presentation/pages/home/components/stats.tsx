@@ -107,7 +107,7 @@ function Stats() {
   ];
 
   return (
-    <Marquee pauseOnHover className="[--duration:20s]">
+    <Marquee pauseOnHover className="[--duration:20s] max-w-2xl">
       {items.map((Item, index) => (
         <motion.div
           key={index}
