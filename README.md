@@ -21,6 +21,36 @@ Visita [(https://edinsonnm.github.io/edi-developer/)] para explorar el portafoli
 - Animaciones fluidas y atractivas diseñadas con GSAP para una experiencia de usuario inmersiva.
 - Diseño responsive utilizando Tailwind CSS, asegurando una visualización óptima en todos los dispositivos y resoluciones de pantalla.
 
+## Estructura del Proyecto
+
+```
+edi-developer/
+├── src/                    # Código fuente principal
+│   ├── components/        # Componentes reutilizables
+│   │   └── ui/           # Componentes de interfaz de usuario (animaciones, botones, etc.)
+│   ├── core/             # Funcionalidades principales
+│   │   ├── ui/          # Hooks y utilidades de UI
+│   │   └── utils/       # Utilidades generales
+│   ├── design/          # Sistema de diseño
+│   │   ├── atoms/       # Componentes atómicos (botones, iconos, loaders)
+│   │   ├── molecules/   # Componentes moleculares
+│   │   └── templates/   # Plantillas de páginas
+│   ├── hooks/           # Custom hooks
+│   ├── lib/             # Librerías y utilidades
+│   └── main.tsx         # Punto de entrada de la aplicación
+├── public/                 # Archivos públicos estáticos
+├── dist/                   # Archivos compilados para producción
+├── models/                 # Modelos 3D (.glb, .gltf)
+├── images/                 # Imágenes y recursos gráficos
+│   └── companies/         # Logos e imágenes de empresas
+├── videos/                 # Archivos de video
+├── index.html             # Punto de entrada HTML
+├── tailwind.config.js     # Configuración de Tailwind CSS
+├── tsconfig.json          # Configuración de TypeScript
+├── package.json           # Dependencias y scripts
+└── README.md              # Documentación del proyecto
+```
+
 ## Instalación Local
 
 Sigue estos pasos para configurar el proyecto localmente. Necesitarás [Node.js](https://nodejs.org/en/) y [npm](https://www.npmjs.com/) instalados en tu sistema.
