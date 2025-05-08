@@ -12,7 +12,10 @@ function NavBar() {
   const { isDark, toggleDarkMode } = useContext(LayoutContext);
   const navigation = [
     { url: "/", title: "Inicio" },
-    { url: "mis-proyectos", title: "Mis Proyectos" },
+    { url: "mis-proyectos", title: "Recursos para desarrolladores" },
+    { url: "podcast", title: "Mi Podcast" },
+    { url: "sass", title: "SaaS" },
+    { url: "charlas", title: "Charlas y talleres" },
     /*{ url: "sobre-mi", title: "Sobre Mi" },
     { url: "contacto", title: "Contacto" },*/
   ];
