@@ -21,39 +21,29 @@ function NavBar() {
   ];
 
   return (
-    <nav className="navbar fixed left-0 top-0 w-full flex flex-col md:flex-row z-10 py-4 px-10 pointer-events-auto">
-      <div
-        className={`flex items-center justify-center md:justify-start ${
-          isDark ? "text-white" : "text-cyan-700"
-        }`}
-      >
-        <LogoIcon size={160} />
+    <nav className="navbar fixed left-0 top-0 w-full flex flex-row items-center z-10 py-2 px-3 md:py-4 md:px-10 pointer-events-auto">
+      {/* Logo a la izquierda, tamaño responsive */}
+      <div className={`flex items-center ${isDark ? "text-white" : "text-cyan-700"}`}>
+        {/* Logo responsive: grande en desktop, intermedio en mobile */}
+        <span className="block">
+          <span className="hidden md:block">
+            <LogoIcon size={160} />
+          </span>
+          <span className="block md:hidden">
+            <LogoIcon size={80} />
+          </span>
+        </span>
       </div>
-      <div className="flex-grow"></div>
-      <div className="md:hidden flex flex-row fixed right-2">
-        <button
-          onClick={toggleDarkMode}
-          className="mx-4 py-2 rounded-md hover:text-cyan-700 hover:bg-opacity-80 text-gray-800 dark:text-white font-bold flex flex-row items-center gap-2"
-        >
-          <SunIcon className="hidden dark:block text-4xl size-6" />
-          <MoonIcon className="block dark:hidden text-4xl size-6" />
-        </button>
-        <Popover>
-          <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
-            <BiMenu className="text-4xl" />
-          </PopoverButton>
-          <MenuResponsive items={navigation} />
-        </Popover>
-      </div>
-      <div className="hidden md:flex flex-grow md:justify-end">
-        <ul className="flex flex-row gap-0 md:gap-4">
+      {/* Menú centrado en desktop, oculto en mobile */}
+      <div className="flex-1 hidden md:flex justify-center">
+        <ul className="flex flex-row gap-4">
           {navigation.map((item) => (
             <li key={item.url} className="">
               <NavLink
                 to={item.url}
                 className={({ isActive }) =>
                   isActive
-                    ? "p-3 rounded-md hover:text-orange-800  hover:bg-opacity-50 text-red-500 dark:text-orange-500   font-bold"
+                    ? "p-3 rounded-md hover:text-orange-800 hover:bg-opacity-50 text-red-500 dark:text-orange-500 font-bold"
                     : "p-3 rounded-md hover:text-cyan-700 hover:bg-opacity-80 text-gray-800 dark:text-white light:text-black "
                 }
               >
@@ -61,16 +51,30 @@ function NavBar() {
               </NavLink>
             </li>
           ))}
-          <li>
-            <button
-              onClick={toggleDarkMode}
-              className="py-2 rounded-md hover:text-cyan-700 hover:bg-opacity-80 text-gray-800 dark:text-white font-bold"
-            >
-              <SunIcon className="hidden dark:block text-4xl size-4" />
-              <MoonIcon className="block dark:hidden text-4xl size-4" />
-            </button>
-          </li>
         </ul>
+      </div>
+      {/* Idioma, dark mode y menú hamburguesa a la derecha en mobile */}
+      <div className="flex items-center gap-2 ml-auto">
+        <select className="border rounded px-2 py-1 text-sm bg-transparent dark:text-white text-gray-800">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+        <button
+          onClick={toggleDarkMode}
+          className="py-2 rounded-md hover:text-cyan-700 hover:bg-opacity-80 text-gray-800 dark:text-white font-bold"
+        >
+          <SunIcon className="hidden dark:block text-4xl size-4" />
+          <MoonIcon className="block dark:hidden text-4xl size-4" />
+        </button>
+        {/* Menú responsive solo visible en mobile */}
+        <div className="md:hidden flex flex-row ml-2">
+          <Popover>
+            <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
+              <BiMenu className="text-3xl" />
+            </PopoverButton>
+            <MenuResponsive items={navigation} />
+          </Popover>
+        </div>
       </div>
     </nav>
   );

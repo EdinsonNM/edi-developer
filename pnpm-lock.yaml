@@ -29,6 +29,9 @@ importers:
       '@react-three/rapier':
         specifier: ^1.4.0
         version: 1.5.0(@react-three/fiber@8.18.0(@types/react@18.3.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.163.0))(react@18.3.1)(three@0.163.0)
+      '@tanstack/react-query':
+        specifier: ^5.75.5
+        version: 5.75.5(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -44,6 +47,12 @@ importers:
       framer-motion:
         specifier: ^11.2.14
         version: 11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      highcharts:
+        specifier: ^12.2.0
+        version: 12.2.0
+      highcharts-react-official:
+        specifier: ^3.2.2
+        version: 3.2.2(highcharts@12.2.0)(react@18.3.1)
       lucide-react:
         specifier: ^0.469.0
         version: 0.469.0(react@18.3.1)
@@ -696,6 +705,14 @@ packages:
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
 
+  '@tanstack/query-core@5.75.5':
+    resolution: {integrity: sha512-kPDOxtoMn2Ycycb76Givx2fi+2pzo98F9ifHL/NFiahEDpDwSVW6o12PRuQ0lQnBOunhRG5etatAhQij91M3MQ==}
+
+  '@tanstack/react-query@5.75.5':
+    resolution: {integrity: sha512-QrLCJe40BgBVlWdAdf2ZEVJ0cISOuEy/HKupId1aTKU6gPJZVhSvZpH+Si7csRflCJphzlQ77Yx6gUxGW9o0XQ==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@tanstack/react-virtual@3.13.8':
     resolution: {integrity: sha512-meS2AanUg50f3FBSNoAdBSRAh8uS0ue01qm7zrw65KGJtiXB9QXfybqZwkh4uFpRv2iX/eu5tjcH5wqUpwYLPg==}
     peerDependencies:
@@ -1216,6 +1233,15 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
+
+  highcharts-react-official@3.2.2:
+    resolution: {integrity: sha512-2kkWOB6RpdR26fmAJkrtJFG9xWFUDGKWyat88tW3fa/3l/Jc7D5ZfwTng2MZsdiKIH32AFy0Pr75udUe7uN6LA==}
+    peerDependencies:
+      highcharts: '>=6.0.0'
+      react: '>=16.8.0'
+
+  highcharts@12.2.0:
+    resolution: {integrity: sha512-UUN+osTP3aeGc4KmoMuWAjzpKif8GYHFozzYI4O8h1ILGof25M/ZGBpXLvgqf1z0LVh7N9eG7i0HnzMfjcR4nA==}
 
   hls.js@1.6.2:
     resolution: {integrity: sha512-rx+pETSCJEDThm/JCm8CuadcAC410cVjb1XVXFNDKFuylaayHk1+tFxhkjvnMDAfqsJHxZXDAJ3Uc2d5xQyWlQ==}
@@ -2517,6 +2543,13 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@tanstack/query-core@5.75.5': {}
+
+  '@tanstack/react-query@5.75.5(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.75.5
+      react: 18.3.1
+
   '@tanstack/react-virtual@3.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/virtual-core': 3.13.8
@@ -3096,6 +3129,13 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  highcharts-react-official@3.2.2(highcharts@12.2.0)(react@18.3.1):
+    dependencies:
+      highcharts: 12.2.0
+      react: 18.3.1
+
+  highcharts@12.2.0: {}
 
   hls.js@1.6.2: {}
 
