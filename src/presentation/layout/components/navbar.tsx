@@ -56,7 +56,7 @@ function NavBar() {
             <span className="hidden md:block">
               <LogoIcon size={160} />
             </span>
-            <span className="block md:hidden">
+            <span className="hidden md:hidden">
               <LogoIcon size={80} />
             </span>
           </span>

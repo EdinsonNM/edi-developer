@@ -55,7 +55,7 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col bg-gray-900 shadow-xl backdrop-blur-md border-l border-gray-700">
+                  <div className="flex h-full flex-col bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-900/70 backdrop-blur-md border-l border-gray-600/60 shadow-xl">
                     {/* Header */}
                     <div className="flex items-center justify-between px-6 py-6 border-b border-gray-700">
                       <div className="flex items-center space-x-3">
@@ -176,7 +176,7 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                     <div className="px-6 py-4 border-t border-gray-700">
                       <div className="text-center">
                         <p className="text-xs text-gray-500">
-                          © 2024 Edinson Nuñez More
+                          © {new Date().getFullYear()} Edinson Nuñez More
                         </p>
                         <p className="text-xs text-gray-600 mt-1">
                           Desarrollador Full Stack

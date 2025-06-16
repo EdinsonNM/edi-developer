@@ -9,6 +9,7 @@ import { OrbitingIcons } from "./components/orbiting-icons";
 import { BiSearch, BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import ChatModal from "@presentation/components/chat-modal";
+import LogoIcon from "@design/atoms/icons/logo-icon";
 
 const TextAnimate2 = memo(TextAnimate);
 
@@ -73,6 +74,9 @@ export default function Home() {
         className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center pointer-events-none"
       >
         <div className="flex flex-col items-center justify-center gap-4 p-4 text-center max-w-full w-full">
+        <div className="flex items-center justify-center mb-8 md:hidden">
+          <LogoIcon size={200} />
+         </div>
           <div
             className={`pointer-events-none font-bold text-3xl md:text-6xl text-center ${
               isDark ? "text-cyan-500" : "text-cyan-700"
