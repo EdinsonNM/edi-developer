@@ -1,0 +1,452 @@
+{
+  "name": "Edinson Nuñez More",
+  "title": "Ingeniero Informático - Chapter Lead Frontend",
+  "summary": "Chapter Lead Front End con más de 14 años de experiencia liderando y desarrollando proyectos tecnológicos de diversa índole (aplicaciones de escritorio, web y móviles) tanto a nivel nacional como para empresas en Estados Unidos y Costa Rica. Destaco por mi capacidad de coordinar equipos multidisciplinarios, gestionar y dar seguimiento a proyectos de manera eficiente, así como por mis habilidades analíticas para diseñar e implementar soluciones innovadoras. Actualmente, me encuentro fortaleciendo mis conocimientos en IA generativa para seguir impulsando proyectos de vanguardia.",
+  "location": "Jr Manco Capac 442, Pilcomayo, Huancayo",
+  "birthplace": "Piura, Piura, Piura",
+  "email": "nmedinson@gmail.com",
+  "phone": "(+51) 972705736",
+  "linkedin": "www.linkedin.com/in/edinsonnm",
+  "github": "https://github.com/EdinsonNM",
+  "languages": [
+    { "language": "Español", "level": "Nativo" },
+    { "language": "Inglés", "level": "Intermedio B2" }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Nacional de Piura",
+      "degree": "Ingeniería Informática",
+      "years": "2001 - 2006"
+    },
+    {
+      "institution": "Colegio Nacional San Miguel de Piura",
+      "degree": "Educación Secundaria",
+      "years": "1996 - 2000"
+    },
+    {
+      "institution": "C.E.P José Safarik",
+      "degree": "Educación Primaria",
+      "years": "1990 - 1995"
+    }
+  ],
+  "work_experience": [
+    {
+      "company": "Tekton Labs, Perú",
+      "role": "Consultor Externo de software Senior Frontend",
+      "startDate": "2023-06",
+      "endDate": "Presente",
+      "description": "Devon Dashboard: Proyecto web para un cliente de EE.UU (Devon Energy), Oklahoma. Tecnologías: ANGULAR 16, D3.JS, HIGHTCHARTS.",
+      "technologies": ["ANGULAR 16", "D3.JS", "HIGHTCHARTS"]
+    },
+    {
+      "company": "Ridivi, Costa Rica",
+      "role": "Consultor Externo de software Senior Frontend",
+      "startDate": "2024-08",
+      "endDate": "2025-05",
+      "description": "Ridivi Admin Dashboard y Verificador. Tecnologías: React 18, Typescript, PHP, Java, Spring Boot.",
+      "technologies": ["React 18", "Typescript", "PHP", "Java", "Spring Boot"]
+    },
+    {
+      "company": "Minedu, Perú",
+      "role": "Consultor Externo de software Senior Frontend",
+      "startDate": "2024-11",
+      "endDate": "2024-11",
+      "description": "Chatbot con IA: Creación de un chatbot haciendo uso de IA generativa para brindar información sobre el sistema Siagie. Tecnologías: React 18, AWS Bedrock.",
+      "technologies": ["React 18", "AWS Bedrock"]
+    },
+    {
+      "company": "Novatronic, Lima",
+      "role": "Consultor de Software",
+      "startDate": "2023-05",
+      "endDate": "2023-05",
+      "description": "Desarrollo de portal Web Admin SIX/EFT Switch. Tecnologías: ANGULAR 15, ANGULAR MATERIAL, ANGULAR QUERY.",
+      "technologies": ["ANGULAR 15", "ANGULAR MATERIAL", "ANGULAR QUERY"]
+    },
+    {
+      "company": "Hatun, Lima",
+      "role": "Software consultant",
+      "startDate": "2023-04",
+      "endDate": "2023-05",
+      "description": "Refactor y buenas practicas de desarrollo mobile parar \"Hatun\" usando Flutter. Tecnologías: FLUTTER, FIREBASE.",
+      "technologies": ["FLUTTER", "FIREBASE"]
+    },
+    {
+      "company": "Pacífico Seguros, Lima",
+      "role": "Chapter Lead",
+      "startDate": "2021-07",
+      "endDate": "2022-09",
+      "description": "Coordinación con Proveedores, Definición de Lineamientos para tecnologías Web y Mobile, Gestión y manejo del chapter, Seguridad y autenticación biométrica, Aplicaciones web de alto performance para ecommerce, Definición e implementación de arquitectura limpia web y mobile. Referencia: Ronald Cruz.",
+      "technologies": [
+        "SCRUM",
+        "GATSBY",
+        "REACT",
+        "TYPESCRIPT",
+        "VITEJS",
+        "FLUTTER",
+        "B2B",
+        "AZURE",
+        "AWS",
+        "FIREBASE",
+        "LIFERAY",
+        "JAVASCRIPT",
+        "WEB COMPONENTS",
+        "RXJS",
+        "CLEAN ARCHITECTURE"
+      ]
+    },
+    {
+      "company": "Minedu, Lima",
+      "role": "Technical Lead",
+      "startDate": "2020-03",
+      "endDate": "2022-12",
+      "description": "Desarrollo portal \"Aprendo en Casa\". Coordinación con Proveedores, Definición de Lineamientos Web y Mobile, Gestión del chapter, Seguridad y autenticación biométrica, Aplicaciones web de alto performance, Definición e implementación de arquitectura limpia. Referencia: Soledad Canasa.",
+      "technologies": [
+        "SCRUM",
+        "GATSBY",
+        "REACT",
+        "TYPESCRIPT",
+        "VITEJS",
+        "NEST JS",
+        "RXJS",
+        "CLEAN ARCHITECTURE"
+      ]
+    },
+    {
+      "company": "Pacífico Seguros, Lima",
+      "role": "Líder Técnico",
+      "startDate": "2020-06",
+      "endDate": "2021-07",
+      "description": "Lineamientos Liferay, Web y Mobile. Seguridad y Autenticación biométrica en dispositivos móviles. Tecnologías listadas en el CV.",
+      "technologies": [
+        "SCRUM",
+        "GATSBY",
+        "REACT",
+        "TYPESCRIPT",
+        "VITEJS",
+        "FLUTTER",
+        "B2B",
+        "AZURE",
+        "AWS",
+        "FIREBASE",
+        "JAVASCRIPT",
+        "WEB COMPONENTS",
+        "RXJS",
+        "CLEAN ARCHITECTURE"
+      ]
+    },
+    {
+      "company": "Belatrix Software, Lima",
+      "role": "SME Front-End Developer (Architect Front-End Developer)",
+      "startDate": "2018-02",
+      "endDate": "2020-05",
+      "description": "WebApp Pymes, ChatBot de Inspecciones Vehiculares, E-Commerce Vida, Autos, Viajes, Mi espacio Pacífico Mobile, Integración Azure B2C con TouchId y FaceId para Pacífico Seguros. Tecnologías listadas en el CV.",
+      "technologies": [
+        "SCRUM",
+        "REDUX",
+        "REACT",
+        "TYPESCRIPT",
+        "AWS",
+        "FIREBASE",
+        "LIFERAY",
+        "JAVASCRIPT",
+        "WEB COMPONENTS",
+        "RXJS"
+      ]
+    },
+    {
+      "company": "Belatrix Software, Lima",
+      "role": "Senior Front-End Developer",
+      "startDate": "2017-06",
+      "endDate": "2018-01",
+      "description": "WebApp Reembolsos Online - Pacífico Seguro. Tecnologías listadas en el CV.",
+      "technologies": [
+        "SCRUM",
+        "REDUX",
+        "REACT",
+        "TYPESCRIPT",
+        "AWS",
+        "FIREBASE",
+        "LIFERAY",
+        "JAVASCRIPT",
+        "WEB COMPONENTS",
+        "RXJS"
+      ]
+    },
+    {
+      "company": "Freelance, Lima",
+      "role": "Freelance Senior Developer",
+      "startDate": "2017-04",
+      "endDate": "2017-05",
+      "description": "Portal Web Observatorio de Cuencas - Chancay-Lambayeque, Arequipa, Piura. Tecnologías: PHP, FIREBASE, REACT.",
+      "technologies": ["PHP", "FIREBASE", "REACT"]
+    },
+    {
+      "company": "ExcelSoftSources, Lima",
+      "role": "Senior Software Developer",
+      "startDate": "2015-05",
+      "endDate": "2017-01",
+      "description": "E-commerce Videocheckout para facebook - Total- Apps, EE.UU. Tecnologías: .NET, SQLSERVER, MONGODB.",
+      "technologies": [".NET", "SQLSERVER", "MONGODB"]
+    },
+    {
+      "company": "Jagermeister, Lima",
+      "role": "Freelance Senior Developer",
+      "startDate": "2014-07",
+      "endDate": "2014-09",
+      "description": "Aplicación Android Jagermeister - Mexico.",
+      "technologies": ["Android"]
+    },
+    {
+      "company": "Chateuonline, Lima",
+      "role": "Freelance Web Developer",
+      "startDate": "2014-03",
+      "endDate": "2014-03",
+      "description": "WebApp venta de Vinos - Francia. Tecnologías: VB.NET, SQL SERVER.",
+      "technologies": ["VB.NET", "SQL SERVER"]
+    },
+    {
+      "company": "Tiam-V. SAC, Lima",
+      "role": "Web Developer",
+      "startDate": "2014-02",
+      "endDate": "2014-02",
+      "description": "Portal \"Premio Nacional a la calidad\" - Francia.",
+      "technologies": []
+    },
+    {
+      "company": "Everis, Lima",
+      "role": "Solution Analyst",
+      "startDate": "2013-03",
+      "endDate": "2013-12",
+      "description": "Sistema transaccional de Leasing - BBVA.",
+      "technologies": []
+    },
+    {
+      "company": "Everis, Lima",
+      "role": "Solution Assistant",
+      "startDate": "2012-11",
+      "endDate": "2013-02",
+      "description": "Análisis, evolución y mantenimiento del Sistemas de Contratos - Repsol, Perú.",
+      "technologies": []
+    },
+    {
+      "company": "CMAC-Paita, Piura",
+      "role": ".NET Developer",
+      "startDate": "2012-06",
+      "endDate": "2013-08",
+      "description": "Administración e Implementación de ERP - CMAC-Paita.",
+      "technologies": [".NET"]
+    },
+    {
+      "company": "JUMBP, Piura",
+      "role": ".Net Developer",
+      "startDate": "2011-11",
+      "endDate": "2012-02",
+      "description": "Sistema Desktop para la Gestión y Manejo del Agua - Junta Medio y Bajo Piura.",
+      "technologies": [".NET"]
+    },
+    {
+      "company": "Nippon Koei, Lima",
+      "role": "Web Developer",
+      "startDate": "2011-02",
+      "endDate": "2011-10",
+      "description": "Análisis y Desarrollo del sistema de monitoreo de actividades e indicadores.",
+      "technologies": []
+    },
+    {
+      "company": "Avendaño Clinica de Noche, Lima",
+      "role": "Web Developer",
+      "startDate": "2011-07",
+      "endDate": "2011-11",
+      "description": "Desarrollo del sistema de consultas médicas.",
+      "technologies": []
+    },
+
+    {
+      "company": "Nippon Koei, Lima",
+      "role": "Web Developer",
+      "startDate": "2010-08",
+      "endDate": "2011-04",
+      "description": "Desarrollo del Sistema de monitoreo y seguimiento de actividades.",
+      "technologies": []
+    },
+    {
+      "company": "Gobierno Regional de Piura, Piura",
+      "role": "Web Developer",
+      "startDate": "2010-03",
+      "endDate": "2010-07",
+      "description": "Desarrollo del Portal Web \"Geoportal Catamayo Chira\".",
+      "technologies": []
+    },
+    {
+      "company": "Programa Subsectorial de Irrigaciones, Lima",
+      "role": "Net Developer",
+      "startDate": "2008-08",
+      "endDate": "2010-02",
+      "description": "Desarrollo de la aplicación de escritorio \"Sistema de Riego\"",
+      "technologies": [".NET"]
+    }
+  ],
+  "projects_personal": [
+    {
+      "name": "Carta Viva",
+      "fecha": "2025-04",
+      "rol": "Creador y Desarrollador Principal",
+      "description": "Desarrollo de una aplicación para restaurantes que permite a los clientes ordenar desde su celular mediante un asistente de voz impulsado por IA. La solución incluye reconocimiento de voz en tiempo real, recomendaciones inteligentes y gestión de pedidos.",
+      "technologies": [
+        "React 18",
+        "Vite",
+        "Typescript",
+        "Tailwind",
+        "OpenAI API",
+        "Whisper",
+        "ElevenLabs"
+      ]
+    },
+    {
+      "name": "Zypher",
+      "fecha": "2025-01",
+      "fecha_fin": "2025-03",
+      "rol": "Creador y Desarrollador Principal",
+      "description": "Diseño y desarrollo de una app móvil que permite a los estudiantes y docentes gestionar sus actividades académicas. Incluye funcionalidades como registro de tareas, seguimiento de asistencia, recordatorios automáticos y generación de reportes inteligentes mediante IA.",
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Supabase",
+        "Node.js",
+        "GPT-4 API"
+      ]
+    }
+  ],
+  "charlas": [
+    {
+      "titulo": "IA para Desarrolladores",
+      "lugar": "Universidad Nacional de Piura",
+      "fecha": "2025-01-24"
+    },
+    {
+      "titulo": "Creando experiencias 3D con ThreeJS y React Three Fiber",
+      "lugar": "BBVA Continental",
+      "fecha": "2024-10-15"
+    },
+    {
+      "titulo": "Creando experiencias 3D con ThreeJS y React Three Fiber",
+      "lugar": "Tekton Labs Perú",
+      "fecha": "2024-06-13"
+    },
+    {
+      "titulo": "Buenas prácticas en el desarrollo de software",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2022-07-01"
+    },
+    {
+      "titulo": "Microfrontend",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2021-03-01"
+    },
+    {
+      "titulo": "Haciendo TDD en el mundo real",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2020-09-01"
+    },
+    {
+      "titulo": "Clean Code",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2020-07-01"
+    },
+    {
+      "titulo": "Web performance",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2019-11-01"
+    },
+    { "titulo": "Flutter", "lugar": "Pacífico Seguros", "fecha": "2019-09-01" },
+    {
+      "titulo": "React JS",
+      "lugar": "Belatrix Software",
+      "fecha": "2018-11-01"
+    },
+    {
+      "titulo": "Desarrollo de aplicaciones móviles",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2018-10-01"
+    }
+  ],
+  "skills": {
+    "frontend": {
+      "HTML": 14,
+      "CSS": 14,
+      "Javascript": 14,
+      "Typescript": 8,
+      "React": 7,
+      "Angular": 5,
+      "Vue": 2,
+      "Svelte": 1,
+      "Web Components": 5,
+      "Stencil": 1,
+      "Tailwind": 2,
+      "Storybook": 2,
+      "Gatsby": 4
+    },
+    "backend": {
+      "Node.js": 4,
+      "Express": 3,
+      "NestJS": 2,
+      "Java": 2,
+      "Spring Boot": 2,
+      "C#": 2,
+      "VB.NET": 2,
+      "PHP": 3
+    },
+    "mobile": {
+      "Flutter": 3,
+      "Android": 2,
+      "iOS": 1
+    },
+    "design": {
+      "Figma": 3,
+      "Sketch": 2,
+      "Adobe XD": 3,
+      "Illustrator": 3,
+      "Photoshop": 3,
+      "ZBrush": 1,
+      "Blender": 2
+    },
+    "databases": {
+      "SQLServer": 5,
+      "MySQL": 5,
+      "MongoDB": 3,
+      "Firebase": 5,
+      "Supabase": 2
+    },
+    "cloud_devops": {
+      "AWS": 4,
+      "Azure": 3,
+      "Firebase": 5
+    },
+    "others": {
+      "ElectronJS": 1,
+      "RxJS": 5,
+      "Clean Architecture": 4,
+      "Highcharts": 2,
+      "D3.js": 2,
+      "Liferay": 3,
+      "OpenAI API": 1,
+      "Whisper": 1,
+      "ElevenLabs": 1,
+      "GPT-4 API": 1,
+      "AWS Bedrock": 1
+    },
+    "methodologies": {
+      "Scrum": 10,
+      "PMI": 2,
+      "RUP": 1,
+      "SOLID": 5,
+      "Canvas": 1,
+      "Clean Code": 5,
+      "TDD": 3
+    }
+  },
+  "años_experiencia_total": 14,
+  "freelance": true,
+  "charlas_totales": 11,
+  "proyectos_personales_totales": 4
+}
