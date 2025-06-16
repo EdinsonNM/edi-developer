@@ -270,7 +270,7 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                               🤖
                             </span>
                           </div>
-                          <div className="p-2 sm:p-4 rounded-lg max-w-[95%] sm:max-w-[90%] shadow-md bg-gradient-to-r from-green-800/60 to-green-700/60 text-white rounded-bl-none border border-green-600/40">
+                          <div className="text-left p-2 sm:p-4 rounded-lg max-w-[95%] sm:max-w-[90%] shadow-md bg-gradient-to-r from-green-800/60 to-green-700/60 text-white rounded-bl-none border border-green-600/40">
                             <h2 className="text-lg sm:text-xl font-bold mb-2">{t.saludoAsistente}</h2>
                             <p className="text-green-100 mb-3 text-sm sm:text-base">{t.descripcionAsistente}</p>
                             <div className="text-xs sm:text-sm text-green-200 bg-green-900/40 rounded-lg p-2 sm:p-3 border border-green-600/30">
@@ -303,7 +303,7 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                                   </div>
                                 )}
                                 <div
-                                  className={`p-2 sm:p-3 rounded-lg max-w-[85%] sm:max-w-[75%] lg:max-w-[70%] whitespace-pre-wrap shadow-md text-sm sm:text-base ${
+                                  className={`text-left p-2 sm:p-3 rounded-lg max-w-[85%] sm:max-w-[75%] lg:max-w-[70%] whitespace-pre-wrap shadow-md text-sm sm:text-base ${
                                     msg.role === "user"
                                       ? "bg-sky-600/80 text-white rounded-br-none"
                                       : "bg-gray-800 text-gray-100 rounded-bl-none"
