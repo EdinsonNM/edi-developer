@@ -3,6 +3,7 @@ import { useState } from "react";
 // Asumo que systemPrompt ya tiene el edinsonProfile.json stringificado e inyectado
 // Si no, necesitarías una función que lo haga antes de pasarlo a la API.
 import { systemPrompt } from "./system-prompt"; // Asegúrate que este es el string final
+import { useI18n } from "@presentation/utils/use-i18n";
 
 // Definición de Roles (sin cambios)
 enum Role {
@@ -30,7 +31,7 @@ export type AssistantMessageStructure = {
 };
 
 const DEFAULT_HIGHCHART: Highcharts.Options = {
-  chart: { type: "bar", backgroundColor: "transparent", marginTop: 60 },
+  chart: { type: "column", backgroundColor: "transparent", marginTop: 60 },
   title: { text: "" },
   xAxis: { categories: [], labels: { style: { color: "#ccc" } } },
   yAxis: {
@@ -47,11 +48,26 @@ type GeminiContent = {
   parts: Array<{ text: string }>;
 };
 
-function sanitizeGeminiResponse(parsedJson: any): AssistantMessageStructure {
+function sanitizeGeminiResponse(parsedJson: any, language: 'es' | 'en'): AssistantMessageStructure {
+  const messages = {
+    es: {
+      errorProcessing: "Hubo un problema al procesar la respuesta del asistente.",
+      offTopicDefault: "Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More...",
+      noResponse: "Sin respuesta."
+    },
+    en: {
+      errorProcessing: "There was a problem processing the assistant response.",
+      offTopicDefault: "Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More...",
+      noResponse: "No response."
+    }
+  };
+  
+  const lang = messages[language];
+  
   // Si parsedJson es null o undefined, devuelve la estructura de "fuera de tema" o una por defecto.
   if (!parsedJson) {
     return {
-      response: "Hubo un problema al procesar la respuesta del asistente.",
+      response: lang.errorProcessing,
       title: null,
       description: null,
       highchart: DEFAULT_HIGHCHART, // O null si prefieres no mostrar gráfico
@@ -66,9 +82,7 @@ function sanitizeGeminiResponse(parsedJson: any): AssistantMessageStructure {
     parsedJson.highchart === null
   ) {
     return {
-      response:
-        parsedJson.response ??
-        "Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More...",
+      response: parsedJson.response ?? lang.offTopicDefault,
       title: null,
       description: null,
       highchart: null, // O DEFAULT_HIGHCHART si quieres mostrar uno vacío
@@ -77,18 +91,49 @@ function sanitizeGeminiResponse(parsedJson: any): AssistantMessageStructure {
 
   // Para respuestas válidas sobre Edinson
   return {
-    response: parsedJson.response ?? "Sin respuesta.",
+    response: parsedJson.response ?? lang.noResponse,
     title: parsedJson.title ?? "", // O null si el schema lo permite y tiene sentido
     description: parsedJson.description ?? "", // O null
     highchart: parsedJson.highchart ?? DEFAULT_HIGHCHART,
   };
 }
 
+// Función para generar prompt dinámico según el idioma
+const generateDynamicPrompt = (language: 'es' | 'en'): string => {
+  const languageInstructions = {
+    es: {
+      responseInstruction: 'IMPORTANTE: Debes responder SIEMPRE en español. Todos los textos en el campo "response" deben estar en español.',
+      offTopicResponse: 'Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él.',
+      errorMessage: 'Hubo un problema al procesar la respuesta del asistente.'
+    },
+    en: {
+      responseInstruction: 'IMPORTANT: You must ALWAYS respond in English. All texts in the "response" field must be in English.',
+      offTopicResponse: 'Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More. You can ask me about his experience, skills, projects, talks, or any professional aspect related to him.',
+      errorMessage: 'There was a problem processing the assistant response.'
+    }
+  };
+
+  const lang = languageInstructions[language];
+  
+  // Crear el prompt con instrucciones de idioma
+  const dynamicPrompt = `${lang.responseInstruction}
+
+---
+
+${systemPrompt.replace(
+    '"Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él."',
+    `"${lang.offTopicResponse}"`
+  )}`;
+  
+  return dynamicPrompt;
+};
+
 export default function useCompletionsGemini() {
   // messagesForApi: Almacena el historial en el formato que Gemini espera para `contents`
   const [messagesForApi, setMessagesForApi] = useState<GeminiContent[]>([]);
   // uiMessages: Almacena los mensajes para mostrar en la UI
   const [uiMessages, setUiMessages] = useState<UIMessageType[]>([]);
+  const { language } = useI18n();
 
   const result = useMutation<
     AssistantMessageStructure, // Lo que la mutación devuelve
@@ -124,7 +169,7 @@ export default function useCompletionsGemini() {
 
       const requestBody = {
         systemInstruction: {
-          parts: [{ text: systemPrompt }], // systemPrompt debe ser el string final procesado
+          parts: [{ text: generateDynamicPrompt(language) }], // Usar prompt dinámico según idioma
         },
         contents: historyForApi,
         generationConfig: {
@@ -172,7 +217,7 @@ export default function useCompletionsGemini() {
       }
 
       const assistantMessageStructure =
-        sanitizeGeminiResponse(parsedAssistantJson);
+        sanitizeGeminiResponse(parsedAssistantJson, language);
 
       // Añadir respuesta del asistente a la UI
       const assistantUIMessage: UIMessageType = {

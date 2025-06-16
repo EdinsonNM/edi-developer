@@ -102,8 +102,8 @@ export default function Home() {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    navigate("/info-search");
+                  if (e.key === "Enter" && inputValue.trim()) {
+                    navigate(`/info-search?q=${encodeURIComponent(inputValue.trim())}`);
                   }
                 }}
                 className="w-full py-3 pl-4 pr-10 rounded-lg bg-[#191C1F] border border-blue-400 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
