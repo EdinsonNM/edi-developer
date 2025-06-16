@@ -10,23 +10,25 @@ import { SceneCanvas } from "./components/scene-canvas";
 import { OrbitingIcons } from "./components/orbiting-icons";
 import { BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { useI18n } from "@presentation/utils/use-i18n";
 
 const TextAnimate2 = memo(TextAnimate);
 
 export default function Home() {
   const { isDark } = useContext(LayoutContext);
+  const { t } = useI18n();
   const navigate = useNavigate();
 
   const openContact = () => {
     window.open("https://cal.com/edinson-nunez-more", "blank");
   };
 
-  // Marquee placeholder texts as an array
+  // Marquee placeholder texts as an array usando traducciones
   const marqueePlaceholders = [
-    "Proyectos, charlas, tecnologías.",
-    "Explora mis trabajos.",
-    "Experiencia y habilidades.",
-    "Agenda una reunión.",
+    t.placeholder1,
+    t.placeholder2,
+    t.placeholder3,
+    t.placeholder4,
   ];
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -38,7 +40,7 @@ export default function Home() {
       setMarqueeIndex((i) => (i + 1) % marqueePlaceholders.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [marqueePlaceholders]);
 
   return (
     <div
@@ -73,26 +75,23 @@ export default function Home() {
               isDark ? "text-cyan-500" : "text-cyan-700"
             } max-w-full w-full`}
           >
-            Hello, I'm Edinson
+            {t.helloImEdinson}
           </div>
 
           <div
             className={`pointer-events-none text-sm md:text-3xl text-center max-w-2xl w-full dark:text-white text-black`}
           >
-            El ingeniero de software que transforma ideas en experiencias
-            interactivas
+            {t.softwareEngineerTransforms}
           </div>
           <div
             className={`hidden md:block pointer-events-none text-sm md:text-lg text-center max-w-5xl w-full dark:text-gray-400 text-black`}
           >
-            Más de 14 años creando soluciones web y móviles para empresas de
-            todo el mundo. Experto en desarrollo frontend, tecnologías 3D,
-            inteligencia artificial aplicada y educación digital.
+            {t.yearsBuildingSolutions}
           </div>
 
           <div className="flex flex-col items-center justify-center mt-8 w-full max-w-xs sm:max-w-md">
             <h2 className="text-xl md:text-2xl font-bold mb-4 text-white text-center">
-              ¿Qué quieres saber sobre mí?
+              {t.whatWantToKnow}
             </h2>
             <div className="relative w-full max-w-md pointer-events-auto">
               <input
@@ -135,7 +134,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-md max-w-xs pointer-events-auto text-black dark:text-white hover:underline w-full text-center"
             >
-              O agrega una reunión en cal.com
+              {t.scheduleOnCalCom}
             </a>
           </div>
         </div>

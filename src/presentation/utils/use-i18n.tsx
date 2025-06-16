@@ -37,6 +37,19 @@ interface Translations {
   cerrarMenu: string;
   idiomaLanguage: string;
   abrirMenu: string;
+  
+  // Home page
+  helloImEdinson: string;
+  softwareEngineerTransforms: string;
+  yearsBuildingSolutions: string;
+  whatWantToKnow: string;
+  scheduleOnCalCom: string;
+  
+  // Home placeholders
+  placeholder1: string;
+  placeholder2: string;
+  placeholder3: string;
+  placeholder4: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -74,6 +87,19 @@ const translations: Record<Language, Translations> = {
     cerrarMenu: "Cerrar menú",
     idiomaLanguage: "Idioma / Language",
     abrirMenu: "Abrir menú",
+    
+    // Home page
+    helloImEdinson: "Hola, soy Edinson",
+    softwareEngineerTransforms: "El ingeniero de software que transforma ideas en experiencias interactivas",
+    yearsBuildingSolutions: "Más de 14 años creando soluciones web y móviles para empresas de todo el mundo. Experto en desarrollo frontend, tecnologías 3D, inteligencia artificial aplicada y educación digital.",
+    whatWantToKnow: "¿Qué quieres saber sobre mí?",
+    scheduleOnCalCom: "O agenda una reunión en cal.com",
+    
+    // Home placeholders
+    placeholder1: "Proyectos, charlas, tecnologías.",
+    placeholder2: "Explora mis trabajos.",
+    placeholder3: "Experiencia y habilidades.",
+    placeholder4: "Agenda una reunión.",
   },
   en: {
     // Navbar
@@ -109,6 +135,19 @@ const translations: Record<Language, Translations> = {
     cerrarMenu: "Close menu",
     idiomaLanguage: "Language / Idioma",
     abrirMenu: "Open menu",
+    
+    // Home page
+    helloImEdinson: "Hello, I'm Edinson",
+    softwareEngineerTransforms: "The software engineer who transforms ideas into interactive experiences",
+    yearsBuildingSolutions: "Over 14 years building web and mobile solutions for companies worldwide. Expert in frontend development, 3D technologies, applied artificial intelligence, and digital education.",
+    whatWantToKnow: "What do you want to know about me?",
+    scheduleOnCalCom: "Or schedule a meeting on cal.com",
+    
+    // Home placeholders
+    placeholder1: "Projects, talks, technologies.",
+    placeholder2: "Explore my work.",
+    placeholder3: "Experience and skills.",
+    placeholder4: "Schedule a meeting.",
   },
 };
 

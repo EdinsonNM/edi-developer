@@ -129,6 +129,8 @@ export default function InfoSearch() {
         mutate(searchQuery, {
           onSuccess: (data) => {
             console.log("Data recibida en búsqueda automática:", data);
+            // Limpiar el input después de enviar la consulta automática
+            setInputValue("");
             // Almacenar datos pendientes que serán asociados por el useEffect
             if (data) {
               setPendingChartData({
@@ -140,6 +142,8 @@ export default function InfoSearch() {
           },
           onError: (error) => {
             console.error("Error en búsqueda automática:", error);
+            // Limpiar el input también en caso de error
+            setInputValue("");
             // En caso de error usar el mismo sistema
             setPendingChartData({
               title: t.errorCargarDatos,
@@ -153,7 +157,7 @@ export default function InfoSearch() {
         });
       }, 100);
     }
-  }, [searchParams, mutate]);
+  }, [searchParams, mutate, t]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
