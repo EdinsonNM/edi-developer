@@ -191,15 +191,10 @@ export default function InfoSearch() {
 
   return (
     <div
-      className="relative min-h-screen w-full"
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 0%, #1e6641 0%, #13232f 60%, #111926 100%)",
-      }}
+      className="relative min-h-screen w-full opacity-25 blur-sm"
+    
     >
-      <div className="absolute w-full h-full left-0 top-0">
-        <Particles />
-      </div>
+     
       <div className="flex flex-col max-w-7xl mx-auto p-2 sm:p-4 bg-transparent mt-16 sm:mt-20 lg:mt-24">
         {/* Chat de ancho completo con altura máxima responsive */}
         <div className="flex flex-col bg-gray-800/60 backdrop-blur-md border border-gray-600/60 rounded-lg p-2 sm:p-4 h-[calc(100vh-100px)] sm:h-[calc(100vh-120px)] lg:h-[calc(100vh-130px)] w-full">
