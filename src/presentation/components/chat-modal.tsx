@@ -236,36 +236,32 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden w-full h-full max-w-none transition-all">
+              <Dialog.Panel 
+                className="fixed inset-0 w-full h-full max-w-none max-h-none sm:static sm:mx-auto sm:my-8 sm:rounded-lg sm:max-w-4xl sm:w-full sm:h-[80vh] sm:max-h-[90vh] sm:flex sm:flex-col sm:bg-transparent transition-all"
+              >
                 <div
-                  className="relative w-full h-full min-h-screen"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at 50% 0%, #1e6641 0%, #13232f 60%, #111926 100%)",
-                  }}
+                  className="flex flex-col h-full w-full sm:h-full sm:w-full"
                 >
-                  {/* Particles Background */}
-                  <div className="absolute w-full h-full left-0 top-0">
-                    <Particles />
+                  {/* Header fijo para mobile y desktop */}
+                  <div className="sticky top-0 z-20 bg-gray-900/90 flex items-center justify-between px-4 py-3 border-b border-gray-700">
+                    <span className="text-white font-semibold text-lg">{t.saludoAsistente}</span>
+                    <button
+                      type="button"
+                      className="rounded-md bg-gray-800/80 p-2 text-gray-400 hover:text-white hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-200"
+                      onClick={onClose}
+                    >
+                      <span className="sr-only">{t.cerrarMenu}</span>
+                      <BiX className="h-6 w-6" aria-hidden="true" />
+                    </button>
                   </div>
 
-                  {/* Close Button */}
-                  <button
-                    type="button"
-                    className="absolute top-4 right-4 z-10 rounded-md bg-gray-800/80 p-2 text-gray-400 hover:text-white hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-200"
-                    onClick={onClose}
-                  >
-                    <span className="sr-only">{t.cerrarMenu}</span>
-                    <BiX className="h-6 w-6" aria-hidden="true" />
-                  </button>
-
                   {/* Chat Content */}
-                  <div className="flex flex-col max-w-7xl mx-auto p-4 bg-transparent pt-16 h-full">
-                    <div className="flex flex-col bg-gray-800/60 backdrop-blur-md border border-gray-600/60 rounded-lg p-4 h-[calc(100vh-80px)] w-full">
+                  <div className="flex flex-col h-full w-full max-w-7xl mx-auto p-0 sm:p-0 bg-transparent pt-0">
+                    <div className="flex flex-col bg-gray-800/60 backdrop-blur-md border border-gray-600/60 rounded-none sm:rounded-lg h-full w-full sm:p-4 pt-2 sm:pt-2 flex-1">
                       {/* Messages */}
                       <div 
                         ref={chatContainerRef}
-                        className="flex flex-col gap-3 mb-4 overflow-y-auto h-full scroll-smooth"
+                        className="flex flex-col gap-3 mb-2 overflow-y-auto flex-1 scroll-smooth px-2 sm:px-4 py-2 pt-[72px] sm:pt-[72px] pb-[60px] sm:pb-2"
                       >
                         {/* Mensaje de saludo inicial */}
                         <div className="flex items-start mb-2 justify-start">
@@ -449,7 +445,7 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                       </div>
 
                       {/* Input */}
-                      <div className="flex mt-auto gap-1 sm:gap-2">
+                      <div className="flex mt-auto gap-1 sm:gap-2 bg-gray-800/80 p-2 sm:p-0 sticky bottom-0 z-10">
                         <input
                           value={inputValue}
                           onChange={(e) => setInputValue(e.target.value)}
