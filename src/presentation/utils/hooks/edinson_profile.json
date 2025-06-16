@@ -519,19 +519,20 @@
   "skills": {
     "ingenieria_ai": {
       "focus": "Enfoque en convertirme en Ingeniero AI",
-      "knowledge": [
-        "LLMs y Técnicas",
-        "Prompt Engineering",
-        "RAG",
-        "LangChain",
-        "OpenAI",
-        "Claude",
-        "DeepSeek",
-        "Gemini"
-      ],
+      "knowledge": {
+        "LLMs y Técnicas": 2,
+        "Prompt Engineering": 2,
+        "RAG": 1,
+        "LangChain": 1,
+        "OpenAI": 2,
+        "Claude": 2,
+        "DeepSeek": 0.5,
+        "Gemini": 1.5
+      },
       "related_talks": [
         "Taller sobre el \"Uso de la IA en el desarrollo de software\"",
-        "Charla sobre \"IA para Desarrolladores\""
+        "Charla sobre \"IA para Desarrolladores\"",
+        "Porque las maquinas aprenden"
       ]
     },
     "desarrollo_web": {
@@ -540,7 +541,7 @@
       "Javascript ES5, ES6, ES7+": 16,
       "Typescript": 5,
       "React JS": 10,
-      "Angular": 4,
+      "Angular": 5,
       "Vue JS": 6,
       "Svelte": 6,
       "Web Components": 6,
@@ -557,7 +558,16 @@
       "Webpack": null,
       "Gulp": 10,
       "Grunt": 10,
-      "Storybook": 8
+      "Storybook": 8,
+      "RxJS": 8,
+      "Jest": 8,
+      "Cypress": 8,
+      "Jasmine": 8,
+      "Mocha": 8,
+      "Chai": 8,
+      "Sinon": 8,
+      "Enzyme": 8,
+      "Testing Library": 6
     },
     "desarrollo_mobile": {
       "Android": 4,
@@ -582,7 +592,7 @@
       "Firebase": 7,
       "Supabase": 2
     },
-    "diseno_3d": {
+    "diseno_desarrollo_3d": {
       "focus": "Experiencia en 3D",
       "tools": {
         "ZBrush": 2,
@@ -591,14 +601,14 @@
         "Zeplin": 4,
         "Adobe XD": 4,
         "Figma": 4,
-        "Sketch": null,
-        "Adobe Illustrator": null,
-        "Photoshop": null
+        "Sketch": 5,
+        "Adobe Illustrator": 8,
+        "Photoshop": 4
       },
-      "libraries": [
-        "ThreeJS",
-        "React Three Fiber"
-      ]
+      "libraries": {
+        "ThreeJS": 3 ,
+        "React Three Fiber": 3
+      }
     },
     "metodologias_frameworks_buenas_practicas": [
       "Scrum",
