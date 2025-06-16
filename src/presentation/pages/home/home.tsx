@@ -1,27 +1,24 @@
 import { memo, useContext, useState, useEffect } from "react";
 import { TextAnimate } from "@/components/ui/text-animate";
 import Meteors from "@/components/ui/meteors";
-import Stats from "./components/stats";
 import LayoutContext from "@presentation/layout/layout.context";
 import { cn } from "@/lib/utils";
 import DotPattern from "@/components/ui/dot-pattern";
-import ShimmerButton from "@/components/ui/shimmer-button";
 import { SceneCanvas } from "./components/scene-canvas";
 import { OrbitingIcons } from "./components/orbiting-icons";
-import { BiSearch } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { BiSearch, BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
+import ChatModal from "@presentation/components/chat-modal";
 
 const TextAnimate2 = memo(TextAnimate);
 
 export default function Home() {
   const { isDark } = useContext(LayoutContext);
   const { t } = useI18n();
-  const navigate = useNavigate();
 
-  const openContact = () => {
-    window.open("https://cal.com/edinson-nunez-more", "blank");
-  };
+  // Estados para el chat modal
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatQuery, setChatQuery] = useState("");
 
   // Marquee placeholder texts as an array usando traducciones
   const marqueePlaceholders = [
@@ -45,7 +42,7 @@ export default function Home() {
   return (
     <div
       className={cn(
-        "overflow-x-hidden overflow-y-auto h-full w-full max-w-screen relative",
+        "overflow-x-hidden min-h-screen w-full relative",
         isDark
           ? "bg-gradient-to-b from-gray-900 via-black to-black"
           : "bg-gradient-to-b from-blue-300 via-yellow-200 to-white"
@@ -63,7 +60,13 @@ export default function Home() {
         )}
       </div>
 
-      {isDark ? <SceneCanvas /> : <OrbitingIcons />}
+      {isDark ? (
+        <div className="absolute top-0 left-0 w-full h-full z-0">
+          <SceneCanvas />
+        </div>
+      ) : (
+        <OrbitingIcons />
+      )}
 
       <div
         id="home-content"
@@ -102,7 +105,9 @@ export default function Home() {
                 onBlur={() => setIsFocused(false)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && inputValue.trim()) {
-                    navigate(`/info-search?q=${encodeURIComponent(inputValue.trim())}`);
+                    setChatQuery(inputValue.trim());
+                    setInputValue("");
+                    setIsChatOpen(true);
                   }
                 }}
                 className="w-full py-3 pl-4 pr-10 rounded-lg bg-[#191C1F] border border-blue-400 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -139,6 +144,28 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+      {/* Botón flotante de chat */}
+      <button
+        onClick={() => setIsChatOpen(true)}
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-green-600 to-cyan-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 pointer-events-auto z-40 group"
+        title={t.chatWithEdinson}
+      >
+        <BiChat className="h-6 w-6" />
+        <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+          {t.askMeAnything}
+        </span>
+      </button>
+      
+      {/* ChatModal */}
+      <ChatModal 
+        isOpen={isChatOpen}
+        onClose={() => {
+          setIsChatOpen(false);
+          setChatQuery("");
+        }}
+        initialQuery={chatQuery}
+      />
     </div>
   );
 }

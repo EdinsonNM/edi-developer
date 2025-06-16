@@ -50,6 +50,10 @@ interface Translations {
   placeholder2: string;
   placeholder3: string;
   placeholder4: string;
+  
+  // Chat button
+  chatWithEdinson: string;
+  askMeAnything: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -100,6 +104,10 @@ const translations: Record<Language, Translations> = {
     placeholder2: "Explora mis trabajos.",
     placeholder3: "Experiencia y habilidades.",
     placeholder4: "Agenda una reunión.",
+    
+    // Chat button
+    chatWithEdinson: "Chat con Edinson",
+    askMeAnything: "Pregúntame lo que quieras",
   },
   en: {
     // Navbar
@@ -148,6 +156,10 @@ const translations: Record<Language, Translations> = {
     placeholder2: "Explore my work.",
     placeholder3: "Experience and skills.",
     placeholder4: "Schedule a meeting.",
+    
+    // Chat button
+    chatWithEdinson: "Chat with Edinson",
+    askMeAnything: "Ask me anything",
   },
 };
 

@@ -23,7 +23,7 @@ export const SceneCanvas = () => {
   return (
     <Canvas
       camera={{ position: [0, 1, 12], fov: 45 }}
-      className="w-full h-full"
+      className="w-full h-full min-w-full"
       onMouseMove={handleMouseMove}
     >
       <PresentationControls

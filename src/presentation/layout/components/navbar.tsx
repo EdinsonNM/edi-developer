@@ -3,12 +3,10 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import Sidebar from "./sidebar";
-import { useContext, useState, useEffect, useRef } from "react";
-import LayoutContext from "../layout.context";
+import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@presentation/utils/use-i18n";
 
 function NavBar() {
-  const { isDark } = useContext(LayoutContext);
   const { language, setLanguage, t } = useI18n();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -32,8 +30,8 @@ function NavBar() {
     { url: "/", title: t.inicio },
     { url: "mis-proyectos", title: t.recursosDesarrolladores },
     { url: "podcast", title: t.miPodcast },
-    { url: "sass", title: t.saas },
-    { url: "charlas", title: t.charlasYTalleres },
+    //{ url: "sass", title: t.saas },
+    //{ url: "charlas", title: t.charlasYTalleres },
   ];
 
   const languages = [

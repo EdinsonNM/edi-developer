@@ -6,15 +6,16 @@ import { systemPrompt } from "./system-prompt"; // Asegúrate que este es el str
 import { useI18n } from "@presentation/utils/use-i18n";
 
 // Definición de Roles (sin cambios)
-enum Role {
+export enum Role {
   USER = "user",
   MODEL = "model", // Cambiado de ASSISTANT a MODEL para coincidir con la API de Gemini
   // SYSTEM no se usa en el array de mensajes de chat, se envía por separado
+  SYSTEM = "system",
 }
 
 // Tipo para los mensajes en el estado local (para la UI)
 type UIMessageType = {
-  role: Role.USER | Role.MODEL; // Solo roles de conversación
+  role: Role.USER | Role.MODEL | Role.SYSTEM; // Solo roles de conversación
   content: string; // Contenido textual para mostrar
   id: string; // Para key en React
   highchart?: Highcharts.Options; // Opcional, si quieres mostrar el gráfico en la UI

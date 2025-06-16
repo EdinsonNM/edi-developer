@@ -8,7 +8,6 @@ import "highcharts/modules/timeline"; // Simplemente importa el módulo para que
 import Particles from "@/components/ui/particles";
 // import useCompletions from "@presentation/utils/hooks/useCompletions"; // Comentado si no se usa
 import useCompletionsGemini from "@presentation/utils/hooks/useGeminiReceipt";
-import useCompletions from "@presentation/utils/hooks/useCompletions";
 import { useI18n } from "@presentation/utils/use-i18n";
 
 // Componente de animación de puntos de carga responsive
@@ -308,7 +307,15 @@ export default function InfoSearch() {
                                     ...messageChart.highchart.chart,
                                     height: 450,
                                     scrollablePlotArea: {
-                                      minWidth: Math.max(1200, (messageChart.highchart.series?.[0]?.data?.length || 5) * 200),
+                                      minWidth: Math.max(
+                                        1200,
+                                        Array.isArray(messageChart.highchart.series) &&
+                                          messageChart.highchart.series[0] &&
+                                          'data' in messageChart.highchart.series[0] &&
+                                          Array.isArray((messageChart.highchart.series[0] as any).data)
+                                            ? ((messageChart.highchart.series[0] as any).data.length || 5) * 200
+                                            : 5 * 200
+                                      ),
                                       scrollPositionX: 1
                                     },
                                     marginLeft: 20,
@@ -319,7 +326,9 @@ export default function InfoSearch() {
                                     timeline: {
                                       ...(messageChart.highchart.plotOptions?.timeline || {}),
                                       dataLabels: {
-                                        ...(messageChart.highchart.series?.[0]?.dataLabels || {}),
+                                        ...(messageChart.highchart.series?.[0] && 'dataLabels' in messageChart.highchart.series[0]
+                                          ? (messageChart.highchart.series[0] as any).dataLabels
+                                          : {}),
                                         enabled: true,
                                         allowOverlap: false,
                                         style: {
@@ -354,8 +363,8 @@ export default function InfoSearch() {
                                   plotOptions: {
                                     ...(originalOptions.plotOptions || {}),
                                     // Asegurar que el tipo de gráfico tenga configuración básica
-                                    [chartType]: {
-                                      ...(originalOptions.plotOptions?.[chartType] || {})
+                                    [chartType as keyof Highcharts.PlotOptions]: {
+                                      ...((originalOptions.plotOptions?.[chartType as keyof Highcharts.PlotOptions] ?? {}) as Highcharts.Options)
                                     }
                                   }
                                 };

@@ -7,7 +7,9 @@ function Layout() {
     <LayoutContextProvider>
       <div className="h-full w-full flex flex-col text-white">
         <NavBar />
-        <Outlet />
+        <main className="h-full w-full">
+          <Outlet />
+        </main>
       </div>
     </LayoutContextProvider>
   );

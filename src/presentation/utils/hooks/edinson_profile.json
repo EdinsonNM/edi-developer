@@ -2,15 +2,25 @@
   "name": "Edinson Nuñez More",
   "title": "Ingeniero Informático - Chapter Lead Frontend",
   "summary": "Chapter Lead Front End con más de 14 años de experiencia liderando y desarrollando proyectos tecnológicos de diversa índole (aplicaciones de escritorio, web y móviles) tanto a nivel nacional como para empresas en Estados Unidos y Costa Rica. Destaco por mi capacidad de coordinar equipos multidisciplinarios, gestionar y dar seguimiento a proyectos de manera eficiente, así como por mis habilidades analíticas para diseñar e implementar soluciones innovadoras. Actualmente, me encuentro fortaleciendo mis conocimientos en IA generativa para seguir impulsando proyectos de vanguardia.",
-  "location": "Jr Manco Capac 442, Pilcomayo, Huancayo",
   "birthplace": "Piura, Piura, Piura",
   "email": "nmedinson@gmail.com",
-  "phone": "(+51) 972705736",
   "linkedin": "www.linkedin.com/in/edinsonnm",
   "github": "https://github.com/EdinsonNM",
+  "visa_usa": true,
+  "countries_visited": [
+    "Estados Unidos",
+    "Reino Unido",
+    "Italia"
+  ],
   "languages": [
-    { "language": "Español", "level": "Nativo" },
-    { "language": "Inglés", "level": "Intermedio B2" }
+    {
+      "language": "Español",
+      "level": "Nativo"
+    },
+    {
+      "language": "Inglés",
+      "level": "Intermedio B2"
+    }
   ],
   "education": [
     {
@@ -31,12 +41,19 @@
   ],
   "work_experience": [
     {
-      "company": "Tekton Labs, Perú",
-      "role": "Consultor Externo de software Senior Frontend",
-      "startDate": "2023-06",
+      "company": "Proyecto personal: Lenguaje Natural a Sql",
+      "role": "Creador y Desarrollador Principal",
+      "startDate": "2024-06",
       "endDate": "Presente",
-      "description": "Devon Dashboard: Proyecto web para un cliente de EE.UU (Devon Energy), Oklahoma. Tecnologías: ANGULAR 16, D3.JS, HIGHTCHARTS.",
-      "technologies": ["ANGULAR 16", "D3.JS", "HIGHTCHARTS"]
+      "description": "Desarrollo de una aplicación que realice el procesamiento semántico de una base de datos para permitir realizar consultas haciendo uso del lenguaje natural hacia una base de datos PostgreSQL.",
+      "technologies": [
+        "Langchain",
+        "RAG",
+        "Nest JS",
+        "Typescript",
+        "OpenAI API",
+        "Claude"
+      ]
     },
     {
       "company": "Ridivi, Costa Rica",
@@ -44,38 +61,76 @@
       "startDate": "2024-08",
       "endDate": "2025-05",
       "description": "Ridivi Admin Dashboard y Verificador. Tecnologías: React 18, Typescript, PHP, Java, Spring Boot.",
-      "technologies": ["React 18", "Typescript", "PHP", "Java", "Spring Boot"]
+      "technologies": [
+        "React 18",
+        "Typescript",
+        "PHP",
+        "Java",
+        "Spring Boot"
+      ]
     },
     {
-      "company": "Minedu, Perú",
+      "company": "Tekton Labs, Perú",
       "role": "Consultor Externo de software Senior Frontend",
-      "startDate": "2024-11",
-      "endDate": "2024-11",
-      "description": "Chatbot con IA: Creación de un chatbot haciendo uso de IA generativa para brindar información sobre el sistema Siagie. Tecnologías: React 18, AWS Bedrock.",
-      "technologies": ["React 18", "AWS Bedrock"]
+      "startDate": "2023-06",
+      "endDate": "Presente",
+      "description": "Devon Dashboard: Proyecto web para un cliente de EE.UU (Devon Energy), Oklahoma. Tecnologías: ANGULAR 16, D3.JS, HIGHTCHARTS.",
+      "technologies": [
+        "ANGULAR 16",
+        "D3.JS",
+        "HIGHTCHARTS"
+      ]
     },
     {
       "company": "Novatronic, Lima",
       "role": "Consultor de Software",
       "startDate": "2023-05",
       "endDate": "2023-05",
-      "description": "Desarrollo de portal Web Admin SIX/EFT Switch. Tecnologías: ANGULAR 15, ANGULAR MATERIAL, ANGULAR QUERY.",
-      "technologies": ["ANGULAR 15", "ANGULAR MATERIAL", "ANGULAR QUERY"]
+      "description": "Desarrollo de portal Web Admin SIX/EFT Switch.",
+      "technologies": [
+        "ANGULAR 15",
+        "ANGULAR MATERIAL",
+        "ANGULAR QUERY"
+      ]
     },
     {
       "company": "Hatun, Lima",
       "role": "Software consultant",
       "startDate": "2023-04",
       "endDate": "2023-05",
-      "description": "Refactor y buenas practicas de desarrollo mobile parar \"Hatun\" usando Flutter. Tecnologías: FLUTTER, FIREBASE.",
-      "technologies": ["FLUTTER", "FIREBASE"]
+      "description": "Refactor y buenas practicas de desarrollo mobile parar \"Hatun\" usando Flutter.",
+      "technologies": [
+        "FLUTTER",
+        "FIREBASE"
+      ]
+    },
+    {
+      "company": "Minedu, Lima",
+      "role": "Technical Lead",
+      "startDate": "2020-03",
+      "endDate": "2022-12",
+      "description": "Desarrollo portal \"Aprendo en Casa\".",
+      "technologies": [
+        "SCRUM",
+        "GATSBY",
+        "REACT",
+        "TYPESCRIPT",
+        "VITEJS",
+        "NEST JS",
+        "RXJS",
+        "CLEAN ARCHITECTURE"
+      ]
     },
     {
       "company": "Pacífico Seguros, Lima",
       "role": "Chapter Lead",
       "startDate": "2021-07",
       "endDate": "2022-09",
-      "description": "Coordinación con Proveedores, Definición de Lineamientos para tecnologías Web y Mobile, Gestión y manejo del chapter, Seguridad y autenticación biométrica, Aplicaciones web de alto performance para ecommerce, Definición e implementación de arquitectura limpia web y mobile. Referencia: Ronald Cruz.",
+      "description": "Coordinación con Proveedores, Definición de Lineamientos para tecnologías Web y Mobile, Gestión y manejo del chapter, Seguridad y autenticación biométrica en dispositivos móviles, Aplicaciones web de alto performance para ecommerce, Definición e implementación de arquitectura limpia web y mobile.",
+      "impact": [
+        "Implementación de seguridad y autenticación biométrica (Touch ID y Face ID) en aplicaciones móviles para facilitar el acceso y reducir el rebote por olvido de contraseña.",
+        "Optimización y mejora del performance web en las aplicaciones de Pacífico Seguros."
+      ],
       "technologies": [
         "SCRUM",
         "GATSBY",
@@ -95,28 +150,14 @@
       ]
     },
     {
-      "company": "Minedu, Lima",
-      "role": "Technical Lead",
-      "startDate": "2020-03",
-      "endDate": "2022-12",
-      "description": "Desarrollo portal \"Aprendo en Casa\". Coordinación con Proveedores, Definición de Lineamientos Web y Mobile, Gestión del chapter, Seguridad y autenticación biométrica, Aplicaciones web de alto performance, Definición e implementación de arquitectura limpia. Referencia: Soledad Canasa.",
-      "technologies": [
-        "SCRUM",
-        "GATSBY",
-        "REACT",
-        "TYPESCRIPT",
-        "VITEJS",
-        "NEST JS",
-        "RXJS",
-        "CLEAN ARCHITECTURE"
-      ]
-    },
-    {
       "company": "Pacífico Seguros, Lima",
       "role": "Líder Técnico",
       "startDate": "2020-06",
       "endDate": "2021-07",
-      "description": "Lineamientos Liferay, Web y Mobile. Seguridad y Autenticación biométrica en dispositivos móviles. Tecnologías listadas en el CV.",
+      "description": "Lineamientos Liferay, Lineamientos Web, Lineamientos Mobile, Seguridad y Autenticación biométrica en dispositivos móviles.",
+      "impact": [
+        "Implementación de seguridad y autenticación biométrica (Touch ID y Face ID) en aplicaciones móviles para facilitar el acceso y reducir el rebote por olvido de contraseña."
+      ],
       "technologies": [
         "SCRUM",
         "GATSBY",
@@ -139,7 +180,10 @@
       "role": "SME Front-End Developer (Architect Front-End Developer)",
       "startDate": "2018-02",
       "endDate": "2020-05",
-      "description": "WebApp Pymes, ChatBot de Inspecciones Vehiculares, E-Commerce Vida, Autos, Viajes, Mi espacio Pacífico Mobile, Integración Azure B2C con TouchId y FaceId para Pacífico Seguros. Tecnologías listadas en el CV.",
+      "description": "WebApp Pymes, ChatBot de Inspecciones Vehiculares, E-Commerce Vida, E-Commerce Autos, E-Commerce Viajes, Mi espacio Pacífico Mobile, Integración Azure B2C con TouchId y FaceId.",
+      "impact": [
+        "Integración de autenticación biométrica (Touch ID y Face ID) en 'Mi espacio Pacífico Mobile' para mejorar la experiencia del usuario y seguridad."
+      ],
       "technologies": [
         "SCRUM",
         "REDUX",
@@ -158,7 +202,7 @@
       "role": "Senior Front-End Developer",
       "startDate": "2017-06",
       "endDate": "2018-01",
-      "description": "WebApp Reembolsos Online - Pacífico Seguro. Tecnologías listadas en el CV.",
+      "description": "WebApp Reembolsos Online - Pacífico Seguro.",
       "technologies": [
         "SCRUM",
         "REDUX",
@@ -177,16 +221,24 @@
       "role": "Freelance Senior Developer",
       "startDate": "2017-04",
       "endDate": "2017-05",
-      "description": "Portal Web Observatorio de Cuencas - Chancay-Lambayeque, Arequipa, Piura. Tecnologías: PHP, FIREBASE, REACT.",
-      "technologies": ["PHP", "FIREBASE", "REACT"]
+      "description": "Portal Web Observatorio de Cuencas - Chancay-Lambayeque, Arequipa, Piura.",
+      "technologies": [
+        "PHP",
+        "FIREBASE",
+        "REACT"
+      ]
     },
     {
       "company": "ExcelSoftSources, Lima",
       "role": "Senior Software Developer",
       "startDate": "2015-05",
       "endDate": "2017-01",
-      "description": "E-commerce Videocheckout para facebook - Total- Apps, EE.UU. Tecnologías: .NET, SQLSERVER, MONGODB.",
-      "technologies": [".NET", "SQLSERVER", "MONGODB"]
+      "description": "E-commerce Videocheckout para facebook - Total- Apps, EE.UU.",
+      "technologies": [
+        ".NET",
+        "SQLSERVER",
+        "MONGODB"
+      ]
     },
     {
       "company": "Jagermeister, Lima",
@@ -194,15 +246,20 @@
       "startDate": "2014-07",
       "endDate": "2014-09",
       "description": "Aplicación Android Jagermeister - Mexico.",
-      "technologies": ["Android"]
+      "technologies": [
+        "Android"
+      ]
     },
     {
       "company": "Chateuonline, Lima",
       "role": "Freelance Web Developer",
       "startDate": "2014-03",
       "endDate": "2014-03",
-      "description": "WebApp venta de Vinos - Francia. Tecnologías: VB.NET, SQL SERVER.",
-      "technologies": ["VB.NET", "SQL SERVER"]
+      "description": "WebApp venta de Vinos - Francia.",
+      "technologies": [
+        "VB.NET",
+        "SQL SERVER"
+      ]
     },
     {
       "company": "Tiam-V. SAC, Lima",
@@ -234,7 +291,9 @@
       "startDate": "2012-06",
       "endDate": "2013-08",
       "description": "Administración e Implementación de ERP - CMAC-Paita.",
-      "technologies": [".NET"]
+      "technologies": [
+        ".NET"
+      ]
     },
     {
       "company": "JUMBP, Piura",
@@ -242,7 +301,9 @@
       "startDate": "2011-11",
       "endDate": "2012-02",
       "description": "Sistema Desktop para la Gestión y Manejo del Agua - Junta Medio y Bajo Piura.",
-      "technologies": [".NET"]
+      "technologies": [
+        ".NET"
+      ]
     },
     {
       "company": "Nippon Koei, Lima",
@@ -260,7 +321,6 @@
       "description": "Desarrollo del sistema de consultas médicas.",
       "technologies": []
     },
-
     {
       "company": "Nippon Koei, Lima",
       "role": "Web Developer",
@@ -283,7 +343,9 @@
       "startDate": "2008-08",
       "endDate": "2010-02",
       "description": "Desarrollo de la aplicación de escritorio \"Sistema de Riego\"",
-      "technologies": [".NET"]
+      "technologies": [
+        ".NET"
+      ]
     }
   ],
   "projects_personal": [
@@ -307,7 +369,7 @@
       "fecha": "2025-01",
       "fecha_fin": "2025-03",
       "rol": "Creador y Desarrollador Principal",
-      "description": "Diseño y desarrollo de una app móvil que permite a los estudiantes y docentes gestionar sus actividades académicas. Incluye funcionalidades como registro de tareas, seguimiento de asistencia, recordatorios automáticos y generación de reportes inteligentes mediante IA.",
+      "description": "Diseño y desarrollo de una app móvil que permite a los estudiantes y docentes gestionar sus actividades académicas. Incluye funcionalidades como registro de tareas, seguimiento de asistencia, recordatorios automáticos y generación de consultas inteligentes mediante uso de LLMs.",
       "technologies": [
         "Flutter",
         "Firebase",
@@ -315,138 +377,247 @@
         "Node.js",
         "GPT-4 API"
       ]
+    },
+    {
+      "name": "Chatbot con IA (Minedu, Perú)",
+      "fecha": "2024-11",
+      "rol": "Consultor Externo de software Senior Frontend",
+      "description": "Creación de un chatbot haciendo uso de IA generativa para brindar información sobre el sistema Siagie.",
+      "technologies": [
+        "React 18",
+        "AWS Bedrock"
+      ]
     }
   ],
   "charlas": [
     {
-      "titulo": "IA para Desarrolladores",
+      "titulo": "Taller sobre el \"Uso de la IA en el desarrollo de software\"",
       "lugar": "Universidad Nacional de Piura",
-      "fecha": "2025-01-24"
+      "fecha": "2025-05-28",
+      "ponente": true
+    },
+    {
+      "titulo": "Charla sobre \"IA para Desarrolladores\"",
+      "lugar": "Universidad Nacional de Piura",
+      "fecha": "2025-01-24",
+      "ponente": true
     },
     {
       "titulo": "Creando experiencias 3D con ThreeJS y React Three Fiber",
       "lugar": "BBVA Continental",
-      "fecha": "2024-10-15"
+      "fecha": "2024-10-15",
+      "ponente": true
     },
     {
       "titulo": "Creando experiencias 3D con ThreeJS y React Three Fiber",
       "lugar": "Tekton Labs Perú",
-      "fecha": "2024-06-13"
+      "fecha": "2024-06-13",
+      "ponente": true
     },
     {
       "titulo": "Buenas prácticas en el desarrollo de software",
       "lugar": "Pacífico Seguros",
-      "fecha": "2022-07-01"
+      "fecha": "2022-05-01",
+      "ponente": true
     },
     {
       "titulo": "Microfrontend",
       "lugar": "Pacífico Seguros",
-      "fecha": "2021-03-01"
+      "fecha": "2021-03-01",
+      "ponente": true
     },
     {
       "titulo": "Haciendo TDD en el mundo real",
       "lugar": "Pacífico Seguros",
-      "fecha": "2020-09-01"
+      "fecha": "2020-09-01",
+      "ponente": true
     },
     {
       "titulo": "Clean Code",
       "lugar": "Pacífico Seguros",
-      "fecha": "2020-07-01"
+      "fecha": "2020-07-01",
+      "ponente": true
     },
     {
       "titulo": "Web performance",
       "lugar": "Pacífico Seguros",
-      "fecha": "2019-11-01"
+      "fecha": "2019-11-01",
+      "ponente": true
     },
-    { "titulo": "Flutter", "lugar": "Pacífico Seguros", "fecha": "2019-09-01" },
+    {
+      "titulo": "Flutter",
+      "lugar": "Pacífico Seguros",
+      "fecha": "2019-09-01",
+      "ponente": true
+    },
     {
       "titulo": "React JS",
       "lugar": "Belatrix Software",
-      "fecha": "2018-11-01"
+      "fecha": "2018-11-01",
+      "ponente": true
+    },
+    {
+      "titulo": "Desarrollo de aplicaciones web con React JS",
+      "lugar": "Belatrix Software",
+      "fecha": "2019-08-01",
+      "ponente": true
     },
     {
       "titulo": "Desarrollo de aplicaciones móviles",
       "lugar": "Pacífico Seguros",
-      "fecha": "2018-10-01"
+      "fecha": "2018-10-01",
+      "ponente": true
+    }
+  ],
+  "diplomados_cursos_talleres": [
+    {
+      "nombre": "English course (Lower Intermediate)",
+      "institucion": "Kaplan International - Bournemouth, The U.K,",
+      "fechas": "2023-02-05 - 2023-04-01"
+    },
+    {
+      "nombre": "Escalamiento Agile",
+      "institucion": "M'erickson",
+      "fechas": "2021-12-04 - 2021-12-11"
+    },
+    {
+      "nombre": "Conferencia \"Node JS\"",
+      "institucion": "ExcelSoftSources",
+      "fechas": "2015-05-01, 2016-11-01"
+    },
+    {
+      "nombre": "Conferencia \"Google for Business & Developer Festival Lima 2013\"",
+      "institucion": "Universidad San Martin de Porres",
+      "fechas": "2013-12-01"
+    },
+    {
+      "nombre": "Curso de Planeamiento y Estimación",
+      "institucion": "Everis Perú",
+      "fechas": "2013-06-01"
+    },
+    {
+      "nombre": "Workshop Coding Dojo - COM Agile Metodología",
+      "institucion": "Everis Perú",
+      "fechas": "2013-02-01"
+    },
+    {
+      "nombre": "Diplomado en Gestión de Proyectos basado en el PMI",
+      "institucion": "Universidad de Piura",
+      "fechas": "2012-02-01 - 2012-07-01"
+    },
+    {
+      "nombre": "Curso de \"Java Spring Framework\"",
+      "institucion": "Universidad de Piura",
+      "fechas": "2012-02-01 - 2012-03-01"
+    },
+    {
+      "nombre": "Diplomado en Auditoria de Sistemas y Seguridad Informática",
+      "institucion": "Universidad Nacional de Piura",
+      "fechas": "2011-10-01 - 2012-02-01"
     }
   ],
   "skills": {
-    "frontend": {
-      "HTML": 14,
-      "CSS": 14,
-      "Javascript": 14,
-      "Typescript": 8,
-      "React": 7,
-      "Angular": 5,
-      "Vue": 2,
-      "Svelte": 1,
-      "Web Components": 5,
-      "Stencil": 1,
-      "Tailwind": 2,
-      "Storybook": 2,
-      "Gatsby": 4
+    "ingenieria_ai": {
+      "focus": "Enfoque en convertirme en Ingeniero AI",
+      "knowledge": [
+        "LLMs y Técnicas",
+        "Prompt Engineering",
+        "RAG",
+        "LangChain",
+        "OpenAI",
+        "Claude",
+        "DeepSeek",
+        "Gemini"
+      ],
+      "related_talks": [
+        "Taller sobre el \"Uso de la IA en el desarrollo de software\"",
+        "Charla sobre \"IA para Desarrolladores\""
+      ]
     },
-    "backend": {
-      "Node.js": 4,
-      "Express": 3,
-      "NestJS": 2,
-      "Java": 2,
-      "Spring Boot": 2,
-      "C#": 2,
-      "VB.NET": 2,
-      "PHP": 3
+    "desarrollo_web": {
+      "years_experience": 14,
+      "technologies": [
+        "HTML",
+        "Javascript ES5, ES6, ES7+",
+        "Typescript",
+        "React JS",
+        "Angular",
+        "Vue JS",
+        "Svelte",
+        "Web Components",
+        "Stencil",
+        "Lit Elements",
+        "Sass",
+        "Less",
+        "Stylus",
+        "Styled Components",
+        "Tailwind",
+        "Progressive Web Apps",
+        "Babel",
+        "Npm",
+        "Yarn",
+        "Webpack",
+        "Gulp",
+        "Grunt",
+        "Storybook"
+      ]
     },
-    "mobile": {
-      "Flutter": 3,
-      "Android": 2,
-      "iOS": 1
+    "desarrollo_mobile": {
+      "years_experience": null,
+      "technologies": [
+        "Android",
+        "IOS",
+        "Flutter"
+      ]
     },
-    "design": {
-      "Figma": 3,
-      "Sketch": 2,
-      "Adobe XD": 3,
-      "Illustrator": 3,
-      "Photoshop": 3,
-      "ZBrush": 1,
-      "Blender": 2
+    "desarrollo_backend": {
+      "years_experience": null,
+      "technologies": [
+        "Node JS",
+        "C#",
+        "VB.NET",
+        "Express",
+        "Nest JS",
+        "Java con Spring Boot",
+        "Servelees"
+      ]
     },
-    "databases": {
-      "SQLServer": 5,
-      "MySQL": 5,
-      "MongoDB": 3,
-      "Firebase": 5,
-      "Supabase": 2
+    "diseno_3d": {
+      "focus": "Experiencia en 3D",
+      "tools": [
+        "ZBrush",
+        "Blender",
+        "3D Studio Max",
+        "Zeplin",
+        "Adobe XD",
+        "Figma",
+        "Sketch",
+        "Adobe Illustrator",
+        "Photoshop"
+      ],
+      "libraries": [
+        "ThreeJS",
+        "React Three Fiber"
+      ]
     },
-    "cloud_devops": {
-      "AWS": 4,
-      "Azure": 3,
-      "Firebase": 5
-    },
-    "others": {
-      "ElectronJS": 1,
-      "RxJS": 5,
-      "Clean Architecture": 4,
-      "Highcharts": 2,
-      "D3.js": 2,
-      "Liferay": 3,
-      "OpenAI API": 1,
-      "Whisper": 1,
-      "ElevenLabs": 1,
-      "GPT-4 API": 1,
-      "AWS Bedrock": 1
-    },
-    "methodologies": {
-      "Scrum": 10,
-      "PMI": 2,
-      "RUP": 1,
-      "SOLID": 5,
-      "Canvas": 1,
-      "Clean Code": 5,
-      "TDD": 3
-    }
+    "metodologias_frameworks_buenas_practicas": [
+      "Scrum",
+      "PMI",
+      "RUP",
+      "Principios Solid",
+      "Clean Code",
+      "Patrones de Diseño",
+      "Metodología Canvas"
+    ],
+    "otros": [
+      "C++",
+      "Electron JS",
+      "Tauri",
+      "Creación de MCP Servers"
+    ]
   },
-  "años_experiencia_total": 14,
+  "inicio_años_experiencia": "2006-03-01",
   "freelance": true,
-  "charlas_totales": 11,
-  "proyectos_personales_totales": 4
+  "charlas_totales": 13,
+  "proyectos_personales_totales": 3
 }
