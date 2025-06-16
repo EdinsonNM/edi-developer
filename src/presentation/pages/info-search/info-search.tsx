@@ -5,7 +5,6 @@ import Highcharts from "highcharts"; // Tu importación principal
 import HighchartsReact from "highcharts-react-official";
 import "highcharts/modules/timeline"; // Simplemente importa el módulo para que se ejecute
 
-import Particles from "@/components/ui/particles";
 // import useCompletions from "@presentation/utils/hooks/useCompletions"; // Comentado si no se usa
 import useCompletionsGemini from "@presentation/utils/hooks/useGeminiReceipt";
 import { useI18n } from "@presentation/utils/use-i18n";

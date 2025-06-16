@@ -5,7 +5,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "highcharts/modules/timeline";
 
-import Particles from "@/components/ui/particles";
+
 import useCompletionsGemini, { Role } from "@presentation/utils/hooks/useGeminiReceipt";
 import { useI18n } from "@presentation/utils/use-i18n";
 
