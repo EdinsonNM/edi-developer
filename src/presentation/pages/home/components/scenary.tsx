@@ -4,6 +4,7 @@ import { Vector3 } from "three";
 import Button from "./button";
 import Cloud from "./cloud";
 import LayoutContext from "@presentation/layout/layout.context";
+import { TECHNOLOGIES } from "@presentation/utils/constants";
 
 type ScenaryProps = {
   mousePosition: [number, number, number];
@@ -31,71 +32,6 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
   const columns = 14;
   const spacingX = 3.1;
   const spacingY = 2.1;
-  const titles = [
-    "Next.js",
-    "Nuxt.js",
-    "Gatsby",
-    "Flutter",
-    "Node.js",
-    "Dart",
-    "Tailwind CSS",
-    "Bootstrap",
-    "Foundation",
-    "Bulma",
-    "Materialize",
-    "Semantic UI",
-    "Ant Design",
-    "Chakra UI",
-    "Tanstack Query",
-    "Emotion",
-    "React",
-    "Angular",
-    "Vue.js",
-    "Svelte",
-    "Redux",
-    "MobX",
-    "RxJS",
-    "GraphQL",
-    "Apollo",
-    "Relay",
-    "Webpack",
-    "Parcel",
-    "Rollup",
-    "Babel",
-    "ESLint",
-    "Prettier",
-    "Jest",
-    "Mocha",
-    "Cypress",
-    "Storybook",
-    "Three.js",
-    "D3.js",
-    "Chart.js",
-    "Highcharts",
-    "React Native",
-    "Ionic",
-    "Xamarin",
-    "Unity",
-    "Unreal Engine",
-    "TensorFlow",
-    "PyTorch",
-    "Astro",
-    "OpenCV",
-    "Blender",
-    "Babylon.js",
-    "A-Frame",
-    "Expo",
-    "SwiftUI",
-    "Kotlin",
-    "ARKit",
-    "ARCore",
-    "Playwright",
-    "Cypress",
-    "Preact",
-    "WebGL",
-    "WebXR",
-    "WebGPU",
-  ];
   const colorLight = isDark ? "cyan" : "orange";
   return (
     <>
@@ -110,17 +46,21 @@ export default function Scenary({ mousePosition }: ScenaryProps) {
         decay={2}
       />
       {Array.from({ length: rows }).map((_, rowIndex) =>
-        Array.from({ length: columns }).map((_, colIndex) => (
-          <Button
-            key={`${colIndex}-${rowIndex}`}
-            position={[
-              (colIndex - (columns - 1) / 2) * spacingX,
-              (rowIndex - (rows - 1) / 2) * spacingY,
-              z,
-            ]}
-            title={titles[(rowIndex * columns + colIndex) % titles.length]}
-          />
-        ))
+        Array.from({ length: columns }).map((_, colIndex) => {
+          const tech = TECHNOLOGIES[(rowIndex * columns + colIndex) % TECHNOLOGIES.length];
+          return (
+            <Button
+              key={`${colIndex}-${rowIndex}`}
+              position={[
+                (colIndex - (columns - 1) / 2) * spacingX,
+                (rowIndex - (rows - 1) / 2) * spacingY,
+                z,
+              ]}
+              title={tech.title}
+              sound={tech.sound}
+            />
+          );
+        })
       )}
       <Cloud />
     </>

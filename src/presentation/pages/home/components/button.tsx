@@ -2,13 +2,15 @@ import { RoundedBox, Text, useCursor } from "@react-three/drei";
 import { useState, useEffect, useContext } from "react";
 import { useFrame } from "@react-three/fiber";
 import LayoutContext from "@presentation/layout/layout.context";
+import { Howl } from "howler";
 
 type ButtonProps = {
   position: [number, number, number];
   title: string;
+  sound?: string;
 };
 
-export default function Button({ position, title }: ButtonProps) {
+export default function Button({ position, title,  sound }: ButtonProps) {
   const { isDark } = useContext(LayoutContext);
   const initialZoffset = Math.random() > 0.5 ? 0.5 : -0.5;
   const [hovered, setHovered] = useState(false);
@@ -33,6 +35,13 @@ export default function Button({ position, title }: ButtonProps) {
     });
   });
 
+  const playSound = () => {
+    if (sound) {
+      const piano = new Howl({ src: [sound] });
+      piano.play();
+    }
+  };
+
   let opacity = isDark ? 1 : 0.1;
   let transparent = isDark ? false : true;
   let roughness = isDark ? 0 : 0.1;
@@ -49,10 +58,12 @@ export default function Button({ position, title }: ButtonProps) {
     emissive = isDark ? "cyan" : "orange";
     textColor = isDark ? "cyan" : "red";
   }
+  useCursor(hovered, "pointer");
   return (
     <group
       key={`${position[0]}-${position[1]}`}
       scale={hovered ? 1.05 : 1}
+      onClick={playSound}
       onPointerOver={() => {
         setHovered(true);
       }}
@@ -77,10 +88,11 @@ export default function Button({ position, title }: ButtonProps) {
         anchorX="center"
         anchorY="middle"
         fontSize={0.3}
-        position={[0, 0, 0.6]}
+        position={[0, 0.2, 0.6]}
       >
         {title}
       </Text>
+      
     </group>
   );
 }
