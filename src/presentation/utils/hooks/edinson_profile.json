@@ -535,66 +535,66 @@
       ]
     },
     "desarrollo_web": {
-      "years_experience": 14,
-      "technologies": [
-        "HTML",
-        "Javascript ES5, ES6, ES7+",
-        "Typescript",
-        "React JS",
-        "Angular",
-        "Vue JS",
-        "Svelte",
-        "Web Components",
-        "Stencil",
-        "Lit Elements",
-        "Sass",
-        "Less",
-        "Stylus",
-        "Styled Components",
-        "Tailwind",
-        "Progressive Web Apps",
-        "Babel",
-        "Npm",
-        "Yarn",
-        "Webpack",
-        "Gulp",
-        "Grunt",
-        "Storybook"
-      ]
+      "HTML": 16,
+      "CSS": 16,
+      "Javascript ES5, ES6, ES7+": 16,
+      "Typescript": 5,
+      "React JS": 10,
+      "Angular": 4,
+      "Vue JS": 6,
+      "Svelte": 6,
+      "Web Components": 6,
+      "Stencil": 6,
+      "Lit Elements": 6,
+      "Tailwind": 6,
+      "Gatsby": 6,
+      "Redux": 6,
+      "Next JS": 3,
+      "Progressive Web Apps": null,
+      "Babel": 10,
+      "Npm": 10,
+      "Yarn": 7,
+      "Webpack": null,
+      "Gulp": 10,
+      "Grunt": 10,
+      "Storybook": 8
     },
     "desarrollo_mobile": {
-      "years_experience": null,
-      "technologies": [
-        "Android",
-        "IOS",
-        "Flutter"
-      ]
+      "Android": 4,
+      "IOS": 1,
+      "Flutter": 5
     },
     "desarrollo_backend": {
-      "years_experience": null,
-      "technologies": [
-        "Node JS",
-        "C#",
-        "VB.NET",
-        "Express",
-        "Nest JS",
-        "Java con Spring Boot",
-        "Servelees"
-      ]
+      "Node JS": 10,
+      "Java": 4,
+      "PHP": 16,
+      "Python": 2,
+      "Nest JS": 4,
+      "C#": 4,
+      "VB.NET": 10,
+      "Express": null,
+      "Spring Boot": 2,
+      "Servelees": 4
+    },
+    "bases_de_datos": {
+      "SQLServer": 14,
+      "MongoDB": 10,
+      "Firebase": 7,
+      "Supabase": 2
     },
     "diseno_3d": {
       "focus": "Experiencia en 3D",
-      "tools": [
-        "ZBrush",
-        "Blender",
-        "3D Studio Max",
-        "Zeplin",
-        "Adobe XD",
-        "Figma",
-        "Sketch",
-        "Adobe Illustrator",
-        "Photoshop"
-      ],
+      "tools": {
+        "ZBrush": 2,
+        "Blender": 2,
+        "3D Studio Max": 2,
+        "Zeplin": 4,
+        "Adobe XD": 4,
+        "Figma": 4,
+        "Sketch": null,
+        "Adobe Illustrator": null,
+        "Photoshop": null
+      },
       "libraries": [
         "ThreeJS",
         "React Three Fiber"
@@ -609,14 +609,14 @@
       "Patrones de Diseño",
       "Metodología Canvas"
     ],
-    "otros": [
-      "C++",
-      "Electron JS",
-      "Tauri",
-      "Creación de MCP Servers"
-    ]
+    "otros": {
+      "C++": null,
+      "Electron JS": null,
+      "Tauri": "menos de un año",
+      "Creación de MCP Servers": null
+    }
   },
-  "inicio_años_experiencia": "2006-03-01",
+  "inicio_años_experiencia": 2006,
   "freelance": true,
   "charlas_totales": 13,
   "proyectos_personales_totales": 3
