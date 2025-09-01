@@ -148,7 +148,7 @@ export default function useCompletionsGemini() {
       if (!GOOGLE_API_KEY) {
         throw new Error("VITE_GOOGLE_API_KEY no está configurada.");
       }
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GOOGLE_API_KEY}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GOOGLE_API_KEY}`;
       // Nota: Considera usar gemini-1.5-pro-latest o gemini-1.5-flash-latest para tener las últimas mejoras.
       // gemini-2.0-flash no es un modelo estándar conocido; podría ser gemini-1.0-pro, gemini-1.5-flash, etc.
       // He usado gemini-1.5-flash como ejemplo, ajusta según el modelo que uses.
