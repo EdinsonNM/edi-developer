@@ -126,3 +126,20 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Floating tech utilities */
+@keyframes float-y {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.floating-tech { 
+  animation: float-y 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Subtle glow helpers using your design tokens */
+.glow-primary { box-shadow: 0 0 30px hsl(var(--primary) / 0.35); }
+.glow-accent { box-shadow: 0 0 30px hsl(var(--accent) / 0.35); }
+.glow-secondary { box-shadow: 0 0 30px hsl(var(--secondary) / 0.35); }

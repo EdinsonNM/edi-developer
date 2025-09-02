@@ -1,17 +1,15 @@
-import { memo, useContext, useState, useEffect } from "react";
-import { TextAnimate } from "@/components/ui/text-animate";
+import { useContext, useState } from "react";
 import Meteors from "@/components/ui/meteors";
 import LayoutContext from "@presentation/layout/layout.context";
 import { cn } from "@/lib/utils";
 import DotPattern from "@/components/ui/dot-pattern";
 import { SceneCanvas } from "./components/scene-canvas";
 import { OrbitingIcons } from "./components/orbiting-icons";
-import { BiSearch, BiChat } from "react-icons/bi";
+import { BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import ChatModal from "@presentation/components/chat-modal";
 import LogoIcon from "@design/atoms/icons/logo-icon";
-
-const TextAnimate2 = memo(TextAnimate);
+import FloatingTech from "@/components/ui/floating-tech";
 
 export default function Home() {
   const { isDark } = useContext(LayoutContext);
@@ -21,24 +19,6 @@ export default function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatQuery, setChatQuery] = useState("");
 
-  // Marquee placeholder texts as an array usando traducciones
-  const marqueePlaceholders = [
-    t.placeholder1,
-    t.placeholder2,
-    t.placeholder3,
-    t.placeholder4,
-  ];
-  const [inputValue, setInputValue] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
-  const [marqueeIndex, setMarqueeIndex] = useState(0);
-
-  // Cycle through the marquee texts every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMarqueeIndex((i) => (i + 1) % marqueePlaceholders.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [marqueePlaceholders]);
 
   return (
     <div
@@ -69,82 +49,67 @@ export default function Home() {
         <OrbitingIcons />
       )}
 
+      {/* Floating technology background layer */}
+      <FloatingTech />
+
       <div
         id="home-content"
-        className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center pointer-events-none"
+        className="absolute top-0 left-0 w-full h-full pointer-events-none z-20"
       >
-        <div className="flex flex-col items-center justify-center gap-4 p-4 text-center max-w-full w-full">
-        <div className="flex items-center justify-center mb-8 md:hidden">
-          <LogoIcon size={200} />
-         </div>
-          <div
-            className={`pointer-events-none font-bold text-3xl md:text-6xl text-center ${
-              isDark ? "text-cyan-500" : "text-cyan-700"
-            } max-w-full w-full`}
-          >
-            {t.helloImEdinson}
-          </div>
+        <div className="mx-auto h-full w-full max-w-7xl px-6 md:px-10">
+          <div className="grid h-full grid-cols-12 items-center">
+            {/* Columna izquierda: contenido */}
+            <div className="col-span-12 md:col-span-7 lg:col-span-6 flex flex-col items-start justify-center gap-4 text-left">
+              <div className="flex items-start justify-start mb-8 md:hidden">
+                <LogoIcon size={200} />
+              </div>
+              <h1
+                className={`pointer-events-none font-bold leading-tight tracking-tight text-4xl sm:text-5xl md:text-6xl ${
+                  isDark ? "text-cyan-500" : "text-cyan-700"
+                } max-w-[28ch]`}
+              >
+                {t.helloImEdinson}
+              </h1>
 
-          <div
-            className={`pointer-events-none text-sm md:text-3xl text-center max-w-2xl w-full dark:text-white text-black`}
-          >
-            {t.softwareEngineerTransforms}
-          </div>
-          <div
-            className={`hidden md:block pointer-events-none text-sm md:text-lg text-center max-w-5xl w-full dark:text-gray-400 text-black`}
-          >
-            {t.yearsBuildingSolutions}
-          </div>
+              <p
+                className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] dark:text-white text-black`}
+              >
+                {t.softwareEngineerTransforms}
+              </p>
+              <p
+                className={`hidden md:block pointer-events-none text-sm md:text-lg leading-relaxed max-w-[60ch] dark:text-gray-400 text-black`}
+              >
+                {t.yearsBuildingSolutions}
+              </p>
 
-          <div className="flex flex-col items-center justify-center mt-8 w-full max-w-xs sm:max-w-md">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-white text-center">
-              {t.whatWantToKnow}
-            </h2>
-            <div className="relative w-full max-w-md pointer-events-auto">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && inputValue.trim()) {
-                    setChatQuery(inputValue.trim());
-                    setInputValue("");
-                    setIsChatOpen(true);
-                  }
-                }}
-                className="w-full py-3 pl-4 pr-10 rounded-lg bg-[#191C1F] border border-blue-400 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              {/* Marquee placeholder overlay */}
-              {!(inputValue || isFocused) && (
-                <div className="pointer-events-none absolute inset-0 flex items-center pl-4 pr-12 overflow-hidden">
-                  <span className="text-gray-400 whitespace-nowrap">
-                    <TextAnimate2
-                      animation="fadeIn"
-                      by="character"
-                      as={"p"}
-                      delay={500}
-                    >
-                      {marqueePlaceholders[marqueeIndex]}
-                    </TextAnimate2>
-                  </span>
-                </div>
-              )}
-              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10">
-                <BiSearch />
-              </span>
+              <div className="flex flex-col items-start justify-center mt-8 w-full max-w-md">
+                <h2 className="text-lg md:text-2xl font-bold mb-4 text-white text-left">
+                  {t.whatWantToKnow}
+                </h2>
+                <button
+                  onClick={() => setIsChatOpen(true)}
+                  className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                  title={t.chatWithEdinson}
+                >
+                  <BiChat className="h-5 w-5" />
+                  <span>{t.chatWithEdinson}</span>
+                </button>
+              </div>
+
+              <div className="w-full flex justify-start">
+                <a
+                  href="https://cal.com/edinson-nunez-more"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-md max-w-xs pointer-events-auto text-black dark:text-white hover:underline"
+                >
+                  {t.scheduleOnCalCom}
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="w-full flex justify-center">
-            <a
-              href="https://cal.com/edinson-nunez-more"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-md max-w-xs pointer-events-auto text-black dark:text-white hover:underline w-full text-center"
-            >
-              {t.scheduleOnCalCom}
-            </a>
+
+            {/* Columna derecha: espacio en blanco para balance visual */}
+            <div className="hidden md:block col-span-5 lg:col-span-6" />
           </div>
         </div>
       </div>

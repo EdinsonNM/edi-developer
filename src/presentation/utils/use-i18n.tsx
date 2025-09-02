@@ -94,9 +94,9 @@ const translations: Record<Language, Translations> = {
     
     // Home page
     helloImEdinson: "Hola, soy Edinson",
-    softwareEngineerTransforms: "El ingeniero de software que transforma ideas en experiencias interactivas",
-    yearsBuildingSolutions: "Más de 14 años creando soluciones web y móviles para empresas de todo el mundo. Experto en desarrollo frontend, tecnologías 3D, inteligencia artificial aplicada y educación digital.",
-    whatWantToKnow: "¿Qué quieres saber sobre mí?",
+    softwareEngineerTransforms: "Construyo experiencias digitales que sorprenden y convierten.",
+    yearsBuildingSolutions: "Frontend, 3D e IA aplicada. 14+ años creando productos para marcas globales.",
+    whatWantToKnow: "¿Qué quieres saber?",
     scheduleOnCalCom: "O agenda una reunión en cal.com",
     
     // Home placeholders
@@ -146,9 +146,9 @@ const translations: Record<Language, Translations> = {
     
     // Home page
     helloImEdinson: "Hello, I'm Edinson",
-    softwareEngineerTransforms: "The software engineer who transforms ideas into interactive experiences",
-    yearsBuildingSolutions: "Over 14 years building web and mobile solutions for companies worldwide. Expert in frontend development, 3D technologies, applied artificial intelligence, and digital education.",
-    whatWantToKnow: "What do you want to know about me?",
+    softwareEngineerTransforms: "I build digital experiences that wow and convert.",
+    yearsBuildingSolutions: "Frontend, 3D and applied AI. 14+ years shipping products for global brands.",
+    whatWantToKnow: "What do you want to know?",
     scheduleOnCalCom: "Or schedule a meeting on cal.com",
     
     // Home placeholders
