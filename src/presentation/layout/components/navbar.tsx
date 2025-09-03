@@ -13,7 +13,7 @@ function NavBar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled] = useState(false);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {

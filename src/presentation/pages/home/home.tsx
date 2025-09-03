@@ -1,6 +1,4 @@
-import { useContext, useState } from "react";
-import LayoutContext from "@presentation/layout/layout.context";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import ChatModal from "@presentation/components/chat-modal";
