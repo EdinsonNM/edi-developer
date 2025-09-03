@@ -60,6 +60,16 @@ interface Translations {
   // Chat button
   chatWithEdinson: string;
   askMeAnything: string;
+
+  // Developer resources
+  recursosTitulo: string;
+  recursosIntro: string;
+  publicaciones: string;
+  ejemplos: string;
+  presentaciones: string;
+  demosYProyectos: string;
+  podcast: string;
+  tiktok: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -117,6 +127,17 @@ const translations: Record<Language, Translations> = {
     // Chat button
     chatWithEdinson: "Pregúntale a la IA sobre mí",
     askMeAnything: "Pregúntame lo que quieras",
+
+    // Developer resources
+    recursosTitulo: "Recursos para Devs",
+    recursosIntro:
+      "Explora mis publicaciones, ejemplos de código y presentaciones. Todo categorizado para que encuentres rápido lo que necesitas.",
+    publicaciones: "Publicaciones",
+    ejemplos: "Ejemplos",
+    presentaciones: "Presentaciones",
+    demosYProyectos: "Demos y Proyectos",
+    podcast: "Podcast",
+    tiktok: "TikTok",
   },
   en: {
     // Navbar
@@ -172,6 +193,17 @@ const translations: Record<Language, Translations> = {
     // Chat button
     chatWithEdinson: "Ask the AI about me",
     askMeAnything: "Ask me anything",
+
+    // Developer resources
+    recursosTitulo: "Developer Resources",
+    recursosIntro:
+      "Explore my publications, code examples and talks. Everything categorized so you can quickly find what you need.",
+    publicaciones: "Publications",
+    ejemplos: "Examples",
+    presentaciones: "Talks",
+    demosYProyectos: "Demos & Projects",
+    podcast: "Podcast",
+    tiktok: "TikTok",
   },
 };
 

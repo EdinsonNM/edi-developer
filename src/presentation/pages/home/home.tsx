@@ -197,18 +197,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Botón flotante de chat */}
-      <button
-        onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-green-600 to-cyan-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 pointer-events-auto z-60 group"
-        title={t.chatWithEdinson}
-      >
-        <BiChat className="h-6 w-6" />
-        <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-          {t.askMeAnything}
-        </span>
-      </button>
-
       {/* ChatModal */}
       <ChatModal
         isOpen={isChatOpen}
