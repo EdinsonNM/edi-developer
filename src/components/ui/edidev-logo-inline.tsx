@@ -50,36 +50,77 @@ export const EdiDevLogoInline: React.FC<EdiDevLogoInlineProps> = ({
           id="path2"
         />
         <path
-          style={`opacity:0.22877;fill:${fill};fill-opacity:1;stroke-width:0.273681`}
+          style={{
+            opacity: 0.22877,
+            fill: fill,
+            fillOpacity: 1,
+            strokeWidth: 0.273681,
+          }}
           d="m 210.13676,407.27357 c 0,0 71.71081,25.5589 104.17452,4.28955 8.88548,-5.82153 -13.17503,33.70352 -20.22213,34.92909 -7.04709,1.2256 -26.86564,28.97444 -98.96578,-23.89885 -4.59593,-3.37033 10.11106,-7.35349 10.11106,-7.35349 z"
           id="path3"
         />
         <path
-          style={`opacity:1;fill:none;fill-opacity:1;stroke:${
-            stroke !== "none" ? stroke : fill
-          };stroke-width:2.18945;stroke-dasharray:none;stroke-opacity:1`}
+          style={{
+            opacity: 1,
+            fill: "none",
+            fillOpacity: 1,
+            stroke: stroke !== "none" ? stroke : fill,
+            strokeWidth: 2.18945,
+            strokeDasharray: "none",
+            strokeOpacity: 1,
+          }}
           d="m 39.378647,281.09605 c 0,0 -43.4464105,26.81722 -1.776608,57.1504"
           id="path4"
         />
         <path
-          style={`opacity:0.2;fill:${fill};fill-opacity:1;stroke:${
-            stroke !== "none" ? stroke : fill
-          };stroke-width:2.18945;stroke-dasharray:none;stroke-opacity:1`}
+          style={{
+            opacity: 0.2,
+            fill: fill,
+            fillOpacity: 1,
+            stroke: stroke !== "none" ? stroke : fill,
+            strokeWidth: 2.18945,
+            strokeDasharray: "none",
+            strokeOpacity: 1,
+          }}
           d="m 21.193156,301.75972 c 0,0 33.672736,34.71267 39.21445,37.26456 24.788849,11.41495 28.165074,14.51584 28.165074,14.51584 l 9.316141,3.6831 c 0,0 -16.940749,1.57435 -34.014746,-6.71625 C 46.595648,342.1171 14.693524,332.09132 21.193156,301.75972 Z"
           id="path13"
         />
         <path
-          style={`opacity:0.2;fill:${fill};fill-opacity:1;stroke:none;stroke-width:8;stroke-dasharray:none;stroke-opacity:1`}
+          style={{
+            opacity: 0.2,
+            fill: fill,
+            fillOpacity: 1,
+            stroke: "none",
+            strokeWidth: 8,
+            strokeDasharray: "none",
+            strokeOpacity: 1,
+          }}
           d="m 230.17629,214.43941 c 0,0 -15.67347,36.66472 -36.38484,45.34111 -20.71137,8.67638 -29.94752,-8.39651 -29.94752,-8.39651 0,0 45.06122,0.27989 66.33236,-36.9446 z"
           id="path14"
         />
         <path
-          style={`opacity:0.2;fill:${fill};fill-opacity:1;stroke:none;stroke-width:8;stroke-dasharray:none;stroke-opacity:1`}
+          style={{
+            opacity: 0.2,
+            fill: fill,
+            fillOpacity: 1,
+            stroke: "none",
+            strokeWidth: 8,
+            strokeDasharray: "none",
+            strokeOpacity: 1,
+          }}
           d="m 233.53489,212.7601 12.31487,0.55977 c 0,0 5.0379,1.11953 0.55976,8.95627 -4.47813,7.83673 -7.27696,12.31487 -7.27696,12.31487 0,0 -7.55686,-10.63557 -7.55686,-22.39067"
           id="path15"
         />
         <path
-          style={`opacity:1;fill:${fill};fill-opacity:1;stroke:none;stroke-width:8;stroke-dasharray:none;stroke-opacity:1`}
+          style={{
+            opacity: 1,
+            fill: fill,
+            fillOpacity: 1,
+            stroke: "none",
+            strokeWidth: 8,
+            strokeDasharray: "none",
+            strokeOpacity: 1,
+          }}
           d="m 148.17045,221.99625 c 0,0 10.48853,11.82092 25.46939,3.3586 25.69326,-14.51348 21.83091,-22.11078 21.83091,-22.11078 0,0 -16.44838,22.06458 -42.82216,13.15452 -20.71136,-6.99708 -6.15743,2.79883 -6.15743,2.79883"
           id="path16"
         />

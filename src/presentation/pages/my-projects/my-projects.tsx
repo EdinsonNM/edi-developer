@@ -1,6 +1,5 @@
 "use client";
 
-import Particles from "@/components/ui/particles";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";

@@ -1,17 +1,13 @@
 import { useContext, useState } from "react";
-import Meteors from "@/components/ui/meteors";
 import LayoutContext from "@presentation/layout/layout.context";
 import { cn } from "@/lib/utils";
-import DotPattern from "@/components/ui/dot-pattern";
 import { BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import ChatModal from "@presentation/components/chat-modal";
-import LogoIcon from "@design/atoms/icons/logo-icon";
 import FloatingTech from "@/components/ui/floating-tech";
 import { TextAnimate } from "@/components/ui/text-animate";
 import AnimatedCharacter from "@/components/ui/animated-character";
 import FlickeringGrid from "@/components/ui/flickering-grid";
-import { RetroGrid } from "@/components/magicui/retro-grid";
 
 export default function Home() {
   const { isDark } = useContext(LayoutContext);
