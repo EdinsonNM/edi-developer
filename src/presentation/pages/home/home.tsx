@@ -140,9 +140,6 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col items-start justify-center gap-2 w-full max-w-md">
-                  <h2 className="text-md md:text-md font-bold mb-4 text-foreground text-left">
-                    {t.whatWantToKnow}
-                  </h2>
                   <button
                     onClick={() => setIsChatOpen(true)}
                     className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
