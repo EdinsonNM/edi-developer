@@ -5,7 +5,7 @@ import { LayoutContextProvider } from "./layout.context";
 function Layout() {
   return (
     <LayoutContextProvider>
-      <div className="h-full w-full flex flex-col text-white">
+      <div className="h-full w-full flex flex-col bg-background text-foreground">
         <NavBar />
         <main className="h-full w-full">
           <Outlet />

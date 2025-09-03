@@ -1,17 +1,13 @@
-import { memo, useContext, useState, useEffect } from "react";
-import { TextAnimate } from "@/components/ui/text-animate";
-import Meteors from "@/components/ui/meteors";
+import { useContext, useState } from "react";
 import LayoutContext from "@presentation/layout/layout.context";
 import { cn } from "@/lib/utils";
-import DotPattern from "@/components/ui/dot-pattern";
-import { SceneCanvas } from "./components/scene-canvas";
-import { OrbitingIcons } from "./components/orbiting-icons";
-import { BiSearch, BiChat } from "react-icons/bi";
+import { BiChat } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import ChatModal from "@presentation/components/chat-modal";
-import LogoIcon from "@design/atoms/icons/logo-icon";
-
-const TextAnimate2 = memo(TextAnimate);
+import FloatingTech from "@/components/ui/floating-tech";
+import { TextAnimate } from "@/components/ui/text-animate";
+import AnimatedCharacter from "@/components/ui/animated-character";
+import FlickeringGrid from "@/components/ui/flickering-grid";
 
 export default function Home() {
   const { isDark } = useContext(LayoutContext);
@@ -21,148 +17,184 @@ export default function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatQuery, setChatQuery] = useState("");
 
-  // Marquee placeholder texts as an array usando traducciones
-  const marqueePlaceholders = [
-    t.placeholder1,
-    t.placeholder2,
-    t.placeholder3,
-    t.placeholder4,
-  ];
-  const [inputValue, setInputValue] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
-  const [marqueeIndex, setMarqueeIndex] = useState(0);
-
-  // Cycle through the marquee texts every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMarqueeIndex((i) => (i + 1) % marqueePlaceholders.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [marqueePlaceholders]);
-
   return (
     <div
       className={cn(
         "overflow-x-hidden min-h-screen w-full relative",
         isDark
           ? "bg-gradient-to-b from-gray-900 via-black to-black"
-          : "bg-gradient-to-b from-blue-300 via-yellow-200 to-white"
+          : "bg-white"
       )}
     >
-      <div className="absolute top-0 left-0 w-full h-full">
-        {isDark ? (
-          <Meteors number={30} />
-        ) : (
-          <DotPattern
-            className={cn(
-              "[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
-            )}
-          />
-        )}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none">
+        <FlickeringGrid
+          className="relative inset-0 z-0 [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
+          squareSize={4}
+          gridGap={6}
+          color="#60A5FA"
+          maxOpacity={0.5}
+          flickerChance={0.1}
+          height={2048}
+          width={2048}
+        />
       </div>
 
-      {isDark ? (
-        <div className="absolute top-0 left-0 w-full h-full z-0">
-          <SceneCanvas />
-        </div>
-      ) : (
-        <OrbitingIcons />
-      )}
+      {/* Floating technology background layer */}
+      <div className="pointer-events-none">
+        <FloatingTech />
+      </div>
 
       <div
         id="home-content"
-        className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center pointer-events-none"
+        className="absolute top-0 left-0 w-full h-full pointer-events-auto z-30"
       >
-        <div className="flex flex-col items-center justify-center gap-4 p-4 text-center max-w-full w-full">
-        <div className="flex items-center justify-center mb-8 md:hidden">
-          <LogoIcon size={200} />
-         </div>
-          <div
-            className={`pointer-events-none font-bold text-3xl md:text-6xl text-center ${
-              isDark ? "text-cyan-500" : "text-cyan-700"
-            } max-w-full w-full`}
-          >
-            {t.helloImEdinson}
-          </div>
+        <div className="mx-auto h-full w-full max-w-7xl px-6 md:px-10">
+          <div className="grid h-full grid-cols-12 items-center">
+            {/* En móvil: personaje arriba, contenido abajo */}
+            <div className="col-span-12 md:hidden flex flex-col items-center justify-start gap-0">
+              {/* Personaje animado arriba */}
+              <div className="flex justify-center items-center pt-4">
+                <AnimatedCharacter
+                  className="w-[220px] h-[220px] object-contain"
+                  alt="Home Right"
+                  svgPath="/edidev.svg"
+                  leftEyePosition={{ x: 200, y: 150 }}
+                  rightEyePosition={{ x: 270, y: 148 }}
+                  eyeRadius={8}
+                  pupilRadius={4}
+                  debugMode={false}
+                />
+              </div>
 
-          <div
-            className={`pointer-events-none text-sm md:text-3xl text-center max-w-2xl w-full dark:text-white text-black`}
-          >
-            {t.softwareEngineerTransforms}
-          </div>
-          <div
-            className={`hidden md:block pointer-events-none text-sm md:text-lg text-center max-w-5xl w-full dark:text-gray-400 text-black`}
-          >
-            {t.yearsBuildingSolutions}
-          </div>
+              {/* Contenido centrado */}
+              <div className="flex flex-col items-center justify-center gap-3 text-center">
+                <h1 className="pointer-events-none font-bold leading-tight tracking-tight text-3xl sm:text-4xl text-[#2b59c3] max-w-[28ch]">
+                  <TextAnimate
+                    animation="slideLeft"
+                    by="character"
+                    as={"h1"}
+                    className="pointer-events-none font-bold text-3xl sm:text-4xl text-center text-[#2b59c3]"
+                  >
+                    {t.helloImEdinson}
+                  </TextAnimate>
+                </h1>
 
-          <div className="flex flex-col items-center justify-center mt-8 w-full max-w-xs sm:max-w-md">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-white text-center">
-              {t.whatWantToKnow}
-            </h2>
-            <div className="relative w-full max-w-md pointer-events-auto">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && inputValue.trim()) {
-                    setChatQuery(inputValue.trim());
-                    setInputValue("");
-                    setIsChatOpen(true);
-                  }
-                }}
-                className="w-full py-3 pl-4 pr-10 rounded-lg bg-[#191C1F] border border-blue-400 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              {/* Marquee placeholder overlay */}
-              {!(inputValue || isFocused) && (
-                <div className="pointer-events-none absolute inset-0 flex items-center pl-4 pr-12 overflow-hidden">
-                  <span className="text-gray-400 whitespace-nowrap">
-                    <TextAnimate2
-                      animation="fadeIn"
-                      by="character"
-                      as={"p"}
-                      delay={500}
-                    >
-                      {marqueePlaceholders[marqueeIndex]}
-                    </TextAnimate2>
-                  </span>
+                <p className="pointer-events-none text-base sm:text-lg leading-relaxed max-w-[36ch] text-gray-800">
+                  <TextAnimate
+                    animation="slideRight"
+                    by="word"
+                    as={"p"}
+                    className="pointer-events-none text-base sm:text-lg leading-relaxed max-w-[36ch] text-gray-800"
+                  >
+                    {t.softwareEngineerTransforms}
+                  </TextAnimate>
+                </p>
+
+                <div className="flex flex-col items-center justify-center gap-2 w-full max-w-md">
+                  <button
+                    onClick={() => setIsChatOpen(true)}
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    title={t.chatWithEdinson}
+                  >
+                    <BiChat className="h-5 w-5" />
+                    <span>{t.chatWithEdinson}</span>
+                  </button>
                 </div>
-              )}
-              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10">
-                <BiSearch />
-              </span>
+
+                <div className="w-full flex justify-center">
+                  <a
+                    href="https://cal.com/edinson-nunez-more"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md max-w-xs pointer-events-auto text-black hover:underline"
+                  >
+                    {t.scheduleOnCalCom}
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="w-full flex justify-center">
-            <a
-              href="https://cal.com/edinson-nunez-more"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-md max-w-xs pointer-events-auto text-black dark:text-white hover:underline w-full text-center"
-            >
-              {t.scheduleOnCalCom}
-            </a>
+
+            {/* En desktop: layout original */}
+            <div className="hidden md:grid md:grid-cols-12 md:col-span-12 lg:col-span-12 items-center">
+              {/* Columna izquierda: contenido */}
+              <div className="col-span-7 lg:col-span-6 flex flex-col items-start justify-center gap-2 text-left">
+                <h1
+                  className={`pointer-events-none font-bold leading-tight tracking-tight text-4xl sm:text-5xl md:text-6xl text-[#2b59c3] max-w-[28ch]`}
+                >
+                  <TextAnimate
+                    animation="slideLeft"
+                    by="character"
+                    as={"h1"}
+                    className={`pointer-events-none font-bold text-2xl md:text-6xl text-start max-w-80 md:max-w-none text-[#2b59c3]`}
+                  >
+                    {t.helloImEdinson}
+                  </TextAnimate>
+                </h1>
+
+                <p
+                  className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
+                >
+                  <TextAnimate
+                    animation="slideRight"
+                    by="word"
+                    as={"p"}
+                    className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
+                  >
+                    {t.softwareEngineerTransforms}
+                  </TextAnimate>
+                </p>
+                <p
+                  className={`pointer-events-none text-sm md:text-lg leading-relaxed max-w-[60ch] dark:text-gray-400 text-black`}
+                >
+                  {t.yearsBuildingSolutions}
+                </p>
+
+                <div className="flex flex-col items-start justify-center gap-2 w-full max-w-md">
+                  <h2 className="text-md md:text-md font-bold mb-4 text-foreground text-left">
+                    {t.whatWantToKnow}
+                  </h2>
+                  <button
+                    onClick={() => setIsChatOpen(true)}
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    title={t.chatWithEdinson}
+                  >
+                    <BiChat className="h-5 w-5" />
+                    <span>{t.chatWithEdinson}</span>
+                  </button>
+                </div>
+
+                <div className="w-full flex justify-start">
+                  <a
+                    href="https://cal.com/edinson-nunez-more"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md max-w-xs pointer-events-auto text-black  hover:underline"
+                  >
+                    {t.scheduleOnCalCom}
+                  </a>
+                </div>
+              </div>
+
+              {/* Columna derecha: personaje animado */}
+              <div className="col-span-5 lg:col-span-6 p-8 pointer-events-auto">
+                <AnimatedCharacter
+                  className="w-[500px] h-[500px] object-contain"
+                  alt="Home Right"
+                  svgPath="/edidev.svg"
+                  leftEyePosition={{ x: 200, y: 150 }}
+                  rightEyePosition={{ x: 270, y: 148 }}
+                  eyeRadius={8}
+                  pupilRadius={4}
+                  debugMode={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-      {/* Botón flotante de chat */}
-      <button
-        onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-green-600 to-cyan-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 pointer-events-auto z-40 group"
-        title={t.chatWithEdinson}
-      >
-        <BiChat className="h-6 w-6" />
-        <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-          {t.askMeAnything}
-        </span>
-      </button>
-      
+
       {/* ChatModal */}
-      <ChatModal 
+      <ChatModal
         isOpen={isChatOpen}
         onClose={() => {
           setIsChatOpen(false);
