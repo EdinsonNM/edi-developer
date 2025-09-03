@@ -21,7 +21,7 @@ export const RowSection = ({ title, items }: RowSectionProps) => {
   const { isDark } = useContext(LayoutContext);
 
   return (
-    <section className="relative mb-4 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12 overflow-hidden">
+    <section className="relative mb-4 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12">
       <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 xs:gap-2 sm:gap-3 mb-2 xs:mb-3 sm:mb-4 md:mb-6">
         <h2
           className={`text-base xs:text-lg sm:text-xl md:text-2xl font-bold tracking-tight ${
@@ -44,8 +44,9 @@ export const RowSection = ({ title, items }: RowSectionProps) => {
           loop: false,
           skipSnaps: false,
           dragFree: true,
+          containScroll: "keepSnaps",
         }}
-        className="w-full overflow-hidden"
+        className="w-full"
       >
         <div className="flex items-center justify-between mb-1.5 xs:mb-2 sm:mb-3 md:mb-4">
           <div className="flex-1" />
@@ -66,13 +67,11 @@ export const RowSection = ({ title, items }: RowSectionProps) => {
             />
           </div>
         </div>
-        <CarouselContent className="-ml-0.5 xs:-ml-1 sm:-ml-2 md:-ml-3 lg:-ml-6 overflow-hidden">
+        <CarouselContent className="-ml-4">
           {items.map((item, idx) => (
             <CarouselItem
               key={`${item.title}-${idx}`}
-              className={`pl-0.5 xs:pl-1 sm:pl-2 md:pl-3 lg:pl-6 ${
-                item.aspect === "vertical" ? "basis-auto" : "basis-auto"
-              }`}
+              className="pl-4 basis-auto"
             >
               <CardPoster item={item} />
             </CarouselItem>

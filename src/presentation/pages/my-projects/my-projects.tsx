@@ -49,7 +49,7 @@ export default function MyProjects() {
         />
 
         {/* Enhanced Netflix-style rows - Mobile optimized */}
-        <div className="px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto space-y-3 xs:space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-12 overflow-x-hidden">
+        <div className="px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 max-w-7xl mx-auto space-y-3 xs:space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-12 overflow-x-hidden">
           <RowSection
             title={t.publicaciones}
             items={publicaciones as unknown as ResourceItem[]}
