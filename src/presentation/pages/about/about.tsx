@@ -9,9 +9,7 @@ export default function About() {
   return (
     <div
       className={`w-full h-full ${
-        isDark
-          ? "bg-gradient-to-b from-black to-blue-900"
-          : "bg-gradient-to-b from-blue-300 via-yellow-200 to-white"
+        isDark ? "bg-gradient-to-b from-black to-blue-900" : "bg-white"
       }`}
     >
       <div className="absolute w-full h-full left-0 top-0">
@@ -23,9 +21,7 @@ export default function About() {
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center ${
-              isDark ? "text-cyan-500" : "text-green-500"
-            }`}
+            className={`mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center text-[#2b59c3]`}
           >
             Mi viaje en la tecnología
           </TextAnimate>

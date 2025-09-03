@@ -86,7 +86,7 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                             className={({ isActive }) =>
                               `group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                                 isActive
-                                  ? "bg-cyan-600 text-white shadow-lg"
+                                  ? "bg-[#2b59c3] text-white shadow-lg"
                                   : "text-gray-300 hover:bg-gray-800 hover:text-white"
                               }`
                             }
@@ -107,11 +107,11 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                         <div className="relative">
                           <button
                             type="button"
-                            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-200"
+                            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2b59c3] transition-all duration-200"
                             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                           >
                             <div className="flex items-center space-x-3">
-                              <BiGlobe className="h-5 w-5 text-cyan-400" />
+                              <BiGlobe className="h-5 w-5 text-[#2b59c3]" />
                               <span className="text-xl">{currentLanguage?.flag}</span>
                               <span>{currentLanguage?.name}</span>
                             </div>
@@ -144,7 +144,7 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                                   type="button"
                                   className={`w-full flex items-center px-4 py-3 text-sm hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors duration-200 ${
                                     language === lang.code
-                                      ? "bg-cyan-600 text-white"
+                                      ? "bg-[#2b59c3] text-white"
                                       : "text-gray-300"
                                   }`}
                                   onClick={() => handleLanguageChange(lang.code)}

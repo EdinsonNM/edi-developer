@@ -3,7 +3,7 @@ type Props = {
 };
 function Description({ children }: Props) {
   return (
-    <p className="text-sm md:text-xl desc text-white text-center md:text-left mt-8 hidden md:block shadow-2xl">
+    <p className="text-sm md:text-xl desc text-foreground text-center md:text-left mt-8 hidden md:block shadow-2xl">
       {children}
     </p>
   );

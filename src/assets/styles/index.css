@@ -117,6 +117,9 @@ html {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .theme {
+    --animate-grid: grid 15s linear infinite;
+  }
 }
 @layer base {
   * {
@@ -143,3 +146,14 @@ html {
 .glow-primary { box-shadow: 0 0 30px hsl(var(--primary) / 0.35); }
 .glow-accent { box-shadow: 0 0 30px hsl(var(--accent) / 0.35); }
 .glow-secondary { box-shadow: 0 0 30px hsl(var(--secondary) / 0.35); }
+
+@theme inline {
+  @keyframes grid {
+  0% {
+    transform: translateY(-50%);
+    }
+  100% {
+    transform: translateY(0);
+    }
+  }
+}

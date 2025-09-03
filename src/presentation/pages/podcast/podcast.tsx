@@ -13,7 +13,7 @@ export default function Podcast() {
       className={`w-full h-full overflow-y-auto ${
         isDark
           ? "bg-gradient-to-b from-black to-cyan-800"
-          : "bg-gradient-to-b from-blue-300 via-yellow-200 to-white"
+          : "bg-white"
       }`}
     >
       <div className="absolute w-full h-full left-0 top-0">
@@ -25,9 +25,7 @@ export default function Podcast() {
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mx-auto mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none ${
-              isDark ? "text-cyan-500" : "text-green-500"
-            }`}
+            className={`mx-auto mb-10 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none text-[#2b59c3]`}
           >
             Escucha mi Podcast – IA al Día
           </TextAnimate>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function useDarkMode() {
   // Siempre en modo dark
-  const isDark = true;
+  const isDark = false;
 
   useEffect(() => {
     // Forzar modo dark permanentemente
