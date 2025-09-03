@@ -6,8 +6,8 @@ export default function useDarkMode() {
 
   useEffect(() => {
     // Forzar modo dark permanentemente
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("darkMode", "true");
+    document.documentElement.classList.add("light");
+    localStorage.setItem("darkMode", "false");
   }, []);
 
   // Función vacía ya que no se puede cambiar el tema

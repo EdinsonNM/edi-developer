@@ -1,7 +1,11 @@
 #root {
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
   text-align: center;
+  background-color: white;
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .logo {

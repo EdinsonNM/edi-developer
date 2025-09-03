@@ -32,32 +32,6 @@ function NavBar() {
     };
   }, []);
 
-  // Cambiar estilo del navbar al hacer scroll (soporta scroll en #root o window)
-  useEffect(() => {
-    const readScrollY = () => {
-      const rootEl = document.getElementById("root");
-      if (rootEl) return rootEl.scrollTop;
-      const doc = document.scrollingElement || document.documentElement;
-      return window.scrollY || doc.scrollTop || 0;
-    };
-
-    const onScroll = () => {
-      setIsScrolled(readScrollY() > 8);
-    };
-
-    // Inicializar estado
-    onScroll();
-
-    const rootEl = document.getElementById("root");
-    window.addEventListener("scroll", onScroll, { passive: true });
-    rootEl?.addEventListener("scroll", onScroll, { passive: true } as AddEventListenerOptions);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      rootEl?.removeEventListener("scroll", onScroll as EventListener);
-    };
-  }, []);
-
   const navigation = [
     { url: "/", title: t.inicio },
     { url: "mis-proyectos", title: t.recursosDesarrolladores },
@@ -80,13 +54,15 @@ function NavBar() {
 
   return (
     <>
-      <nav className={`navbar fixed left-0 top-0 w-full flex flex-row items-center z-50 py-2 px-3 md:py-4 md:px-10 pointer-events-auto transition-colors duration-300 border-b ${
+      <nav
+        className={`bg-white navbar relative w-full flex flex-row items-center z-50 py-2 px-2 xs:px-3 md:py-4 md:px-10 pointer-events-auto transition-colors duration-300 border-b overflow-hidden h-16 md:h-20 ${
           isScrolled
             ? isDark
               ? "bg-gray-900/70 backdrop-blur-md border-white/10"
               : "bg-white/80 backdrop-blur-md border-gray-200"
             : "bg-transparent border-transparent"
-        }`}>
+        }`}
+      >
         {/* Logo a la izquierda, tamaño responsive */}
         <div
           className={`flex items-center ${
@@ -98,8 +74,8 @@ function NavBar() {
             <span className="hidden md:block">
               <LogoIcon size={160} />
             </span>
-            <span className="hidden md:hidden">
-              <LogoIcon size={80} />
+            <span className="block md:hidden">
+              <LogoIcon size={60} />
             </span>
           </span>
         </div>

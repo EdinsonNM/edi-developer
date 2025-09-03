@@ -10,7 +10,7 @@ function TechLoader() {
         position={[0, -1.5, 0]}
       >
         <div className="text-sm">npm install technologies...</div>
-        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div className="w-full bg-gray-200 rounded-full h-2.5">
           <div
             className="bg-gray-300 h-2.5 rounded-full text-xs"
             style={{ width: `${Math.round(progress)}%` }}
