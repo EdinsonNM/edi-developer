@@ -12,7 +12,7 @@ import { useI18n } from "@presentation/utils/use-i18n";
 // Componente de animación de puntos de carga responsive
 const TypingIndicator = ({ text }: { text: string }) => {
   return (
-    <div className="flex items-center space-x-1 p-2 sm:p-3 rounded-lg bg-gray-800 text-gray-100 rounded-bl-none max-w-[85%] sm:max-w-[75%] lg:max-w-[70%] shadow-md">
+    <div className={`flex items-center space-x-1 p-2 sm:p-3 rounded-lg max-w-[85%] sm:max-w-[75%] lg:max-w-[70%] shadow-md bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 rounded-bl-none`}>
       <div className="flex items-center justify-center">
         <span className="text-gray-300 mr-2 sm:mr-3 text-xs sm:text-sm">{text}</span>
         <div className="flex space-x-1 items-center">
@@ -222,7 +222,7 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-black/40 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -237,27 +237,26 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel 
-                className="fixed inset-0 w-full h-full max-w-none max-h-none sm:static sm:mx-auto sm:my-8 sm:rounded-lg sm:max-w-4xl sm:w-full sm:h-[80vh] sm:max-h-[90vh] sm:flex sm:flex-col sm:bg-transparent transition-all"
+                className="fixed inset-0 w-full h-full max-w-none max-h-none sm:static sm:mx-auto sm:my-8 sm:max-w-4xl sm:w-full sm:h-[80vh] sm:max-h-[90vh] transition-all"
               >
-                <div
-                  className="flex flex-col h-full w-full sm:h-full sm:w-full"
-                >
-                  {/* Header fijo para mobile y desktop */}
-                  <div className="sticky top-0 z-20 bg-gray-900/90 flex items-center justify-between px-4 py-3 border-b border-gray-700">
-                    <span className="text-white font-semibold text-lg">{t.saludoAsistente}</span>
-                    <button
-                      type="button"
-                      className="rounded-md bg-gray-800/80 p-2 text-gray-400 hover:text-white hover:bg-gray-700/80 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-200"
-                      onClick={onClose}
-                    >
-                      <span className="sr-only">{t.cerrarMenu}</span>
-                      <BiX className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </div>
+                <div className="flex flex-col h-full w-full sm:h-[80vh] sm:max-w-4xl sm:mx-auto sm:my-8">
+                  {/* Card wrapper: one rounded window */}
+                  <div className="flex flex-col h-full w-full bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden">
+                    {/* Header fijo para mobile y desktop */}
+                    <div className="sticky top-0 z-20 bg-white flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                      <span className="text-gray-900 font-semibold text-lg">{t.saludoAsistente}</span>
+                      <button
+                        type="button"
+                        className="rounded-md p-2 text-gray-500 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2b59c3] transition-colors duration-200"
+                        onClick={onClose}
+                      >
+                        <span className="sr-only">{t.cerrarMenu}</span>
+                        <BiX className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
 
-                  {/* Chat Content */}
-                  <div className="flex flex-col h-full w-full max-w-7xl mx-auto p-0 sm:p-0 bg-transparent pt-0">
-                    <div className="flex flex-col bg-gray-800/60 backdrop-blur-md border border-gray-600/60 rounded-none sm:rounded-lg h-full w-full sm:p-4 pt-2 sm:pt-2 flex-1">
+                    {/* Chat Content */}
+                    <div className="flex flex-col h-full w-full max-w-7xl mx-auto p-0 sm:p-0 bg-white pt-0">
                       {/* Messages */}
                       <div 
                         ref={chatContainerRef}
@@ -270,10 +269,10 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                               🤖
                             </span>
                           </div>
-                          <div className="text-left p-2 sm:p-4 rounded-lg max-w-[95%] sm:max-w-[90%] shadow-md bg-gradient-to-r from-green-800/60 to-green-700/60 text-white rounded-bl-none border border-green-600/40">
+                          <div className="text-left p-2 sm:p-4 rounded-lg max-w-[95%] sm:max-w-[90%] shadow-md rounded-bl-none border bg-green-50 text-green-900 border-green-200">
                             <h2 className="text-lg sm:text-xl font-bold mb-2">{t.saludoAsistente}</h2>
-                            <p className="text-green-100 mb-3 text-sm sm:text-base">{t.descripcionAsistente}</p>
-                            <div className="text-xs sm:text-sm text-green-200 bg-green-900/40 rounded-lg p-2 sm:p-3 border border-green-600/30">
+                            <p className="text-green-700 mb-3 text-sm sm:text-base">{t.descripcionAsistente}</p>
+                            <div className="text-xs sm:text-sm text-green-800 bg-green-100 rounded-lg p-2 sm:p-3 border border-green-200">
                               <p className="font-medium mb-1">{t.ejemplosPreguntas}</p>
                               <ul className="list-disc list-inside space-y-1 text-xs">
                                 <li>{t.ejemploTimeline}</li>
@@ -305,14 +304,14 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                                 <div
                                   className={`text-left p-2 sm:p-3 rounded-lg max-w-[85%] sm:max-w-[75%] lg:max-w-[70%] whitespace-pre-wrap shadow-md text-sm sm:text-base ${
                                     msg.role === "user"
-                                      ? "bg-sky-600/80 text-white rounded-br-none"
-                                      : "bg-gray-800 text-gray-100 rounded-bl-none"
+                                      ? "bg-[#2b59c3] text-white rounded-br-none"
+                                      : "bg-gray-100 text-gray-800 border border-gray-200 rounded-bl-none"
                                   }`}
                                 >
                                   {msg.content}
                                 </div>
                                 {msg.role === "user" && (
-                                  <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-sky-600 text-white ml-1 sm:ml-2 font-bold text-sm sm:text-lg flex-shrink-0">
+                                  <div className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-[#2b59c3] text-white ml-1 sm:ml-2 font-bold text-sm sm:text-lg flex-shrink-0">
                                     <span role="img" aria-label="usuario">
                                       🧑
                                     </span>
@@ -333,11 +332,11 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                                   messageChart.highchart.series.length > 0;
                                 
                                 return msg.role !== "user" && hasValidChart && (
-                                  <div className="ml-4 sm:ml-6 lg:ml-10 mr-2 sm:mr-4 mb-4 bg-gray-900/40 backdrop-blur-sm border border-gray-500/40 rounded-lg p-2 sm:p-4">
-                                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
+                                  <div className="ml-4 sm:ml-6 lg:ml-10 mr-2 sm:mr-4 mb-4 bg-gray-50 border border-gray-200 rounded-lg p-2 sm:p-4">
+                                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                                       {messageChart.title}
                                     </h3>
-                                    <p className="text-xs sm:text-sm text-gray-300 mb-4">
+                                    <p className="text-xs sm:text-sm text-gray-700 mb-4">
                                       {messageChart.description}
                                     </p>
                                     <div className={`w-full ${
@@ -445,17 +444,17 @@ export default function ChatModal({ isOpen, onClose, initialQuery }: ChatModalPr
                       </div>
 
                       {/* Input */}
-                      <div className="flex mt-auto gap-1 sm:gap-2 bg-gray-800/80 p-2 sm:p-0 sticky bottom-0 z-10">
+                      <div className="flex mt-auto gap-1 sm:gap-2 bg-white p-2 sm:p-0 sticky bottom-0 z-10 border-t border-gray-200">
                         <input
                           value={inputValue}
                           onChange={(e) => setInputValue(e.target.value)}
                           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                          className="flex-1 rounded-lg px-2 sm:px-4 py-2 bg-transparent border border-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+                          className="flex-1 rounded-lg px-2 sm:px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2b59c3] text-sm sm:text-base"
                           placeholder={t.escribeTuPregunta}
                         />
                         <button
                           onClick={handleSend}
-                          className="bg-green-600 text-white p-2 rounded-lg flex-shrink-0"
+                          className="bg-[#2b59c3] text-white p-2 rounded-lg flex-shrink-0 hover:bg-[#244aa6] focus:outline-none focus:ring-2 focus:ring-[#2b59c3]"
                         >
                           <BiSend size={16} className="sm:hidden" />
                           <BiSend size={20} className="hidden sm:block" />

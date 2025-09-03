@@ -54,80 +54,144 @@ export default function Home() {
       >
         <div className="mx-auto h-full w-full max-w-7xl px-6 md:px-10">
           <div className="grid h-full grid-cols-12 items-center">
-            {/* Columna izquierda: contenido */}
-            <div className="col-span-12 md:col-span-7 lg:col-span-6 flex flex-col items-start justify-center gap-2 text-left">
-              <div className="flex items-start justify-start mb-8 md:hidden">
-                <LogoIcon size={200} />
-              </div>
-              <h1
-                className={`pointer-events-none font-bold leading-tight tracking-tight text-4xl sm:text-5xl md:text-6xl text-[#2b59c3] max-w-[28ch]`}
-              >
-                <TextAnimate
-                  animation="slideLeft"
-                  by="character"
-                  as={"h1"}
-                  className={`mx-auto mb-4 pointer-events-none font-bold text-2xl md:text-6xl text-center md:text-start max-w-80 md:max-w-none text-[#2b59c3]`}
-                >
-                  {t.helloImEdinson}
-                </TextAnimate>
-              </h1>
-
-              <p
-                className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
-              >
-                <TextAnimate
-                  animation="slideRight"
-                  by="word"
-                  as={"p"}
-                  className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
-                >
-                  {t.softwareEngineerTransforms}
-                </TextAnimate>
-              </p>
-              <p
-                className={`hidden md:block pointer-events-none text-sm md:text-lg leading-relaxed max-w-[60ch] dark:text-gray-400 text-black`}
-              >
-                {t.yearsBuildingSolutions}
-              </p>
-
-              <div className="flex flex-col items-start justify-center gap-2 w-full max-w-md">
-                <h2 className="text-md md:text-md font-bold mb-4 text-foreground text-left">
-                  {t.whatWantToKnow}
-                </h2>
-                <button
-                  onClick={() => setIsChatOpen(true)}
-                  className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
-                  title={t.chatWithEdinson}
-                >
-                  <BiChat className="h-5 w-5" />
-                  <span>{t.chatWithEdinson}</span>
-                </button>
+            {/* En móvil: personaje arriba, contenido abajo */}
+            <div className="col-span-12 md:hidden flex flex-col items-center justify-start gap-0">
+              {/* Personaje animado arriba */}
+              <div className="flex justify-center items-center pt-4">
+                <AnimatedCharacter
+                  className="w-[220px] h-[220px] object-contain"
+                  alt="Home Right"
+                  svgPath="/edidev.svg"
+                  leftEyePosition={{ x: 200, y: 150 }}
+                  rightEyePosition={{ x: 270, y: 148 }}
+                  eyeRadius={8}
+                  pupilRadius={4}
+                  debugMode={false}
+                />
               </div>
 
-              <div className="w-full flex justify-start">
-                <a
-                  href="https://cal.com/edinson-nunez-more"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-md max-w-xs pointer-events-auto text-black  hover:underline"
-                >
-                  {t.scheduleOnCalCom}
-                </a>
+              {/* Contenido centrado */}
+              <div className="flex flex-col items-center justify-center gap-3 text-center">
+                <h1 className="pointer-events-none font-bold leading-tight tracking-tight text-3xl sm:text-4xl text-[#2b59c3] max-w-[28ch]">
+                  <TextAnimate
+                    animation="slideLeft"
+                    by="character"
+                    as={"h1"}
+                    className="pointer-events-none font-bold text-3xl sm:text-4xl text-center text-[#2b59c3]"
+                  >
+                    {t.helloImEdinson}
+                  </TextAnimate>
+                </h1>
+
+                <p className="pointer-events-none text-base sm:text-lg leading-relaxed max-w-[36ch] text-gray-800">
+                  <TextAnimate
+                    animation="slideRight"
+                    by="word"
+                    as={"p"}
+                    className="pointer-events-none text-base sm:text-lg leading-relaxed max-w-[36ch] text-gray-800"
+                  >
+                    {t.softwareEngineerTransforms}
+                  </TextAnimate>
+                </p>
+
+                <div className="flex flex-col items-center justify-center gap-2 w-full max-w-md">
+                  <button
+                    onClick={() => setIsChatOpen(true)}
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    title={t.chatWithEdinson}
+                  >
+                    <BiChat className="h-5 w-5" />
+                    <span>{t.chatWithEdinson}</span>
+                  </button>
+                </div>
+
+                <div className="w-full flex justify-center">
+                  <a
+                    href="https://cal.com/edinson-nunez-more"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md max-w-xs pointer-events-auto text-black hover:underline"
+                  >
+                    {t.scheduleOnCalCom}
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Columna derecha: personaje animado */}
-            <div className="hidden md:block col-span-5 lg:col-span-6 p-8 pointer-events-auto">
-              <AnimatedCharacter
-                className="w-[500px] h-[500px] object-contain"
-                alt="Home Right"
-                svgPath="/edidev.svg"
-                leftEyePosition={{ x: 200, y: 150 }}
-                rightEyePosition={{ x: 270, y: 150 }}
-                eyeRadius={8}
-                pupilRadius={4}
-                debugMode={false}
-              />
+            {/* En desktop: layout original */}
+            <div className="hidden md:grid md:grid-cols-12 md:col-span-12 lg:col-span-12 items-center">
+              {/* Columna izquierda: contenido */}
+              <div className="col-span-7 lg:col-span-6 flex flex-col items-start justify-center gap-2 text-left">
+                <h1
+                  className={`pointer-events-none font-bold leading-tight tracking-tight text-4xl sm:text-5xl md:text-6xl text-[#2b59c3] max-w-[28ch]`}
+                >
+                  <TextAnimate
+                    animation="slideLeft"
+                    by="character"
+                    as={"h1"}
+                    className={`pointer-events-none font-bold text-2xl md:text-6xl text-start max-w-80 md:max-w-none text-[#2b59c3]`}
+                  >
+                    {t.helloImEdinson}
+                  </TextAnimate>
+                </h1>
+
+                <p
+                  className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
+                >
+                  <TextAnimate
+                    animation="slideRight"
+                    by="word"
+                    as={"p"}
+                    className={`pointer-events-none text-base sm:text-xl md:text-2xl leading-relaxed max-w-[36ch] text-gray-800`}
+                  >
+                    {t.softwareEngineerTransforms}
+                  </TextAnimate>
+                </p>
+                <p
+                  className={`pointer-events-none text-sm md:text-lg leading-relaxed max-w-[60ch] dark:text-gray-400 text-black`}
+                >
+                  {t.yearsBuildingSolutions}
+                </p>
+
+                <div className="flex flex-col items-start justify-center gap-2 w-full max-w-md">
+                  <h2 className="text-md md:text-md font-bold mb-4 text-foreground text-left">
+                    {t.whatWantToKnow}
+                  </h2>
+                  <button
+                    onClick={() => setIsChatOpen(true)}
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-3 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    title={t.chatWithEdinson}
+                  >
+                    <BiChat className="h-5 w-5" />
+                    <span>{t.chatWithEdinson}</span>
+                  </button>
+                </div>
+
+                <div className="w-full flex justify-start">
+                  <a
+                    href="https://cal.com/edinson-nunez-more"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-md max-w-xs pointer-events-auto text-black  hover:underline"
+                  >
+                    {t.scheduleOnCalCom}
+                  </a>
+                </div>
+              </div>
+
+              {/* Columna derecha: personaje animado */}
+              <div className="col-span-5 lg:col-span-6 p-8 pointer-events-auto">
+                <AnimatedCharacter
+                  className="w-[500px] h-[500px] object-contain"
+                  alt="Home Right"
+                  svgPath="/edidev.svg"
+                  leftEyePosition={{ x: 200, y: 150 }}
+                  rightEyePosition={{ x: 270, y: 148 }}
+                  eyeRadius={8}
+                  pupilRadius={4}
+                  debugMode={false}
+                />
+              </div>
             </div>
           </div>
         </div>
