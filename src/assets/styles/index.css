@@ -15,29 +15,29 @@ body,
 #root {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: white;
   overflow-x: hidden;
-  overflow-y: auto;
+  width: 100%;
 }
 
 /* Personaliza solo la barra de desplazamiento visible */
 ::-webkit-scrollbar {
-  width: 12px; /* Puedes ajustar el ancho de la barra de desplazamiento */
+  width: 8px; /* Puedes ajustar el ancho de la barra de desplazamiento */
 }
 
 /* Maneja el "track" o pista de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05); /* Color suave para el track */
+  background: rgba(255, 255, 255, 0.8); /* Color suave para el track */
 }
 
 /* Maneja el "thumb" o la parte que se mueve de la barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
   background-color: rgba(
-    105,
-    105,
-    105,
-    0.5
+    0,
+    0,
+    0,
+    0.20
   ); /* Color más oscuro para el thumb */
   border-radius: 6px; /* Bordes redondeados para el thumb */
   border: 3px solid rgba(0, 0, 0, 0.05); /* Borde que coincide con el track para mantener la estética */
@@ -65,7 +65,7 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 100% 100% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;

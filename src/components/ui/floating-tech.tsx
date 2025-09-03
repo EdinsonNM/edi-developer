@@ -51,7 +51,7 @@ const FloatingTech = ({ showShapes = false }: Props) => {
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-5 w-full">
       {tech.map(({ Icon, className }, i) => (
         <div
           key={i}

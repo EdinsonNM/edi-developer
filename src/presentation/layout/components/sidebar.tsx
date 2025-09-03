@@ -1,9 +1,10 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import { BiX, BiGlobe } from "react-icons/bi";
 import { useI18n } from "@presentation/utils/use-i18n";
 import LogoIcon from "@design/atoms/icons/logo-icon";
+import LayoutContext from "@presentation/layout/layout.context";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -13,16 +14,17 @@ type SidebarProps = {
 
 function Sidebar({ isOpen, onClose, items }: SidebarProps) {
   const { language, setLanguage, t } = useI18n();
+  const { isDark } = useContext(LayoutContext);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
   const languages = [
-    { code: 'es' as const, name: 'Español', flag: '🇪🇸' },
-    { code: 'en' as const, name: 'English', flag: '🇺🇸' }
+    { code: "es" as const, name: "Español", flag: "🇪🇸" },
+    { code: "en" as const, name: "English", flag: "🇺🇸" },
   ];
 
-  const currentLanguage = languages.find(lang => lang.code === language);
+  const currentLanguage = languages.find((lang) => lang.code === language);
 
-  const handleLanguageChange = (newLanguage: 'es' | 'en') => {
+  const handleLanguageChange = (newLanguage: "es" | "en") => {
     setLanguage(newLanguage);
     setIsLanguageOpen(false);
   };
@@ -39,7 +41,7 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" />
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
@@ -55,19 +57,41 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-900/70 backdrop-blur-md border-l border-gray-600/60 shadow-xl">
+                  <div
+                    className={`flex h-full flex-col backdrop-blur-xl border-l shadow-2xl ${
+                      isDark
+                        ? "bg-gray-900/20 border-gray-600/30"
+                        : "bg-white/20 border-gray-200/30"
+                    }`}
+                  >
                     {/* Header */}
-                    <div className="flex items-center justify-between px-6 py-6 border-b border-gray-700">
+                    <div
+                      className={`flex items-center justify-between px-6 py-6 border-b ${
+                        isDark ? "border-gray-600/30" : "border-gray-200/50"
+                      }`}
+                    >
                       <div className="flex items-center space-x-3">
                         <LogoIcon size={40} />
-                        <div className="text-white">
+                        <div
+                          className={isDark ? "text-white" : "text-gray-900"}
+                        >
                           <h2 className="text-lg font-semibold">{t.menu}</h2>
-                          <p className="text-sm text-gray-400">{t.navegacion}</p>
+                          <p
+                            className={`text-sm ${
+                              isDark ? "text-gray-400" : "text-gray-600"
+                            }`}
+                          >
+                            {t.navegacion}
+                          </p>
                         </div>
                       </div>
                       <button
                         type="button"
-                        className="rounded-md text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className={`rounded-md focus:outline-none focus:ring-2 focus:ring-[#2b59c3] transition-colors duration-200 ${
+                          isDark
+                            ? "text-gray-400 hover:text-white"
+                            : "text-gray-600 hover:text-gray-900"
+                        }`}
                         onClick={onClose}
                       >
                         <span className="sr-only">{t.cerrarMenu}</span>
@@ -87,7 +111,9 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                               `group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                                 isActive
                                   ? "bg-[#2b59c3] text-white shadow-lg"
-                                  : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                                  : isDark
+                                  ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                               }`
                             }
                           >
@@ -97,22 +123,36 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                       </nav>
 
                       {/* Language Selector */}
-                      <div className="mt-8 pt-6 border-t border-gray-700">
+                      <div
+                        className={`mt-8 pt-6 border-t ${
+                          isDark ? "border-gray-600/30" : "border-gray-200/50"
+                        }`}
+                      >
                         <div className="mb-3">
-                          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                          <h3
+                            className={`text-xs font-semibold uppercase tracking-wider ${
+                              isDark ? "text-gray-400" : "text-gray-600"
+                            }`}
+                          >
                             {t.idiomaLanguage}
                           </h3>
                         </div>
-                        
+
                         <div className="relative">
                           <button
                             type="button"
-                            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2b59c3] transition-all duration-200"
+                            className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2b59c3] transition-all duration-200 backdrop-blur-sm ${
+                              isDark
+                                ? "text-gray-300 bg-gray-800/30 hover:bg-gray-700/40"
+                                : "text-gray-700 bg-gray-100/50 hover:bg-gray-200/60"
+                            }`}
                             onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                           >
                             <div className="flex items-center space-x-3">
                               <BiGlobe className="h-5 w-5 text-[#2b59c3]" />
-                              <span className="text-xl">{currentLanguage?.flag}</span>
+                              <span className="text-xl">
+                                {currentLanguage?.flag}
+                              </span>
                               <span>{currentLanguage?.name}</span>
                             </div>
                             <svg
@@ -123,7 +163,12 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
                             </svg>
                           </button>
 
@@ -137,20 +182,34 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                             leaveFrom="opacity-100 translate-y-0"
                             leaveTo="opacity-0 translate-y-1"
                           >
-                            <div className="absolute z-10 mt-2 w-full bg-gray-800 border border-gray-600 rounded-lg shadow-lg">
+                            <div
+                              className={`absolute z-10 mt-2 w-full border rounded-lg shadow-xl backdrop-blur-xl ${
+                                isDark
+                                  ? "bg-gray-800/80 border-gray-600/50"
+                                  : "bg-white/80 border-gray-200/50"
+                              }`}
+                            >
                               {languages.map((lang) => (
                                 <button
                                   key={lang.code}
                                   type="button"
-                                  className={`w-full flex items-center px-4 py-3 text-sm hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors duration-200 ${
+                                  className={`w-full flex items-center px-4 py-3 text-sm first:rounded-t-lg last:rounded-b-lg transition-colors duration-200 ${
                                     language === lang.code
                                       ? "bg-[#2b59c3] text-white"
-                                      : "text-gray-300"
+                                      : isDark
+                                      ? "text-gray-300 hover:bg-gray-700"
+                                      : "text-gray-700 hover:bg-gray-50"
                                   }`}
-                                  onClick={() => handleLanguageChange(lang.code)}
+                                  onClick={() =>
+                                    handleLanguageChange(lang.code)
+                                  }
                                 >
-                                  <span className="text-xl mr-3">{lang.flag}</span>
-                                  <span className="font-medium">{lang.name}</span>
+                                  <span className="text-xl mr-3">
+                                    {lang.flag}
+                                  </span>
+                                  <span className="font-medium">
+                                    {lang.name}
+                                  </span>
                                   {language === lang.code && (
                                     <svg
                                       className="ml-auto h-4 w-4 text-white"
@@ -173,12 +232,24 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                     </div>
 
                     {/* Footer */}
-                    <div className="px-6 py-4 border-t border-gray-700">
+                    <div
+                      className={`px-6 py-4 border-t ${
+                        isDark ? "border-gray-600/30" : "border-gray-200/50"
+                      }`}
+                    >
                       <div className="text-center">
-                        <p className="text-xs text-gray-500">
+                        <p
+                          className={`text-xs ${
+                            isDark ? "text-gray-500" : "text-gray-600"
+                          }`}
+                        >
                           © {new Date().getFullYear()} Edinson Nuñez More
                         </p>
-                        <p className="text-xs text-gray-600 mt-1">
+                        <p
+                          className={`text-xs mt-1 ${
+                            isDark ? "text-gray-600" : "text-gray-500"
+                          }`}
+                        >
                           Desarrollador Full Stack
                         </p>
                       </div>
@@ -195,4 +266,3 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
 }
 
 export default Sidebar;
-

@@ -1,17 +1,14 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/navbar";
-import { LayoutContextProvider } from "./layout.context";
 
 function Layout() {
   return (
-    <LayoutContextProvider>
-      <div className="h-full w-full flex flex-col bg-background text-foreground">
-        <NavBar />
-        <main className="h-full w-full">
-          <Outlet />
-        </main>
-      </div>
-    </LayoutContextProvider>
+    <div className="grid grid-rows-[auto_1fr] bg-white text-foreground w-full overflow-x-hidden min-h-screen">
+      <NavBar />
+      <main className="relative flex flex-col content-center overflow-x-hidden min-h-[calc(100dvh-64px)] md:min-h-[calc(100dvh-80px)]">
+        <Outlet />
+      </main>
+    </div>
   );
 }
 export default Layout;
