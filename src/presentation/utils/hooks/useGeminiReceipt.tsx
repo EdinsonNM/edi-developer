@@ -50,7 +50,7 @@ type GeminiContent = {
 };
 
 // Función para generar mensajes de error amigables y graciosos
-function getFriendlyErrorMessage(error: Error, language: "es" | "en"): string {
+function getFriendlyErrorMessage(_error: Error, language: "es" | "en"): string {
   const friendlyMessages = {
     es: [
       "¡Uy! Parece que mi creador tuvo un pequeño desliz con la configuración. 😅 Inténtalo de nuevo en un momento.",
