@@ -4,24 +4,21 @@ import { TextAnimate } from "@/components/ui/text-animate";
 import { Badge } from "@/components/ui/badge";
 import { useContext, memo } from "react";
 import LayoutContext from "@presentation/layout/layout.context";
-import Cube3D from "@/components/ui/cube-3d";
 
 // Componente memoizado para el contenido de texto
-const HeroTextContent = memo(({ isDark }: { isDark: boolean | undefined }) => (
+const HeroTextContent = memo(() => (
   <>
     <TextAnimate
       animation="slideLeft"
       by="character"
       as={"h1"}
-      className={`mx-auto mb-2 xs:mb-3 sm:mb-4 md:mb-6 pointer-events-none font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center lg:text-start text-[#2b59c3] leading-tight`}
+      className={`mx-auto mb-2 xs:mb-3 sm:mb-4 md:mb-6 pointer-events-none font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-white leading-tight drop-shadow-lg`}
       once={true}
     >
       Sobre mí
     </TextAnimate>
     <p
-      className={`text-start mb-3 xs:mb-4 sm:mb-6 md:mb-8 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed ${
-        isDark ? "text-white/90" : "text-slate-600"
-      }`}
+      className={`text-center mb-3 xs:mb-4 sm:mb-6 md:mb-8 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed text-white/90 drop-shadow-md max-w-4xl mx-auto`}
     >
       Soy Edinson "Edi" Nuñez More, ingeniero informático y desarrollador
       frontend con más de 14 años de experiencia. Me apasiona crear interfaces
@@ -69,21 +66,49 @@ export const HeroSection = memo(() => {
   const { isDark } = useContext(LayoutContext);
 
   return (
-    <div className="px-2 xs:px-3 sm:px-4 md:px-6 lg:px-0 pt-12 xs:pt-16 sm:pt-20 md:pt-24 lg:pt-28 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 xs:gap-4 sm:gap-6 md:gap-8 items-center mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-        {/* Text content - First on mobile */}
-        <div className="col-span-1 lg:col-span-6 order-1 lg:order-1">
-          <HeroTextContent isDark={isDark} />
-          <HeroBadges />
+    <div className="px-2 xs:px-3 sm:px-4 md:px-6 lg:px-0 pt-4 xs:pt-6 sm:pt-8 md:pt-10 lg:pt-12 max-w-7xl mx-auto">
+      {/* Hero con imágenes como fondo */}
+      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+        {/* Contenedor de imágenes */}
+        <div className="flex flex-col md:flex-row h-[400px] md:h-[500px] lg:h-[600px]">
+          {/* Primera imagen */}
+          <div className="flex-1 relative overflow-hidden">
+            <img
+              src="/498677010_10236593310962824_8184856984527219057_n.jpg"
+              alt="Edinson caminando en el parque - Vista panorámica"
+              className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Segunda imagen */}
+          <div className="flex-1 relative overflow-hidden">
+            <img
+              src="/499722212_10236608368059242_4576393573478119502_n.jpg"
+              alt="Edinson bajo el puente - Perspectiva arquitectónica"
+              className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
         </div>
-        {/* Cubo 3D - Second on mobile */}
-        <div className="col-span-1 lg:col-span-6 flex justify-center order-2 lg:order-2">
-          <div className="relative">
-            <div className="absolute -inset-0.5 xs:-inset-1 sm:-inset-2 md:-inset-3 lg:-inset-4 rounded-3xl blur-xl opacity-50 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-            <div className="relative w-[300px] h-[300px] xs:w-[260px] xs:h-[260px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]">
-              <Cube3D />
+
+        {/* Overlay con contenido de texto */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40 flex items-center justify-center">
+          <div className="text-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16">
+            <HeroTextContent />
+            <div className="mt-4 xs:mt-6 sm:mt-8">
+              <HeroBadges />
             </div>
           </div>
+        </div>
+
+        {/* Elemento decorativo en la esquina */}
+        <div className="absolute top-4 right-4 z-20">
+          <div
+            className={`w-3 h-3 rounded-full ${
+              isDark ? "bg-blue-400" : "bg-blue-500"
+            } animate-pulse`}
+          ></div>
         </div>
       </div>
     </div>
