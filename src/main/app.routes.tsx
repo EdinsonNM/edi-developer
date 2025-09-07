@@ -6,6 +6,9 @@ import Loading from "@presentation/components/loading/loading";
 const MyProjects = React.lazy(
   () => import("@presentation/pages/my-projects/my-projects")
 );
+const AboutMe = React.lazy(
+  () => import("@presentation/pages/about-me/about-me")
+);
 const Home = React.lazy(() => import("@presentation/pages/home/home"));
 
 function AppRouter() {
@@ -26,6 +29,14 @@ function AppRouter() {
             element={
               <Suspense fallback={<Loading />}>
                 <MyProjects />
+              </Suspense>
+            }
+          />
+          <Route
+            path="sobre-mi"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AboutMe />
               </Suspense>
             }
           />

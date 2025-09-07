@@ -35,6 +35,7 @@ function NavBar() {
   const navigation = [
     { url: "/", title: t.inicio },
     { url: "mis-proyectos", title: t.recursosDesarrolladores },
+    { url: "sobre-mi", title: t.sobreMi },
 
     //{ url: "sass", title: t.saas },
     //{ url: "charlas", title: t.charlasYTalleres },

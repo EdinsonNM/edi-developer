@@ -60,7 +60,7 @@ export default function MyProjects() {
               title: d.title,
               description: d.description,
               url: d.url,
-              image: d.url,
+              image: d.image,
               aspect: "horizontal",
             }))}
           />

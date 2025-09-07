@@ -13,6 +13,7 @@ interface Translations {
   // Navbar
   inicio: string;
   recursosDesarrolladores: string;
+  sobreMi: string;
   miPodcast: string;
   saas: string;
   charlasYTalleres: string;
@@ -77,6 +78,7 @@ const translations: Record<Language, Translations> = {
     // Navbar
     inicio: "Inicio",
     recursosDesarrolladores: "Recursos para desarrolladores",
+    sobreMi: "Sobre mí",
     miPodcast: "Mi Podcast",
     saas: "SaaS",
     charlasYTalleres: "Charlas y talleres",
@@ -143,6 +145,7 @@ const translations: Record<Language, Translations> = {
     // Navbar
     inicio: "Home",
     recursosDesarrolladores: "Developer Resources",
+    sobreMi: "About Me",
     miPodcast: "My Podcast",
     saas: "SaaS",
     charlasYTalleres: "Talks & Workshops",

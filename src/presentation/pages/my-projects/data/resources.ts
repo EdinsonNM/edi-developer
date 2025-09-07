@@ -31,19 +31,22 @@ export const demosProyectos = [
   {
     title: "Universo de partículas (Three.js)",
     description: "Demo interactiva construida con React y react-three-fiber.",
-    url: "images/particulas.png",
+    url: "https://edi-solar-system-r3f.netlify.app/",
+    image: "images/particulas.png",
     repo: "https://github.com/juan-pablo-garcia/edi-solar-system-r3f",
   },
   {
     title: "Generador de objetos 3D",
     description: "Ejemplo de generación de mallas 3D desde prompts.",
-    url: "images/generador-objetos-3d.png",
+    url: "https://github.com/juan-pablo-garcia/generador-objetos-3d",
+    image: "images/generador-objetos-3d.png",
     repo: "https://github.com/juan-pablo-garcia/generador-objetos-3d",
   },
   {
     title: "Asistente virtual 3D",
     description: "Interfaz 3D con IA para interacción natural.",
-    url: "images/asistente.png",
+    url: "https://github.com/juan-pablo-garcia/gpt-r3f",
+    image: "images/asistente.png",
     repo: "https://github.com/juan-pablo-garcia/gpt-r3f",
   },
 ];
