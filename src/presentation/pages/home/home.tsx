@@ -5,7 +5,12 @@ import FloatingTech from "@/components/ui/floating-tech";
 import AnimatedCharacter from "@/components/ui/animated-character";
 import FlickeringGrid from "@/components/ui/flickering-grid";
 import { useMousePosition } from "@/hooks/use-mouse-position";
-import { TextContent, ChatButton, CalComLink } from "./components";
+import {
+  TextContent,
+  ChatButton,
+  CalComLink,
+  SocialButtons,
+} from "./components";
 
 export default function Home() {
   const { t } = useI18n();
@@ -50,6 +55,7 @@ export default function Home() {
             <div className="col-span-12 md:col-span-7 lg:col-span-6 flex flex-col items-center md:items-start justify-center gap-2 md:gap-3 text-center md:text-left order-2 md:order-1">
               <TextContent t={t} />
               <ChatButton t={t} onChatOpen={handleChatOpen} />
+              <SocialButtons className="mt-2 md:mt-3" />
               <CalComLink t={t} />
             </div>
 
