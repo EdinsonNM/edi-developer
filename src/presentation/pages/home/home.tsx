@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[calc(100dvh-64px)] md:h-[calc(100dvh-80px)] pointer-events-none overflow-hidden">
+      <div className="hidden md:block absolute top-0 left-0 w-full h-[calc(100dvh-80px)] md:h-[calc(100dvh-96px)] pointer-events-none overflow-hidden">
         <FlickeringGrid
           className="relative inset-0 z-0 [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
           squareSize={4}
@@ -41,13 +41,13 @@ export default function Home() {
       </div>
 
       {/* Floating technology background layer */}
-      <div className="absolute top-0 left-0 w-full h-[calc(100dvh-64px)] md:h-[calc(100dvh-80px)] pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-[calc(100dvh-80px)] md:h-[calc(100dvh-96px)] pointer-events-none">
         <FloatingTech />
       </div>
 
       <div
         id="home-content"
-        className="pointer-events-auto z-30 flex flex-col content-center overflow-x-hidden min-h-[calc(100dvh-64px)] md:min-h-[calc(100dvh-80px)] justify-center"
+        className="pointer-events-auto z-30 flex flex-col content-center overflow-x-hidden min-h-[calc(100dvh-80px)] md:min-h-[calc(100dvh-96px)] justify-center"
       >
         <div className="mx-auto w-full max-w-7xl px-3 xs:px-4 sm:px-6 md:px-10 overflow-x-hidden">
           <div className="grid grid-cols-12 items-center gap-4 md:gap-8">
