@@ -11,14 +11,26 @@ const Home = React.lazy(() => import("@presentation/pages/home/home"));
 function AppRouter() {
   return (
     <HashRouter>
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="mis-proyectos" element={<MyProjects />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loading />}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="mis-proyectos"
+            element={
+              <Suspense fallback={<Loading />}>
+                <MyProjects />
+              </Suspense>
+            }
+          />
+        </Route>
+      </Routes>
     </HashRouter>
   );
 }
