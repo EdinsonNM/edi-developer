@@ -32,6 +32,9 @@ importers:
       '@react-three/rapier':
         specifier: ^1.4.0
         version: 1.5.0(@react-three/fiber@8.18.0(@types/react@18.3.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.163.0))(react@18.3.1)(three@0.163.0)
+      '@rive-app/react-canvas':
+        specifier: ^4.23.3
+        version: 4.23.3(react@18.3.1)
       '@tanstack/react-query':
         specifier: ^5.75.5
         version: 5.75.5(react@18.3.1)
@@ -637,6 +640,14 @@ packages:
   '@remix-run/router@1.23.0':
     resolution: {integrity: sha512-O3rHJzAQKamUz1fvE0Qaw0xSFqsA/yafi2iqeE0pvdFtCO1viYx8QL6f3Ln/aCCTLxs68SLf0KPM9eSeM8yBnA==}
     engines: {node: '>=14.0.0'}
+
+  '@rive-app/canvas@2.31.5':
+    resolution: {integrity: sha512-rVWN1RHM7nflvmJCOhrN/Q3d2Sasf8/J8EhArxB7/rFvby/96AREwkXlmKAMxgar8PzN9hyCKyanY5TmPAPd9A==}
+
+  '@rive-app/react-canvas@4.23.3':
+    resolution: {integrity: sha512-qvy896Joes4w1yTMo8BPdF2JfPKZ5rawGy0JEX2UXFM5VjMHc/NG46BIbdnBrk9ozX/HQ2uRWTp4hNkybJzgSQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0
 
   '@rollup/rollup-android-arm-eabi@4.40.2':
     resolution: {integrity: sha512-JkdNEq+DFxZfUwxvB58tHMHBHVgX23ew41g1OQinthJ+ryhdRk67O31S7sYw8u2lTjHUPFxwar07BBt1KHp/hg==}
@@ -2690,6 +2701,13 @@ snapshots:
       react: 18.3.1
 
   '@remix-run/router@1.23.0': {}
+
+  '@rive-app/canvas@2.31.5': {}
+
+  '@rive-app/react-canvas@4.23.3(react@18.3.1)':
+    dependencies:
+      '@rive-app/canvas': 2.31.5
+      react: 18.3.1
 
   '@rollup/rollup-android-arm-eabi@4.40.2':
     optional: true

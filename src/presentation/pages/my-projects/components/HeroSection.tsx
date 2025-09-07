@@ -30,12 +30,12 @@ export const HeroSection = ({
             animation="slideLeft"
             by="character"
             as={"h1"}
-            className={`mx-auto mb-2 xs:mb-3 sm:mb-4 md:mb-6 pointer-events-none font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center lg:text-start text-[#2b59c3] leading-tight`}
+            className={`mx-auto mb-2 xs:mb-3 sm:mb-4 md:mb-6 pointer-events-none font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center lg:text-start text-[#2b59c3] leading-tight`}
           >
             {t.recursosTitulo}
           </TextAnimate>
           <p
-            className={`mb-3 xs:mb-4 sm:mb-6 md:mb-8 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed ${
+            className={`text-start mb-3 xs:mb-4 sm:mb-6 md:mb-8 text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed ${
               isDark ? "text-white/90" : "text-slate-600"
             }`}
           >
@@ -66,16 +66,7 @@ export const HeroSection = ({
         <div className="col-span-1 lg:col-span-6 flex justify-center order-2 lg:order-2">
           <div className="relative">
             <div className="absolute -inset-0.5 xs:-inset-1 sm:-inset-2 md:-inset-3 lg:-inset-4 rounded-3xl blur-xl opacity-50"></div>
-            <AnimatedCharacter
-              className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px] object-contain"
-              alt="Home Right"
-              svgPath="/edidev.svg"
-              leftEyePosition={{ x: 200, y: 150 }}
-              rightEyePosition={{ x: 270, y: 148 }}
-              eyeRadius={8}
-              pupilRadius={4}
-              debugMode={false}
-            />
+            <AnimatedCharacter className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px] object-contain" />
           </div>
         </div>
       </div>
