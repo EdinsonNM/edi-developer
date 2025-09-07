@@ -13,6 +13,7 @@ interface Translations {
   // Navbar
   inicio: string;
   recursosDesarrolladores: string;
+  sobreMi: string;
   miPodcast: string;
   saas: string;
   charlasYTalleres: string;
@@ -70,6 +71,7 @@ interface Translations {
   demosYProyectos: string;
   podcast: string;
   tiktok: string;
+  historias: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -77,6 +79,7 @@ const translations: Record<Language, Translations> = {
     // Navbar
     inicio: "Inicio",
     recursosDesarrolladores: "Recursos para desarrolladores",
+    sobreMi: "Sobre mí",
     miPodcast: "Mi Podcast",
     saas: "SaaS",
     charlasYTalleres: "Charlas y talleres",
@@ -138,11 +141,13 @@ const translations: Record<Language, Translations> = {
     demosYProyectos: "Demos y Proyectos",
     podcast: "Podcast",
     tiktok: "TikTok",
+    historias: "Historias",
   },
   en: {
     // Navbar
     inicio: "Home",
     recursosDesarrolladores: "Developer Resources",
+    sobreMi: "About Me",
     miPodcast: "My Podcast",
     saas: "SaaS",
     charlasYTalleres: "Talks & Workshops",
@@ -204,6 +209,7 @@ const translations: Record<Language, Translations> = {
     demosYProyectos: "Demos & Projects",
     podcast: "Podcast",
     tiktok: "TikTok",
+    historias: "Stories",
   },
 };
 

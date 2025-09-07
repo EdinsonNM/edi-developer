@@ -49,22 +49,54 @@ type GeminiContent = {
   parts: Array<{ text: string }>;
 };
 
-function sanitizeGeminiResponse(parsedJson: any, language: 'es' | 'en'): AssistantMessageStructure {
+// Función para generar mensajes de error amigables y graciosos
+function getFriendlyErrorMessage(_error: Error, language: "es" | "en"): string {
+  const friendlyMessages = {
+    es: [
+      "¡Uy! Parece que mi creador tuvo un pequeño desliz con la configuración. 😅 Inténtalo de nuevo en un momento.",
+      "Oops! Algo salió mal en mi cerebro digital. Mi programador debe estar tomando café en lugar de arreglar bugs. ☕",
+      "¡Ay no! Mi conexión con el universo digital se cortó. Es como cuando se va la luz, pero más tecnológico. ⚡",
+      "Parece que hay un pequeño bug causado por mi creador. ¡Prometo que no es mi culpa! 🤖",
+      "¡Ups! Mi cerebro artificial necesita un reinicio. Es como cuando tu computadora se pone tonta. 💻",
+      "Algo salió mal en mi sistema. Mi programador probablemente está durmiendo la siesta en lugar de trabajar. 😴",
+    ],
+    en: [
+      "Oops! Looks like my creator had a little slip-up with the configuration. 😅 Try again in a moment.",
+      "Uh oh! Something went wrong in my digital brain. My programmer must be drinking coffee instead of fixing bugs. ☕",
+      "Oh no! My connection to the digital universe got cut off. It's like when the power goes out, but more technological. ⚡",
+      "Seems like there's a little bug caused by my creator. I promise it's not my fault! 🤖",
+      "Oops! My artificial brain needs a reboot. It's like when your computer gets silly. 💻",
+      "Something went wrong in my system. My programmer is probably taking a nap instead of working. 😴",
+    ],
+  };
+
+  const messages = friendlyMessages[language];
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  return messages[randomIndex];
+}
+
+function sanitizeGeminiResponse(
+  parsedJson: any,
+  language: "es" | "en"
+): AssistantMessageStructure {
   const messages = {
     es: {
-      errorProcessing: "Hubo un problema al procesar la respuesta del asistente.",
-      offTopicDefault: "Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More...",
-      noResponse: "Sin respuesta."
+      errorProcessing:
+        "Hubo un problema al procesar la respuesta del asistente.",
+      offTopicDefault:
+        "Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More...",
+      noResponse: "Sin respuesta.",
     },
     en: {
       errorProcessing: "There was a problem processing the assistant response.",
-      offTopicDefault: "Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More...",
-      noResponse: "No response."
-    }
+      offTopicDefault:
+        "Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More...",
+      noResponse: "No response.",
+    },
   };
-  
+
   const lang = messages[language];
-  
+
   // Si parsedJson es null o undefined, devuelve la estructura de "fuera de tema" o una por defecto.
   if (!parsedJson) {
     return {
@@ -100,32 +132,36 @@ function sanitizeGeminiResponse(parsedJson: any, language: 'es' | 'en'): Assista
 }
 
 // Función para generar prompt dinámico según el idioma
-const generateDynamicPrompt = (language: 'es' | 'en'): string => {
+const generateDynamicPrompt = (language: "es" | "en"): string => {
   const languageInstructions = {
     es: {
-      responseInstruction: 'IMPORTANTE: Debes responder SIEMPRE en español. Todos los textos en el campo "response" deben estar en español.',
-      offTopicResponse: 'Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él.',
-      errorMessage: 'Hubo un problema al procesar la respuesta del asistente.'
+      responseInstruction:
+        'IMPORTANTE: Debes responder SIEMPRE en español. Todos los textos en el campo "response" deben estar en español.',
+      offTopicResponse:
+        "Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él.",
+      errorMessage: "Hubo un problema al procesar la respuesta del asistente.",
     },
     en: {
-      responseInstruction: 'IMPORTANT: You must ALWAYS respond in English. All texts in the "response" field must be in English.',
-      offTopicResponse: 'Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More. You can ask me about his experience, skills, projects, talks, or any professional aspect related to him.',
-      errorMessage: 'There was a problem processing the assistant response.'
-    }
+      responseInstruction:
+        'IMPORTANT: You must ALWAYS respond in English. All texts in the "response" field must be in English.',
+      offTopicResponse:
+        "Hello, this chat is designed exclusively to answer questions about Edinson Nuñez More. You can ask me about his experience, skills, projects, talks, or any professional aspect related to him.",
+      errorMessage: "There was a problem processing the assistant response.",
+    },
   };
 
   const lang = languageInstructions[language];
-  
+
   // Crear el prompt con instrucciones de idioma
   const dynamicPrompt = `${lang.responseInstruction}
 
 ---
 
 ${systemPrompt.replace(
-    '"Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él."',
-    `"${lang.offTopicResponse}"`
-  )}`;
-  
+  '"Hola, este chat está diseñado exclusivamente para responder preguntas sobre Edinson Nuñez More. Puedes preguntarme sobre su experiencia, habilidades, proyectos, charlas o cualquier aspecto profesional relacionado con él."',
+  `"${lang.offTopicResponse}"`
+)}`;
+
   return dynamicPrompt;
 };
 
@@ -217,8 +253,10 @@ export default function useCompletionsGemini() {
         );
       }
 
-      const assistantMessageStructure =
-        sanitizeGeminiResponse(parsedAssistantJson, language);
+      const assistantMessageStructure = sanitizeGeminiResponse(
+        parsedAssistantJson,
+        language
+      );
 
       // Añadir respuesta del asistente a la UI
       const assistantUIMessage: UIMessageType = {
@@ -241,11 +279,12 @@ export default function useCompletionsGemini() {
     },
     onError: (error: Error) => {
       console.error("Error en la mutación:", error);
-      // Podrías añadir un mensaje de error a uiMessages aquí
+      // Generar mensaje de error amigable y gracioso
+      const friendlyMessage = getFriendlyErrorMessage(error, language);
       const errorUIMessage: UIMessageType = {
         id: `error-${Date.now()}`,
-        role: Role.MODEL, // O un rol 'SYSTEM_ERROR' si lo prefieres
-        content: `Error: ${error.message}`,
+        role: Role.MODEL,
+        content: friendlyMessage,
       };
       setUiMessages((prev) => [...prev, errorUIMessage]);
     },

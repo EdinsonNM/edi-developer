@@ -12,6 +12,7 @@ interface HeroSectionProps {
   publicacionesCount: number;
   demosCount: number;
   tiktoksCount: number;
+  historiasCount: number;
 }
 
 // Componente memoizado para el contenido de texto
@@ -46,10 +47,12 @@ const HeroBadges = memo(
     publicacionesCount,
     demosCount,
     tiktoksCount,
+    historiasCount,
   }: {
     publicacionesCount: number;
     demosCount: number;
     tiktoksCount: number;
+    historiasCount: number;
   }) => (
     <div className="flex flex-wrap gap-1 xs:gap-1.5 sm:gap-2 md:gap-3">
       <Badge
@@ -70,6 +73,12 @@ const HeroBadges = memo(
       >
         🎥 {tiktoksCount} Videos
       </Badge>
+      <Badge
+        variant="secondary"
+        className="px-1.5 xs:px-2 sm:px-3 md:px-4 py-0.5 xs:py-1 sm:py-1.5 md:py-2 text-xs"
+      >
+        📚 {historiasCount} Historias
+      </Badge>
     </div>
   )
 );
@@ -77,7 +86,12 @@ const HeroBadges = memo(
 HeroBadges.displayName = "HeroBadges";
 
 export const HeroSection = memo(
-  ({ publicacionesCount, demosCount, tiktoksCount }: HeroSectionProps) => {
+  ({
+    publicacionesCount,
+    demosCount,
+    tiktoksCount,
+    historiasCount,
+  }: HeroSectionProps) => {
     const { isDark } = useContext(LayoutContext);
     const { inputX, inputY } = useMousePosition();
     const { t } = useI18n();
@@ -92,6 +106,7 @@ export const HeroSection = memo(
               publicacionesCount={publicacionesCount}
               demosCount={demosCount}
               tiktoksCount={tiktoksCount}
+              historiasCount={historiasCount}
             />
           </div>
           {/* Character - Second on mobile */}

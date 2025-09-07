@@ -35,6 +35,7 @@ function NavBar() {
   const navigation = [
     { url: "/", title: t.inicio },
     { url: "mis-proyectos", title: t.recursosDesarrolladores },
+    { url: "sobre-mi", title: t.sobreMi },
 
     //{ url: "sass", title: t.saas },
     //{ url: "charlas", title: t.charlasYTalleres },
@@ -55,7 +56,7 @@ function NavBar() {
   return (
     <>
       <nav
-        className={`bg-white navbar relative w-full flex flex-row items-center z-50 py-2 px-2 xs:px-3 md:py-4 md:px-10 pointer-events-auto transition-colors duration-300 border-b h-16 md:h-20 ${
+        className={`bg-white navbar relative w-full flex flex-row items-center z-50 py-4 px-4 xs:px-6 md:py-6 md:px-8 lg:px-12 pointer-events-auto transition-colors duration-300 border-b h-20 md:h-24 ${
           isScrolled
             ? isDark
               ? "bg-gray-900/70 backdrop-blur-md border-white/10"

@@ -1,7 +1,9 @@
 import "./loading.css";
 const Loading = () => {
   return (
-    <div className="loader"></div>
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="loader"></div>
+    </div>
   );
 };
 
