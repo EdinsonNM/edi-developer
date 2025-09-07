@@ -6,6 +6,7 @@ import { useContext } from "react";
 import LayoutContext from "@presentation/layout/layout.context";
 import { useI18n } from "@presentation/utils/use-i18n";
 import AnimatedCharacter from "@/components/ui/animated-character";
+import { useMousePosition } from "@/hooks/use-mouse-position";
 
 interface HeroSectionProps {
   publicacionesCount: number;
@@ -19,6 +20,7 @@ export const HeroSection = ({
   tiktoksCount,
 }: HeroSectionProps) => {
   const { isDark } = useContext(LayoutContext);
+  const { inputX, inputY } = useMousePosition();
   const { t } = useI18n();
 
   return (
@@ -66,7 +68,11 @@ export const HeroSection = ({
         <div className="col-span-1 lg:col-span-6 flex justify-center order-2 lg:order-2">
           <div className="relative">
             <div className="absolute -inset-0.5 xs:-inset-1 sm:-inset-2 md:-inset-3 lg:-inset-4 rounded-3xl blur-xl opacity-50"></div>
-            <AnimatedCharacter className="w-[100px] h-[100px] xs:w-[120px] xs:h-[120px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] lg:w-[200px] lg:h-[200px] xl:w-[220px] xl:h-[220px] object-contain" />
+            <AnimatedCharacter
+              mouseInputX={inputX}
+              mouseInputY={inputY}
+              className="w-[500px] h-[500px] xs:w-[260px] xs:h-[260px] sm:w-[320px] sm:h-[320px] md:w-[480px] md:h-[480px]  object-contain"
+            />
           </div>
         </div>
       </div>
