@@ -71,6 +71,7 @@ interface Translations {
   demosYProyectos: string;
   podcast: string;
   tiktok: string;
+  historias: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -140,6 +141,7 @@ const translations: Record<Language, Translations> = {
     demosYProyectos: "Demos y Proyectos",
     podcast: "Podcast",
     tiktok: "TikTok",
+    historias: "Historias",
   },
   en: {
     // Navbar
@@ -207,6 +209,7 @@ const translations: Record<Language, Translations> = {
     demosYProyectos: "Demos & Projects",
     podcast: "Podcast",
     tiktok: "TikTok",
+    historias: "Stories",
   },
 };
 

@@ -19,9 +19,10 @@ export const publicaciones = [
     aspect: "vertical" as const,
     embedType: "embedly" as const,
   },
+
   {
-    title: "La edad oscura del código",
-    url: "https://g.co/gemini/share/ab6ad3650c61",
+    title: "Clean Code: ¿Escribes para la máquina o para las personas?",
+    url: "https://medium.com/@nmedinson/clean-code-escribes-para-la-máquina-o-para-las-personas-2a19ddae9aca",
     aspect: "vertical" as const,
     embedType: "embedly" as const,
   },
@@ -89,4 +90,45 @@ export const tiktoks = [
     aspect: "vertical" as const,
     embedType: "tiktok" as const,
   },
+];
+
+export const historias = [
+  {
+    title: "La edad oscura del código",
+    url: "https://g.co/gemini/share/ab6ad3650c61",
+    aspect: "vertical" as const,
+    embedType: "embedly" as const,
+  },
+  {
+    title: "El Desarrollador y la Máquina",
+    description:
+      "Una historia sobre la evolución de la programación y cómo la IA está transformando el desarrollo de software.",
+    url: "https://g.co/gemini/share/e01d591df5c6",
+    aspect: "vertical" as const,
+    embedType: "embedly" as const,
+  },
+  /*{
+    title: "El Código Perdido",
+    description:
+      "Un cuento sobre un desarrollador que encuentra un código misterioso que cambia su perspectiva sobre la programación.",
+    url: "https://g.co/gemini/share/el-codigo-perdido",
+    aspect: "vertical" as const,
+    embedType: "embedly" as const,
+  },
+  {
+    title: "La Ciudad Digital",
+    description:
+      "Una historia futurista sobre cómo las ciudades inteligentes podrían funcionar con código y algoritmos.",
+    url: "https://g.co/gemini/share/la-ciudad-digital",
+    aspect: "vertical" as const,
+    embedType: "embedly" as const,
+  },
+  {
+    title: "El Bug que Cambió Todo",
+    description:
+      "Un relato sobre cómo un pequeño error de programación llevó a descubrimientos inesperados en el mundo digital.",
+    url: "https://g.co/gemini/share/el-bug-que-cambio-todo",
+    aspect: "vertical" as const,
+    embedType: "embedly" as const,
+  },*/
 ];

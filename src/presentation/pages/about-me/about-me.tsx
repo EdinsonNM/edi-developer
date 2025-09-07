@@ -2,13 +2,19 @@
 
 import { useContext } from "react";
 import LayoutContext from "@presentation/layout/layout.context";
-import { useI18n } from "@presentation/utils/use-i18n";
 import FlickeringGrid from "@/components/ui/flickering-grid";
 import { HeroSection } from "./components/HeroSection";
+import { MyExperienceSection } from "./components/MyExperienceSection";
+import { WhatIDoSection } from "./components/WhatIDoSection";
+import { CurrentProjectsSection } from "./components/CurrentProjectsSection";
+import { HowIWorkSection } from "./components/HowIWorkSection";
+import { TechStackSection } from "./components/TechStackSection";
+import { AchievementsSection } from "./components/AchievementsSection";
+import { WhatMovesMeSection } from "./components/WhatMovesMeSection";
+import { CTASection } from "./components/CTASection";
 
 export default function AboutMe() {
   const { isDark } = useContext(LayoutContext);
-  const { t } = useI18n();
 
   return (
     <div
@@ -31,6 +37,30 @@ export default function AboutMe() {
       <div className="w-full relative container mx-auto py-3 xs:py-4 sm:py-6 md:py-8 lg:py-10 pb-8 overflow-x-hidden">
         {/* Hero section con el cubo 3D */}
         <HeroSection />
+
+        {/* Sección Mi experiencia */}
+        <MyExperienceSection />
+
+        {/* Sección Qué hago hoy */}
+        <WhatIDoSection />
+
+        {/* Sección Proyectos actuales */}
+        <CurrentProjectsSection />
+
+        {/* Sección Cómo trabajo */}
+        <HowIWorkSection />
+
+        {/* Sección Stack favorito */}
+        <TechStackSection />
+
+        {/* Sección Logros y enfoque */}
+        <AchievementsSection />
+
+        {/* Sección Lo que me mueve */}
+        <WhatMovesMeSection />
+
+        {/* CTA final */}
+        <CTASection />
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import {
   demosProyectos,
   podcast,
   tiktoks,
+  historias,
 } from "./data/resources";
 
 export default function MyProjects() {
@@ -46,6 +47,7 @@ export default function MyProjects() {
           publicacionesCount={publicaciones.length}
           demosCount={demosProyectos.length}
           tiktoksCount={tiktoks.length}
+          historiasCount={historias.length}
         />
 
         {/* Enhanced Netflix-style rows - Mobile optimized */}
@@ -54,6 +56,8 @@ export default function MyProjects() {
             title={t.publicaciones}
             items={publicaciones as unknown as ResourceItem[]}
           />
+
+          <RowSection title={t.historias} items={historias} />
           <RowSection
             title={t.demosYProyectos}
             items={demosProyectos.map((d) => ({
@@ -68,7 +72,6 @@ export default function MyProjects() {
             title={t.podcast}
             items={podcast as unknown as ResourceItem[]}
           />
-          <RowSection title={t.tiktok} items={tiktoks} />
         </div>
       </div>
     </div>

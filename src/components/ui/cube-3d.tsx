@@ -28,10 +28,21 @@ function RotatingCube() {
 
 export default function Cube3D({ className = "" }: Cube3DProps) {
   return (
-    <div className={`w-full h-full ${className}`}>
+    <div className={`w-full h-full relative ${className}`}>
+      {/* Degradado circular de fondo */}
+      <div
+        className="absolute inset-0 rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.2) 30%, rgba(147, 197, 253, 0.1) 60%, transparent 100%)",
+          filter: "blur(1px)",
+        }}
+      />
+
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         style={{ background: "transparent" }}
+        className="relative z-10"
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
