@@ -15,7 +15,7 @@ const TextContent = memo(({ t }: TextContentProps) => (
         animation="slideLeft"
         by="character"
         as={"h1"}
-        className="pointer-events-none font-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center md:text-left text-[#2b59c3]"
+        className="pointer-events-none font-bold text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-center md:text-left text-[#2b59c3]"
         once={true}
       >
         {t.helloImEdinson}
