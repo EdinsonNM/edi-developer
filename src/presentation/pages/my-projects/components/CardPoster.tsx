@@ -47,7 +47,7 @@ export const CardPoster = ({ item }: CardPosterProps) => {
     const id = extractTikTokId(item.url);
     return (
       <Card
-        className={`${size} ${baseCardStyles} ${surfaceStyles} rounded-2xl`}
+        className={`${size} ${baseCardStyles} ${surfaceStyles} rounded-2xl flex-shrink-0`}
       >
         {/* Padding interno para mejorar el respiro visual del embed */}
         <CardContent className="p-2 xs:p-3 sm:p-4 md:p-5 h-full">
@@ -73,7 +73,7 @@ export const CardPoster = ({ item }: CardPosterProps) => {
       : "w-[240px] xs:w-[280px] sm:w-[320px] md:w-[420px] lg:w-[560px]";
     return (
       <Card
-        className={`${sizeEmbed} ${baseCardStyles} ${surfaceStyles} rounded-2xl`}
+        className={`${sizeEmbed} ${baseCardStyles} ${surfaceStyles} rounded-2xl flex-shrink-0`}
       >
         {/* Altura automática para que el embed determine su tamaño */}
         <CardContent className="p-2 xs:p-3 sm:p-4 md:p-5 relative">
@@ -103,7 +103,7 @@ export const CardPoster = ({ item }: CardPosterProps) => {
     // Spotify podcast embed (fixed aspect from provider)
     return (
       <Card
-        className={`w-[240px] xs:w-[280px] sm:w-[320px] md:w-[420px] lg:w-[520px] aspect-[16/9] ${baseCardStyles} ${surfaceStyles} rounded-2xl`}
+        className={`w-[240px] xs:w-[280px] sm:w-[320px] md:w-[420px] lg:w-[520px] aspect-[16/9] ${baseCardStyles} ${surfaceStyles} rounded-2xl flex-shrink-0`}
       >
         {/* Padding para dar respiro al iframe */}
         <CardContent className="p-2 xs:p-3 sm:p-4 md:p-5 h-full relative">
@@ -133,7 +133,9 @@ export const CardPoster = ({ item }: CardPosterProps) => {
 
   // Default link card
   return (
-    <Card className={`${size} ${baseCardStyles} ${surfaceStyles} rounded-2xl`}>
+    <Card
+      className={`${size} ${baseCardStyles} ${surfaceStyles} rounded-2xl flex-shrink-0`}
+    >
       {/* Para cards con imagen de fondo, mantenemos full-bleed y mejoramos overlays */}
       <CardContent className="p-0 h-full relative overflow-hidden">
         <a
