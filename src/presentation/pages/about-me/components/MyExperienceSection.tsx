@@ -3,7 +3,6 @@
 import { useContext, memo } from "react";
 import LayoutContext from "@presentation/layout/layout.context";
 import { TextAnimate } from "@/components/ui/text-animate";
-import { AnimatedList } from "@/components/ui/animated-list";
 
 const ExperienceItem = memo(
   ({
