@@ -56,7 +56,7 @@ export default function Home() {
             {/* Personaje animado */}
             <div className="col-span-12 md:col-span-5 lg:col-span-6 flex justify-center md:justify-end items-center pt-2 xs:pt-4 md:pt-0 md:p-8 pointer-events-auto order-1 md:order-2">
               <AnimatedCharacter
-                className="w-[260px] h-[260px] xs:w-[260px] xs:h-[260px] sm:w-[220px] sm:h-[220px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] object-contain overflow-hidden"
+                className="w-[260px] h-[260px] xs:w-[260px] xs:h-[260px] sm:w-[320px] sm:h-[320px] md:w-[480px] md:h-[480px] lg:w-[500px] lg:h-[500px] xl:w-[520px] xl:h-[520px] object-contain overflow-hidden"
                 mouseInputX={inputX}
                 mouseInputY={inputY}
               />
