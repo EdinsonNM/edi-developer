@@ -35,7 +35,7 @@ export default function AboutMe() {
         />
       </div>
       <div className="w-full relative container mx-auto py-3 xs:py-4 sm:py-6 md:py-8 lg:py-10 pb-8 overflow-x-hidden">
-        {/* Hero section con el cubo 3D */}
+        {/* Hero section con imágenes como fondo */}
         <HeroSection />
 
         {/* Sección Mi experiencia */}
