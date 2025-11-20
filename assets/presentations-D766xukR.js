@@ -1,4 +1,4 @@
-import{c as e}from"./external-link-DWjxYobW.js";const o="/assets/logo-BNqzkU7N.png";/**
+import{c as e}from"./external-link-TvFQzxO4.js";const o="/assets/logo-BNqzkU7N.png";/**
  * @license lucide-react v0.469.0 - ISC
  *
  * This source code is licensed under the ISC license.
