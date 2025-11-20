@@ -7,11 +7,13 @@ import {
   middleCircleIcons,
   outerCircleIcons,
 } from "../../pages/home/components/icons-config";
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 // Combinar todos los iconos de icons-config.ts
 const icons = [...innerCircleIcons, ...middleCircleIcons, ...outerCircleIcons];
 
 export function HeroSection() {
+  const { t } = useI18n();
   return (
     <main
       id="inicio"
@@ -74,16 +76,13 @@ export function HeroSection() {
 
         {/* Main Headline */}
         <h1 className="max-w-5xl text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl md:text-8xl mb-6 animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-center">
-          Edi Developer <br />
-          <span className="text-slate-500">
-            Innovación que abre oportunidades
-          </span>
+          {t.heroTitle} <br />
+          <span className="text-slate-500">{t.heroSubtitle}</span>
         </h1>
 
         {/* Subtitle */}
         <p className="max-w-2xl text-lg text-slate-600 mb-10 animate-fade-in-up opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards] text-center">
-          La tecnología es magia cuando abre oportunidades. Y yo construyo esa
-          magia para quienes más la necesitan.
+          {t.heroDescription}
         </p>
 
         {/* CTA Buttons */}
@@ -93,7 +92,7 @@ export function HeroSection() {
             download="Resume English.pdf"
             className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20"
           >
-            <span>Download CV</span>
+            <span>{t.downloadCV}</span>
             <ArrowRight className="h-4 w-4" />
           </a>
           <a
@@ -112,7 +111,7 @@ export function HeroSection() {
             }}
             className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
           >
-            Contáctame
+            {t.contactMe}
           </a>
         </div>
 

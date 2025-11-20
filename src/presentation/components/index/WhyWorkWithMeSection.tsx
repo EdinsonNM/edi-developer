@@ -1,49 +1,46 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, Eye, MessageSquare, CheckCircle, Heart } from "lucide-react";
-
-const reasons = [
-  {
-    icon: Award,
-    title: "14+ años de experiencia",
-    description:
-      "Construyendo software en compañías, startups y proyectos sociales.",
-  },
-  {
-    icon: Eye,
-    title: "Visión completa",
-    description:
-      "Desde arquitectura hasta producto, UI/UX e inteligencia artificial.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Comunicación clara",
-    description:
-      "Explico conceptos complejos de forma simple. Trabajo bien con equipos técnicos y no técnicos.",
-  },
-  {
-    icon: CheckCircle,
-    title: "Entrega con calidad",
-    description:
-      "Código limpio, buenas prácticas, testing, documentación y enfoque escalable.",
-  },
-  {
-    icon: Heart,
-    title: "Enfoque humano",
-    description:
-      "Busco impacto. Creo tecnología que abra oportunidades reales.",
-  },
-];
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function WhyWorkWithMeSection() {
+  const { t } = useI18n();
+
+  const reasons = [
+    {
+      icon: Award,
+      title: t.yearsExperience,
+      description: t.yearsExperienceDesc,
+    },
+    {
+      icon: Eye,
+      title: t.completeVision,
+      description: t.completeVisionDesc,
+    },
+    {
+      icon: MessageSquare,
+      title: t.clearCommunication,
+      description: t.clearCommunicationDesc,
+    },
+    {
+      icon: CheckCircle,
+      title: t.qualityDelivery,
+      description: t.qualityDeliveryDesc,
+    },
+    {
+      icon: Heart,
+      title: t.humanApproach,
+      description: t.humanApproachDesc,
+    },
+  ];
   return (
     <section id="por-que-trabajar-conmigo" className="relative z-10 py-24 px-4 md:px-6 bg-slate-50/50 border-t border-slate-100">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-            Por qué trabajar conmigo
+            {t.whyWorkWithMeTitle}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Valores y capacidades que marcan la diferencia en cada proyecto.
+            {t.whyWorkWithMeSubtitle}
           </p>
         </div>
 

@@ -72,6 +72,116 @@ interface Translations {
   podcast: string;
   tiktok: string;
   historias: string;
+
+  // Index page - Navigation
+  queHago: string;
+  proyectos: string;
+  porQueTrabajarConmigo: string;
+  charlas: string;
+  contacto: string;
+  downloadCV: string;
+
+  // Index page - Hero Section
+  heroTitle: string;
+  heroSubtitle: string;
+  heroDescription: string;
+  contactMe: string;
+
+  // Index page - About Section
+  aboutTitle: string;
+  aboutDescription1: string;
+  aboutDescription2: string;
+  aboutName: string;
+  aboutYears: string;
+
+  // Index page - What I Do Section
+  whatIDoTitle: string;
+  whatIDoSubtitle: string;
+  aiSolutions: string;
+  aiSolutionsDesc: string;
+  webArchitecture: string;
+  webArchitectureDesc: string;
+  threeDExperiences: string;
+  threeDExperiencesDesc: string;
+  educationWorkshops: string;
+  educationWorkshopsDesc: string;
+  productInnovation: string;
+  productInnovationDesc: string;
+
+  // Index page - Featured Projects Section
+  featuredProjectsTitle: string;
+  featuredProjectsSubtitle: string;
+  neokidsTitle: string;
+  neokidsSubtitle: string;
+  neokidsDesc: string;
+  costproTitle: string;
+  costproSubtitle: string;
+  costproDesc: string;
+  zypherTitle: string;
+  zypherSubtitle: string;
+  zypherDesc: string;
+  yaquTitle: string;
+  yaquSubtitle: string;
+  yaquDesc: string;
+
+  // Index page - Why Work With Me Section
+  whyWorkWithMeTitle: string;
+  whyWorkWithMeSubtitle: string;
+  yearsExperience: string;
+  yearsExperienceDesc: string;
+  completeVision: string;
+  completeVisionDesc: string;
+  clearCommunication: string;
+  clearCommunicationDesc: string;
+  qualityDelivery: string;
+  qualityDeliveryDesc: string;
+  humanApproach: string;
+  humanApproachDesc: string;
+
+  // Index page - Talks Section
+  talksTitle: string;
+  talksSubtitle: string;
+  topicsITeach: string;
+  aiForDevelopers: string;
+  technicalStorytelling: string;
+  modernSoftwareEngineering: string;
+  threeDWithReact: string;
+  educationalInnovation: string;
+  technologyWithPurpose: string;
+  inviteMeToTalk: string;
+
+  // Index page - Fabrica Programadores Section
+  fabricaTitle: string;
+  fabricaDescription1: string;
+  fabricaDescription2: string;
+  fabricaBookName: string;
+  readStory: string;
+  viewIllustrations: string;
+
+  // Index page - Presentations Section
+  presentationsTitle: string;
+  presentationsSubtitle: string;
+  presentationsSubtitleBold: string;
+  viewAllPresentations: string;
+
+  // Index page - Contact Section
+  letsWorkTogether: string;
+  contactSubtitle: string;
+  contactTitle: string;
+  contactDescription: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  sendButton: string;
+  sending: string;
+  messageSentSuccess: string;
+  messageError: string;
+
+  // Index page - Footer Section
+  footerTagline: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -142,6 +252,142 @@ const translations: Record<Language, Translations> = {
     podcast: "Podcast",
     tiktok: "TikTok",
     historias: "Historias",
+
+    // Index page - Navigation
+    queHago: "Qué hago",
+    proyectos: "Proyectos",
+    porQueTrabajarConmigo: "Por qué trabajar conmigo",
+    charlas: "Charlas",
+    contacto: "Contacto",
+    downloadCV: "Descargar CV",
+
+    // Index page - Hero Section
+    heroTitle: "Edi Developer",
+    heroSubtitle: "Innovación que abre oportunidades",
+    heroDescription:
+      "La tecnología es magia cuando abre oportunidades. Y yo construyo esa magia para quienes más la necesitan.",
+    contactMe: "Contáctame",
+
+    // Index page - About Section
+    aboutTitle: "Sobre mí",
+    aboutDescription1:
+      "Soy {name}, ingeniero de software con más de {years} construyendo soluciones que combinan IA, arquitectura moderna, experiencias 3D y educación.",
+    aboutDescription2:
+      "Mi enfoque es simple: crear tecnología que transforme realidades.",
+    aboutName: "Edinson Nuñez More",
+    aboutYears: "14 años",
+
+    // Index page - What I Do Section
+    whatIDoTitle: "Qué hago",
+    whatIDoSubtitle:
+      "Servicios especializados para clientes y empresas que buscan innovación tecnológica.",
+    aiSolutions: "Soluciones con IA",
+    aiSolutionsDesc:
+      "Aplicaciones inteligentes, asistentes conversacionales, agentes, análisis de datos y automatización.",
+    webArchitecture: "Arquitectura & Desarrollo Web",
+    webArchitectureDesc:
+      "Sistemas escalables con React, Angular, NestJS, Node, Supabase y arquitecturas limpias.",
+    threeDExperiences: "Experiencias 3D & Visuales",
+    threeDExperiencesDesc:
+      "React Three Fiber, WebGL, animaciones, mundos interactivos y visualizaciones técnicas.",
+    educationWorkshops: "Educación & Workshops",
+    educationWorkshopsDesc:
+      "Charlas, mentoría y formación en IA, programación moderna y tecnología para estudiantes y equipos.",
+    productInnovation: "Producto & Innovación",
+    productInnovationDesc:
+      "Diseño de experiencias, prototipos funcionales, estrategia tecnológica y visión técnica.",
+
+    // Index page - Featured Projects Section
+    featuredProjectsTitle: "Proyectos Destacados",
+    featuredProjectsSubtitle: "Soluciones innovadoras que transforman realidades.",
+    neokidsTitle: "NeoKids",
+    neokidsSubtitle: "Asistente inteligente para apoyar a niños y jóvenes en la educación",
+    neokidsDesc:
+      "IA educativa que guía a estudiantes con herramientas personalizadas para alcanzar sus metas de aprendizaje.",
+    costproTitle: "CostPro",
+    costproSubtitle: "Software de presupuestos",
+    costproDesc:
+      "Potente herramienta de costos y presupuestos para cualquier proyecto. Precisión y control en cada etapa.",
+    zypherTitle: "Zypher",
+    zypherSubtitle: "Agenda escolar inteligente",
+    zypherDesc:
+      "La plataforma que une colegios, familias y estudiantes. Comunicación fluida y seguimiento en tiempo real.",
+    yaquTitle: "Yaqu",
+    yaquSubtitle: "Gestión moderna de agua",
+    yaquDesc:
+      "Transforma la gestión del agua con mapas interactivos, pagos digitales e inteligencia artificial.",
+
+    // Index page - Why Work With Me Section
+    whyWorkWithMeTitle: "Por qué trabajar conmigo",
+    whyWorkWithMeSubtitle:
+      "Valores y capacidades que marcan la diferencia en cada proyecto.",
+    yearsExperience: "14+ años de experiencia",
+    yearsExperienceDesc:
+      "Construyendo software en compañías, startups y proyectos sociales.",
+    completeVision: "Visión completa",
+    completeVisionDesc:
+      "Desde arquitectura hasta producto, UI/UX e inteligencia artificial.",
+    clearCommunication: "Comunicación clara",
+    clearCommunicationDesc:
+      "Explico conceptos complejos de forma simple. Trabajo bien con equipos técnicos y no técnicos.",
+    qualityDelivery: "Entrega con calidad",
+    qualityDeliveryDesc:
+      "Código limpio, buenas prácticas, testing, documentación y enfoque escalable.",
+    humanApproach: "Enfoque humano",
+    humanApproachDesc:
+      "Busco impacto. Creo tecnología que abra oportunidades reales.",
+
+    // Index page - Talks Section
+    talksTitle: "Charlas y Workshops",
+    talksSubtitle:
+      "Comparto conocimiento y experiencias sobre tecnología e innovación.",
+    topicsITeach: "Temas que imparto",
+    aiForDevelopers: "IA para desarrolladores",
+    technicalStorytelling: "Storytelling técnico",
+    modernSoftwareEngineering: "Ingeniería de software moderna",
+    threeDWithReact: "3D con React Three Fiber",
+    educationalInnovation: "Innovación educativa",
+    technologyWithPurpose: "Cómo crear tecnología con propósito",
+    inviteMeToTalk: "Invítame a dar una charla",
+
+    // Index page - Fabrica Programadores Section
+    fabricaTitle: "Fábrica de Programadores — Un cuento para inspirar a los niños",
+    fabricaDescription1:
+      "Desde mi experiencia enseñando tecnología, creé {bookName}, un cuento ilustrado que introduce a los niños al mundo de la programación de manera divertida, tierna y cercana.",
+    fabricaDescription2:
+      "Mi objetivo es despertar curiosidad, creatividad y la idea de que cualquiera, sin importar su origen, puede construir tecnología.",
+    fabricaBookName: "Fábrica de Programadores",
+    readStory: "Leer el cuento",
+    viewIllustrations: "Ver ilustraciones",
+
+    // Index page - Presentations Section
+    presentationsTitle: "Presentaciones y Materiales",
+    presentationsSubtitle:
+      "Comparto materiales de charlas y presentaciones sobre {bold} y otros temas técnicos que he dictado en diferentes eventos y conferencias.",
+    presentationsSubtitleBold: "IA, desarrollo de software, arquitectura",
+    viewAllPresentations: "Ver todas las presentaciones",
+
+    // Index page - Contact Section
+    letsWorkTogether: "Trabajemos juntos",
+    contactSubtitle:
+      "Completa el formulario o escríbeme directamente para proyectos, colaboraciones o charlas.",
+    contactTitle: "Contacto",
+    contactDescription:
+      "Estoy abierto a nuevas oportunidades y proyectos interesantes.",
+    nameLabel: "Nombre",
+    namePlaceholder: "Tu nombre",
+    emailLabel: "Email",
+    emailPlaceholder: "tu@email.com",
+    messageLabel: "Mensaje",
+    messagePlaceholder: "Cuéntame sobre tu proyecto o idea...",
+    sendButton: "Enviar",
+    sending: "Enviando...",
+    messageSentSuccess: "¡Mensaje enviado con éxito! Te responderé pronto.",
+    messageError:
+      "Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.",
+
+    // Index page - Footer Section
+    footerTagline: "Construyendo futuro con tecnología y propósito.",
   },
   en: {
     // Navbar
@@ -210,6 +456,142 @@ const translations: Record<Language, Translations> = {
     podcast: "Podcast",
     tiktok: "TikTok",
     historias: "Stories",
+
+    // Index page - Navigation
+    queHago: "What I Do",
+    proyectos: "Projects",
+    porQueTrabajarConmigo: "Why Work With Me",
+    charlas: "Talks",
+    contacto: "Contact",
+    downloadCV: "Download CV",
+
+    // Index page - Hero Section
+    heroTitle: "Edi Developer",
+    heroSubtitle: "Innovation that opens opportunities",
+    heroDescription:
+      "Technology is magic when it opens opportunities. And I build that magic for those who need it most.",
+    contactMe: "Contact Me",
+
+    // Index page - About Section
+    aboutTitle: "About Me",
+    aboutDescription1:
+      "I'm {name}, a software engineer with over {years} building solutions that combine AI, modern architecture, 3D experiences, and education.",
+    aboutDescription2:
+      "My approach is simple: create technology that transforms realities.",
+    aboutName: "Edinson Nuñez More",
+    aboutYears: "14 years",
+
+    // Index page - What I Do Section
+    whatIDoTitle: "What I Do",
+    whatIDoSubtitle:
+      "Specialized services for clients and companies seeking technological innovation.",
+    aiSolutions: "AI Solutions",
+    aiSolutionsDesc:
+      "Intelligent applications, conversational assistants, agents, data analysis, and automation.",
+    webArchitecture: "Web Architecture & Development",
+    webArchitectureDesc:
+      "Scalable systems with React, Angular, NestJS, Node, Supabase, and clean architectures.",
+    threeDExperiences: "3D & Visual Experiences",
+    threeDExperiencesDesc:
+      "React Three Fiber, WebGL, animations, interactive worlds, and technical visualizations.",
+    educationWorkshops: "Education & Workshops",
+    educationWorkshopsDesc:
+      "Talks, mentoring, and training in AI, modern programming, and technology for students and teams.",
+    productInnovation: "Product & Innovation",
+    productInnovationDesc:
+      "Experience design, functional prototypes, technology strategy, and technical vision.",
+
+    // Index page - Featured Projects Section
+    featuredProjectsTitle: "Featured Projects",
+    featuredProjectsSubtitle: "Innovative solutions that transform realities.",
+    neokidsTitle: "NeoKids",
+    neokidsSubtitle: "Intelligent assistant to support children and youth in education",
+    neokidsDesc:
+      "Educational AI that guides students with personalized tools to achieve their learning goals.",
+    costproTitle: "CostPro",
+    costproSubtitle: "Budgeting software",
+    costproDesc:
+      "Powerful cost and budgeting tool for any project. Precision and control at every stage.",
+    zypherTitle: "Zypher",
+    zypherSubtitle: "Smart school agenda",
+    zypherDesc:
+      "The platform that connects schools, families, and students. Smooth communication and real-time tracking.",
+    yaquTitle: "Yaqu",
+    yaquSubtitle: "Modern water management",
+    yaquDesc:
+      "Transforms water management with interactive maps, digital payments, and artificial intelligence.",
+
+    // Index page - Why Work With Me Section
+    whyWorkWithMeTitle: "Why Work With Me",
+    whyWorkWithMeSubtitle:
+      "Values and capabilities that make a difference in every project.",
+    yearsExperience: "14+ years of experience",
+    yearsExperienceDesc:
+      "Building software in companies, startups, and social projects.",
+    completeVision: "Complete vision",
+    completeVisionDesc:
+      "From architecture to product, UI/UX, and artificial intelligence.",
+    clearCommunication: "Clear communication",
+    clearCommunicationDesc:
+      "I explain complex concepts simply. I work well with technical and non-technical teams.",
+    qualityDelivery: "Quality delivery",
+    qualityDeliveryDesc:
+      "Clean code, best practices, testing, documentation, and scalable approach.",
+    humanApproach: "Human approach",
+    humanApproachDesc:
+      "I seek impact. I create technology that opens real opportunities.",
+
+    // Index page - Talks Section
+    talksTitle: "Talks & Workshops",
+    talksSubtitle:
+      "I share knowledge and experiences about technology and innovation.",
+    topicsITeach: "Topics I teach",
+    aiForDevelopers: "AI for developers",
+    technicalStorytelling: "Technical storytelling",
+    modernSoftwareEngineering: "Modern software engineering",
+    threeDWithReact: "3D with React Three Fiber",
+    educationalInnovation: "Educational innovation",
+    technologyWithPurpose: "How to create technology with purpose",
+    inviteMeToTalk: "Invite me to give a talk",
+
+    // Index page - Fabrica Programadores Section
+    fabricaTitle: "Programmers Factory — A story to inspire children",
+    fabricaDescription1:
+      "From my experience teaching technology, I created {bookName}, an illustrated story that introduces children to the world of programming in a fun, tender, and approachable way.",
+    fabricaDescription2:
+      "My goal is to awaken curiosity, creativity, and the idea that anyone, regardless of their origin, can build technology.",
+    fabricaBookName: "Programmers Factory",
+    readStory: "Read the story",
+    viewIllustrations: "View illustrations",
+
+    // Index page - Presentations Section
+    presentationsTitle: "Presentations & Materials",
+    presentationsSubtitle:
+      "I share materials from talks and presentations about {bold} and other technical topics I've delivered at various events and conferences.",
+    presentationsSubtitleBold: "AI, software development, architecture",
+    viewAllPresentations: "View all presentations",
+
+    // Index page - Contact Section
+    letsWorkTogether: "Let's Work Together",
+    contactSubtitle:
+      "Complete the form or write to me directly for projects, collaborations, or talks.",
+    contactTitle: "Contact",
+    contactDescription:
+      "I'm open to new opportunities and interesting projects.",
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Email",
+    emailPlaceholder: "your@email.com",
+    messageLabel: "Message",
+    messagePlaceholder: "Tell me about your project or idea...",
+    sendButton: "Send",
+    sending: "Sending...",
+    messageSentSuccess: "Message sent successfully! I'll respond soon.",
+    messageError:
+      "There was an error sending the message. Please try again.",
+
+    // Index page - Footer Section
+    footerTagline: "Building the future with technology and purpose.",
   },
 };
 

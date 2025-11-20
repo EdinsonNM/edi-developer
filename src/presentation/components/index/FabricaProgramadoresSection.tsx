@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { BookOpen, Image } from "lucide-react";
 import { Book3D } from "./Book3D";
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function FabricaProgramadoresSection() {
+  const { t } = useI18n();
   return (
     <section
       id="fabrica-programadores"
@@ -13,20 +15,28 @@ export function FabricaProgramadoresSection() {
           {/* Columna izquierda: Título y contenido */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-6">
-              Fábrica de Programadores — Un cuento para inspirar a los niños
+              {t.fabricaTitle}
             </h2>
 
             <div className="mb-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-4">
-                Desde mi experiencia enseñando tecnología, creé{" "}
-                <strong>Fábrica de Programadores</strong>, un cuento ilustrado
-                que introduce a los niños al mundo de la programación de manera
-                divertida, tierna y cercana.
+                {(() => {
+                  const parts = t.fabricaDescription1.split(/\{bookName\}/);
+                  const matches = t.fabricaDescription1.match(/\{bookName\}/g) || [];
+                  const result: (string | JSX.Element)[] = [];
+                  
+                  parts.forEach((part, i) => {
+                    result.push(part);
+                    if (matches[i]) {
+                      result.push(<strong key={`bold-${i}`}>{t.fabricaBookName}</strong>);
+                    }
+                  });
+                  
+                  return result;
+                })()}
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                Mi objetivo es despertar curiosidad, creatividad y la idea de
-                que cualquiera, sin importar su origen, puede construir
-                tecnología.
+                {t.fabricaDescription2}
               </p>
             </div>
 
@@ -41,7 +51,7 @@ export function FabricaProgramadoresSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Leer el cuento
+                  {t.readStory}
                   <BookOpen className="h-4 w-4 ml-2" />
                 </a>
               </Button>
@@ -56,7 +66,7 @@ export function FabricaProgramadoresSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Ver ilustraciones
+                  {t.viewIllustrations}
                   <Image className="h-4 w-4 ml-2" />
                 </a>
               </Button>

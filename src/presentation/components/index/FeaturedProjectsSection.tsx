@@ -1,38 +1,35 @@
 import CardSwap, { Card } from "@/components/CardSwap";
-
-const projects = [
-  {
-    title: "NeoKids",
-    subtitle:
-      "Asistente inteligente para apoyar a niños y jóvenes en la educación",
-    description:
-      "IA educativa que guía a estudiantes con herramientas personalizadas para alcanzar sus metas de aprendizaje.",
-    image: "/apps/neokids.png",
-  },
-  {
-    title: "CostPro",
-    subtitle: "Software de presupuestos",
-    description:
-      "Potente herramienta de costos y presupuestos para cualquier proyecto. Precisión y control en cada etapa.",
-    image: "/apps/costpro.png",
-  },
-  {
-    title: "Zypher",
-    subtitle: "Agenda escolar inteligente",
-    description:
-      "La plataforma que une colegios, familias y estudiantes. Comunicación fluida y seguimiento en tiempo real.",
-    image: "/apps/zypher.png",
-  },
-  {
-    title: "Yaqu",
-    subtitle: "Gestión moderna de agua",
-    description:
-      "Transforma la gestión del agua con mapas interactivos, pagos digitales e inteligencia artificial.",
-    image: "/apps/yaqu.png",
-  },
-];
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function FeaturedProjectsSection() {
+  const { t } = useI18n();
+
+  const projects = [
+    {
+      title: t.neokidsTitle,
+      subtitle: t.neokidsSubtitle,
+      description: t.neokidsDesc,
+      image: "/apps/neokids.png",
+    },
+    {
+      title: t.costproTitle,
+      subtitle: t.costproSubtitle,
+      description: t.costproDesc,
+      image: "/apps/costpro.png",
+    },
+    {
+      title: t.zypherTitle,
+      subtitle: t.zypherSubtitle,
+      description: t.zypherDesc,
+      image: "/apps/zypher.png",
+    },
+    {
+      title: t.yaquTitle,
+      subtitle: t.yaquSubtitle,
+      description: t.yaquDesc,
+      image: "/apps/yaqu.png",
+    },
+  ];
   return (
     <section
       id="proyectos"
@@ -44,10 +41,10 @@ export function FeaturedProjectsSection() {
           <div className="flex flex-col justify-center">
             <div className="text-center md:text-left mb-6 bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-white/30">
               <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-                Proyectos Destacados
+                {t.featuredProjectsTitle}
               </h2>
               <p className="text-lg text-slate-600">
-                Soluciones innovadoras que transforman realidades.
+                {t.featuredProjectsSubtitle}
               </p>
             </div>
           </div>
