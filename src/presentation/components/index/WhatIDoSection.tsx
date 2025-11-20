@@ -1,50 +1,46 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Code, Box, GraduationCap, Lightbulb } from "lucide-react";
-
-const services = [
-  {
-    icon: Brain,
-    title: "Soluciones con IA",
-    description:
-      "Aplicaciones inteligentes, asistentes conversacionales, agentes, análisis de datos y automatización.",
-  },
-  {
-    icon: Code,
-    title: "Arquitectura & Desarrollo Web",
-    description:
-      "Sistemas escalables con React, Angular, NestJS, Node, Supabase y arquitecturas limpias.",
-  },
-  {
-    icon: Box,
-    title: "Experiencias 3D & Visuales",
-    description:
-      "React Three Fiber, WebGL, animaciones, mundos interactivos y visualizaciones técnicas.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Educación & Workshops",
-    description:
-      "Charlas, mentoría y formación en IA, programación moderna y tecnología para estudiantes y equipos.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Producto & Innovación",
-    description:
-      "Diseño de experiencias, prototipos funcionales, estrategia tecnológica y visión técnica.",
-  },
-];
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function WhatIDoSection() {
+  const { t } = useI18n();
+
+  const services = [
+    {
+      icon: Brain,
+      title: t.aiSolutions,
+      description: t.aiSolutionsDesc,
+    },
+    {
+      icon: Code,
+      title: t.webArchitecture,
+      description: t.webArchitectureDesc,
+    },
+    {
+      icon: Box,
+      title: t.threeDExperiences,
+      description: t.threeDExperiencesDesc,
+    },
+    {
+      icon: GraduationCap,
+      title: t.educationWorkshops,
+      description: t.educationWorkshopsDesc,
+    },
+    {
+      icon: Lightbulb,
+      title: t.productInnovation,
+      description: t.productInnovationDesc,
+    },
+  ];
   return (
     <section id="que-hago" className="relative z-10 py-24 px-4 md:px-6 bg-slate-50/50 border-t border-slate-100">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-            Qué hago
+            {t.whatIDoTitle}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Servicios especializados para clientes y empresas que buscan
-            innovación tecnológica.
+            {t.whatIDoSubtitle}
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import logo from "@/assets/images/logo.png";
-import { Menu, Download } from "lucide-react";
+import { Menu, Download, Globe } from "lucide-react";
 import { AboutSection } from "@/presentation/components/index/AboutSection";
 import { WhatIDoSection } from "@/presentation/components/index/WhatIDoSection";
 import { FeaturedProjectsSection } from "@/presentation/components/index/FeaturedProjectsSection";
@@ -11,23 +11,26 @@ import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
 import { useState, useEffect, useRef } from "react";
-
-// Opciones del menú de navegación
-const navigationItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Sobre mí", href: "#sobre-mi" },
-  { label: "Qué hago", href: "#que-hago" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Por qué trabajar conmigo", href: "#por-que-trabajar-conmigo" },
-  { label: "Charlas", href: "#charlas" },
-  { label: "Contacto", href: "#contacto" },
-];
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export default function LandingPage() {
+  const { t, language, setLanguage } = useI18n();
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+
+  // Opciones del menú de navegación
+  const navigationItems = [
+    { label: t.inicio, href: "#inicio" },
+    { label: t.sobreMi, href: "#sobre-mi" },
+    { label: t.queHago, href: "#que-hago" },
+    { label: t.proyectos, href: "#proyectos" },
+    { label: t.porQueTrabajarConmigo, href: "#por-que-trabajar-conmigo" },
+    { label: t.charlas, href: "#charlas" },
+    { label: t.contacto, href: "#contacto" },
+  ];
 
   // Manejar visibilidad del navbar al hacer scroll con optimización de rendimiento
   useEffect(() => {
@@ -71,6 +74,7 @@ export default function LandingPage() {
   ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    setIsLanguageMenuOpen(false);
 
     const element = document.querySelector(href);
     if (element) {
@@ -82,6 +86,24 @@ export default function LandingPage() {
       });
     }
   };
+
+  // Cerrar menú de idioma al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest(".language-selector")) {
+        setIsLanguageMenuOpen(false);
+      }
+    };
+
+    if (isLanguageMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLanguageMenuOpen]);
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white text-slate-900 selection:bg-blue-100">
@@ -116,13 +138,50 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Language Selector */}
+          <div className="relative language-selector">
+            <button
+              onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+              className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors"
+              aria-label="Select language"
+            >
+              <Globe className="h-4 w-4" />
+              <span className="uppercase">{language}</span>
+            </button>
+            {isLanguageMenuOpen && (
+              <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
+                <button
+                  onClick={() => {
+                    setLanguage("es");
+                    setIsLanguageMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${
+                    language === "es" ? "bg-blue-50 text-blue-600" : ""
+                  }`}
+                >
+                  Español
+                </button>
+                <button
+                  onClick={() => {
+                    setLanguage("en");
+                    setIsLanguageMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${
+                    language === "en" ? "bg-blue-50 text-blue-600" : ""
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            )}
+          </div>
           <a
             href="/Resume English.pdf"
             download="Resume English.pdf"
             className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors"
           >
             <Download className="h-4 w-4" />
-            <span>Download CV</span>
+            <span>{t.downloadCV}</span>
           </a>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -153,7 +212,7 @@ export default function LandingPage() {
                 className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2"
               >
                 <Download className="h-4 w-4" />
-                <span>Download CV</span>
+                <span>{t.downloadCV}</span>
               </a>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import logoWhite from "@/assets/images/logo-white.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function FooterSection() {
+  const { t } = useI18n();
   return (
     <footer className="relative z-10 py-12 px-4 md:px-6 bg-slate-900 text-white border-t border-slate-800">
       <div className="max-w-6xl mx-auto">
@@ -10,7 +12,7 @@ export function FooterSection() {
             <img src={logoWhite} alt="Edi Developer" className="h-8" />
           </div>
           <p className="text-slate-400 text-center text-sm max-w-md">
-            Construyendo futuro con tecnología y propósito.
+            {t.footerTagline}
           </p>
 
           {/* Redes sociales */}

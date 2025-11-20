@@ -10,8 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function ContactSection() {
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -73,19 +75,18 @@ export function ContactSection() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-            Trabajemos juntos
+            {t.letsWorkTogether}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Completa el formulario o escríbeme directamente para proyectos,
-            colaboraciones o charlas.
+            {t.contactSubtitle}
           </p>
         </div>
 
         <Card className="border-slate-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-2xl">Contacto</CardTitle>
+            <CardTitle className="text-2xl">{t.contactTitle}</CardTitle>
             <CardDescription>
-              Estoy abierto a nuevas oportunidades y proyectos interesantes.
+              {t.contactDescription}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -95,13 +96,13 @@ export function ContactSection() {
                   htmlFor="name"
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
-                  Nombre
+                  {t.nameLabel}
                 </label>
                 <Input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Tu nombre"
+                  placeholder={t.namePlaceholder}
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -114,13 +115,13 @@ export function ContactSection() {
                   htmlFor="email"
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
-                  Email
+                  {t.emailLabel}
                 </label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="tu@email.com"
+                  placeholder={t.emailPlaceholder}
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -133,12 +134,12 @@ export function ContactSection() {
                   htmlFor="message"
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
-                  Mensaje
+                  {t.messageLabel}
                 </label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Cuéntame sobre tu proyecto o idea..."
+                  placeholder={t.messagePlaceholder}
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -156,11 +157,11 @@ export function ContactSection() {
                 {isSubmitting ? (
                   <>
                     <span className="animate-spin mr-2">⏳</span>
-                    Enviando...
+                    {t.sending}
                   </>
                 ) : (
                   <>
-                    Enviar
+                    {t.sendButton}
                     <Send className="h-4 w-4 ml-2" />
                   </>
                 )}
@@ -171,7 +172,7 @@ export function ContactSection() {
                 <div className="flex items-center gap-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700">
                   <CheckCircle2 className="h-5 w-5" />
                   <span className="text-sm font-medium">
-                    ¡Mensaje enviado con éxito! Te responderé pronto.
+                    {t.messageSentSuccess}
                   </span>
                 </div>
               )}
@@ -180,8 +181,7 @@ export function ContactSection() {
                 <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
                   <AlertCircle className="h-5 w-5" />
                   <span className="text-sm font-medium">
-                    Hubo un error al enviar el mensaje. Por favor, intenta de
-                    nuevo.
+                    {t.messageError}
                   </span>
                 </div>
               )}

@@ -3,8 +3,10 @@ import { FileText } from "lucide-react";
 import { PresentationCarousel } from "./PresentationCarousel";
 import { presentations } from "@/presentation/pages/presentations/data/presentations";
 import { Link } from "react-router-dom";
+import { useI18n } from "@/presentation/utils/use-i18n";
 
 export function PresentationsCarouselSection() {
+  const { t } = useI18n();
 
   if (presentations.length === 0) return null;
 
@@ -17,13 +19,23 @@ export function PresentationsCarouselSection() {
         {/* Título centrado arriba */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
-            Presentaciones y Materiales
+            {t.presentationsTitle}
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Comparto materiales de charlas y presentaciones sobre{" "}
-            <strong>IA, desarrollo de software, arquitectura</strong> y
-            otros temas técnicos que he dictado en diferentes eventos y
-            conferencias.
+            {(() => {
+              const parts = t.presentationsSubtitle.split(/\{bold\}/);
+              const matches = t.presentationsSubtitle.match(/\{bold\}/g) || [];
+              const result: (string | JSX.Element)[] = [];
+              
+              parts.forEach((part, i) => {
+                result.push(part);
+                if (matches[i]) {
+                  result.push(<strong key={`bold-${i}`}>{t.presentationsSubtitleBold}</strong>);
+                }
+              });
+              
+              return result;
+            })()}
           </p>
         </div>
 
@@ -43,7 +55,7 @@ export function PresentationsCarouselSection() {
             className="rounded-full border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-8 py-6 text-base"
           >
             <Link to="/presentaciones">
-              Ver todas las presentaciones
+              {t.viewAllPresentations}
               <FileText className="h-4 w-4 ml-2" />
             </Link>
           </Button>
