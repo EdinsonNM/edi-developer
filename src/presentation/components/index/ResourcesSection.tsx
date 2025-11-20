@@ -1,8 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Code2, FileText, ArrowRight } from "lucide-react";
+import { BookOpen, Code2, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
-import { PresentationCard } from "@/presentation/pages/presentations/components/PresentationCard";
-import { presentations } from "@/presentation/pages/presentations/data/presentations";
 import { ArticleCard } from "./ArticleCard";
 import { articles } from "./data/articles";
 
@@ -29,8 +27,6 @@ const resources = [
 ];
 
 export function ResourcesSection() {
-  const displayedPresentations = presentations.slice(0, 4);
-
   return (
     <section id="recursos" className="relative z-10 py-24 px-4 md:px-6 bg-slate-50/50 border-t border-slate-100">
       <div className="max-w-6xl mx-auto">
