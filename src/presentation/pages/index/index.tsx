@@ -5,7 +5,8 @@ import { WhatIDoSection } from "@/presentation/components/index/WhatIDoSection";
 import { FeaturedProjectsSection } from "@/presentation/components/index/FeaturedProjectsSection";
 import { WhyWorkWithMeSection } from "@/presentation/components/index/WhyWorkWithMeSection";
 import { TalksSection } from "@/presentation/components/index/TalksSection";
-import { ResourcesSection } from "@/presentation/components/index/ResourcesSection";
+import { FabricaProgramadoresSection } from "@/presentation/components/index/FabricaProgramadoresSection";
+import { PresentationsCarouselSection } from "@/presentation/components/index/PresentationsCarouselSection";
 import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
@@ -19,7 +20,6 @@ const navigationItems = [
   { label: "Proyectos", href: "#proyectos" },
   { label: "Por qué trabajar conmigo", href: "#por-que-trabajar-conmigo" },
   { label: "Charlas", href: "#charlas" },
-  { label: "Recursos", href: "#recursos" },
   { label: "Contacto", href: "#contacto" },
 ];
 
@@ -116,10 +116,14 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors">
+          <a
+            href="/Resume English.pdf"
+            download="Resume English.pdf"
+            className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors"
+          >
             <Download className="h-4 w-4" />
             <span>Download CV</span>
-          </button>
+          </a>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-slate-600 hover:text-blue-600 transition-colors"
@@ -143,10 +147,14 @@ export default function LandingPage() {
                   {item.label}
                 </a>
               ))}
-              <button className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2">
+              <a
+                href="/Resume English.pdf"
+                download="Resume English.pdf"
+                className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2"
+              >
                 <Download className="h-4 w-4" />
                 <span>Download CV</span>
-              </button>
+              </a>
             </div>
           </div>
         )}
@@ -161,7 +169,8 @@ export default function LandingPage() {
       <FeaturedProjectsSection />
       <WhyWorkWithMeSection />
       <TalksSection />
-      <ResourcesSection />
+      <FabricaProgramadoresSection />
+      <PresentationsCarouselSection />
       <ContactSection />
       <FooterSection />
 

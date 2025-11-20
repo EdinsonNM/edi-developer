@@ -88,13 +88,32 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-fade-in-up opacity-0 [animation-delay:800ms] [animation-fill-mode:forwards]">
-          <button className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20">
+          <a
+            href="/Resume English.pdf"
+            download="Resume English.pdf"
+            className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20"
+          >
             <span>Download CV</span>
             <ArrowRight className="h-4 w-4" />
-          </button>
-          <button className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95">
-            Explore my Work
-          </button>
+          </a>
+          <a
+            href="#contacto"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.querySelector("#contacto");
+              if (element) {
+                const offsetTop =
+                  element.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({
+                  top: offsetTop,
+                  behavior: "smooth",
+                });
+              }
+            }}
+            className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
+          >
+            Contáctame
+          </a>
         </div>
 
         {/* Floating Icons Marquee */}

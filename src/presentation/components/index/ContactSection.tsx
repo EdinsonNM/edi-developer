@@ -1,8 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { useState } from "react";
 
 export function ContactSection() {
@@ -11,11 +17,43 @@ export function ContactSection() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría la lógica de envío del formulario
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("https://formspree.io/f/mdkbwwro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        // Resetear el mensaje de éxito después de 5 segundos
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        setSubmitStatus("error");
+        // Resetear el mensaje de error después de 5 segundos
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      // Resetear el mensaje de error después de 5 segundos
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -28,7 +66,10 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contacto" className="relative z-10 py-24 px-4 md:px-6 bg-white border-t border-slate-100">
+    <section
+      id="contacto"
+      className="relative z-10 py-24 px-4 md:px-6 bg-white border-t border-slate-100"
+    >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
@@ -52,7 +93,7 @@ export function ContactSection() {
               <div className="space-y-2">
                 <label
                   htmlFor="name"
-                  className="text-sm font-medium text-slate-700"
+                  className="text-sm font-medium text-slate-700 text-left block"
                 >
                   Nombre
                 </label>
@@ -71,7 +112,7 @@ export function ContactSection() {
               <div className="space-y-2">
                 <label
                   htmlFor="email"
-                  className="text-sm font-medium text-slate-700"
+                  className="text-sm font-medium text-slate-700 text-left block"
                 >
                   Email
                 </label>
@@ -90,7 +131,7 @@ export function ContactSection() {
               <div className="space-y-2">
                 <label
                   htmlFor="message"
-                  className="text-sm font-medium text-slate-700"
+                  className="text-sm font-medium text-slate-700 text-left block"
                 >
                   Mensaje
                 </label>
@@ -109,11 +150,41 @@ export function ContactSection() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white"
+                disabled={isSubmitting}
+                className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar
-                <Send className="h-4 w-4 ml-2" />
+                {isSubmitting ? (
+                  <>
+                    <span className="animate-spin mr-2">⏳</span>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    Enviar
+                    <Send className="h-4 w-4 ml-2" />
+                  </>
+                )}
               </Button>
+
+              {/* Mensajes de estado */}
+              {submitStatus === "success" && (
+                <div className="flex items-center gap-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700">
+                  <CheckCircle2 className="h-5 w-5" />
+                  <span className="text-sm font-medium">
+                    ¡Mensaje enviado con éxito! Te responderé pronto.
+                  </span>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                  <AlertCircle className="h-5 w-5" />
+                  <span className="text-sm font-medium">
+                    Hubo un error al enviar el mensaje. Por favor, intenta de
+                    nuevo.
+                  </span>
+                </div>
+              )}
             </form>
           </CardContent>
         </Card>
@@ -121,4 +192,3 @@ export function ContactSection() {
     </section>
   );
 }
-

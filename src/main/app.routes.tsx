@@ -10,6 +10,9 @@ const MyProjects = React.lazy(
 const AboutMe = React.lazy(
   () => import("@presentation/pages/about-me/about-me")
 );
+const Presentations = React.lazy(
+  () => import("@presentation/pages/presentations/presentations")
+);
 
 function AppRouter() {
   return (
@@ -20,6 +23,14 @@ function AppRouter() {
           element={
             <Suspense fallback={<Loading />}>
               <LandingPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="presentaciones"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Presentations />
             </Suspense>
           }
         />
