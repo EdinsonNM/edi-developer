@@ -169,3 +169,4 @@ const Highcharts = lazy(() => import('highcharts'));
 4. ⏳ Configurar CDN
 5. ⏳ Implementar monitoreo de Web Vitals
 
+
