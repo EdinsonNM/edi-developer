@@ -72,6 +72,8 @@ export function FeaturedProjectsSection() {
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           // Si la imagen no existe, ocultar el contenedor
                           const target = e.target as HTMLImageElement;

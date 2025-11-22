@@ -1,4 +1,3 @@
-import Hyperspeed from "@/components/Hyperspeed";
 import { EdiDevLogo } from "@/components/ui/edidev-logo";
 import Marquee from "@/components/ui/marquee";
 import { ArrowRight } from "lucide-react";
@@ -8,58 +7,99 @@ import {
   outerCircleIcons,
 } from "../../pages/home/components/icons-config";
 import { useI18n } from "@/presentation/utils/use-i18n";
+import { lazy, Suspense, useState, useEffect } from "react";
+
+// Lazy load del componente pesado Hyperspeed
+const Hyperspeed = lazy(() => import("@/components/Hyperspeed"));
 
 // Combinar todos los iconos de icons-config.ts
 const icons = [...innerCircleIcons, ...middleCircleIcons, ...outerCircleIcons];
 
+// Placeholder simple mientras carga Hyperspeed
+const HyperspeedPlaceholder = () => (
+  <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-white via-slate-50 to-white" />
+);
+
 export function HeroSection() {
   const { t } = useI18n();
+  const [shouldLoadHyperspeed, setShouldLoadHyperspeed] = useState(false);
+
+  // Cargar Hyperspeed después de que el contenido crítico se haya renderizado
+  useEffect(() => {
+    // Usar requestIdleCallback si está disponible, sino setTimeout
+    const loadHyperspeed = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => {
+          setShouldLoadHyperspeed(true);
+        });
+      } else {
+        setTimeout(() => {
+          setShouldLoadHyperspeed(true);
+        }, 1000);
+      }
+    };
+
+    // Esperar a que el contenido crítico se renderice
+    if (document.readyState === "complete") {
+      loadHyperspeed();
+    } else {
+      window.addEventListener("load", loadHyperspeed);
+      return () => window.removeEventListener("load", loadHyperspeed);
+    }
+  }, []);
+
   return (
     <main
       id="inicio"
       className="relative flex flex-col items-center justify-center h-screen px-4 text-center z-10 pt-20"
     >
-      {/* Background Effects - Hyperspeed solo en hero */}
+      {/* Background Effects - Hyperspeed lazy loaded */}
       <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-        <Hyperspeed
-          effectOptions={{
-            onSpeedUp: () => {},
-            onSlowDown: () => {},
-            distortion: "turbulentDistortion",
-            length: 400,
-            roadWidth: 10,
-            islandWidth: 2,
-            lanesPerRoad: 4,
-            fov: 90,
-            fovSpeedUp: 150,
-            speedUp: 2,
-            carLightsFade: 0.4,
-            totalSideLightSticks: 20,
-            lightPairsPerRoadWay: 40,
-            shoulderLinesWidthPercentage: 0.05,
-            brokenLinesWidthPercentage: 0.1,
-            brokenLinesLengthPercentage: 0.5,
-            lightStickWidth: [0.12, 0.5],
-            lightStickHeight: [1.3, 1.7],
-            movingAwaySpeed: [60, 80],
-            movingCloserSpeed: [-120, -160],
-            carLightsLength: [400 * 0.03, 400 * 0.2],
-            carLightsRadius: [0.05, 0.14],
-            carWidthPercentage: [0.3, 0.5],
-            carShiftX: [-0.8, 0.8],
-            carFloorSeparation: [0, 5],
-            colors: {
-              roadColor: 0xf2f2f2,
-              islandColor: 0xf2f2f2,
-              background: 0xffffff,
-              shoulderLines: 0x000000,
-              brokenLines: 0xffffff,
-              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-              rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-              sticks: 0x03b3c3,
-            },
-          }}
-        />
+        {shouldLoadHyperspeed ? (
+          <Suspense fallback={<HyperspeedPlaceholder />}>
+            <Hyperspeed
+              effectOptions={{
+                onSpeedUp: () => {},
+                onSlowDown: () => {},
+                distortion: "turbulentDistortion",
+                length: 400,
+                roadWidth: 10,
+                islandWidth: 2,
+                lanesPerRoad: 4,
+                fov: 90,
+                fovSpeedUp: 150,
+                speedUp: 2,
+                carLightsFade: 0.4,
+                totalSideLightSticks: 20,
+                lightPairsPerRoadWay: 40,
+                shoulderLinesWidthPercentage: 0.05,
+                brokenLinesWidthPercentage: 0.1,
+                brokenLinesLengthPercentage: 0.5,
+                lightStickWidth: [0.12, 0.5],
+                lightStickHeight: [1.3, 1.7],
+                movingAwaySpeed: [60, 80],
+                movingCloserSpeed: [-120, -160],
+                carLightsLength: [400 * 0.03, 400 * 0.2],
+                carLightsRadius: [0.05, 0.14],
+                carWidthPercentage: [0.3, 0.5],
+                carShiftX: [-0.8, 0.8],
+                carFloorSeparation: [0, 5],
+                colors: {
+                  roadColor: 0xf2f2f2,
+                  islandColor: 0xf2f2f2,
+                  background: 0xffffff,
+                  shoulderLines: 0x000000,
+                  brokenLines: 0xffffff,
+                  leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+                  rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+                  sticks: 0x03b3c3,
+                },
+              }}
+            />
+          </Suspense>
+        ) : (
+          <HyperspeedPlaceholder />
+        )}
       </div>
 
       {/* Contenido del Hero */}
