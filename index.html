@@ -7,6 +7,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="/assets/images/logo.png" as="image" type="image/png" />
+    <link rel="preload" href="/edi-dev-portada.png" as="image" type="image/png" />
 
     <!-- Primary Meta Tags -->
     <title>Edi Developer - Innovación que abre oportunidades | Frontend Developer & AI Specialist</title>
@@ -96,19 +100,57 @@
     }
     </script>
 
+    <!-- Preconnect para fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload de fuentes críticas -->
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    
+    <!-- Fallback para fuentes mientras cargan -->
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      }
+    </style>
+    
+    <!-- Script para preload asíncrono de fuentes -->
+    <script>
+      // Polyfill para navegadores que no soportan onload en link
+      (function() {
+        var links = document.querySelectorAll('link[rel="preload"][as="style"]');
+        links.forEach(function(link) {
+          link.onload = function() {
+            this.onload = null;
+            this.rel = 'stylesheet';
+          };
+        });
+      })();
+    </script>
   </head>
   <body class="h-screen m-0">
     <div id="root"></div>

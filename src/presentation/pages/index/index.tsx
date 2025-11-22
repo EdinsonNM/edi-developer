@@ -10,6 +10,7 @@ import { PresentationsCarouselSection } from "@/presentation/components/index/Pr
 import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
+import { LazySection } from "@/presentation/components/common/LazySection";
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from "@/presentation/utils/use-i18n";
 
@@ -119,7 +120,13 @@ export default function LandingPage() {
             onClick={(e) => handleNavClick(e, "#inicio")}
             className="cursor-pointer"
           >
-            <img src={logo} alt="Edi Developer" className="h-8" />
+            <img 
+              src={logo} 
+              alt="Edi Developer" 
+              className="h-8" 
+              loading="eager"
+              fetchPriority="high"
+            />
           </a>
         </div>
 
@@ -219,18 +226,42 @@ export default function LandingPage() {
         )}
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Crítico, carga inmediatamente */}
       <HeroSection />
 
-      {/* New Sections */}
-      <AboutSection />
-      <WhatIDoSection />
-      <FeaturedProjectsSection />
-      <WhyWorkWithMeSection />
-      <TalksSection />
-      <FabricaProgramadoresSection />
-      <PresentationsCarouselSection />
-      <ContactSection />
+      {/* Secciones con lazy loading - Carga cuando están cerca del viewport */}
+      <LazySection rootMargin="200px">
+        <AboutSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <WhatIDoSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <FeaturedProjectsSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <WhyWorkWithMeSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <TalksSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <FabricaProgramadoresSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <PresentationsCarouselSection />
+      </LazySection>
+      
+      <LazySection rootMargin="200px">
+        <ContactSection />
+      </LazySection>
+      
       <FooterSection />
 
       {/* Custom Animation Styles */}
