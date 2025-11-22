@@ -1,4 +1,3 @@
-import { EdiDevLogo } from "@/components/ui/edidev-logo";
 import Marquee from "@/components/ui/marquee";
 import { ArrowRight } from "lucide-react";
 import {
@@ -104,16 +103,6 @@ export function HeroSection() {
 
       {/* Contenido del Hero */}
       <div className="relative z-10 w-full flex flex-col items-center">
-        {/* Logo/Brand Pill */}
-        <div className="mb-8 animate-fade-in-up opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 shadow-sm transition-colors hover:bg-slate-50">
-            <EdiDevLogo className="h-5 w-5" />
-            <span className="text-sm font-medium text-slate-600">
-              Edi Developer
-            </span>
-          </div>
-        </div>
-
         {/* Main Headline */}
         <h1 className="max-w-5xl text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl md:text-8xl mb-6 animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-center">
           {t.heroTitle} <br />

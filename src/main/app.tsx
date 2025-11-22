@@ -1,7 +1,7 @@
-import AppRouter from "./app.routes";
 import "./app.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { I18nProvider } from "@presentation/utils/use-i18n";
+import AppRouter from "./app.routes";
 
 function App() {
   const queryClient = new QueryClient();
