@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Presentation } from "@/presentation/pages/presentations/components/PresentationCard";
 
@@ -6,7 +6,7 @@ interface PresentationCarouselProps {
   presentations: Presentation[];
 }
 
-export function PresentationCarousel({
+function PresentationCarouselComponent({
   presentations,
 }: PresentationCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +26,9 @@ export function PresentationCarousel({
   }, [presentations.length, isHovered]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + presentations.length) % presentations.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + presentations.length) % presentations.length
+    );
   };
 
   const goToNext = () => {
@@ -61,7 +63,9 @@ export function PresentationCarousel({
       >
         {/* Imagen de la presentación */}
         <img
-          src={currentPresentation.coverImage || "/placeholder-presentation.png"}
+          src={
+            currentPresentation.coverImage || "/placeholder-presentation.png"
+          }
           alt={currentPresentation.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
@@ -128,3 +132,5 @@ export function PresentationCarousel({
   );
 }
 
+// Memoizar el componente para evitar re-renders cuando las props no cambian
+export const PresentationCarousel = memo(PresentationCarouselComponent);

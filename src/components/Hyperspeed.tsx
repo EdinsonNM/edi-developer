@@ -935,6 +935,7 @@ class App {
   speedUp: number;
   timeOffset: number;
   resizeObserver?: ResizeObserver;
+  animationFrameId?: number;
 
   constructor(container: HTMLElement, options: HyperspeedOptions) {
     this.options = options;
@@ -1027,13 +1028,27 @@ class App {
   }
 
   onWindowResize() {
+    // Verificar que el componente no esté desmontado y que los objetos necesarios existan
+    if (this.disposed || !this.renderer || !this.camera) {
+      return;
+    }
+
     const width = this.container.offsetWidth;
     const height = this.container.offsetHeight;
+
+    // Verificar que las dimensiones sean válidas
+    if (width <= 0 || height <= 0) {
+      return;
+    }
 
     this.renderer.setSize(width, height);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.composer.setSize(width, height);
+    
+    // Solo actualizar composer si existe (puede no estar inicializado aún)
+    if (this.composer) {
+      this.composer.setSize(width, height);
+    }
   }
 
   initPasses() {
@@ -1190,18 +1205,44 @@ class App {
   dispose() {
     this.disposed = true;
 
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
+    // Cancelar requestAnimationFrame si está activo
+    if (this.animationFrameId !== undefined) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = undefined;
     }
 
-    if (this.renderer) {
-      this.renderer.dispose();
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
     }
+
+    // Limpiar renderer y contexto WebGL
+    if (this.renderer) {
+      const canvas = this.renderer.domElement;
+      // Eliminar canvas del DOM antes de disponer el renderer
+      if (canvas && canvas.parentNode === this.container) {
+        this.container.removeChild(canvas);
+      }
+      // Forzar pérdida del contexto WebGL
+      const gl = this.renderer.getContext();
+      if (gl) {
+        const loseContext = (gl as any).getExtension?.('WEBGL_lose_context');
+        if (loseContext) {
+          loseContext.loseContext();
+        }
+      }
+      this.renderer.dispose();
+      this.renderer = null as any;
+    }
+    
     if (this.composer) {
       this.composer.dispose();
+      this.composer = null as any;
     }
+    
     if (this.scene) {
       this.scene.clear();
+      this.scene = null as any;
     }
 
     window.removeEventListener('resize', this.onWindowResize.bind(this));
@@ -1218,7 +1259,9 @@ class App {
   }
 
   setSize(width: number, height: number, updateStyles: boolean) {
-    this.composer.setSize(width, height, updateStyles);
+    if (this.composer && !this.disposed) {
+      this.composer.setSize(width, height, updateStyles);
+    }
   }
 
   tick() {
@@ -1231,7 +1274,7 @@ class App {
     const delta = this.clock.getDelta();
     this.render(delta);
     this.update(delta);
-    requestAnimationFrame(this.tick);
+    this.animationFrameId = requestAnimationFrame(this.tick);
   }
 }
 
@@ -1244,9 +1287,12 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
   const appRef = useRef<App | null>(null);
 
   useEffect(() => {
+    // Limpiar instancia anterior antes de crear una nueva
     if (appRef.current) {
       appRef.current.dispose();
-      const container = document.getElementById('lights');
+      appRef.current = null;
+      // Limpiar cualquier canvas residual del contenedor
+      const container = hyperspeed.current;
       if (container) {
         while (container.firstChild) {
           container.removeChild(container.firstChild);
@@ -1278,14 +1324,23 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
     });
     
     myApp.loadAssets().then(() => {
-      myApp.init();
-      // Forzar resize después de la inicialización
-      forceResize();
+      if (!myApp.disposed) {
+        myApp.init();
+        // Forzar resize después de la inicialización
+        forceResize();
+      }
     });
 
     return () => {
       if (appRef.current) {
         appRef.current.dispose();
+        appRef.current = null;
+      }
+      // Asegurar limpieza del contenedor
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
       }
     };
   }, [mergedOptions]);
