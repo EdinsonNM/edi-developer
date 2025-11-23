@@ -1,4 +1,3 @@
-import logoWhite from "@/assets/images/logo-white.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useI18n } from "@/presentation/utils/use-i18n";
 
@@ -9,7 +8,10 @@ export function FooterSection() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="flex items-center gap-2">
-            <img src={logoWhite} alt="Edi Developer" className="h-8" />
+            <picture className="h-8">
+              <source srcSet={"./logo-white.webp"} type="image/webp" />
+              <img src={"logo-white.png"} alt="Edi Developer" className="h-8" />
+            </picture>
           </div>
           <p className="text-slate-400 text-center text-sm max-w-md">
             {t.footerTagline}

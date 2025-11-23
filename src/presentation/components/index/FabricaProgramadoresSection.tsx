@@ -22,16 +22,19 @@ export function FabricaProgramadoresSection() {
               <p className="text-lg text-slate-700 leading-relaxed mb-4">
                 {(() => {
                   const parts = t.fabricaDescription1.split(/\{bookName\}/);
-                  const matches = t.fabricaDescription1.match(/\{bookName\}/g) || [];
+                  const matches =
+                    t.fabricaDescription1.match(/\{bookName\}/g) || [];
                   const result: (string | JSX.Element)[] = [];
-                  
+
                   parts.forEach((part, i) => {
                     result.push(part);
                     if (matches[i]) {
-                      result.push(<strong key={`bold-${i}`}>{t.fabricaBookName}</strong>);
+                      result.push(
+                        <strong key={`bold-${i}`}>{t.fabricaBookName}</strong>
+                      );
                     }
                   });
-                  
+
                   return result;
                 })()}
               </p>
@@ -77,7 +80,8 @@ export function FabricaProgramadoresSection() {
           <div className="flex items-center justify-center">
             <div className="w-full max-w-md h-[500px]">
               <Book3D
-                coverImage="/cuentos/Zorrito en la fábrica de programadores.webp"
+                coverImage="/cuentos/Zorrito en la fábrica de programadores.jpg"
+                coverImageWebp="/cuentos/Zorrito en la fábrica de programadores.webp"
                 className="w-full h-full"
               />
             </div>
@@ -87,4 +91,3 @@ export function FabricaProgramadoresSection() {
     </section>
   );
 }
-
