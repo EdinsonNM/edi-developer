@@ -588,16 +588,53 @@ export const GridScan: React.FC<GridScanProps> = ({
     rafRef.current = requestAnimationFrame(tick);
 
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
       window.removeEventListener('resize', onResize);
-      material.dispose();
-      (quad.geometry as THREE.BufferGeometry).dispose();
+      
+      // Limpiar material y geometría
+      if (materialRef.current) {
+        materialRef.current.dispose();
+        materialRef.current = null;
+      }
+      if (quad.geometry) {
+        (quad.geometry as THREE.BufferGeometry).dispose();
+      }
+      
+      // Limpiar composer y efectos
       if (composerRef.current) {
         composerRef.current.dispose();
         composerRef.current = null;
       }
-      renderer.dispose();
-      container.removeChild(renderer.domElement);
+      if (bloomRef.current) {
+        bloomRef.current.dispose();
+        bloomRef.current = null;
+      }
+      if (chromaRef.current) {
+        chromaRef.current.dispose();
+        chromaRef.current = null;
+      }
+      
+      // Limpiar renderer y contexto WebGL
+      if (rendererRef.current) {
+        const canvas = rendererRef.current.domElement;
+        // Eliminar canvas del DOM antes de disponer el renderer
+        if (canvas && canvas.parentNode === container) {
+          container.removeChild(canvas);
+        }
+        // Forzar pérdida del contexto WebGL
+        const gl = rendererRef.current.getContext();
+        if (gl) {
+          const loseContext = (gl as any).getExtension?.('WEBGL_lose_context');
+          if (loseContext) {
+            loseContext.loseContext();
+          }
+        }
+        rendererRef.current.dispose();
+        rendererRef.current = null;
+      }
     };
   }, [
     sensitivity,
