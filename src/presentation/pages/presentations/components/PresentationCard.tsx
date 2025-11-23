@@ -29,6 +29,18 @@ export function PresentationCard({ presentation }: PresentationCardProps) {
     ? "bg-white/5 border-white/10 backdrop-blur-sm"
     : "bg-white border-slate-200";
 
+  // Generar rutas WebP y PNG para el fallback
+  const webpSrc = presentation.coverImage
+    ? presentation.coverImage.endsWith(".webp")
+      ? presentation.coverImage
+      : presentation.coverImage.replace(/\.(png|jpg|jpeg)$/i, ".webp")
+    : undefined;
+  const fallbackSrc = presentation.coverImage
+    ? presentation.coverImage.endsWith(".webp")
+      ? presentation.coverImage.replace(/\.webp$/i, ".png")
+      : presentation.coverImage
+    : undefined;
+
   return (
     <Card
       className={`${surfaceStyles} rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer group`}
@@ -37,11 +49,14 @@ export function PresentationCard({ presentation }: PresentationCardProps) {
       <CardContent className="p-0">
         <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
           {presentation.coverImage ? (
-            <img
-              src={presentation.coverImage}
-              alt={presentation.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+            <picture>
+              <source srcSet={webpSrc} type="image/webp" />
+              <img
+                src={fallbackSrc}
+                alt={presentation.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </picture>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <FileText className="h-16 w-16 text-slate-400 dark:text-slate-600" />
@@ -68,7 +83,12 @@ export function PresentationCard({ presentation }: PresentationCardProps) {
               <span className="line-clamp-1">{presentation.event}</span>
             )}
             {presentation.date && (
-              <span>{new Date(presentation.date).toLocaleDateString("es-ES", { year: "numeric", month: "long" })}</span>
+              <span>
+                {new Date(presentation.date).toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                })}
+              </span>
             )}
           </div>
         </div>
@@ -76,4 +96,3 @@ export function PresentationCard({ presentation }: PresentationCardProps) {
     </Card>
   );
 }
-

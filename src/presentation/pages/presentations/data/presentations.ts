@@ -27,7 +27,7 @@ export const presentations: Presentation[] = [
     title: "Zorrito en la fábrica de programadores",
     description: "Cuento educativo sobre programación y desarrollo de software",
     pdfUrl: "/cuentos/Zorrito en la fábrica de programadores.pdf",
-    coverImage: "/cuentos/Zorrito en la fábrica de programadores.png",
+    coverImage: "/cuentos/Zorrito en la fábrica de programadores.webp",
   },
 ];
 

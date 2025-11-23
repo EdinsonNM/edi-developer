@@ -8,6 +8,14 @@ interface Book3DProps {
 export function Book3D({ coverImage, className = "" }: Book3DProps) {
   const [isHovered, setIsHovered] = useState(false);
 
+  // Generar rutas WebP y PNG para el fallback
+  const webpSrc = coverImage.endsWith(".webp")
+    ? coverImage
+    : coverImage.replace(/\.(png|jpg|jpeg)$/i, ".webp");
+  const fallbackSrc = coverImage.endsWith(".webp")
+    ? coverImage.replace(/\.webp$/i, ".png")
+    : coverImage;
+
   return (
     <div
       className={`relative ${className}`}
@@ -21,7 +29,9 @@ export function Book3D({ coverImage, className = "" }: Book3DProps) {
       <div
         className="relative w-full h-full transition-transform duration-500 ease-out"
         style={{
-          transform: isHovered ? "scale(1.05) rotateY(-10deg)" : "rotateY(-15deg)",
+          transform: isHovered
+            ? "scale(1.05) rotateY(-10deg)"
+            : "rotateY(-15deg)",
           transformStyle: "preserve-3d",
         }}
       >
@@ -40,11 +50,14 @@ export function Book3D({ coverImage, className = "" }: Book3DProps) {
               backfaceVisibility: "hidden",
             }}
           >
-            <img
-              src={coverImage}
-              alt="Portada del libro: Zorrito en la fábrica de programadores"
-              className="w-full h-full object-cover"
-            />
+            <picture>
+              <source srcSet={webpSrc} type="image/webp" />
+              <img
+                src={fallbackSrc}
+                alt="Portada del libro: Zorrito en la fábrica de programadores"
+                className="w-full h-full object-cover"
+              />
+            </picture>
             {/* Efecto de brillo en la portada */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
           </div>
@@ -91,4 +104,3 @@ export function Book3D({ coverImage, className = "" }: Book3DProps) {
     </div>
   );
 }
-
