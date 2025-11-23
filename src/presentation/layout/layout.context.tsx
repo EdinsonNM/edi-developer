@@ -52,10 +52,15 @@ export const LayoutContextProvider = ({ children }: ContextProvider) => {
     },
     []
   );
+  // Memoizar setBackground para evitar recrearlo
+  const memoizedSetBackground = useCallback((color: string) => {
+    setBackground(color);
+  }, []);
+
   const contextValue = useMemo(
     () => ({
       background,
-      setBackground,
+      setBackground: memoizedSetBackground,
       cameraControls,
       modelRef,
       page,
@@ -65,13 +70,13 @@ export const LayoutContextProvider = ({ children }: ContextProvider) => {
     }),
     [
       background,
-      setBackground,
-      modelRef,
-      cameraControls,
+      memoizedSetBackground,
       page,
       changePage,
       isDark,
       toggleDarkMode,
+      // cameraControls y modelRef son refs, no necesitan estar en dependencias
+      // pero los incluimos para mantener la referencia estable
     ]
   );
   return (

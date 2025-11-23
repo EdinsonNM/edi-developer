@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState, memo } from "react";
 
 interface LazySectionProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface LazySectionProps {
  * Componente que carga contenido solo cuando entra en el viewport
  * Mejora el rendimiento inicial al diferir la carga de secciones no críticas
  */
-export function LazySection({
+function LazySectionComponent({
   children,
   fallback = null,
   rootMargin = "100px",
@@ -61,5 +61,8 @@ export function LazySection({
     </div>
   );
 }
+
+// Memoizar el componente para evitar re-renders innecesarios
+export const LazySection = memo(LazySectionComponent);
 
 

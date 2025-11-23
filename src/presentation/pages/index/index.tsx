@@ -11,7 +11,7 @@ import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
 import { LazySection } from "@/presentation/components/common/LazySection";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useI18n } from "@/presentation/utils/use-i18n";
 
 export default function LandingPage() {
@@ -22,16 +22,19 @@ export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
-  // Opciones del menú de navegación
-  const navigationItems = [
-    { label: t.inicio, href: "#inicio" },
-    { label: t.sobreMi, href: "#sobre-mi" },
-    { label: t.queHago, href: "#que-hago" },
-    { label: t.proyectos, href: "#proyectos" },
-    { label: t.porQueTrabajarConmigo, href: "#por-que-trabajar-conmigo" },
-    { label: t.charlas, href: "#charlas" },
-    { label: t.contacto, href: "#contacto" },
-  ];
+  // Memoizar opciones del menú de navegación para evitar recrearlas en cada render
+  const navigationItems = useMemo(
+    () => [
+      { label: t.inicio, href: "#inicio" },
+      { label: t.sobreMi, href: "#sobre-mi" },
+      { label: t.queHago, href: "#que-hago" },
+      { label: t.proyectos, href: "#proyectos" },
+      { label: t.porQueTrabajarConmigo, href: "#por-que-trabajar-conmigo" },
+      { label: t.charlas, href: "#charlas" },
+      { label: t.contacto, href: "#contacto" },
+    ],
+    [t]
+  );
 
   // Manejar visibilidad del navbar al hacer scroll con optimización de rendimiento
   useEffect(() => {
@@ -125,7 +128,7 @@ export default function LandingPage() {
               alt="Edi Developer" 
               className="h-8" 
               loading="eager"
-              fetchPriority="high"
+              fetchpriority="high"
             />
           </a>
         </div>

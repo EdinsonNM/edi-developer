@@ -3,6 +3,8 @@ import {
   useContext,
   useState,
   useEffect,
+  useCallback,
+  useMemo,
   ReactNode,
 } from "react";
 
@@ -617,17 +619,21 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const handleSetLanguage = (lang: Language) => {
+  const handleSetLanguage = useCallback((lang: Language) => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
-  };
+  }, []);
 
   const t = translations[language];
 
+  // Memoizar el valor del contexto para evitar re-renders innecesarios
+  const contextValue = useMemo(
+    () => ({ language, setLanguage: handleSetLanguage, t }),
+    [language, handleSetLanguage, t]
+  );
+
   return (
-    <I18nContext.Provider
-      value={{ language, setLanguage: handleSetLanguage, t }}
-    >
+    <I18nContext.Provider value={contextValue}>
       {children}
     </I18nContext.Provider>
   );
