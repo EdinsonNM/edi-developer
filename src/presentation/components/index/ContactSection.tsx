@@ -97,6 +97,7 @@ export function ContactSection() {
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
                   {t.nameLabel}
+                  <span className="text-red-500 ml-1" aria-label="required">*</span>
                 </label>
                 <Input
                   id="name"
@@ -106,7 +107,8 @@ export function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="border-slate-200"
+                  aria-required="true"
+                  className="border-slate-200 focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -116,6 +118,7 @@ export function ContactSection() {
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
                   {t.emailLabel}
+                  <span className="text-red-500 ml-1" aria-label="required">*</span>
                 </label>
                 <Input
                   id="email"
@@ -125,7 +128,9 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="border-slate-200"
+                  aria-required="true"
+                  autoComplete="email"
+                  className="border-slate-200 focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -135,6 +140,7 @@ export function ContactSection() {
                   className="text-sm font-medium text-slate-700 text-left block"
                 >
                   {t.messageLabel}
+                  <span className="text-red-500 ml-1" aria-label="required">*</span>
                 </label>
                 <Textarea
                   id="message"
@@ -143,8 +149,9 @@ export function ContactSection() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  aria-required="true"
                   rows={6}
-                  className="border-slate-200 resize-none"
+                  className="border-slate-200 resize-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -152,25 +159,30 @@ export function ContactSection() {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label={t.sendButton}
               >
                 {isSubmitting ? (
                   <>
-                    <span className="animate-spin mr-2">⏳</span>
-                    {t.sending}
+                    <span className="animate-spin mr-2" aria-hidden="true">⏳</span>
+                    <span aria-live="polite">{t.sending}</span>
                   </>
                 ) : (
                   <>
                     {t.sendButton}
-                    <Send className="h-4 w-4 ml-2" />
+                    <Send className="h-4 w-4 ml-2" aria-hidden="true" />
                   </>
                 )}
               </Button>
 
-              {/* Mensajes de estado */}
+              {/* Mensajes de estado con aria-live para lectores de pantalla */}
               {submitStatus === "success" && (
-                <div className="flex items-center gap-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700">
-                  <CheckCircle2 className="h-5 w-5" />
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="flex items-center gap-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700"
+                >
+                  <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
                   <span className="text-sm font-medium">
                     {t.messageSentSuccess}
                   </span>
@@ -178,8 +190,12 @@ export function ContactSection() {
               )}
 
               {submitStatus === "error" && (
-                <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-                  <AlertCircle className="h-5 w-5" />
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700"
+                >
+                  <AlertCircle className="h-5 w-5" aria-hidden="true" />
                   <span className="text-sm font-medium">
                     {t.messageError}
                   </span>

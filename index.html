@@ -181,6 +181,11 @@
           "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
           "Helvetica Neue", sans-serif;
       }
+      /* Optimización: Evitar FOUC (Flash of Unstyled Content) */
+      #root {
+        min-height: 100vh;
+        background: white;
+      }
     </style>
 
     <!-- Script para preload asíncrono de fuentes -->
@@ -215,6 +220,7 @@
     </script>
   </head>
   <body class="h-screen m-0">
+    <!-- React se monta aquí -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

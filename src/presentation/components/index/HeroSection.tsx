@@ -20,7 +20,7 @@ const HyperspeedPlaceholder = () => (
 );
 
 export function HeroSection() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const [shouldLoadHyperspeed, setShouldLoadHyperspeed] = useState(false);
 
   // Cargar Hyperspeed después de que el contenido crítico se haya renderizado
@@ -119,10 +119,11 @@ export function HeroSection() {
           <a
             href="/Resume English.pdf"
             download="Resume English.pdf"
-            className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20"
+            className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label={t.downloadCV}
           >
             <span>{t.downloadCV}</span>
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <a
             href="#contacto"
@@ -136,25 +137,32 @@ export function HeroSection() {
                   top: offsetTop,
                   behavior: "smooth",
                 });
+                // Mover foco al elemento de contacto para accesibilidad
+                (element as HTMLElement).focus();
               }
             }}
-            className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             {t.contactMe}
           </a>
         </div>
 
         {/* Floating Icons Marquee */}
-        <div className="w-full max-w-7xl mx-auto animate-fade-in-up opacity-0 [animation-delay:1000ms] [animation-fill-mode:forwards]">
+        <div 
+          className="w-full max-w-7xl mx-auto animate-fade-in-up opacity-0 [animation-delay:1000ms] [animation-fill-mode:forwards]"
+          aria-label={language === "es" ? "Tecnologías y herramientas" : "Technologies and tools"}
+        >
           <Marquee className="[--duration:40s] py-8" pauseOnHover>
             {icons.map((iconConfig, i) => {
               const { Icon, color } = iconConfig;
               return (
                 <div
                   key={i}
-                  className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg shadow-slate-200/50 ring-1 ring-slate-100 mx-4 hover:scale-110 transition-transform cursor-pointer"
+                  className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg shadow-slate-200/50 ring-1 ring-slate-100 mx-4 hover:scale-110 transition-transform"
+                  role="img"
+                  aria-hidden="true"
                 >
-                  <Icon className={`h-6 w-6 ${color}`} />
+                  <Icon className={`h-6 w-6 ${color}`} aria-hidden="true" />
                 </div>
               );
             })}
