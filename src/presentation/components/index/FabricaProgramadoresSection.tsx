@@ -77,7 +77,7 @@ export function FabricaProgramadoresSection() {
           <div className="flex items-center justify-center">
             <div className="w-full max-w-md h-[500px]">
               <Book3D
-                coverImage="/cuentos/Zorrito en la fábrica de programadores.png"
+                coverImage="/cuentos/Zorrito en la fábrica de programadores.webp"
                 className="w-full h-full"
               />
             </div>
