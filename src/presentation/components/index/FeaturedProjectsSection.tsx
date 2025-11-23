@@ -1,8 +1,10 @@
 import CardSwap, { Card } from "@/components/CardSwap";
 import { useI18n } from "@/presentation/utils/use-i18n";
+import { useWindowSize } from "@/hooks/use-window-size";
 
 export function FeaturedProjectsSection() {
   const { t } = useI18n();
+  const { width } = useWindowSize();
 
   const projects = [
     {
@@ -33,31 +35,31 @@ export function FeaturedProjectsSection() {
   return (
     <section
       id="proyectos"
-      className="relative z-10 py-24 px-4 md:px-6 bg-white border-t border-slate-100"
+      className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white border-t border-slate-100"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[2fr_3fr] gap-8 mb-12">
+        <div className="grid md:grid-cols-[2fr_3fr] gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Columna izquierda: Título y descripción */}
           <div className="flex flex-col justify-center">
-            <div className="text-center md:text-left mb-6 bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-white/30">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
+            <div className="text-center md:text-left mb-6 sm:mb-8 bg-white/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/30">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4">
                 {t.featuredProjectsTitle}
               </h2>
-              <p className="text-lg text-slate-600">
+              <p className="text-base sm:text-lg text-slate-600">
                 {t.featuredProjectsSubtitle}
               </p>
             </div>
           </div>
 
           {/* Columna derecha: Cards con CardSwap */}
-          <div className="relative min-h-[500px] flex items-center justify-center">
+          <div className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[600px] flex items-center justify-center overflow-visible md:pr-8 md:pb-8">
             <CardSwap
-              cardDistance={60}
-              verticalDistance={70}
+              cardDistance={width < 640 ? 40 : 60}
+              verticalDistance={width < 640 ? 50 : 70}
               delay={5000}
               pauseOnHover={false}
-              width={500}
-              height={400}
+              width={width < 640 ? 280 : width < 768 ? 350 : 500}
+              height={width < 640 ? 220 : width < 768 ? 280 : 400}
             >
               {projects.map((project, index) => (
                 <Card
@@ -85,11 +87,11 @@ export function FeaturedProjectsSection() {
                       {/* Overlay para mejorar legibilidad */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
                       {/* Contenido sobre la imagen */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col z-10">
-                        <h3 className="text-2xl font-bold text-blue-400 mb-3">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 flex flex-col z-10">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-400 mb-2 sm:mb-3">
                           {project.title}
                         </h3>
-                        <p className="text-white/95 leading-relaxed text-base">
+                        <p className="text-white/95 leading-relaxed text-sm sm:text-base">
                           {project.description}
                         </p>
                       </div>
