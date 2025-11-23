@@ -2,19 +2,16 @@ import { useState } from "react";
 
 interface Book3DProps {
   coverImage: string;
+  coverImageWebp: string;
   className?: string;
 }
 
-export function Book3D({ coverImage, className = "" }: Book3DProps) {
+export function Book3D({
+  coverImage,
+  coverImageWebp,
+  className = "",
+}: Book3DProps) {
   const [isHovered, setIsHovered] = useState(false);
-
-  // Generar rutas WebP y PNG para el fallback
-  const webpSrc = coverImage.endsWith(".webp")
-    ? coverImage
-    : coverImage.replace(/\.(png|jpg|jpeg)$/i, ".webp");
-  const fallbackSrc = coverImage.endsWith(".webp")
-    ? coverImage.replace(/\.webp$/i, ".png")
-    : coverImage;
 
   return (
     <div
@@ -51,11 +48,12 @@ export function Book3D({ coverImage, className = "" }: Book3DProps) {
             }}
           >
             <picture>
-              <source srcSet={webpSrc} type="image/webp" />
+              <source src={coverImageWebp} type="image/webp" />
               <img
-                src={fallbackSrc}
+                src={coverImage}
                 alt="Portada del libro: Zorrito en la fábrica de programadores"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </picture>
             {/* Efecto de brillo en la portada */}
