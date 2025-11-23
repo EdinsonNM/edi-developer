@@ -123,12 +123,12 @@ export default function LandingPage() {
             onClick={(e) => handleNavClick(e, "#inicio")}
             className="cursor-pointer"
           >
-            <img 
-              src={logo} 
-              alt="Edi Developer" 
-              className="h-8" 
+            <img
+              src={logo}
+              alt="Edi Developer"
+              className="h-8"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
             />
           </a>
         </div>
@@ -236,35 +236,35 @@ export default function LandingPage() {
       <LazySection rootMargin="200px">
         <AboutSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <WhatIDoSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <FeaturedProjectsSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <WhyWorkWithMeSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <TalksSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <FabricaProgramadoresSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <PresentationsCarouselSection />
       </LazySection>
-      
+
       <LazySection rootMargin="200px">
         <ContactSection />
       </LazySection>
-      
+
       <FooterSection />
 
       {/* Custom Animation Styles */}
