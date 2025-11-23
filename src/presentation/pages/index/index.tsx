@@ -1,5 +1,5 @@
 import logo from "@/assets/images/logo.png";
-import { Menu, Download, Globe } from "lucide-react";
+import { Menu, Download, Globe, X } from "lucide-react";
 import { AboutSection } from "@/presentation/components/index/AboutSection";
 import { WhatIDoSection } from "@/presentation/components/index/WhatIDoSection";
 import { FeaturedProjectsSection } from "@/presentation/components/index/FeaturedProjectsSection";
@@ -91,7 +91,7 @@ export default function LandingPage() {
     }
   };
 
-  // Cerrar menú de idioma al hacer click fuera
+  // Cerrar menú de idioma al hacer click fuera o presionar Escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -100,19 +100,71 @@ export default function LandingPage() {
       }
     };
 
-    if (isLanguageMenuOpen) {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsLanguageMenuOpen(false);
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isLanguageMenuOpen || isMobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
     };
+  }, [isLanguageMenuOpen, isMobileMenuOpen]);
+
+  // Manejar navegación por teclado en menú de idioma
+  const languageMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isLanguageMenuOpen && languageMenuRef.current) {
+      const firstButton = languageMenuRef.current.querySelector("button");
+      firstButton?.focus();
+    }
   }, [isLanguageMenuOpen]);
+
+  // Manejar navegación por teclado en menú móvil
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isMobileMenuOpen && mobileMenuRef.current) {
+      const firstLink = mobileMenuRef.current.querySelector("a");
+      firstLink?.focus();
+    }
+  }, [isMobileMenuOpen]);
+
+  // Actualizar lang del HTML según el idioma del usuario
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white text-slate-900 selection:bg-blue-100">
+      {/* Skip to main content link */}
+      <a
+        href="#inicio"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        onClick={(e) => {
+          e.preventDefault();
+          const element = document.getElementById("inicio");
+          element?.focus();
+          element?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        {language === "es"
+          ? "Saltar al contenido principal"
+          : "Skip to main content"}
+      </a>
+
       {/* Navbar */}
       <nav
+        role="navigation"
+        aria-label={
+          language === "es" ? "Navegación principal" : "Main navigation"
+        }
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-sm bg-white/50 border-b border-slate-100 transition-transform duration-300 ${
           isNavbarVisible ? "translate-y-0" : "-translate-y-full"
         }`}
@@ -128,57 +180,72 @@ export default function LandingPage() {
               alt="Edi Developer"
               className="h-8"
               loading="eager"
-              fetchPriority="high"
             />
           </a>
         </div>
 
         {/* Menú Desktop */}
-        <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 list-none">
           {navigationItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50"
-            >
-              {item.label}
-            </a>
+            <li key={item.href}>
+              <a
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                {item.label}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="flex items-center gap-4">
           {/* Language Selector */}
           <div className="relative language-selector">
             <button
               onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors"
-              aria-label="Select language"
+              className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              aria-label={
+                language === "es" ? "Seleccionar idioma" : "Select language"
+              }
+              aria-expanded={isLanguageMenuOpen}
+              aria-haspopup="true"
             >
-              <Globe className="h-4 w-4" />
+              <Globe className="h-4 w-4" aria-hidden="true" />
               <span className="uppercase">{language}</span>
             </button>
             {isLanguageMenuOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
+              <div
+                ref={languageMenuRef}
+                role="menu"
+                aria-label={
+                  language === "es" ? "Menú de idiomas" : "Language menu"
+                }
+                className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50"
+              >
                 <button
+                  role="menuitem"
                   onClick={() => {
                     setLanguage("es");
                     setIsLanguageMenuOpen(false);
                   }}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
                     language === "es" ? "bg-blue-50 text-blue-600" : ""
                   }`}
+                  aria-current={language === "es" ? "true" : undefined}
                 >
                   Español
                 </button>
                 <button
+                  role="menuitem"
                   onClick={() => {
                     setLanguage("en");
                     setIsLanguageMenuOpen(false);
                   }}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
                     language === "en" ? "bg-blue-50 text-blue-600" : ""
                   }`}
+                  aria-current={language === "en" ? "true" : undefined}
                 >
                   English
                 </button>
@@ -188,30 +255,59 @@ export default function LandingPage() {
           <a
             href="/Resume English.pdf"
             download="Resume English.pdf"
-            className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors"
+            className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label={t.downloadCV}
           >
-            <Download className="h-4 w-4" />
+            <Download className="h-4 w-4" aria-hidden="true" />
             <span>{t.downloadCV}</span>
           </a>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-slate-600 hover:text-blue-600 transition-colors"
-            aria-label="Toggle menu"
+            className="lg:hidden text-slate-600 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1"
+            aria-label={
+              isMobileMenuOpen
+                ? language === "es"
+                  ? "Cerrar menú"
+                  : "Close menu"
+                : language === "es"
+                ? "Abrir menú"
+                : "Open menu"
+            }
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            <Menu className="h-6 w-6" />
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
           </button>
         </div>
 
         {/* Menú Mobile */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg lg:hidden">
-            <div className="flex flex-col px-6 py-4 gap-2">
+          <div
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            role="menu"
+            aria-label={
+              language === "es"
+                ? "Menú de navegación móvil"
+                : "Mobile navigation menu"
+            }
+            className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg lg:hidden"
+          >
+            <nav
+              className="flex flex-col px-6 py-4 gap-2"
+              aria-label={language === "es" ? "Navegación" : "Navigation"}
+            >
               {navigationItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
+                  role="menuitem"
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50"
+                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   {item.label}
                 </a>
@@ -219,12 +315,14 @@ export default function LandingPage() {
               <a
                 href="/Resume English.pdf"
                 download="Resume English.pdf"
-                className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2"
+                role="menuitem"
+                className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label={t.downloadCV}
               >
-                <Download className="h-4 w-4" />
+                <Download className="h-4 w-4" aria-hidden="true" />
                 <span>{t.downloadCV}</span>
               </a>
-            </div>
+            </nav>
           </div>
         )}
       </nav>
@@ -281,6 +379,40 @@ export default function LandingPage() {
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
+        }
+        /* Respetar preferencia de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-fade-in-up {
+            animation: none;
+            opacity: 1;
+          }
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+        /* Estilos para skip link */
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+        .sr-only:focus {
+          position: fixed;
+          width: auto;
+          height: auto;
+          padding: 0.5rem 1rem;
+          margin: 0;
+          overflow: visible;
+          clip: auto;
+          white-space: normal;
         }
       `}</style>
     </div>
