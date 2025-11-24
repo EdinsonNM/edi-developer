@@ -7,11 +7,7 @@
   "linkedin": "www.linkedin.com/in/edinsonnm",
   "github": "https://github.com/EdinsonNM",
   "visa_usa": true,
-  "countries_visited": [
-    "Estados Unidos",
-    "Reino Unido",
-    "Italia"
-  ],
+  "countries_visited": ["Estados Unidos", "Reino Unido", "Italia"],
   "languages": [
     {
       "language": "Español",
@@ -41,18 +37,39 @@
   ],
   "work_experience": [
     {
-      "company": "Proyecto personal: Lenguaje Natural a Sql",
+      "company": "NeoSense – Proyecto personal",
       "role": "Creador y Desarrollador Principal",
       "startDate": "2024-06",
       "endDate": "Presente",
-      "description": "Desarrollo de una aplicación que realice el procesamiento semántico de una base de datos para permitir realizar consultas haciendo uso del lenguaje natural hacia una base de datos PostgreSQL.",
+      "description": "Interfaz de lenguaje natural con verificación SQL y workflow agéntico usando LangGraph. El sistema interpreta la intención del usuario, genera consultas SQL y las valida paso a paso antes de ejecutarlas. Analiza esquemas de base de datos y los convierte en una representación interna simplificada para soportar generación SQL más precisa. Integra RAG (ChromaDB/pgvector) y herramientas LangChain para combinar recuperación semántica con consultas estructuradas. Aplica patrones de prompt engineering para garantizar salidas consistentes, seguras y conscientes del esquema. Determina la representación UI más adecuada (tablas, tarjetas, gráficos, vistas detalladas) devolviendo directivas JSON estructuradas que guían dinámicamente el frontend. Incluye guardrails para prevenir consultas inseguras (DELETE, UPDATE, violaciones de esquema) y asegurar ejecución zero-trust: cada decisión es registrada, evaluada y aprobada por el workflow antes de llegar a la base de datos.",
+      "impact": [
+        "NeoSense se comporta como un analista de datos inteligente que transforma lenguaje natural en consultas de datos seguras, auditables y completamente validadas."
+      ],
       "technologies": [
-        "Langchain",
+        "React",
+        "NestJS",
+        "LangGraph",
+        "LangChain",
+        "PostgreSQL",
+        "ChromaDB",
+        "Embeddings",
         "RAG",
-        "Nest JS",
-        "Typescript",
-        "OpenAI API",
-        "Claude"
+        "pgvector",
+        "Typescript"
+      ]
+    },
+    {
+      "company": "NeoKids – Proyecto personal",
+      "role": "Creador y Desarrollador Principal",
+      "startDate": "2024",
+      "endDate": "2025",
+      "description": "Asistente educativo impulsado por IA que interpreta la intención del usuario a través de lenguaje natural y orquesta acciones usando OpenAI \"chat with tools\". Integra herramientas para consultas de clima, reproducción de Spotify, geolocalización, verificación de calendario y búsquedas en base de datos, permitiendo que el agente active workflows en cascada en tiempo real. Implementa una capa de orquestación segura donde el asistente recupera datos, valida condiciones y retorna esquemas JSON estructurados que instruyen al frontend sobre qué componentes UI renderizar. Asegura alineación entre el razonamiento de IA y las reglas de negocio diseñando una clara separación entre decisiones del agente, llamadas a APIs externas y acciones finales orientadas al usuario.",
+      "technologies": [
+        "NestJS",
+        "OpenAI Tools",
+        "Postgres",
+        "Supabase",
+        "TypeScript"
       ]
     },
     {
@@ -61,13 +78,7 @@
       "startDate": "2024-08",
       "endDate": "2025-05",
       "description": "Ridivi Admin Dashboard y Verificador. Tecnologías: React 18, Typescript, PHP, Java, Spring Boot.",
-      "technologies": [
-        "React 18",
-        "Typescript",
-        "PHP",
-        "Java",
-        "Spring Boot"
-      ]
+      "technologies": ["React 18", "Typescript", "PHP", "Java", "Spring Boot"]
     },
     {
       "company": "Tekton Labs, Perú",
@@ -75,11 +86,7 @@
       "startDate": "2023-06",
       "endDate": "Presente",
       "description": "Devon Dashboard: Proyecto web para un cliente de EE.UU (Devon Energy), Oklahoma. Tecnologías: ANGULAR 16, D3.JS, HIGHTCHARTS.",
-      "technologies": [
-        "ANGULAR 16",
-        "D3.JS",
-        "HIGHTCHARTS"
-      ]
+      "technologies": ["ANGULAR 16", "D3.JS", "HIGHTCHARTS"]
     },
     {
       "company": "Novatronic, Lima",
@@ -87,11 +94,7 @@
       "startDate": "2023-05",
       "endDate": "2023-05",
       "description": "Desarrollo de portal Web Admin SIX/EFT Switch.",
-      "technologies": [
-        "ANGULAR 15",
-        "ANGULAR MATERIAL",
-        "ANGULAR QUERY"
-      ]
+      "technologies": ["ANGULAR 15", "ANGULAR MATERIAL", "ANGULAR QUERY"]
     },
     {
       "company": "Hatun, Lima",
@@ -99,10 +102,7 @@
       "startDate": "2023-04",
       "endDate": "2023-05",
       "description": "Refactor y buenas practicas de desarrollo mobile parar \"Hatun\" usando Flutter.",
-      "technologies": [
-        "FLUTTER",
-        "FIREBASE"
-      ]
+      "technologies": ["FLUTTER", "FIREBASE"]
     },
     {
       "company": "Minedu, Lima",
@@ -222,11 +222,7 @@
       "startDate": "2017-04",
       "endDate": "2017-05",
       "description": "Portal Web Observatorio de Cuencas - Chancay-Lambayeque, Arequipa, Piura.",
-      "technologies": [
-        "PHP",
-        "FIREBASE",
-        "REACT"
-      ]
+      "technologies": ["PHP", "FIREBASE", "REACT"]
     },
     {
       "company": "ExcelSoftSources, Lima",
@@ -234,11 +230,7 @@
       "startDate": "2015-05",
       "endDate": "2017-01",
       "description": "E-commerce Videocheckout para facebook - Total- Apps, EE.UU.",
-      "technologies": [
-        ".NET",
-        "SQLSERVER",
-        "MONGODB"
-      ]
+      "technologies": [".NET", "SQLSERVER", "MONGODB"]
     },
     {
       "company": "Jagermeister, Lima",
@@ -246,9 +238,7 @@
       "startDate": "2014-07",
       "endDate": "2014-09",
       "description": "Aplicación Android Jagermeister - Mexico.",
-      "technologies": [
-        "Android"
-      ]
+      "technologies": ["Android"]
     },
     {
       "company": "Chateuonline, Lima",
@@ -256,10 +246,7 @@
       "startDate": "2014-03",
       "endDate": "2014-03",
       "description": "WebApp venta de Vinos - Francia.",
-      "technologies": [
-        "VB.NET",
-        "SQL SERVER"
-      ]
+      "technologies": ["VB.NET", "SQL SERVER"]
     },
     {
       "company": "Tiam-V. SAC, Lima",
@@ -291,9 +278,7 @@
       "startDate": "2012-06",
       "endDate": "2013-08",
       "description": "Administración e Implementación de ERP - CMAC-Paita.",
-      "technologies": [
-        ".NET"
-      ]
+      "technologies": [".NET"]
     },
     {
       "company": "JUMBP, Piura",
@@ -301,9 +286,7 @@
       "startDate": "2011-11",
       "endDate": "2012-02",
       "description": "Sistema Desktop para la Gestión y Manejo del Agua - Junta Medio y Bajo Piura.",
-      "technologies": [
-        ".NET"
-      ]
+      "technologies": [".NET"]
     },
     {
       "company": "Nippon Koei, Lima",
@@ -343,9 +326,7 @@
       "startDate": "2008-08",
       "endDate": "2010-02",
       "description": "Desarrollo de la aplicación de escritorio \"Sistema de Riego\"",
-      "technologies": [
-        ".NET"
-      ]
+      "technologies": [".NET"]
     }
   ],
   "projects_personal": [
@@ -383,10 +364,7 @@
       "fecha": "2024-11",
       "rol": "Consultor Externo de software Senior Frontend",
       "description": "Creación de un chatbot haciendo uso de IA generativa para brindar información sobre el sistema Siagie.",
-      "technologies": [
-        "React 18",
-        "AWS Bedrock"
-      ]
+      "technologies": ["React 18", "AWS Bedrock"]
     }
   ],
   "charlas": [
@@ -522,12 +500,18 @@
       "knowledge": {
         "LLMs y Técnicas": 2,
         "Prompt Engineering": 2,
-        "RAG": 1,
-        "LangChain": 1,
+        "RAG": 2,
+        "LangChain": 2,
+        "LangGraph": 1.5,
         "OpenAI": 2,
+        "OpenAI Tools": 1.5,
         "Claude": 2,
         "DeepSeek": 0.5,
-        "Gemini": 1.5
+        "Gemini": 1.5,
+        "ChromaDB": 1.5,
+        "pgvector": 1.5,
+        "Agentic Workflows": 1.5,
+        "Embeddings": 1.5
       },
       "related_talks": [
         "Taller sobre el \"Uso de la IA en el desarrollo de software\"",
@@ -606,7 +590,7 @@
         "Photoshop": 4
       },
       "libraries": {
-        "ThreeJS": 3 ,
+        "ThreeJS": 3,
         "React Three Fiber": 3
       }
     },
