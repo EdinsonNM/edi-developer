@@ -28,7 +28,6 @@ import {
   SiPython,
   SiTensorflow,
   SiPytorch,
-  SiHuggingface,
   SiJupyter,
   SiMongodb,
   SiRedis,
@@ -52,7 +51,6 @@ export const ICONS = [
   { Icon: SiTailwindcss, color: "text-blue-500" },
   { Icon: SiGatsby, color: "text-purple-500" },
   { Icon: SiPython, color: "text-blue-600" },
-  { Icon: SiHuggingface, color: "text-yellow-500" },
   { Icon: LangchainIcon, color: "text-green-600" },
   { Icon: LangraphIcon, color: "text-blue-600" },
 
