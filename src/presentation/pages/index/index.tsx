@@ -1,5 +1,3 @@
-import logo from "@/assets/images/logo.png";
-import { Menu, Download, Globe, X } from "lucide-react";
 import { AboutSection } from "@/presentation/components/index/AboutSection";
 import { WhatIDoSection } from "@/presentation/components/index/WhatIDoSection";
 import { FeaturedProjectsSection } from "@/presentation/components/index/FeaturedProjectsSection";
@@ -10,66 +8,13 @@ import { PresentationsCarouselSection } from "@/presentation/components/index/Pr
 import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
+import { Navbar } from "@/presentation/components/index/Navbar";
 import { LazySection } from "@/presentation/components/common/LazySection";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect } from "react";
 import { useI18n } from "@/presentation/utils/use-i18n";
 
 export default function LandingPage() {
-  const { t, language, setLanguage } = useI18n();
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const lastScrollYRef = useRef(0);
-  const rafIdRef = useRef<number | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-
-  // Memoizar opciones del menú de navegación para evitar recrearlas en cada render
-  const navigationItems = useMemo(
-    () => [
-      { label: t.inicio, href: "#inicio" },
-      { label: t.sobreMi, href: "#sobre-mi" },
-      { label: t.queHago, href: "#que-hago" },
-      { label: t.proyectos, href: "#proyectos" },
-      { label: t.porQueTrabajarConmigo, href: "#por-que-trabajar-conmigo" },
-      { label: t.charlas, href: "#charlas" },
-      { label: t.contacto, href: "#contacto" },
-    ],
-    [t]
-  );
-
-  // Manejar visibilidad del navbar al hacer scroll con optimización de rendimiento
-  useEffect(() => {
-    const handleScroll = () => {
-      // Cancelar el frame anterior si existe
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
-
-      // Usar requestAnimationFrame para sincronizar con el ciclo de renderizado
-      rafIdRef.current = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const lastScrollY = lastScrollYRef.current;
-
-        // Solo actualizar estado si hay un cambio significativo
-        if (currentScrollY < lastScrollY || currentScrollY < 100) {
-          setIsNavbarVisible((prev) => (prev ? prev : true));
-        } else {
-          setIsNavbarVisible((prev) => (prev ? false : prev));
-        }
-
-        lastScrollYRef.current = currentScrollY;
-        rafIdRef.current = null;
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      // Limpiar el frame pendiente si existe
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
-    };
-  }, []); // Sin dependencias - el listener se crea una sola vez
+  const { language } = useI18n();
 
   // Función para scroll suave
   const handleNavClick = (
@@ -77,8 +22,6 @@ export default function LandingPage() {
     href: string
   ) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
-    setIsLanguageMenuOpen(false);
 
     const element = document.querySelector(href);
     if (element) {
@@ -90,51 +33,6 @@ export default function LandingPage() {
       });
     }
   };
-
-  // Cerrar menú de idioma al hacer click fuera o presionar Escape
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest(".language-selector")) {
-        setIsLanguageMenuOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsLanguageMenuOpen(false);
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isLanguageMenuOpen || isMobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [isLanguageMenuOpen, isMobileMenuOpen]);
-
-  // Manejar navegación por teclado en menú de idioma
-  const languageMenuRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (isLanguageMenuOpen && languageMenuRef.current) {
-      const firstButton = languageMenuRef.current.querySelector("button");
-      firstButton?.focus();
-    }
-  }, [isLanguageMenuOpen]);
-
-  // Manejar navegación por teclado en menú móvil
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (isMobileMenuOpen && mobileMenuRef.current) {
-      const firstLink = mobileMenuRef.current.querySelector("a");
-      firstLink?.focus();
-    }
-  }, [isMobileMenuOpen]);
 
   // Actualizar lang del HTML según el idioma del usuario
   useEffect(() => {
@@ -160,177 +58,10 @@ export default function LandingPage() {
       </a>
 
       {/* Navbar */}
-      <nav
-        role="navigation"
-        aria-label={
-          language === "es" ? "Navegación principal" : "Main navigation"
-        }
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-sm bg-white/50 border-b border-slate-100 transition-transform duration-300 ${
-          isNavbarVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <a
-            href="#inicio"
-            onClick={(e) => handleNavClick(e, "#inicio")}
-            className="cursor-pointer"
-          >
-            <img
-              src={logo}
-              alt="Edi Developer"
-              className="h-8"
-              loading="eager"
-            />
-          </a>
-        </div>
+      <Navbar onNavClick={handleNavClick} />
 
-        {/* Menú Desktop */}
-        <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 list-none">
-          {navigationItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-4">
-          {/* Language Selector */}
-          <div className="relative language-selector">
-            <button
-              onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              aria-label={
-                language === "es" ? "Seleccionar idioma" : "Select language"
-              }
-              aria-expanded={isLanguageMenuOpen}
-              aria-haspopup="true"
-            >
-              <Globe className="h-4 w-4" aria-hidden="true" />
-              <span className="uppercase">{language}</span>
-            </button>
-            {isLanguageMenuOpen && (
-              <div
-                ref={languageMenuRef}
-                role="menu"
-                aria-label={
-                  language === "es" ? "Menú de idiomas" : "Language menu"
-                }
-                className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50"
-              >
-                <button
-                  role="menuitem"
-                  onClick={() => {
-                    setLanguage("es");
-                    setIsLanguageMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
-                    language === "es" ? "bg-blue-50 text-blue-600" : ""
-                  }`}
-                  aria-current={language === "es" ? "true" : undefined}
-                >
-                  Español
-                </button>
-                <button
-                  role="menuitem"
-                  onClick={() => {
-                    setLanguage("en");
-                    setIsLanguageMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
-                    language === "en" ? "bg-blue-50 text-blue-600" : ""
-                  }`}
-                  aria-current={language === "en" ? "true" : undefined}
-                >
-                  English
-                </button>
-              </div>
-            )}
-          </div>
-          <a
-            href="/Resume English.pdf"
-            download="Resume English.pdf"
-            className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label={t.downloadCV}
-          >
-            <Download className="h-4 w-4" aria-hidden="true" />
-            <span>{t.downloadCV}</span>
-          </a>
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-slate-600 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1"
-            aria-label={
-              isMobileMenuOpen
-                ? language === "es"
-                  ? "Cerrar menú"
-                  : "Close menu"
-                : language === "es"
-                ? "Abrir menú"
-                : "Open menu"
-            }
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
-            ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
-            )}
-          </button>
-        </div>
-
-        {/* Menú Mobile */}
-        {isMobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            ref={mobileMenuRef}
-            role="menu"
-            aria-label={
-              language === "es"
-                ? "Menú de navegación móvil"
-                : "Mobile navigation menu"
-            }
-            className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg lg:hidden"
-          >
-            <nav
-              className="flex flex-col px-6 py-4 gap-2"
-              aria-label={language === "es" ? "Navegación" : "Navigation"}
-            >
-              {navigationItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  role="menuitem"
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <a
-                href="/Resume English.pdf"
-                download="Resume English.pdf"
-                role="menuitem"
-                className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                aria-label={t.downloadCV}
-              >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                <span>{t.downloadCV}</span>
-              </a>
-            </nav>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section - Crítico, carga inmediatamente */}
       <HeroSection />
 
-      {/* Secciones con lazy loading - Carga cuando están cerca del viewport */}
       <LazySection rootMargin="200px">
         <AboutSection />
       </LazySection>
