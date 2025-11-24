@@ -1,20 +1,11 @@
 import Marquee from "@/components/ui/marquee";
 import { ArrowRight } from "lucide-react";
-import {
-  innerCircleIcons,
-  middleCircleIcons,
-  outerCircleIcons,
-} from "../../pages/home/components/icons-config";
+import { ICONS } from "../../pages/home/components/icons-config";
 import { useI18n } from "@/presentation/utils/use-i18n";
 import { lazy, Suspense, useState, useEffect } from "react";
 
-// Lazy load del componente pesado Hyperspeed
 const Hyperspeed = lazy(() => import("@/components/Hyperspeed"));
 
-// Combinar todos los iconos de icons-config.ts
-const icons = [...innerCircleIcons, ...middleCircleIcons, ...outerCircleIcons];
-
-// Placeholder simple mientras carga Hyperspeed
 const HyperspeedPlaceholder = () => (
   <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-white via-slate-50 to-white" />
 );
@@ -148,12 +139,16 @@ export function HeroSection() {
         </div>
 
         {/* Floating Icons Marquee */}
-        <div 
+        <div
           className="w-full max-w-7xl mx-auto animate-fade-in-up opacity-0 [animation-delay:1000ms] [animation-fill-mode:forwards]"
-          aria-label={language === "es" ? "Tecnologías y herramientas" : "Technologies and tools"}
+          aria-label={
+            language === "es"
+              ? "Tecnologías y herramientas"
+              : "Technologies and tools"
+          }
         >
           <Marquee className="[--duration:40s] py-8" pauseOnHover>
-            {icons.map((iconConfig, i) => {
+            {ICONS.map((iconConfig, i) => {
               const { Icon, color } = iconConfig;
               return (
                 <div

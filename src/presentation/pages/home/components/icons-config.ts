@@ -24,12 +24,20 @@ import {
   SiRemix,
   SiStencil,
   SiGatsby,
+  SiPostgresql,
+  SiPython,
+  SiTensorflow,
+  SiPytorch,
+  SiJupyter,
+  SiMongodb,
+  SiRedis,
 } from "react-icons/si";
 import { RiOpenaiFill, RiNextjsFill, RiFlutterFill } from "react-icons/ri";
 import { TbBrandThreejs } from "react-icons/tb";
 import { SiSass, SiTailwindcss } from "react-icons/si";
+import { LangchainIcon, LangraphIcon, ChromaDbIcon } from "./custom-ai-icons";
 
-export const innerCircleIcons = [
+export const ICONS = [
   { Icon: RiOpenaiFill, color: "text-black" },
   { Icon: FaReact, color: "text-blue-500" },
   { Icon: FaAngular, color: "text-red-500" },
@@ -42,9 +50,10 @@ export const innerCircleIcons = [
   { Icon: SiSass, color: "text-pink-500" },
   { Icon: SiTailwindcss, color: "text-blue-500" },
   { Icon: SiGatsby, color: "text-purple-500" },
-];
+  { Icon: SiPython, color: "text-blue-600" },
+  { Icon: LangchainIcon, color: "text-green-600" },
+  { Icon: LangraphIcon, color: "text-blue-600" },
 
-export const middleCircleIcons = [
   { Icon: SiTypescript, color: "text-blue-500" },
   { Icon: SiNodedotjs, color: "text-green-600" },
   { Icon: SiCplusplus, color: "text-yellow-500" },
@@ -58,12 +67,17 @@ export const middleCircleIcons = [
   { Icon: SiLighthouse, color: "text-orange-500" },
   { Icon: SiBlender, color: "text-orange-500" },
   { Icon: FaGoogle, color: "text-blue-500" },
-];
+  { Icon: SiPostgresql, color: "text-blue-700" },
+  { Icon: SiTensorflow, color: "text-orange-500" },
+  { Icon: SiPytorch, color: "text-red-600" },
+  { Icon: SiJupyter, color: "text-orange-600" },
+  { Icon: ChromaDbIcon, color: "text-purple-600" },
 
-export const outerCircleIcons = [
   { Icon: FaAws, color: "text-orange-500" },
   { Icon: FaLinux, color: "text-yellow-500" },
   { Icon: FaWindows, color: "text-blue-500" },
   { Icon: FaDocker, color: "text-blue-500" },
   { Icon: FaApple, color: "text-gray-500" },
+  { Icon: SiMongodb, color: "text-green-600" },
+  { Icon: SiRedis, color: "text-red-600" },
 ];
