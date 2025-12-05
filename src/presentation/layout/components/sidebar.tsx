@@ -9,7 +9,7 @@ import LayoutContext from "@presentation/layout/layout.context";
 type SidebarProps = {
   isOpen: boolean;
   onClose: () => void;
-  items: { url: string; title: string }[];
+  items: { url: string; title: string; external?: boolean }[];
 };
 
 function Sidebar({ isOpen, onClose, items }: SidebarProps) {
@@ -102,24 +102,41 @@ function Sidebar({ isOpen, onClose, items }: SidebarProps) {
                     {/* Navigation */}
                     <div className="flex-1 px-6 py-6">
                       <nav className="space-y-2">
-                        {items.map((item) => (
-                          <NavLink
-                            key={item.url}
-                            to={item.url}
-                            onClick={onClose}
-                            className={({ isActive }) =>
-                              `group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
-                                isActive
-                                  ? "bg-[#2b59c3] text-white shadow-lg"
-                                  : isDark
+                        {items.map((item) =>
+                          item.external ? (
+                            <a
+                              key={item.url}
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className={`group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                                isDark
                                   ? "text-gray-300 hover:bg-gray-800 hover:text-white"
                                   : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                              }`
-                            }
-                          >
-                            <span className="truncate">{item.title}</span>
-                          </NavLink>
-                        ))}
+                              }`}
+                            >
+                              <span className="truncate">{item.title}</span>
+                            </a>
+                          ) : (
+                            <NavLink
+                              key={item.url}
+                              to={item.url}
+                              onClick={onClose}
+                              className={({ isActive }) =>
+                                `group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                                  isActive
+                                    ? "bg-[#2b59c3] text-white shadow-lg"
+                                    : isDark
+                                    ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                }`
+                              }
+                            >
+                              <span className="truncate">{item.title}</span>
+                            </NavLink>
+                          )
+                        )}
                       </nav>
 
                       {/* Language Selector */}

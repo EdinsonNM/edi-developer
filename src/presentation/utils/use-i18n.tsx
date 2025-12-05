@@ -19,6 +19,7 @@ interface Translations {
   miPodcast: string;
   saas: string;
   charlasYTalleres: string;
+  ediAcademy: string;
 
   // Info Search Page
   saludoAsistente: string;
@@ -195,6 +196,7 @@ const translations: Record<Language, Translations> = {
     miPodcast: "Mi Podcast",
     saas: "SaaS",
     charlasYTalleres: "Charlas y talleres",
+    ediAcademy: "Edi Academy",
 
     // Info Search Page
     saludoAsistente: "👋 ¡Hola! Soy el Asistente de Información de Edinson",
@@ -399,6 +401,7 @@ const translations: Record<Language, Translations> = {
     miPodcast: "My Podcast",
     saas: "SaaS",
     charlasYTalleres: "Talks & Workshops",
+    ediAcademy: "Edi Academy",
 
     // Info Search Page
     saludoAsistente: "👋 Hello! I'm Edinson's Information Assistant",

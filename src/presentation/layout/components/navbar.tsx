@@ -36,6 +36,7 @@ function NavBar() {
     { url: "/", title: t.inicio },
     { url: "mis-proyectos", title: t.recursosDesarrolladores },
     { url: "sobre-mi", title: t.sobreMi },
+    { url: "https://edi-academy.lovable.app/", title: t.ediAcademy, external: true },
 
     //{ url: "sass", title: t.saas },
     //{ url: "charlas", title: t.charlasYTalleres },
@@ -86,20 +87,35 @@ function NavBar() {
           <ul className="flex flex-row gap-4">
             {navigation.map((item) => (
               <li key={item.url} className="">
-                <NavLink
-                  to={item.url}
-                  className={({ isActive }) =>
-                    isDark
-                      ? isActive
-                        ? "p-3 rounded-md hover:text-orange-300 text-orange-400 font-bold"
-                        : "p-3 rounded-md hover:text-[#2b59c3] text-white"
-                      : isActive
-                      ? "p-3 rounded-md text-orange-600 font-bold"
-                      : "p-3 rounded-md text-gray-800 hover:text-[#2b59c3]"
-                  }
-                >
-                  {item.title}
-                </NavLink>
+                {item.external ? (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={
+                      isDark
+                        ? "p-3 rounded-md hover:text-[#2b59c3] text-white"
+                        : "p-3 rounded-md text-gray-800 hover:text-[#2b59c3]"
+                    }
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <NavLink
+                    to={item.url}
+                    className={({ isActive }) =>
+                      isDark
+                        ? isActive
+                          ? "p-3 rounded-md hover:text-orange-300 text-orange-400 font-bold"
+                          : "p-3 rounded-md hover:text-[#2b59c3] text-white"
+                        : isActive
+                        ? "p-3 rounded-md text-orange-600 font-bold"
+                        : "p-3 rounded-md text-gray-800 hover:text-[#2b59c3]"
+                    }
+                  >
+                    {item.title}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
