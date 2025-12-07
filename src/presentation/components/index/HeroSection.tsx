@@ -108,12 +108,25 @@ export function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-fade-in-up opacity-0 [animation-delay:800ms] [animation-fill-mode:forwards]">
           <a
-            href="/Resume English.pdf"
-            download="Resume English.pdf"
+            href="#edi-academy"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.querySelector("#edi-academy");
+              if (element) {
+                const offsetTop =
+                  element.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({
+                  top: offsetTop,
+                  behavior: "smooth",
+                });
+                // Mover foco al elemento de edi academy para accesibilidad
+                (element as HTMLElement).focus();
+              }
+            }}
             className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label={t.downloadCV}
+            aria-label={t.goToEdiAcademy}
           >
-            <span>{t.downloadCV}</span>
+            <span>{t.goToEdiAcademy}</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <a

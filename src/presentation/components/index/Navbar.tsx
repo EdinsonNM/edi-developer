@@ -8,6 +8,7 @@ import { useMenuControls } from "./hooks/useMenuControls";
 interface NavigationItem {
   label: string;
   href: string;
+  external?: boolean;
 }
 
 interface NavbarProps {
@@ -36,6 +37,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
       { label: t.proyectos, href: "#proyectos" },
       { label: t.porQueTrabajarConmigo, href: "#por-que-trabajar-conmigo" },
       { label: t.charlas, href: "#charlas" },
+      { label: t.ediAcademy, href: "#edi-academy" },
       { label: t.contacto, href: "#contacto" },
     ],
     [t]
@@ -70,12 +72,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
           onClick={(e) => handleNavClick(e, "#inicio")}
           className="cursor-pointer"
         >
-          <img
-            src={logo}
-            alt="Edi Developer"
-            className="h-8"
-            loading="eager"
-          />
+          <img src={logo} alt="Edi Developer" className="h-8" loading="eager" />
         </a>
       </div>
 
@@ -83,13 +80,24 @@ export function Navbar({ onNavClick }: NavbarProps) {
       <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 list-none">
         {navigationItems.map((item) => (
           <li key={item.href}>
-            <a
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              {item.label}
-            </a>
+            {item.external ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <a
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -190,17 +198,31 @@ export function Navbar({ onNavClick }: NavbarProps) {
             className="flex flex-col px-6 py-4 gap-2"
             aria-label={language === "es" ? "Navegación" : "Navigation"}
           >
-            {navigationItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                role="menuitem"
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navigationItems.map((item) =>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="menuitem"
+                  onClick={() => closeAllMenus()}
+                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  role="menuitem"
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <a
               href="/Resume English.pdf"
               download="Resume English.pdf"
@@ -217,4 +239,3 @@ export function Navbar({ onNavClick }: NavbarProps) {
     </nav>
   );
 }
-

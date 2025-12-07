@@ -5,6 +5,7 @@ import { WhyWorkWithMeSection } from "@/presentation/components/index/WhyWorkWit
 import { TalksSection } from "@/presentation/components/index/TalksSection";
 import { FabricaProgramadoresSection } from "@/presentation/components/index/FabricaProgramadoresSection";
 import { PresentationsCarouselSection } from "@/presentation/components/index/PresentationsCarouselSection";
+import { EdiAcademySection } from "@/presentation/components/index/EdiAcademySection";
 import { ContactSection } from "@/presentation/components/index/ContactSection";
 import { FooterSection } from "@/presentation/components/index/FooterSection";
 import { HeroSection } from "@/presentation/components/index/HeroSection";
@@ -88,6 +89,10 @@ export default function LandingPage() {
 
       <LazySection rootMargin="200px">
         <PresentationsCarouselSection />
+      </LazySection>
+
+      <LazySection rootMargin="200px">
+        <EdiAcademySection />
       </LazySection>
 
       <LazySection rootMargin="200px">

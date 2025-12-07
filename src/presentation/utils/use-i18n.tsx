@@ -167,6 +167,29 @@ interface Translations {
   presentationsSubtitleBold: string;
   viewAllPresentations: string;
 
+  // Index page - Edi Academy Section
+  ediAcademyTitle: string;
+  ediAcademyTitleHighlight: string;
+  ediAcademyDescription: string;
+  ediAcademyProfile1Label: string;
+  ediAcademyProfile1Title: string;
+  ediAcademyProfile1Desc: string;
+  ediAcademyProfile2Label: string;
+  ediAcademyProfile2Title: string;
+  ediAcademyProfile2Desc: string;
+  ediAcademyProfile3Label: string;
+  ediAcademyProfile3Title: string;
+  ediAcademyProfile3Desc: string;
+  ediAcademyMetric1Value: string;
+  ediAcademyMetric1Label: string;
+  ediAcademyMetric2Value: string;
+  ediAcademyMetric2Label: string;
+  ediAcademyMetric3Value: string;
+  ediAcademyMetric3Label: string;
+  ediAcademyButton: string;
+  ediAcademyButtonLabel: string;
+  goToEdiAcademy: string;
+
   // Index page - Contact Section
   letsWorkTogether: string;
   contactSubtitle: string;
@@ -303,9 +326,11 @@ const translations: Record<Language, Translations> = {
 
     // Index page - Featured Projects Section
     featuredProjectsTitle: "Proyectos Destacados",
-    featuredProjectsSubtitle: "Soluciones innovadoras que transforman realidades.",
+    featuredProjectsSubtitle:
+      "Soluciones innovadoras que transforman realidades.",
     neokidsTitle: "NeoKids",
-    neokidsSubtitle: "Asistente inteligente para apoyar a niños y jóvenes en la educación",
+    neokidsSubtitle:
+      "Asistente inteligente para apoyar a niños y jóvenes en la educación",
     neokidsDesc:
       "IA educativa que guía a estudiantes con herramientas personalizadas para alcanzar sus metas de aprendizaje.",
     costproTitle: "CostPro",
@@ -355,7 +380,8 @@ const translations: Record<Language, Translations> = {
     inviteMeToTalk: "Invítame a dar una charla",
 
     // Index page - Fabrica Programadores Section
-    fabricaTitle: "Fábrica de Programadores — Un cuento para inspirar a los niños",
+    fabricaTitle:
+      "Fábrica de Programadores — Un cuento para inspirar a los niños",
     fabricaDescription1:
       "Desde mi experiencia enseñando tecnología, creé {bookName}, un cuento ilustrado que introduce a los niños al mundo de la programación de manera divertida, tierna y cercana.",
     fabricaDescription2:
@@ -370,6 +396,33 @@ const translations: Record<Language, Translations> = {
       "Comparto materiales de charlas y presentaciones sobre {bold} y otros temas técnicos que he dictado en diferentes eventos y conferencias.",
     presentationsSubtitleBold: "IA, desarrollo de software, arquitectura",
     viewAllPresentations: "Ver todas las presentaciones",
+
+    // Index page - Edi Academy Section
+    ediAcademyTitle: "Formación especializada en",
+    ediAcademyTitleHighlight: "IA",
+    ediAcademyDescription:
+      "Cursos diseñados para diferentes perfiles que buscan dominar la inteligencia artificial",
+    ediAcademyProfile1Label: "EDUCADORES",
+    ediAcademyProfile1Title: "Docentes",
+    ediAcademyProfile1Desc:
+      "Actualiza tu metodología de enseñanza. Aprende a diseñar cursos, evaluar estudiantes y crear contenido con IA generativa.",
+    ediAcademyProfile2Label: "PROGRAMADORES",
+    ediAcademyProfile2Title: "Desarrolladores",
+    ediAcademyProfile2Desc:
+      "Domina Cursor, VS Code + Copilot y técnicas de prompting para código.",
+    ediAcademyProfile3Label: "CORPORATIVO",
+    ediAcademyProfile3Title: "Empresas",
+    ediAcademyProfile3Desc:
+      "Capacitación para equipos. Optimiza flujos de trabajo con IA.",
+    ediAcademyMetric1Value: "+51h",
+    ediAcademyMetric1Label: "CONTENIDO",
+    ediAcademyMetric2Value: "100%",
+    ediAcademyMetric2Label: "PRÁCTICO",
+    ediAcademyMetric3Value: "IA",
+    ediAcademyMetric3Label: "ASISTENTE",
+    ediAcademyButton: "Explorar Edi Academy",
+    ediAcademyButtonLabel: "Ir a Edi Academy",
+    goToEdiAcademy: "Ir a Edi Academy",
 
     // Index page - Contact Section
     letsWorkTogether: "Trabajemos juntos",
@@ -510,7 +563,8 @@ const translations: Record<Language, Translations> = {
     featuredProjectsTitle: "Featured Projects",
     featuredProjectsSubtitle: "Innovative solutions that transform realities.",
     neokidsTitle: "NeoKids",
-    neokidsSubtitle: "Intelligent assistant to support children and youth in education",
+    neokidsSubtitle:
+      "Intelligent assistant to support children and youth in education",
     neokidsDesc:
       "Educational AI that guides students with personalized tools to achieve their learning goals.",
     costproTitle: "CostPro",
@@ -576,6 +630,32 @@ const translations: Record<Language, Translations> = {
     presentationsSubtitleBold: "AI, software development, architecture",
     viewAllPresentations: "View all presentations",
 
+    // Index page - Edi Academy Section
+    ediAcademyTitle: "Specialized training in",
+    ediAcademyTitleHighlight: "AI",
+    ediAcademyDescription:
+      "Courses designed for different profiles seeking to master artificial intelligence",
+    ediAcademyProfile1Label: "EDUCATORS",
+    ediAcademyProfile1Title: "Teachers",
+    ediAcademyProfile1Desc:
+      "Update your teaching methodology. Learn to design courses, evaluate students, and create content with generative AI.",
+    ediAcademyProfile2Label: "PROGRAMMERS",
+    ediAcademyProfile2Title: "Developers",
+    ediAcademyProfile2Desc:
+      "Master Cursor, VS Code + Copilot and code prompting techniques.",
+    ediAcademyProfile3Label: "CORPORATE",
+    ediAcademyProfile3Title: "Companies",
+    ediAcademyProfile3Desc: "Training for teams. Optimize workflows with AI.",
+    ediAcademyMetric1Value: "+51h",
+    ediAcademyMetric1Label: "CONTENT",
+    ediAcademyMetric2Value: "100%",
+    ediAcademyMetric2Label: "PRACTICAL",
+    ediAcademyMetric3Value: "AI",
+    ediAcademyMetric3Label: "ASSISTANT",
+    ediAcademyButton: "Explore Edi Academy",
+    ediAcademyButtonLabel: "Go to Edi Academy",
+    goToEdiAcademy: "Go to Edi Academy",
+
     // Index page - Contact Section
     letsWorkTogether: "Let's Work Together",
     contactSubtitle:
@@ -592,8 +672,7 @@ const translations: Record<Language, Translations> = {
     sendButton: "Send",
     sending: "Sending...",
     messageSentSuccess: "Message sent successfully! I'll respond soon.",
-    messageError:
-      "There was an error sending the message. Please try again.",
+    messageError: "There was an error sending the message. Please try again.",
 
     // Index page - Footer Section
     footerTagline: "Building the future with technology and purpose.",
@@ -636,9 +715,7 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <I18nContext.Provider value={contextValue}>
-      {children}
-    </I18nContext.Provider>
+    <I18nContext.Provider value={contextValue}>{children}</I18nContext.Provider>
   );
 };
 
