@@ -60,7 +60,11 @@ export default defineConfig({
       "react-dom",
       "react-router-dom",
       "@tanstack/react-query",
+      // R3F depende de react-reconciler (CJS): debe pre-empaquetarse
+      // para que el interop ESM funcione en dev
+      "three",
+      "@react-three/fiber",
+      "@react-three/drei",
     ],
-    exclude: ["three", "@react-three/fiber", "@react-three/drei"],
   },
 });
