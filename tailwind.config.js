@@ -12,12 +12,26 @@ export default {
       '2xl': '1536px',
     },
   	extend: {
+  		fontFamily: {
+  			display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+  			sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+  			mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			ink: {
+  				DEFAULT: '#0a0a0b',
+  				soft: '#111113',
+  				line: 'rgba(255,255,255,0.08)'
+  			},
+  			acid: {
+  				DEFAULT: '#c8f31d',
+  				dim: '#a8cf12'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

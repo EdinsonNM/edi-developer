@@ -55,6 +55,8 @@ interface HyperspeedOptions {
 
 interface HyperspeedProps {
   effectOptions?: Partial<HyperspeedOptions>;
+  /** Pausa el loop de render sin destruir la escena */
+  paused?: boolean;
 }
 
 const defaultOptions: HyperspeedOptions = {
@@ -936,6 +938,7 @@ class App {
   timeOffset: number;
   resizeObserver?: ResizeObserver;
   animationFrameId?: number;
+  paused = false;
 
   constructor(container: HTMLElement, options: HyperspeedOptions) {
     this.options = options;
@@ -1264,8 +1267,23 @@ class App {
     }
   }
 
+  pause() {
+    this.paused = true;
+    if (this.animationFrameId !== undefined) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = undefined;
+    }
+  }
+
+  resume() {
+    if (this.disposed || !this.paused) return;
+    this.paused = false;
+    this.clock.getDelta(); // descartar el tiempo transcurrido en pausa
+    this.tick();
+  }
+
   tick() {
-    if (this.disposed || !this) return;
+    if (this.disposed || this.paused || !this) return;
     if (resizeRendererToDisplaySize(this.renderer, this.setSize)) {
       const canvas = this.renderer.domElement;
       this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -1278,13 +1296,25 @@ class App {
   }
 }
 
-const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
-  const mergedOptions: HyperspeedOptions = {
-    ...defaultOptions,
-    ...effectOptions
-  };
+const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {}, paused = false }) => {
   const hyperspeed = useRef<HTMLDivElement>(null);
   const appRef = useRef<App | null>(null);
+  // Capturar las opciones solo en el primer render: la escena no debe
+  // reconstruirse por re-renders del padre
+  const optionsRef = useRef<HyperspeedOptions>({
+    ...defaultOptions,
+    ...effectOptions
+  });
+
+  useEffect(() => {
+    const app = appRef.current;
+    if (!app) return;
+    if (paused) {
+      app.pause();
+    } else {
+      app.resume();
+    }
+  }, [paused]);
 
   useEffect(() => {
     // Limpiar instancia anterior antes de crear una nueva
@@ -1303,7 +1333,7 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
     const container = hyperspeed.current;
     if (!container) return;
 
-    const options = { ...mergedOptions };
+    const options = { ...optionsRef.current };
     if (typeof options.distortion === 'string') {
       options.distortion = distortions[options.distortion];
     }
@@ -1343,7 +1373,9 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
         }
       }
     };
-  }, [mergedOptions]);
+    // La escena se crea una sola vez; los re-renders no deben reconstruirla
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <div id="lights" className="w-full h-full" ref={hyperspeed}></div>;
 };

@@ -13,9 +13,14 @@ import { Navbar } from "@/presentation/components/index/Navbar";
 import { LazySection } from "@/presentation/components/common/LazySection";
 import { useEffect } from "react";
 import { useI18n } from "@/presentation/utils/use-i18n";
+import { useSmoothScroll } from "@/presentation/hooks/use-smooth-scroll";
+import { AmbientBackground } from "@/components/AmbientBackground";
+import { MagneticCursor } from "@/components/MagneticCursor";
+import { BigTypeMarquee } from "@/components/BigTypeMarquee";
 
 export default function LandingPage() {
   const { language } = useI18n();
+  useSmoothScroll();
 
   // Función para scroll suave
   const handleNavClick = (
@@ -41,11 +46,11 @@ export default function LandingPage() {
   }, [language]);
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-white text-slate-900 selection:bg-blue-100">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-ink text-white selection:bg-acid selection:text-ink">
       {/* Skip to main content link */}
       <a
         href="#inicio"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-acid focus:text-ink focus:rounded-md focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2"
         onClick={(e) => {
           e.preventDefault();
           const element = document.getElementById("inicio");
@@ -57,6 +62,10 @@ export default function LandingPage() {
           ? "Saltar al contenido principal"
           : "Skip to main content"}
       </a>
+
+      {/* Capas globales: grain + glow y cursor magnético */}
+      <AmbientBackground />
+      <MagneticCursor />
 
       {/* Navbar */}
       <Navbar onNavClick={handleNavClick} />
@@ -70,6 +79,8 @@ export default function LandingPage() {
       <LazySection rootMargin="200px">
         <WhatIDoSection />
       </LazySection>
+
+      <BigTypeMarquee words={["Frontend", "AI", "3D", "Architecture"]} />
 
       <LazySection rootMargin="200px">
         <FeaturedProjectsSection />
@@ -94,6 +105,11 @@ export default function LandingPage() {
       <LazySection rootMargin="200px">
         <EdiAcademySection />
       </LazySection>
+
+      <BigTypeMarquee
+        words={["Let's build", "Hablemos", "Let's build", "Hablemos"]}
+        direction={-1}
+      />
 
       <LazySection rootMargin="200px">
         <ContactSection />

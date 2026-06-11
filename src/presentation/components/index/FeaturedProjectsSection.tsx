@@ -35,17 +35,20 @@ export function FeaturedProjectsSection() {
   return (
     <section
       id="proyectos"
-      className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white border-t border-slate-100"
+      className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-transparent border-t border-white/10"
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[2fr_3fr] gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Columna izquierda: Título y descripción */}
           <div className="flex flex-col justify-center">
-            <div className="text-center md:text-left mb-6 sm:mb-8 bg-white/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/30">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4">
+            <div className="text-center md:text-left mb-6 sm:mb-8" data-reveal>
+              <p className="font-mono text-xs tracking-[0.3em] uppercase text-acid mb-4">
+                03 — Projects
+              </p>
+              <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-white mb-3 sm:mb-4">
                 {t.featuredProjectsTitle}
               </h2>
-              <p className="text-base sm:text-lg text-slate-600">
+              <p className="text-base sm:text-lg text-white/60">
                 {t.featuredProjectsSubtitle}
               </p>
             </div>
@@ -64,12 +67,12 @@ export function FeaturedProjectsSection() {
               {projects.map((project, index) => (
                 <Card
                   key={index}
-                  customClass="bg-white border-slate-200 shadow-lg overflow-hidden"
+                  customClass="bg-ink-soft border-white/10 shadow-lg overflow-hidden"
                 >
                   <div className="h-full flex flex-col relative">
-                    <div className="h-2 bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500"></div>
+                    <div className="h-2 bg-acid"></div>
                     {/* Imagen del proyecto */}
-                    <div className="relative flex-1 bg-slate-100 overflow-hidden">
+                    <div className="relative flex-1 bg-white/5 overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -88,7 +91,7 @@ export function FeaturedProjectsSection() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
                       {/* Contenido sobre la imagen */}
                       <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 flex flex-col z-10">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-400 mb-2 sm:mb-3">
+                        <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-acid mb-2 sm:mb-3">
                           {project.title}
                         </h3>
                         <p className="text-white/95 leading-relaxed text-sm sm:text-base">

@@ -13,15 +13,18 @@ export function PresentationsCarouselSection() {
   return (
     <section
       id="presentaciones-carousel"
-      className="relative z-10 py-24 px-4 md:px-6 bg-white border-t border-slate-100"
+      className="relative z-10 py-24 px-4 md:px-6 border-t border-white/10"
     >
       <div className="max-w-7xl mx-auto">
         {/* Título centrado arriba */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
+        <div className="text-center mb-12" data-reveal>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-acid mb-4">
+            07 — Talks
+          </p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
             {t.presentationsTitle}
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg text-white/60 max-w-3xl mx-auto">
             {(() => {
               const parts = t.presentationsSubtitle.split(/\{bold\}/);
               const matches = t.presentationsSubtitle.match(/\{bold\}/g) || [];
@@ -52,7 +55,7 @@ export function PresentationsCarouselSection() {
             asChild
             size="lg"
             variant="outline"
-            className="rounded-full border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-8 py-6 text-base"
+            className="rounded-full bg-transparent border border-white/20 text-white hover:bg-transparent hover:border-acid hover:text-acid px-8 py-6 text-base focus:ring-acid focus:ring-offset-ink"
           >
             <Link to="/presentaciones">
               {t.viewAllPresentations}

@@ -8,18 +8,21 @@ export function FabricaProgramadoresSection() {
   return (
     <section
       id="fabrica-programadores"
-      className="relative z-10 py-24 px-4 md:px-6 bg-slate-50/50 border-t border-slate-100"
+      className="relative z-10 py-24 px-4 md:px-6 bg-white/[0.02] border-t border-white/10"
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[1fr_1fr] gap-12 items-center">
           {/* Columna izquierda: Título y contenido */}
-          <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-6">
+          <div className="flex flex-col justify-center" data-reveal>
+            <p className="font-mono text-xs tracking-[0.3em] uppercase text-acid mb-4">
+              06 — Book
+            </p>
+            <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
               {t.fabricaTitle}
             </h2>
 
             <div className="mb-8">
-              <p className="text-lg text-slate-700 leading-relaxed mb-4">
+              <p className="text-lg text-white/60 leading-relaxed mb-4">
                 {(() => {
                   const parts = t.fabricaDescription1.split(/\{bookName\}/);
                   const matches =
@@ -38,7 +41,7 @@ export function FabricaProgramadoresSection() {
                   return result;
                 })()}
               </p>
-              <p className="text-lg text-slate-700 leading-relaxed">
+              <p className="text-lg text-white/60 leading-relaxed">
                 {t.fabricaDescription2}
               </p>
             </div>
@@ -47,7 +50,7 @@ export function FabricaProgramadoresSection() {
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-base"
+                className="rounded-full bg-acid text-ink hover:bg-acid-dim px-8 py-6 text-base focus:ring-acid focus:ring-offset-ink"
               >
                 <a
                   href="/cuentos/Zorrito en la fábrica de programadores.pdf"
@@ -62,7 +65,7 @@ export function FabricaProgramadoresSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-full border-purple-200 text-purple-700 hover:bg-purple-50 px-8 py-6 text-base"
+                className="rounded-full bg-transparent border border-white/20 text-white hover:bg-transparent hover:border-acid hover:text-acid px-8 py-6 text-base focus:ring-acid focus:ring-offset-ink"
               >
                 <a
                   href="/cuentos/Zorrito en la fábrica de programadores.pdf"
@@ -77,7 +80,7 @@ export function FabricaProgramadoresSection() {
           </div>
 
           {/* Columna derecha: Libro 3D */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center" data-reveal>
             <div className="w-full max-w-md h-[500px]">
               <Book3D
                 coverImage="/cuentos/Zorrito en la fábrica de programadores.jpg"
