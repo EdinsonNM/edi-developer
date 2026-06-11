@@ -7,7 +7,7 @@ import { lazy, Suspense, useState, useEffect } from "react";
 const Hyperspeed = lazy(() => import("@/components/Hyperspeed"));
 
 const HyperspeedPlaceholder = () => (
-  <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-white via-slate-50 to-white" />
+  <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-ink via-ink-soft to-ink" />
 );
 
 export function HeroSection() {
@@ -75,14 +75,14 @@ export function HeroSection() {
                 carShiftX: [-0.8, 0.8],
                 carFloorSeparation: [0, 5],
                 colors: {
-                  roadColor: 0xf2f2f2,
-                  islandColor: 0xf2f2f2,
-                  background: 0xffffff,
-                  shoulderLines: 0x000000,
-                  brokenLines: 0xffffff,
-                  leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-                  rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-                  sticks: 0x03b3c3,
+                  roadColor: 0x080808,
+                  islandColor: 0x0a0a0b,
+                  background: 0x0a0a0b,
+                  shoulderLines: 0x1f1f23,
+                  brokenLines: 0x1f1f23,
+                  leftCars: [0xc8f31d, 0x8aa814, 0xe3ff5c],
+                  rightCars: [0xfafafa, 0x9a9aa0, 0xdcdce0],
+                  sticks: 0xc8f31d,
                 },
               }}
             />
@@ -95,13 +95,16 @@ export function HeroSection() {
       {/* Contenido del Hero */}
       <div className="relative z-10 w-full flex flex-col items-center">
         {/* Main Headline */}
-        <h1 className="max-w-5xl text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl md:text-8xl mb-6 animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-center">
+        <p className="font-mono text-sm tracking-[0.3em] uppercase text-acid mb-6 animate-fade-in-up opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
+          Frontend Engineer · AI · 3D
+        </p>
+        <h1 className="max-w-5xl font-display text-5xl font-bold tracking-tight text-white sm:text-7xl md:text-8xl mb-6 animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-center">
           {t.heroTitle} <br />
-          <span className="text-slate-500">{t.heroSubtitle}</span>
+          <span className="text-white/40">{t.heroSubtitle}</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="max-w-2xl text-lg text-slate-600 mb-10 animate-fade-in-up opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards] text-center">
+        <p className="max-w-2xl text-lg text-white/60 mb-10 animate-fade-in-up opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards] text-center">
           {t.heroDescription}
         </p>
 
@@ -123,7 +126,7 @@ export function HeroSection() {
                 (element as HTMLElement).focus();
               }
             }}
-            className="flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-medium text-white hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="flex items-center gap-2 rounded-full bg-acid px-8 py-3.5 text-base font-medium text-ink hover:bg-acid-dim transition-all hover:scale-105 active:scale-95 shadow-lg shadow-acid/20 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
             aria-label={t.goToEdiAcademy}
           >
             <span>{t.goToEdiAcademy}</span>
@@ -145,7 +148,7 @@ export function HeroSection() {
                 (element as HTMLElement).focus();
               }
             }}
-            className="flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-base font-medium text-slate-900 border border-slate-200 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="flex items-center gap-2 rounded-full bg-transparent px-8 py-3.5 text-base font-medium text-white border border-white/20 hover:border-acid hover:text-acid transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
           >
             {t.contactMe}
           </a>
@@ -166,7 +169,7 @@ export function HeroSection() {
               return (
                 <div
                   key={i}
-                  className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg shadow-slate-200/50 ring-1 ring-slate-100 mx-4 hover:scale-110 transition-transform"
+                  className="flex h-16 w-16 items-center justify-center rounded-full bg-white/[0.04] ring-1 ring-white/10 mx-4 hover:scale-110 hover:ring-acid/50 transition-all"
                   role="img"
                   aria-hidden="true"
                 >

@@ -11,12 +11,12 @@ import { useI18n } from "@presentation/utils/use-i18n";
 // Componente de animación de puntos de carga
 const TypingIndicator = ({ text }: { text: string }) => {
   return (
-    <div className="flex items-center space-x-1 p-2 sm:p-3 rounded-lg rounded-tl-sm max-w-[85%] bg-gray-800/50 border border-gray-700/50 font-mono">
+    <div className="flex items-center space-x-1 p-2 sm:p-3 rounded-lg rounded-tl-sm max-w-[85%] bg-white/[0.04] border border-white/10 font-mono">
       <div className="flex items-center justify-center">
-        <span className="text-gray-400 mr-2 text-xs sm:text-sm">{text}</span>
+        <span className="text-white/60 mr-2 text-xs sm:text-sm">{text}</span>
         <div className="flex space-x-1 items-center">
           <div
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-bounce"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-acid rounded-full animate-bounce"
             style={{
               animationDelay: "0ms",
               animationDuration: "1.4s",
@@ -24,7 +24,7 @@ const TypingIndicator = ({ text }: { text: string }) => {
             }}
           ></div>
           <div
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-bounce"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-acid rounded-full animate-bounce"
             style={{
               animationDelay: "0.2s",
               animationDuration: "1.4s",
@@ -32,7 +32,7 @@ const TypingIndicator = ({ text }: { text: string }) => {
             }}
           ></div>
           <div
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-bounce"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-acid rounded-full animate-bounce"
             style={{
               animationDelay: "0.4s",
               animationDuration: "1.4s",
@@ -134,9 +134,9 @@ export function AboutChatPanel() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#1e1e1e] border border-gray-800 rounded-lg overflow-hidden font-mono shadow-2xl">
+    <div className="flex flex-col h-full bg-ink-soft border border-white/10 rounded-2xl overflow-hidden font-mono">
       {/* Header estilo macOS */}
-      <div className="bg-[#2d2d2d] px-3 py-2 border-b border-gray-700/50 rounded-t-lg">
+      <div className="bg-white/[0.06] px-3 py-2 border-b border-white/10 rounded-t-2xl">
         <div className="flex items-center gap-2 mb-2">
           {/* Botones de colores macOS */}
           <div className="flex items-center gap-1.5">
@@ -146,31 +146,31 @@ export function AboutChatPanel() {
           </div>
         </div>
         <div className="flex items-center gap-2 px-1">
-          <div className="w-5 h-5 flex items-center justify-center rounded text-green-500 text-xs font-bold">
+          <div className="w-5 h-5 flex items-center justify-center rounded text-acid text-xs font-bold">
             <span>▸</span>
           </div>
-          <span className="text-gray-300 font-medium text-xs uppercase tracking-wider">
+          <span className="text-white/60 font-medium text-xs uppercase tracking-wider">
             {t.chatWithEdinson}
           </span>
         </div>
       </div>
 
       {/* Chat Content */}
-      <div className="flex flex-col flex-1 min-h-0 bg-[#1e1e1e] rounded-b-lg">
+      <div className="flex flex-col flex-1 min-h-0 bg-ink-soft rounded-b-2xl">
         {/* Messages */}
         <div
           ref={chatContainerRef}
-          className="flex flex-col gap-3 overflow-y-auto flex-1 scroll-smooth px-4 py-4 bg-[#1e1e1e]"
+          className="flex flex-col gap-3 overflow-y-auto flex-1 scroll-smooth px-4 py-4"
         >
           {/* Mensaje de saludo inicial */}
           {messages.length === 0 && (
             <div className="flex items-start justify-start">
-              <span className="text-gray-600 text-xs mr-3 font-mono">1</span>
+              <span className="text-white/30 text-xs mr-3 font-mono">1</span>
               <div className="flex-1">
-                <div className="bg-[#252526] rounded border border-gray-700/30 p-3">
-                  <p className="text-gray-300 text-sm font-mono leading-relaxed">
-                    <span className="text-gray-500">// </span>
-                    <span className="text-gray-400">
+                <div className="bg-white/[0.04] rounded border border-white/10 p-3">
+                  <p className="text-white/70 text-sm font-mono leading-relaxed">
+                    <span className="text-white/40">// </span>
+                    <span className="text-white/60">
                       {t.descripcionAsistente}
                     </span>
                   </p>
@@ -198,31 +198,31 @@ export function AboutChatPanel() {
               return (
                 <div key={msg.id || idx}>
                   <div className="flex items-start">
-                    <span className="text-gray-600 text-xs mr-3 font-mono select-none">
+                    <span className="text-white/30 text-xs mr-3 font-mono select-none">
                       {lineNumber}
                     </span>
                     <div className="flex-1">
                       <div
                         className={`relative text-left p-3 whitespace-pre-wrap text-sm font-mono leading-relaxed border rounded-lg ${
                           msg.role === Role.USER
-                            ? "bg-[#0d1117] text-gray-200 border-gray-700/50"
-                            : "bg-[#252526] text-gray-300 border-gray-700/30"
+                            ? "bg-white/[0.06] text-white/80 border-white/10"
+                            : "bg-white/[0.04] text-white/70 border-white/10"
                         }`}
                       >
                         {msg.role === Role.USER ? (
                           <span>
-                            <span className="text-gray-500">const </span>
-                            <span className="text-blue-400">question</span>
-                            <span className="text-gray-500"> = </span>
-                            <span className="text-green-400">
+                            <span className="text-white/40">const </span>
+                            <span className="text-acid">question</span>
+                            <span className="text-white/40"> = </span>
+                            <span className="text-acid-dim">
                               "{msg.content}"
                             </span>
-                            <span className="text-gray-500">;</span>
+                            <span className="text-white/40">;</span>
                           </span>
                         ) : (
                           <span>
-                            <span className="text-gray-500">// </span>
-                            <span className="text-gray-300">{msg.content}</span>
+                            <span className="text-white/40">// </span>
+                            <span className="text-white/70">{msg.content}</span>
                           </span>
                         )}
                       </div>
@@ -231,12 +231,12 @@ export function AboutChatPanel() {
 
                   {/* Gráfico dentro del chat */}
                   {msg.role !== Role.USER && hasValidChart && (
-                    <div className="ml-10 mr-2 mb-3 bg-[#252526] border border-gray-700/30 rounded-lg p-3">
-                      <h3 className="text-sm font-semibold text-gray-200 mb-1 font-mono">
-                        <span className="text-gray-500">// </span>
+                    <div className="ml-10 mr-2 mb-3 bg-white/[0.04] border border-white/10 rounded-lg p-3">
+                      <h3 className="text-sm font-semibold text-white mb-1 font-mono">
+                        <span className="text-white/40">// </span>
                         {messageChart.title}
                       </h3>
-                      <p className="text-xs text-gray-400 mb-2 font-mono">
+                      <p className="text-xs text-white/60 mb-2 font-mono">
                         {messageChart.description}
                       </p>
                       <div
@@ -340,11 +340,11 @@ export function AboutChatPanel() {
                           })()}
                         />
                         {messageChart.highchart.chart?.type === "timeline" && (
-                          <div className="mt-2 text-xs text-gray-500 flex items-center gap-3 flex-wrap font-mono">
-                            <span className="text-gray-600">
+                          <div className="mt-2 text-xs text-white/40 flex items-center gap-3 flex-wrap font-mono">
+                            <span className="text-white/30">
                               // {t.scrollHorizontal}
                             </span>
-                            <span className="text-gray-600">
+                            <span className="text-white/30">
                               // {t.ctrlZoom}
                             </span>
                           </div>
@@ -359,7 +359,7 @@ export function AboutChatPanel() {
           {/* Typing indicator */}
           {isPending && (
             <div className="flex items-start justify-start">
-              <span className="text-gray-600 text-xs mr-3 font-mono select-none">
+              <span className="text-white/30 text-xs mr-3 font-mono select-none">
                 {messages.filter((msg) => msg.role !== Role.SYSTEM).length + 2}
               </span>
               <div className="flex-1">
@@ -370,9 +370,9 @@ export function AboutChatPanel() {
         </div>
 
         {/* Input */}
-        <div className="bg-[#252526] p-3 border-t border-gray-700/50 rounded-b-lg">
+        <div className="bg-white/[0.04] p-3 border-t border-white/10 rounded-b-2xl">
           <div className="flex items-center gap-2">
-            <span className="text-gray-600 text-xs font-mono select-none">
+            <span className="text-white/40 text-xs font-mono select-none">
               ▸
             </span>
             <input
@@ -384,7 +384,7 @@ export function AboutChatPanel() {
                   handleSend();
                 }
               }}
-              className="flex-1 bg-[#1e1e1e] border border-gray-700/50 text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all duration-200 text-sm font-mono px-3 py-2 rounded-lg"
+              className="flex-1 bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-acid/50 focus:ring-1 focus:ring-acid/30 transition-all duration-200 text-sm font-mono px-3 py-2 rounded-lg"
               placeholder={t.escribeTuPregunta}
             />
           </div>

@@ -41,7 +41,7 @@ export function Book3D({
         >
           {/* Portada del libro */}
           <div
-            className="absolute inset-0 rounded-lg shadow-2xl overflow-hidden border-2 border-slate-200"
+            className="absolute inset-0 rounded-lg shadow-2xl shadow-black/40 overflow-hidden border-2 border-white/10"
             style={{
               transform: "translateZ(25px)",
               backfaceVisibility: "hidden",
@@ -71,7 +71,7 @@ export function Book3D({
 
           {/* Páginas del libro (lado derecho) */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-slate-50 via-white to-slate-50 rounded-lg shadow-xl border border-slate-200"
+            className="absolute inset-0 bg-gradient-to-r from-slate-300 via-slate-100 to-slate-300 rounded-lg shadow-xl shadow-black/40 border border-white/10"
             style={{
               transform: "translateZ(-15px)",
             }}
@@ -81,7 +81,7 @@ export function Book3D({
               {Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-full border-b border-slate-200/50"
+                  className="h-full border-b border-slate-400/30"
                   style={{
                     transform: `translateZ(${-i * 2}px)`,
                   }}
@@ -92,7 +92,7 @@ export function Book3D({
 
           {/* Sombra debajo del libro */}
           <div
-            className="absolute -bottom-6 left-1/2 w-4/5 h-6 bg-black/15 rounded-full blur-2xl"
+            className="absolute -bottom-6 left-1/2 w-4/5 h-6 bg-black/50 rounded-full blur-2xl"
             style={{
               transform: "translateX(-50%) translateZ(-60px)",
             }}

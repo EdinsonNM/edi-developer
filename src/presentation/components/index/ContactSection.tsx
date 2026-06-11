@@ -70,22 +70,28 @@ export function ContactSection() {
   return (
     <section
       id="contacto"
-      className="relative z-10 py-24 px-4 md:px-6 bg-white border-t border-slate-100"
+      className="relative z-10 py-24 px-4 md:px-6 bg-white/[0.02] border-t border-white/10"
     >
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
+        <div className="text-center mb-12" data-reveal>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-acid mb-4">
+            09 — Contact
+          </p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
             {t.letsWorkTogether}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
             {t.contactSubtitle}
           </p>
         </div>
 
-        <Card className="border-slate-200 shadow-lg">
+        <Card
+          data-reveal
+          className="bg-white/[0.04] border border-white/10 rounded-2xl hover:border-acid/40 transition-colors shadow-none"
+        >
           <CardHeader>
-            <CardTitle className="text-2xl">{t.contactTitle}</CardTitle>
-            <CardDescription>
+            <CardTitle className="font-display text-2xl text-white">{t.contactTitle}</CardTitle>
+            <CardDescription className="text-white/60">
               {t.contactDescription}
             </CardDescription>
           </CardHeader>
@@ -94,10 +100,10 @@ export function ContactSection() {
               <div className="space-y-2">
                 <label
                   htmlFor="name"
-                  className="text-sm font-medium text-slate-700 text-left block"
+                  className="text-sm font-medium text-white/60 text-left block"
                 >
                   {t.nameLabel}
-                  <span className="text-red-500 ml-1" aria-label="required">*</span>
+                  <span className="text-acid ml-1" aria-label="required">*</span>
                 </label>
                 <Input
                   id="name"
@@ -108,17 +114,17 @@ export function ContactSection() {
                   onChange={handleChange}
                   required
                   aria-required="true"
-                  className="border-slate-200 focus:ring-2 focus:ring-blue-500"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:ring-2 focus:ring-acid focus:ring-offset-ink"
                 />
               </div>
 
               <div className="space-y-2">
                 <label
                   htmlFor="email"
-                  className="text-sm font-medium text-slate-700 text-left block"
+                  className="text-sm font-medium text-white/60 text-left block"
                 >
                   {t.emailLabel}
-                  <span className="text-red-500 ml-1" aria-label="required">*</span>
+                  <span className="text-acid ml-1" aria-label="required">*</span>
                 </label>
                 <Input
                   id="email"
@@ -130,17 +136,17 @@ export function ContactSection() {
                   required
                   aria-required="true"
                   autoComplete="email"
-                  className="border-slate-200 focus:ring-2 focus:ring-blue-500"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:ring-2 focus:ring-acid focus:ring-offset-ink"
                 />
               </div>
 
               <div className="space-y-2">
                 <label
                   htmlFor="message"
-                  className="text-sm font-medium text-slate-700 text-left block"
+                  className="text-sm font-medium text-white/60 text-left block"
                 >
                   {t.messageLabel}
-                  <span className="text-red-500 ml-1" aria-label="required">*</span>
+                  <span className="text-acid ml-1" aria-label="required">*</span>
                 </label>
                 <Textarea
                   id="message"
@@ -151,7 +157,7 @@ export function ContactSection() {
                   required
                   aria-required="true"
                   rows={6}
-                  className="border-slate-200 resize-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 resize-none focus:ring-2 focus:ring-acid focus:ring-offset-ink"
                 />
               </div>
 
@@ -159,7 +165,7 @@ export function ContactSection() {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full rounded-full bg-acid text-ink hover:bg-acid-dim disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
                 aria-label={t.sendButton}
               >
                 {isSubmitting ? (
@@ -180,7 +186,7 @@ export function ContactSection() {
                 <div
                   role="alert"
                   aria-live="polite"
-                  className="flex items-center gap-2 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700"
+                  className="flex items-center gap-2 p-4 bg-acid/10 border border-acid/30 rounded-lg text-acid"
                 >
                   <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
                   <span className="text-sm font-medium">
@@ -193,7 +199,7 @@ export function ContactSection() {
                 <div
                   role="alert"
                   aria-live="assertive"
-                  className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700"
+                  className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400"
                 >
                   <AlertCircle className="h-5 w-5" aria-hidden="true" />
                   <span className="text-sm font-medium">

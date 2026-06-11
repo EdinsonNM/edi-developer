@@ -62,7 +62,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
       aria-label={
         language === "es" ? "Navegación principal" : "Main navigation"
       }
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-sm bg-white/50 border-b border-slate-100 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-md bg-ink/70 border-b border-white/10 transition-transform duration-300 ${
         isNavbarVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -77,7 +77,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
       </div>
 
       {/* Menú Desktop */}
-      <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 list-none">
+      <ul className="hidden lg:flex items-center gap-6 text-sm font-medium text-white/60 list-none">
         {navigationItems.map((item) => (
           <li key={item.href}>
             {item.external ? (
@@ -85,7 +85,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="hover:text-acid transition-colors px-2 py-1 rounded-md hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
               >
                 {item.label}
               </a>
@@ -93,7 +93,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
               <a
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="hover:text-blue-600 transition-colors px-2 py-1 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="hover:text-acid transition-colors px-2 py-1 rounded-md hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
               >
                 {item.label}
               </a>
@@ -107,7 +107,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
         <div className="relative language-selector">
           <button
             onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-            className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
             aria-label={
               language === "es" ? "Seleccionar idioma" : "Select language"
             }
@@ -124,13 +124,13 @@ export function Navbar({ onNavClick }: NavbarProps) {
               aria-label={
                 language === "es" ? "Menú de idiomas" : "Language menu"
               }
-              className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50"
+              className="absolute right-0 mt-2 w-32 bg-ink-soft rounded-lg shadow-lg border border-white/10 py-1 z-50"
             >
               <button
                 role="menuitem"
                 onClick={() => handleLanguageChange("es")}
-                className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
-                  language === "es" ? "bg-blue-50 text-blue-600" : ""
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-white/5 transition-colors focus:outline-none focus:bg-white/5 focus:ring-2 focus:ring-acid ${
+                  language === "es" ? "text-acid" : "text-white/70"
                 }`}
                 aria-current={language === "es" ? "true" : undefined}
               >
@@ -139,8 +139,8 @@ export function Navbar({ onNavClick }: NavbarProps) {
               <button
                 role="menuitem"
                 onClick={() => handleLanguageChange("en")}
-                className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors focus:outline-none focus:bg-slate-50 focus:ring-2 focus:ring-blue-500 ${
-                  language === "en" ? "bg-blue-50 text-blue-600" : ""
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-white/5 transition-colors focus:outline-none focus:bg-white/5 focus:ring-2 focus:ring-acid ${
+                  language === "en" ? "text-acid" : "text-white/70"
                 }`}
                 aria-current={language === "en" ? "true" : undefined}
               >
@@ -152,7 +152,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
         <a
           href="/Resume English.pdf"
           download="Resume English.pdf"
-          className="hidden md:flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="hidden md:flex items-center gap-2 rounded-full bg-acid px-4 py-2 text-sm font-medium text-ink hover:bg-acid-dim transition-colors focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
           aria-label={t.downloadCV}
         >
           <Download className="h-4 w-4" aria-hidden="true" />
@@ -160,7 +160,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
         </a>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden text-slate-600 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1"
+          className="lg:hidden text-white/70 hover:text-acid transition-colors focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink rounded-md p-1"
           aria-label={
             isMobileMenuOpen
               ? language === "es"
@@ -192,7 +192,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
               ? "Menú de navegación móvil"
               : "Mobile navigation menu"
           }
-          className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg lg:hidden"
+          className="absolute top-full left-0 right-0 bg-ink-soft border-b border-white/10 shadow-lg lg:hidden"
         >
           <nav
             className="flex flex-col px-6 py-4 gap-2"
@@ -207,7 +207,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
                   rel="noopener noreferrer"
                   role="menuitem"
                   onClick={() => closeAllMenus()}
-                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="text-white/70 hover:text-acid transition-colors px-4 py-2 rounded-md hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
                 >
                   {item.label}
                 </a>
@@ -217,7 +217,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
                   href={item.href}
                   role="menuitem"
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-slate-600 hover:text-blue-600 transition-colors px-4 py-2 rounded-md hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="text-white/70 hover:text-acid transition-colors px-4 py-2 rounded-md hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
                 >
                   {item.label}
                 </a>
@@ -227,7 +227,7 @@ export function Navbar({ onNavClick }: NavbarProps) {
               href="/Resume English.pdf"
               download="Resume English.pdf"
               role="menuitem"
-              className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="flex items-center justify-center gap-2 rounded-full bg-acid px-4 py-2 text-sm font-medium text-ink hover:bg-acid-dim transition-colors mt-2 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-2 focus:ring-offset-ink"
               aria-label={t.downloadCV}
             >
               <Download className="h-4 w-4" aria-hidden="true" />

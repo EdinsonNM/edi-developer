@@ -1,4 +1,8 @@
 import { ReactNode, useEffect, useRef, useState, memo } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface LazySectionProps {
   children: ReactNode;
@@ -54,6 +58,39 @@ function LazySectionComponent({
       observer.disconnect();
     };
   }, [rootMargin, threshold, hasLoaded]);
+
+  // Revelar con scroll los elementos marcados con [data-reveal] dentro de la sección
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || !isVisible) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const targets = element.querySelectorAll<HTMLElement>("[data-reveal]");
+    if (targets.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      targets.forEach((target, i) => {
+        gsap.fromTo(
+          target,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: (i % 4) * 0.08,
+            scrollTrigger: {
+              trigger: target,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+    }, element);
+
+    return () => ctx.revert();
+  }, [isVisible]);
 
   return (
     <div ref={ref}>

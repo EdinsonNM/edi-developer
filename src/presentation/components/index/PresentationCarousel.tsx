@@ -55,7 +55,7 @@ function PresentationCarouselComponent({
     >
       {/* Presentación actual - plano */}
       <div
-        className="relative w-full h-full transition-all duration-300 ease-out cursor-pointer group rounded-lg overflow-hidden shadow-xl"
+        className="relative w-full h-full transition-all duration-300 ease-out cursor-pointer group rounded-2xl overflow-hidden border border-white/10 hover:border-acid/40 shadow-xl shadow-black/40"
         style={{
           transform: isHovered ? "scale(1.02)" : "scale(1)",
         }}
@@ -74,8 +74,8 @@ function PresentationCarouselComponent({
         {/* Overlay con icono al hover */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="bg-white/90 rounded-full p-3">
-              <ExternalLink className="h-6 w-6 text-slate-700" />
+            <div className="bg-acid rounded-full p-3">
+              <ExternalLink className="h-6 w-6 text-ink" />
             </div>
           </div>
         </div>
@@ -90,10 +90,10 @@ function PresentationCarouselComponent({
               e.stopPropagation();
               goToPrevious();
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-ink/80 border border-white/20 hover:border-acid hover:text-acid text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-ink"
             aria-label="Presentación anterior"
           >
-            <ChevronLeft className="h-5 w-5 text-slate-700" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
 
           {/* Botón siguiente */}
@@ -102,10 +102,10 @@ function PresentationCarouselComponent({
               e.stopPropagation();
               goToNext();
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-ink/80 border border-white/20 hover:border-acid hover:text-acid text-white rounded-full p-2 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-acid focus:ring-offset-ink"
             aria-label="Siguiente presentación"
           >
-            <ChevronRight className="h-5 w-5 text-slate-700" />
+            <ChevronRight className="h-5 w-5" />
           </button>
 
           {/* Indicadores de puntos */}
@@ -119,7 +119,7 @@ function PresentationCarouselComponent({
                 }}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "w-8 bg-emerald-600"
+                    ? "w-8 bg-acid"
                     : "w-2 bg-white/60 hover:bg-white/80"
                 }`}
                 aria-label={`Ir a presentación ${index + 1}`}
