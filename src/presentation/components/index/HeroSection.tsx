@@ -2,7 +2,15 @@ import Marquee from "@/components/ui/marquee";
 import { ArrowRight } from "lucide-react";
 import { ICONS } from "../../pages/home/components/icons-config";
 import { useI18n } from "@/presentation/utils/use-i18n";
-import { lazy, Suspense, useState, useEffect, useRef } from "react";
+import {
+  lazy,
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  Component,
+  type ReactNode,
+} from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -33,6 +41,22 @@ function SplitChars({ text }: { text: string }) {
 const HeroScene3D = lazy(() =>
   import("@/components/HeroScene3D").then((m) => ({ default: m.HeroScene3D }))
 );
+
+/** Si la escena 3D falla, el hero sigue funcionando sin ella */
+class SceneErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    return this.state.hasError ? null : this.props.children;
+  }
+}
 
 export function HeroSection() {
   const { t, language } = useI18n();
@@ -180,9 +204,11 @@ export function HeroSection() {
             aria-hidden="true"
           >
             {shouldLoadScene && (
-              <Suspense fallback={null}>
-                <HeroScene3D paused={!isHeroVisible} />
-              </Suspense>
+              <SceneErrorBoundary>
+                <Suspense fallback={null}>
+                  <HeroScene3D paused={!isHeroVisible} />
+                </Suspense>
+              </SceneErrorBoundary>
             )}
           </div>
         </div>

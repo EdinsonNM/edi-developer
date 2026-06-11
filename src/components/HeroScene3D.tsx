@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, RoundedBox, Sparkles } from "@react-three/drei";
+import { RoundedBox, Sparkles } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -7,170 +7,401 @@ const ACID = "#c8f31d";
 const DARK = "#141417";
 const DARKER = "#0e0e10";
 const METAL = "#1d1d22";
+const WOOD = "#23232a";
 
-/** Líneas de "código" emisivas sobre la pantalla del monitor */
-function CodeScreen() {
-  const cursorRef = useRef<THREE.Mesh>(null);
+const SKIN_TONES = ["#e0b69a", "#9c6644", "#f2cdb6", "#7f5539"];
+const SHIRT_COLORS = [ACID, "#fafafa", "#5c5cff", "#ff6b6b", "#3dd6c3"];
 
-  // Anchos pseudoaleatorios pero estables entre renders
-  const lines = useMemo(
-    () =>
-      Array.from({ length: 9 }, (_, i) => ({
-        y: 0.62 - i * 0.155,
-        width: 0.35 + ((i * 37) % 53) / 53 * 1.0,
-        indent: i % 3 === 0 ? 0 : 0.18,
-        acid: i % 4 === 1,
-      })),
-    []
-  );
+/* ---------------------------------- Personajes ---------------------------------- */
 
-  useFrame(({ clock }) => {
-    if (cursorRef.current) {
-      const material = cursorRef.current
-        .material as THREE.MeshStandardMaterial;
-      material.opacity = Math.sin(clock.elapsedTime * 6) > 0 ? 1 : 0.1;
-    }
-  });
+interface CharacterLook {
+  shirt: string;
+  skin: string;
+  pants?: string;
+}
 
+/** Cuerpo low-poly articulado; las extremidades exponen refs para animar */
+function CharacterBody({
+  look,
+  legLRef,
+  legRRef,
+  armLRef,
+  armRRef,
+  bodyRef,
+}: {
+  look: CharacterLook;
+  legLRef?: React.Ref<THREE.Group>;
+  legRRef?: React.Ref<THREE.Group>;
+  armLRef?: React.Ref<THREE.Group>;
+  armRRef?: React.Ref<THREE.Group>;
+  bodyRef?: React.Ref<THREE.Group>;
+}) {
+  const pants = look.pants ?? "#26262e";
   return (
     <group>
-      {lines.map((line, i) => (
-        <mesh
-          key={i}
-          position={[-0.85 + line.indent + line.width / 2, line.y, 0.01]}
-        >
-          <planeGeometry args={[line.width, 0.07]} />
-          <meshStandardMaterial
-            color={line.acid ? ACID : "#3a3a42"}
-            emissive={line.acid ? ACID : "#2a2a30"}
-            emissiveIntensity={line.acid ? 1.6 : 0.4}
-          />
+      {/* Piernas: pivote en la cadera (y=0.34) */}
+      <group ref={legLRef} position={[-0.06, 0.34, 0]}>
+        <mesh position={[0, -0.17, 0]}>
+          <boxGeometry args={[0.09, 0.34, 0.1]} />
+          <meshStandardMaterial color={pants} />
         </mesh>
-      ))}
-      {/* Cursor parpadeante */}
-      <mesh ref={cursorRef} position={[-0.62, -0.78, 0.01]}>
-        <planeGeometry args={[0.09, 0.1]} />
-        <meshStandardMaterial
-          color={ACID}
-          emissive={ACID}
-          emissiveIntensity={2}
-          transparent
-        />
-      </mesh>
-    </group>
-  );
-}
-
-function Monitor() {
-  return (
-    <group position={[0, 1.05, -0.55]}>
-      {/* Marco */}
-      <RoundedBox args={[2.3, 1.5, 0.08]} radius={0.04}>
-        <meshStandardMaterial color={METAL} roughness={0.4} />
-      </RoundedBox>
-      {/* Pantalla */}
-      <mesh position={[0, 0.02, 0.045]}>
-        <planeGeometry args={[2.1, 1.3]} />
-        <meshStandardMaterial color={DARKER} roughness={0.2} />
-      </mesh>
-      <group position={[0, 0.02, 0.05]} scale={0.78}>
-        <CodeScreen />
       </group>
-      {/* Soporte */}
-      <mesh position={[0, -0.85, 0]}>
-        <cylinderGeometry args={[0.05, 0.07, 0.45, 8]} />
-        <meshStandardMaterial color={METAL} />
-      </mesh>
-      <mesh position={[0, -1.06, 0.05]}>
-        <boxGeometry args={[0.6, 0.05, 0.35]} />
-        <meshStandardMaterial color={METAL} />
-      </mesh>
-    </group>
-  );
-}
-
-function Keyboard() {
-  const keys = useMemo(() => {
-    const result: { x: number; z: number; acid: boolean }[] = [];
-    for (let row = 0; row < 4; row++) {
-      for (let col = 0; col < 10; col++) {
-        result.push({
-          x: -0.5 + col * 0.11,
-          z: -0.14 + row * 0.1,
-          acid: (row * 10 + col) % 17 === 3,
-        });
-      }
-    }
-    return result;
-  }, []);
-
-  return (
-    <group position={[0, 0.06, 0.45]} rotation={[0, 0, 0]}>
-      <RoundedBox args={[1.25, 0.06, 0.5]} radius={0.02}>
-        <meshStandardMaterial color={METAL} />
-      </RoundedBox>
-      {keys.map((key, i) => (
-        <mesh key={i} position={[key.x, 0.04, key.z]}>
-          <boxGeometry args={[0.08, 0.03, 0.07]} />
-          <meshStandardMaterial
-            color={key.acid ? ACID : "#2c2c33"}
-            emissive={key.acid ? ACID : "#000000"}
-            emissiveIntensity={key.acid ? 1.2 : 0}
-          />
+      <group ref={legRRef} position={[0.06, 0.34, 0]}>
+        <mesh position={[0, -0.17, 0]}>
+          <boxGeometry args={[0.09, 0.34, 0.1]} />
+          <meshStandardMaterial color={pants} />
         </mesh>
-      ))}
+      </group>
+      {/* Torso + cabeza con leve rebote */}
+      <group ref={bodyRef}>
+        <mesh position={[0, 0.52, 0]}>
+          <boxGeometry args={[0.26, 0.36, 0.16]} />
+          <meshStandardMaterial color={look.shirt} />
+        </mesh>
+        {/* Brazos: pivote en el hombro (y=0.66) */}
+        <group ref={armLRef} position={[-0.17, 0.66, 0]}>
+          <mesh position={[0, -0.15, 0]}>
+            <boxGeometry args={[0.07, 0.3, 0.08]} />
+            <meshStandardMaterial color={look.shirt} />
+          </mesh>
+        </group>
+        <group ref={armRRef} position={[0.17, 0.66, 0]}>
+          <mesh position={[0, -0.15, 0]}>
+            <boxGeometry args={[0.07, 0.3, 0.08]} />
+            <meshStandardMaterial color={look.shirt} />
+          </mesh>
+        </group>
+        <mesh position={[0, 0.82, 0]}>
+          <boxGeometry args={[0.18, 0.18, 0.16]} />
+          <meshStandardMaterial color={look.skin} />
+        </mesh>
+        {/* Pelo */}
+        <mesh position={[0, 0.915, -0.01]}>
+          <boxGeometry args={[0.19, 0.06, 0.17]} />
+          <meshStandardMaterial color="#111114" />
+        </mesh>
+      </group>
     </group>
   );
 }
 
-function CoffeeMug() {
-  return (
-    <group position={[1.15, 0.14, 0.5]}>
-      <mesh>
-        <cylinderGeometry args={[0.11, 0.09, 0.22, 16]} />
-        <meshStandardMaterial color="#26262c" roughness={0.5} />
-      </mesh>
-      <mesh position={[0, 0.1, 0]}>
-        <cylinderGeometry args={[0.09, 0.09, 0.02, 16]} />
-        <meshStandardMaterial
-          color={ACID}
-          emissive={ACID}
-          emissiveIntensity={0.5}
-        />
-      </mesh>
-      <mesh position={[0.14, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <torusGeometry args={[0.07, 0.018, 8, 16, Math.PI]} />
-        <meshStandardMaterial color="#26262c" />
-      </mesh>
-    </group>
-  );
-}
+/** Personaje que camina en bucle por una ruta de waypoints sobre el piso */
+function Walker({
+  path,
+  speed = 0.55,
+  offset = 0,
+  look,
+}: {
+  path: [number, number][];
+  speed?: number;
+  offset?: number;
+  look: CharacterLook;
+}) {
+  const rootRef = useRef<THREE.Group>(null);
+  const legLRef = useRef<THREE.Group>(null);
+  const legRRef = useRef<THREE.Group>(null);
+  const armLRef = useRef<THREE.Group>(null);
+  const armRRef = useRef<THREE.Group>(null);
+  const bodyRef = useRef<THREE.Group>(null);
 
-function ServerTower() {
-  const lightRef = useRef<THREE.MeshStandardMaterial>(null);
+  const { segments, total } = useMemo(() => {
+    const pts = path.map(([x, z]) => new THREE.Vector2(x, z));
+    const segs: { from: THREE.Vector2; to: THREE.Vector2; len: number }[] = [];
+    let totalLen = 0;
+    for (let i = 0; i < pts.length; i++) {
+      const from = pts[i];
+      const to = pts[(i + 1) % pts.length];
+      const len = from.distanceTo(to);
+      segs.push({ from, to, len });
+      totalLen += len;
+    }
+    return { segments: segs, total: totalLen };
+  }, [path]);
 
   useFrame(({ clock }) => {
-    if (lightRef.current) {
-      lightRef.current.emissiveIntensity =
-        1 + Math.sin(clock.elapsedTime * 3) * 0.8;
+    const root = rootRef.current;
+    if (!root) return;
+    const time = clock.elapsedTime;
+
+    // Posición sobre la polilínea
+    let dist = (time * speed + offset) % total;
+    let seg = segments[0];
+    for (const s of segments) {
+      if (dist <= s.len) {
+        seg = s;
+        break;
+      }
+      dist -= s.len;
+    }
+    const tSeg = seg.len === 0 ? 0 : dist / seg.len;
+    const x = THREE.MathUtils.lerp(seg.from.x, seg.to.x, tSeg);
+    const z = THREE.MathUtils.lerp(seg.from.y, seg.to.y, tSeg);
+    root.position.set(x, 0, z);
+
+    // Orientación hacia la dirección de marcha (suavizada)
+    const angle = Math.atan2(seg.to.x - seg.from.x, seg.to.y - seg.from.y);
+    let delta = angle - root.rotation.y;
+    delta = Math.atan2(Math.sin(delta), Math.cos(delta));
+    root.rotation.y += delta * 0.15;
+
+    // Ciclo de caminado
+    const swing = Math.sin(time * 7 + offset * 10);
+    if (legLRef.current) legLRef.current.rotation.x = swing * 0.55;
+    if (legRRef.current) legRRef.current.rotation.x = -swing * 0.55;
+    if (armLRef.current) armLRef.current.rotation.x = -swing * 0.45;
+    if (armRRef.current) armRRef.current.rotation.x = swing * 0.45;
+    if (bodyRef.current)
+      bodyRef.current.position.y = Math.abs(Math.cos(time * 7 + offset * 10)) * 0.025;
+  });
+
+  return (
+    <group ref={rootRef} scale={0.62}>
+      <CharacterBody
+        look={look}
+        legLRef={legLRef}
+        legRRef={legRRef}
+        armLRef={armLRef}
+        armRRef={armRRef}
+        bodyRef={bodyRef}
+      />
+    </group>
+  );
+}
+
+/** Personaje sentado tecleando frente a un escritorio */
+function SittingDev({
+  position,
+  rotationY = 0,
+  look,
+  typeOffset = 0,
+}: {
+  position: [number, number, number];
+  rotationY?: number;
+  look: CharacterLook;
+  typeOffset?: number;
+}) {
+  const armLRef = useRef<THREE.Group>(null);
+  const armRRef = useRef<THREE.Group>(null);
+  const bodyRef = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime * 11 + typeOffset;
+    // Tecleo alternado de brazos
+    if (armLRef.current)
+      armLRef.current.rotation.x = -1.1 + Math.sin(t) * 0.12;
+    if (armRRef.current)
+      armRRef.current.rotation.x = -1.1 + Math.sin(t + Math.PI) * 0.12;
+    if (bodyRef.current)
+      bodyRef.current.position.y = Math.sin(clock.elapsedTime * 1.5 + typeOffset) * 0.008;
+  });
+
+  return (
+    <group position={position} rotation={[0, rotationY, 0]} scale={0.62}>
+      {/* Sentado: piernas dobladas fijas */}
+      <group position={[0, 0.13, 0]}>
+        <mesh position={[-0.06, 0, 0.12]}>
+          <boxGeometry args={[0.09, 0.1, 0.3]} />
+          <meshStandardMaterial color="#26262e" />
+        </mesh>
+        <mesh position={[0.06, 0, 0.12]}>
+          <boxGeometry args={[0.09, 0.1, 0.3]} />
+          <meshStandardMaterial color="#26262e" />
+        </mesh>
+      </group>
+      <group position={[0, -0.16, 0]}>
+        <CharacterBody
+          look={look}
+          armLRef={armLRef}
+          armRRef={armRRef}
+          bodyRef={bodyRef}
+        />
+      </group>
+      {/* Silla */}
+      <mesh position={[0, 0.1, -0.16]}>
+        <boxGeometry args={[0.34, 0.06, 0.34]} />
+        <meshStandardMaterial color={METAL} />
+      </mesh>
+      <mesh position={[0, 0.35, -0.32]}>
+        <boxGeometry args={[0.34, 0.5, 0.06]} />
+        <meshStandardMaterial color={METAL} />
+      </mesh>
+      <mesh position={[0, -0.05, -0.16]}>
+        <cylinderGeometry args={[0.03, 0.03, 0.25, 6]} />
+        <meshStandardMaterial color="#0c0c0e" />
+      </mesh>
+    </group>
+  );
+}
+
+/* ---------------------------------- Mobiliario ---------------------------------- */
+
+function DeskPod({
+  position,
+  rotationY = 0,
+  screenSeed = 0,
+}: {
+  position: [number, number, number];
+  rotationY?: number;
+  screenSeed?: number;
+}) {
+  const screenRef = useRef<THREE.MeshStandardMaterial>(null);
+
+  useFrame(({ clock }) => {
+    if (screenRef.current) {
+      screenRef.current.emissiveIntensity =
+        0.9 + Math.sin(clock.elapsedTime * 2 + screenSeed) * 0.25;
     }
   });
 
   return (
-    <group position={[-1.5, 0.42, 0.1]}>
-      <RoundedBox args={[0.5, 0.85, 0.5]} radius={0.03}>
-        <meshStandardMaterial color={METAL} roughness={0.35} />
-      </RoundedBox>
-      {[0.25, 0.1, -0.05].map((y, i) => (
-        <mesh key={i} position={[0, y, 0.26]}>
-          <planeGeometry args={[0.36, 0.06]} />
-          <meshStandardMaterial color={DARKER} />
+    <group position={position} rotation={[0, rotationY, 0]}>
+      {/* Mesa */}
+      <mesh position={[0, 0.42, 0]}>
+        <boxGeometry args={[1.15, 0.05, 0.55]} />
+        <meshStandardMaterial color={WOOD} roughness={0.6} />
+      </mesh>
+      {[-0.5, 0.5].map((x) => (
+        <mesh key={x} position={[x, 0.2, 0]}>
+          <boxGeometry args={[0.05, 0.4, 0.45]} />
+          <meshStandardMaterial color={METAL} />
         </mesh>
       ))}
-      <mesh position={[0.13, -0.25, 0.26]}>
-        <circleGeometry args={[0.025, 12]} />
+      {/* Monitor */}
+      <group position={[0, 0.65, -0.12]}>
+        <RoundedBox args={[0.62, 0.4, 0.04]} radius={0.015}>
+          <meshStandardMaterial color={METAL} />
+        </RoundedBox>
+        <mesh position={[0, 0, 0.022]}>
+          <planeGeometry args={[0.56, 0.34]} />
+          <meshStandardMaterial
+            ref={screenRef}
+            color={DARKER}
+            emissive={screenSeed % 2 === 0 ? ACID : "#5c5cff"}
+            emissiveIntensity={1}
+          />
+        </mesh>
+        <mesh position={[0, -0.24, 0]}>
+          <boxGeometry args={[0.06, 0.1, 0.04]} />
+          <meshStandardMaterial color={METAL} />
+        </mesh>
+      </group>
+      {/* Teclado */}
+      <mesh position={[0, 0.46, 0.12]}>
+        <boxGeometry args={[0.4, 0.02, 0.14]} />
+        <meshStandardMaterial color="#2c2c33" />
+      </mesh>
+    </group>
+  );
+}
+
+function MeetingArea({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.4, 0]}>
+        <cylinderGeometry args={[0.55, 0.55, 0.05, 20]} />
+        <meshStandardMaterial color={WOOD} />
+      </mesh>
+      <mesh position={[0, 0.2, 0]}>
+        <cylinderGeometry args={[0.06, 0.09, 0.4, 8]} />
+        <meshStandardMaterial color={METAL} />
+      </mesh>
+      {/* Laptop sobre la mesa */}
+      <group position={[0.1, 0.44, 0.1]} rotation={[0, -0.6, 0]}>
+        <mesh>
+          <boxGeometry args={[0.28, 0.015, 0.2]} />
+          <meshStandardMaterial color={METAL} />
+        </mesh>
+        <mesh position={[0, 0.09, -0.1]} rotation={[-0.3, 0, 0]}>
+          <boxGeometry args={[0.28, 0.18, 0.012]} />
+          <meshStandardMaterial
+            color={DARKER}
+            emissive={ACID}
+            emissiveIntensity={0.7}
+          />
+        </mesh>
+      </group>
+      {/* Pufs alrededor */}
+      {[0, 1.6, 3.2, 4.8].map((a) => (
+        <mesh
+          key={a}
+          position={[Math.cos(a) * 0.85, 0.14, Math.sin(a) * 0.85]}
+        >
+          <cylinderGeometry args={[0.18, 0.2, 0.22, 10]} />
+          <meshStandardMaterial
+            color={a === 0 ? ACID : "#2a2a32"}
+            roughness={0.8}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function Plant({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.12, 0]}>
+        <cylinderGeometry args={[0.12, 0.09, 0.24, 8]} />
+        <meshStandardMaterial color="#2a2a32" />
+      </mesh>
+      <mesh position={[0, 0.4, 0]}>
+        <coneGeometry args={[0.2, 0.45, 6]} />
+        <meshStandardMaterial color="#3f6b1f" roughness={0.8} />
+      </mesh>
+      <mesh position={[0.08, 0.55, 0.05]}>
+        <coneGeometry args={[0.13, 0.3, 6]} />
+        <meshStandardMaterial color="#558b2c" roughness={0.8} />
+      </mesh>
+    </group>
+  );
+}
+
+function Sofa({ position, rotationY = 0 }: { position: [number, number, number]; rotationY?: number }) {
+  return (
+    <group position={position} rotation={[0, rotationY, 0]}>
+      <mesh position={[0, 0.18, 0]}>
+        <boxGeometry args={[1.1, 0.25, 0.5]} />
+        <meshStandardMaterial color="#26262e" roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 0.42, -0.2]}>
+        <boxGeometry args={[1.1, 0.35, 0.12]} />
+        <meshStandardMaterial color="#26262e" roughness={0.9} />
+      </mesh>
+      {[-0.52, 0.52].map((x) => (
+        <mesh key={x} position={[x, 0.32, 0]}>
+          <boxGeometry args={[0.1, 0.3, 0.5]} />
+          <meshStandardMaterial color="#1f1f26" roughness={0.9} />
+        </mesh>
+      ))}
+      {/* Cojín acid */}
+      <mesh position={[-0.3, 0.36, -0.08]} rotation={[0.3, 0.2, 0]}>
+        <boxGeometry args={[0.24, 0.24, 0.08]} />
+        <meshStandardMaterial color={ACID} roughness={0.9} />
+      </mesh>
+    </group>
+  );
+}
+
+function CoffeeStation({ position }: { position: [number, number, number] }) {
+  const ledRef = useRef<THREE.MeshStandardMaterial>(null);
+  useFrame(({ clock }) => {
+    if (ledRef.current)
+      ledRef.current.emissiveIntensity = 1.2 + Math.sin(clock.elapsedTime * 4) * 0.8;
+  });
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.3, 0]}>
+        <boxGeometry args={[0.7, 0.6, 0.4]} />
+        <meshStandardMaterial color={WOOD} />
+      </mesh>
+      <mesh position={[0, 0.72, 0]}>
+        <boxGeometry args={[0.26, 0.3, 0.24]} />
+        <meshStandardMaterial color={METAL} />
+      </mesh>
+      <mesh position={[0, 0.72, 0.13]}>
+        <circleGeometry args={[0.03, 10]} />
         <meshStandardMaterial
-          ref={lightRef}
+          ref={ledRef}
           color={ACID}
           emissive={ACID}
           emissiveIntensity={1.5}
@@ -180,104 +411,137 @@ function ServerTower() {
   );
 }
 
-/** Plataforma flotante estilo diorama */
-function Island() {
+/* ---------------------------------- Piso y raíz ---------------------------------- */
+
+function Floor() {
   return (
     <group>
-      <RoundedBox args={[4.6, 0.35, 2.6]} radius={0.08} position={[0, -0.18, 0]}>
-        <meshStandardMaterial color={DARK} roughness={0.7} />
+      <RoundedBox args={[7.4, 0.35, 5]} radius={0.1} position={[0, -0.18, 0]}>
+        <meshStandardMaterial color={DARK} roughness={0.75} />
       </RoundedBox>
-      <RoundedBox args={[3.6, 0.3, 2]} radius={0.08} position={[0.2, -0.55, 0.1]}>
-        <meshStandardMaterial color={DARKER} roughness={0.8} />
+      <RoundedBox args={[5.8, 0.3, 3.8]} radius={0.1} position={[0.3, -0.56, 0.2]}>
+        <meshStandardMaterial color={DARKER} roughness={0.85} />
       </RoundedBox>
-      <RoundedBox args={[1.6, 0.25, 1]} radius={0.08} position={[-0.4, -0.9, -0.1]}>
-        <meshStandardMaterial color="#0b0b0d" roughness={0.9} />
-      </RoundedBox>
-      {/* Borde acid sutil de la plataforma superior */}
-      <mesh position={[0, -0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[4.62, 2.62]} />
-        <meshStandardMaterial
-          color={DARK}
-          emissive={ACID}
-          emissiveIntensity={0.04}
-          roughness={0.9}
-        />
+      {/* Alfombra central del pasillo */}
+      <mesh position={[0, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[1.1, 4.6]} />
+        <meshStandardMaterial color="#191920" roughness={0.95} />
       </mesh>
+      {/* Líneas guía acid del piso */}
+      {[-0.55, 0.55].map((x) => (
+        <mesh key={x} position={[x, 0.006, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.02, 4.6]} />
+          <meshStandardMaterial
+            color={ACID}
+            emissive={ACID}
+            emissiveIntensity={0.35}
+          />
+        </mesh>
+      ))}
     </group>
   );
 }
 
-/** Geometrías flotantes alrededor del diorama */
-function FloatingBits() {
-  return (
-    <>
-      <Float speed={2} rotationIntensity={1.2} floatIntensity={1.5}>
-        <mesh position={[2.3, 1.6, -0.4]}>
-          <icosahedronGeometry args={[0.28, 0]} />
-          <meshStandardMaterial color={ACID} wireframe />
-        </mesh>
-      </Float>
-      <Float speed={1.6} rotationIntensity={1} floatIntensity={1.2}>
-        <mesh position={[-2.2, 2, 0.3]}>
-          <octahedronGeometry args={[0.2, 0]} />
-          <meshStandardMaterial
-            color={ACID}
-            emissive={ACID}
-            emissiveIntensity={0.8}
-          />
-        </mesh>
-      </Float>
-      <Float speed={2.4} rotationIntensity={1.5} floatIntensity={1}>
-        <mesh position={[1.9, 2.6, 0.6]}>
-          <boxGeometry args={[0.22, 0.22, 0.22]} />
-          <meshStandardMaterial color="#fafafa" wireframe />
-        </mesh>
-      </Float>
-      <Float speed={1.2} rotationIntensity={0.8} floatIntensity={1.8}>
-        <mesh position={[-1.9, 1.2, 0.9]}>
-          <torusGeometry args={[0.18, 0.05, 8, 24]} />
-          <meshStandardMaterial color="#9a9aa0" wireframe />
-        </mesh>
-      </Float>
-    </>
-  );
-}
-
-/** Grupo raíz: flotación suave + parallax al mouse */
-function Diorama() {
+function Office() {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame(({ clock, pointer }) => {
     const group = groupRef.current;
     if (!group) return;
-    group.position.y = Math.sin(clock.elapsedTime * 0.8) * 0.08 - 0.4;
+    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.55;
     group.rotation.y = THREE.MathUtils.lerp(
       group.rotation.y,
-      -Math.PI / 4 + pointer.x * 0.18,
+      -Math.PI / 4 + pointer.x * 0.16,
       0.05
     );
     group.rotation.x = THREE.MathUtils.lerp(
       group.rotation.x,
-      pointer.y * -0.06,
+      pointer.y * -0.05,
       0.05
     );
   });
 
   return (
     <group ref={groupRef} rotation={[0, -Math.PI / 4, 0]}>
-      <Island />
-      <Monitor />
-      <Keyboard />
-      <CoffeeMug />
-      <ServerTower />
-      <FloatingBits />
+      <Floor />
+
+      {/* Zona de escritorios: dos filas mirando al pasillo central */}
+      <DeskPod position={[-1.6, 0, -1.3]} rotationY={Math.PI / 2} screenSeed={0} />
+      <DeskPod position={[-1.6, 0, 0]} rotationY={Math.PI / 2} screenSeed={1} />
+      <DeskPod position={[1.6, 0, -1.3]} rotationY={-Math.PI / 2} screenSeed={2} />
+      <DeskPod position={[1.6, 0, 0.9]} rotationY={-Math.PI / 2} screenSeed={3} />
+
+      {/* Devs sentados tecleando */}
+      <SittingDev
+        position={[-2.05, 0.16, -1.3]}
+        rotationY={Math.PI / 2}
+        look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[0] }}
+        typeOffset={0}
+      />
+      <SittingDev
+        position={[-2.05, 0.16, 0]}
+        rotationY={Math.PI / 2}
+        look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[1] }}
+        typeOffset={2}
+      />
+      <SittingDev
+        position={[2.05, 0.16, -1.3]}
+        rotationY={-Math.PI / 2}
+        look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[2] }}
+        typeOffset={4}
+      />
+
+      {/* Personajes caminando */}
+      <Walker
+        path={[
+          [-0.0, 2.0],
+          [0, -2.0],
+          [0.4, -2.0],
+          [0.4, 2.0],
+        ]}
+        speed={0.6}
+        offset={0}
+        look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[1] }}
+      />
+      <Walker
+        path={[
+          [-2.6, 1.6],
+          [-0.6, 1.6],
+          [-0.6, -1.9],
+          [-2.6, -1.9],
+        ]}
+        speed={0.5}
+        offset={3}
+        look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[3] }}
+      />
+      <Walker
+        path={[
+          [2.7, 1.8],
+          [0.7, 1.8],
+          [0.7, -0.5],
+          [2.7, -0.5],
+        ]}
+        speed={0.45}
+        offset={6}
+        look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[0] }}
+      />
+
+      {/* Zonas comunes */}
+      <MeetingArea position={[2.3, 0, 1.7]} />
+      <Sofa position={[-2.4, 0, 1.7]} rotationY={0.5} />
+      <CoffeeStation position={[-3.1, 0, -0.9]} />
+      <Plant position={[3.3, 0, -2]} />
+      <Plant position={[-3.3, 0, 2.1]} />
+      <Plant position={[3.2, 0, 0.5]} />
+
       <Sparkles
-        count={40}
-        scale={[6, 4, 4]}
-        size={2}
-        speed={0.3}
+        count={35}
+        scale={[8, 4, 6]}
+        size={1.8}
+        speed={0.25}
         color={ACID}
-        opacity={0.5}
+        opacity={0.4}
+        position={[0, 1.5, 0]}
       />
     </group>
   );
@@ -287,24 +551,24 @@ interface HeroScene3DProps {
   paused?: boolean;
 }
 
-/** Mundo isométrico de developer para el hero */
+/** Oficina startup isométrica con personajes animados para el hero */
 export function HeroScene3D({ paused = false }: HeroScene3DProps) {
   return (
     <Canvas
       orthographic
       frameloop={paused ? "never" : "always"}
       dpr={[1, 1.5]}
-      camera={{ zoom: 90, position: [10, 7, 10], near: 0.1, far: 100 }}
+      camera={{ zoom: 72, position: [10, 8, 10], near: 0.1, far: 100 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: "transparent" }}
-      onCreated={({ camera }) => camera.lookAt(0, 0.4, 0)}
+      onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 8, 5]} intensity={1.1} color="#ffffff" />
-        <pointLight position={[0, 2, 2]} intensity={6} color={ACID} distance={8} />
-        <pointLight position={[-3, 1, -2]} intensity={3} color="#4a5aff" distance={10} />
-        <Diorama />
+        <ambientLight intensity={0.55} />
+        <directionalLight position={[6, 10, 4]} intensity={1.2} color="#ffffff" />
+        <pointLight position={[0, 3, 0]} intensity={8} color={ACID} distance={9} />
+        <pointLight position={[-4, 2, 3]} intensity={4} color="#4a5aff" distance={12} />
+        <Office />
       </Suspense>
     </Canvas>
   );
