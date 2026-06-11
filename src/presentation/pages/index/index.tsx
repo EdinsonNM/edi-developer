@@ -14,6 +14,9 @@ import { LazySection } from "@/presentation/components/common/LazySection";
 import { useEffect } from "react";
 import { useI18n } from "@/presentation/utils/use-i18n";
 import { useSmoothScroll } from "@/presentation/hooks/use-smooth-scroll";
+import { AmbientBackground } from "@/components/AmbientBackground";
+import { MagneticCursor } from "@/components/MagneticCursor";
+import { BigTypeMarquee } from "@/components/BigTypeMarquee";
 
 export default function LandingPage() {
   const { language } = useI18n();
@@ -60,6 +63,10 @@ export default function LandingPage() {
           : "Skip to main content"}
       </a>
 
+      {/* Capas globales: grain + glow y cursor magnético */}
+      <AmbientBackground />
+      <MagneticCursor />
+
       {/* Navbar */}
       <Navbar onNavClick={handleNavClick} />
 
@@ -72,6 +79,8 @@ export default function LandingPage() {
       <LazySection rootMargin="200px">
         <WhatIDoSection />
       </LazySection>
+
+      <BigTypeMarquee words={["Frontend", "AI", "3D", "Architecture"]} />
 
       <LazySection rootMargin="200px">
         <FeaturedProjectsSection />
@@ -96,6 +105,11 @@ export default function LandingPage() {
       <LazySection rootMargin="200px">
         <EdiAcademySection />
       </LazySection>
+
+      <BigTypeMarquee
+        words={["Let's build", "Hablemos", "Let's build", "Hablemos"]}
+        direction={-1}
+      />
 
       <LazySection rootMargin="200px">
         <ContactSection />
