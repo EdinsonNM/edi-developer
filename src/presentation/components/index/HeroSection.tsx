@@ -160,9 +160,10 @@ export function HeroSection() {
             </Suspense>
           </SceneErrorBoundary>
         )}
-        {/* Gradiente para legibilidad del titular */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/50 to-transparent lg:via-ink/30" />
+        {/* Viñeta de legibilidad: oscurece la zona del titular */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-ink via-ink/75 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/80 to-transparent" />
       </div>
 
       <div ref={contentRef} className="relative z-10 w-full max-w-7xl mx-auto">

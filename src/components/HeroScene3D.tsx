@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { RoundedBox, Sparkles } from "@react-three/drei";
+import { Billboard, Float, RoundedBox, Sparkles } from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -569,6 +569,107 @@ function Shelf({ position, rotationY = 0 }: { position: [number, number, number]
   );
 }
 
+/* ---------------------------------- Logos de tecnología ---------------------------------- */
+
+/** Textura tipo logo (letras sobre placa redondeada) generada en canvas */
+function useLabelTexture(text: string, bg: string, fg: string) {
+  return useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 256;
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      const r = 48;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, 256, 256, r);
+      ctx.fillStyle = bg;
+      ctx.fill();
+      ctx.fillStyle = fg;
+      ctx.font = `bold ${text.length > 2 ? 88 : 120}px "Space Grotesk", "Arial", sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(text, 128, 140);
+    }
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.anisotropy = 4;
+    return texture;
+  }, [text, bg, fg]);
+}
+
+function TechBadge({
+  text,
+  bg,
+  fg,
+  position,
+  speed = 1.4,
+}: {
+  text: string;
+  bg: string;
+  fg: string;
+  position: [number, number, number];
+  speed?: number;
+}) {
+  const texture = useLabelTexture(text, bg, fg);
+  return (
+    <Float speed={speed} rotationIntensity={0.15} floatIntensity={1.2}>
+      <Billboard position={position}>
+        <mesh>
+          <planeGeometry args={[0.85, 0.85]} />
+          <meshBasicMaterial map={texture} transparent />
+        </mesh>
+      </Billboard>
+    </Float>
+  );
+}
+
+/** Átomo de React: tres anillos y núcleo */
+function ReactAtom({ position }: { position: [number, number, number] }) {
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (groupRef.current) groupRef.current.rotation.y = clock.elapsedTime * 0.6;
+  });
+
+  return (
+    <Float speed={1.2} rotationIntensity={0.2} floatIntensity={1.4}>
+      <group ref={groupRef} position={position} scale={0.55}>
+        {[0, Math.PI / 3, -Math.PI / 3].map((rz, i) => (
+          <mesh key={i} rotation={[Math.PI / 2, 0, rz]}>
+            <torusGeometry args={[0.85, 0.045, 10, 48]} />
+            <meshStandardMaterial
+              color="#61dafb"
+              emissive="#61dafb"
+              emissiveIntensity={0.9}
+            />
+          </mesh>
+        ))}
+        <mesh>
+          <sphereGeometry args={[0.16, 16, 16]} />
+          <meshStandardMaterial
+            color="#61dafb"
+            emissive="#61dafb"
+            emissiveIntensity={1.2}
+          />
+        </mesh>
+      </group>
+    </Float>
+  );
+}
+
+function TechBadges() {
+  return (
+    <>
+      <ReactAtom position={[1.2, 2.9, -3.6]} />
+      <TechBadge text="TS" bg="#3178c6" fg="#ffffff" position={[4.8, 2.5, -2.6]} />
+      <TechBadge text="JS" bg="#f7df1e" fg="#0a0a0b" position={[7.2, 2.2, 3.8]} speed={1.8} />
+      <TechBadge text="</>" bg="#0e0e12" fg="#c8f31d" position={[3.2, 3.1, -5]} speed={1.1} />
+      <TechBadge text="{ }" bg="#5c5cff" fg="#ffffff" position={[5.8, 2.8, 0.8]} speed={1.6} />
+      <TechBadge text="AI" bg="#c8f31d" fg="#0a0a0b" position={[2.4, 2.4, 5.6]} speed={1.3} />
+      <TechBadge text="git" bg="#f05133" fg="#ffffff" position={[9, 2.6, -3.8]} speed={2} />
+      <TechBadge text="3D" bg="#0e0e12" fg="#ffffff" position={[10, 2.3, 0.8]} speed={1.5} />
+    </>
+  );
+}
+
 function Office() {
   const groupRef = useRef<THREE.Group>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
@@ -688,6 +789,9 @@ function Office() {
         look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[2] }}
       />
 
+      {/* Logos de tecnología flotando sobre la oficina */}
+      <TechBadges />
+
       {/* Parejas conversando */}
       <StandingTalkers position={[-3.2, 0, 2.2]} rotationY={0.4} />
       <StandingTalkers position={[6.6, 0, -5]} rotationY={-0.7} />
@@ -749,11 +853,11 @@ export function HeroScene3D({ paused = false }: HeroScene3DProps) {
       orthographic
       frameloop={paused ? "never" : "always"}
       dpr={[1, 1.5]}
-      camera={{ zoom: 64, position: [10, 8, 10], near: 0.1, far: 100 }}
+      camera={{ zoom: 64, position: [10, 6.4, 10], near: 0.1, far: 100 }}
       resize={{ debounce: 100 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: "transparent" }}
-      onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
+      onCreated={({ camera }) => camera.lookAt(0, 0.5, 0)}
     >
       <Suspense fallback={null}>
         <ResponsiveZoom />
