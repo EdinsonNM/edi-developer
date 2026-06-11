@@ -121,11 +121,16 @@ export function HeroSection() {
       id="inicio"
       className="relative flex flex-col items-center justify-center h-screen px-4 text-center z-10 pt-20"
     >
-      {/* Background Effects - Hyperspeed lazy loaded, solo mientras el hero es visible */}
-      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-        {shouldLoadHyperspeed && isHeroVisible ? (
+      {/* Background Effects - Hyperspeed lazy loaded; se pausa y oculta fuera del hero */}
+      <div
+        className={`fixed inset-0 w-full h-full z-0 pointer-events-none transition-opacity duration-500 ${
+          isHeroVisible ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {shouldLoadHyperspeed ? (
           <Suspense fallback={<HyperspeedPlaceholder />}>
             <Hyperspeed
+              paused={!isHeroVisible}
               effectOptions={{
                 onSpeedUp: () => {},
                 onSlowDown: () => {},
