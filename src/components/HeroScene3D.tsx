@@ -573,9 +573,9 @@ function Office() {
     if (!group) return;
     const pointer = pointerRef.current;
     // En pantallas anchas la oficina se corre a la derecha del titular
-    const shiftX = size.width >= 1024 ? size.width / 640 : 0;
+    const shiftX = size.width >= 1024 ? size.width / 1000 : 0;
     group.position.x = THREE.MathUtils.lerp(group.position.x, shiftX, 0.08);
-    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.7;
+    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.2;
     group.rotation.y = THREE.MathUtils.lerp(
       group.rotation.y,
       -Math.PI / 4 + pointer.x * 0.16,
@@ -723,7 +723,7 @@ function ResponsiveZoom() {
   const { camera, size } = useThree();
 
   useEffect(() => {
-    const zoom = THREE.MathUtils.clamp(size.width / 18, 42, 78);
+    const zoom = THREE.MathUtils.clamp(size.width / 12.5, 55, 120);
     camera.zoom = zoom;
     camera.updateProjectionMatrix();
   }, [camera, size]);
@@ -750,10 +750,10 @@ export function HeroScene3D({ paused = false }: HeroScene3DProps) {
     >
       <Suspense fallback={null}>
         <ResponsiveZoom />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[6, 10, 4]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[0, 3, 0]} intensity={8} color={ACID} distance={9} />
-        <pointLight position={[-4, 2, 3]} intensity={4} color="#4a5aff" distance={12} />
+        <ambientLight intensity={1.1} />
+        <directionalLight position={[6, 10, 4]} intensity={2} color="#ffffff" />
+        <pointLight position={[0, 3.5, 0]} intensity={14} color={ACID} distance={12} />
+        <pointLight position={[-4, 2, 3]} intensity={7} color="#4a5aff" distance={14} />
         <Office />
       </Suspense>
     </Canvas>

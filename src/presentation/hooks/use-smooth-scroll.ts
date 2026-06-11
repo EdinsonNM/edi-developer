@@ -29,11 +29,14 @@ export function useSmoothScroll() {
     gsap.ticker.lagSmoothing(0);
 
     // Las secciones lazy cambian la altura del documento al montarse:
-    // recalcular las posiciones de los ScrollTriggers cuando eso ocurre
+    // Lenis solo recalcula su límite de scroll en el resize de la ventana,
+    // así que hay que avisarle (y a ScrollTrigger) cuando el body crece
     let refreshTimeout: number | undefined;
     const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
       window.clearTimeout(refreshTimeout);
       refreshTimeout = window.setTimeout(() => {
+        lenis.resize();
         ScrollTrigger.refresh();
       }, 200);
     });
