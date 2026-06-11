@@ -39,8 +39,23 @@ const HyperspeedPlaceholder = () => (
 export function HeroSection() {
   const { t, language } = useI18n();
   const [shouldLoadHyperspeed, setShouldLoadHyperspeed] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const mainRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // Apagar el render WebGL del fondo cuando el hero sale del viewport
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsHeroVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(main);
+    return () => observer.disconnect();
+  }, []);
 
   // Entrada cinematográfica del título (letra a letra) y parallax de salida
   useEffect(() => {
@@ -65,7 +80,7 @@ export function HeroSection() {
         opacity: 0,
         ease: "none",
         scrollTrigger: {
-          trigger: content,
+          trigger: mainRef.current,
           start: "top top",
           end: "bottom 20%",
           scrub: true,
@@ -102,12 +117,13 @@ export function HeroSection() {
 
   return (
     <main
+      ref={mainRef}
       id="inicio"
       className="relative flex flex-col items-center justify-center h-screen px-4 text-center z-10 pt-20"
     >
-      {/* Background Effects - Hyperspeed lazy loaded */}
+      {/* Background Effects - Hyperspeed lazy loaded, solo mientras el hero es visible */}
       <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-        {shouldLoadHyperspeed ? (
+        {shouldLoadHyperspeed && isHeroVisible ? (
           <Suspense fallback={<HyperspeedPlaceholder />}>
             <Hyperspeed
               effectOptions={{

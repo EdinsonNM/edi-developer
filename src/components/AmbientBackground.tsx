@@ -58,8 +58,8 @@ export function AmbientBackground() {
       {/* Grain */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[60] opacity-[0.05] mix-blend-overlay"
-        style={{ backgroundImage: NOISE_SVG }}
+        className="pointer-events-none fixed inset-0 z-[60] opacity-[0.04]"
+        style={{ backgroundImage: NOISE_SVG, transform: "translateZ(0)" }}
       />
     </>
   );
