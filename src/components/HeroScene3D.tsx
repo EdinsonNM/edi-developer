@@ -4,7 +4,6 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 const ACID = "#c8f31d";
-const DARK = "#141417";
 const DARKER = "#0e0e10";
 const METAL = "#1d1d22";
 const WOOD = "#23232a";
@@ -413,29 +412,41 @@ function CoffeeStation({ position }: { position: [number, number, number] }) {
 
 /* ---------------------------------- Piso y raíz ---------------------------------- */
 
+/** Suelo continuo que se extiende más allá del encuadre: la cámara vive dentro del mundo */
 function Floor() {
   return (
     <group>
-      <RoundedBox args={[10, 0.35, 6.8]} radius={0.1} position={[0, -0.18, 0]}>
-        <meshStandardMaterial color={DARK} roughness={0.75} />
-      </RoundedBox>
-      <RoundedBox args={[8, 0.3, 5.4]} radius={0.1} position={[0.3, -0.56, 0.2]}>
-        <meshStandardMaterial color={DARKER} roughness={0.85} />
-      </RoundedBox>
-      {/* Alfombra central del pasillo */}
+      {/* Base */}
+      <mesh position={[0, -0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[80, 80]} />
+        <meshStandardMaterial color="#0d0d10" roughness={0.95} />
+      </mesh>
+      {/* Retícula de baldosas */}
+      <gridHelper
+        args={[80, 80, "#1d1d24", "#141419"]}
+        position={[0, 0.002, 0]}
+      />
+      {/* Alfombras de zona */}
+      <mesh position={[-5, 0.004, -2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[7, 7]} />
+        <meshStandardMaterial color="#13131a" roughness={0.95} />
+      </mesh>
+      <mesh position={[5, 0.004, -1.5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[6, 8]} />
+        <meshStandardMaterial color="#121218" roughness={0.95} />
+      </mesh>
+      <mesh position={[0.5, 0.004, 5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[8, 4.5]} />
+        <meshStandardMaterial color="#15151c" roughness={0.95} />
+      </mesh>
+      {/* Pasillo principal con líneas guía acid */}
       <mesh position={[0, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[1.1, 6.4]} />
+        <planeGeometry args={[1.4, 60]} />
         <meshStandardMaterial color="#191920" roughness={0.95} />
       </mesh>
-      {/* Pasillo transversal */}
-      <mesh position={[0, 0.004, 0.2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[9.4, 0.9]} />
-        <meshStandardMaterial color="#17171d" roughness={0.95} />
-      </mesh>
-      {/* Líneas guía acid del piso */}
-      {[-0.55, 0.55].map((x) => (
+      {[-0.7, 0.7].map((x) => (
         <mesh key={x} position={[x, 0.006, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[0.02, 6.4]} />
+          <planeGeometry args={[0.03, 60]} />
           <meshStandardMaterial
             color={ACID}
             emissive={ACID}
@@ -443,6 +454,11 @@ function Floor() {
           />
         </mesh>
       ))}
+      {/* Pasillo transversal */}
+      <mesh position={[0, 0.0045, 1.8]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[60, 1.2]} />
+        <meshStandardMaterial color="#17171d" roughness={0.95} />
+      </mesh>
     </group>
   );
 }
@@ -573,141 +589,132 @@ function Office() {
     if (!group) return;
     const pointer = pointerRef.current;
     // En pantallas anchas la oficina se corre a la derecha del titular
-    const shiftX = size.width >= 1024 ? size.width / 1000 : 0;
-    group.position.x = THREE.MathUtils.lerp(group.position.x, shiftX, 0.08);
-    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.2;
-    group.rotation.y = THREE.MathUtils.lerp(
-      group.rotation.y,
-      -Math.PI / 4 + pointer.x * 0.16,
-      0.05
+    void clock;
+    const shiftX = size.width >= 1024 ? size.width / 800 : 0;
+    // Parallax: la cámara "se asoma" desplazando el mundo, sin revelar bordes
+    group.position.x = THREE.MathUtils.lerp(
+      group.position.x,
+      shiftX - pointer.x * 0.6,
+      0.04
     );
-    group.rotation.x = THREE.MathUtils.lerp(
-      group.rotation.x,
-      pointer.y * -0.05,
-      0.05
+    group.position.z = THREE.MathUtils.lerp(
+      group.position.z,
+      pointer.y * 0.5,
+      0.04
     );
+    group.position.y = -0.2;
   });
 
   return (
-    <group ref={groupRef} rotation={[0, -Math.PI / 4, 0]}>
+    <group ref={groupRef} rotation={[0, -Math.PI / 4, 0]} position={[0, -0.2, 0]}>
       <Floor />
 
-      {/* Zona de escritorios: dos filas mirando al pasillo central */}
-      <DeskPod position={[-1.6, 0, -2.2]} rotationY={Math.PI / 2} screenSeed={0} />
-      <DeskPod position={[-1.6, 0, -0.9]} rotationY={Math.PI / 2} screenSeed={1} />
-      <DeskPod position={[-1.6, 0, 1.5]} rotationY={Math.PI / 2} screenSeed={4} />
-      <DeskPod position={[1.6, 0, -2.2]} rotationY={-Math.PI / 2} screenSeed={2} />
-      <DeskPod position={[1.6, 0, -0.9]} rotationY={-Math.PI / 2} screenSeed={3} />
-      <DeskPod position={[1.6, 0, 1.3]} rotationY={-Math.PI / 2} screenSeed={5} />
+      {/* Bloque de escritorios izquierdo */}
+      {[-3.2, -1.9, -0.6].map((z, i) => (
+        <group key={`L${z}`}>
+          <DeskPod position={[-4.6, 0, z]} rotationY={Math.PI / 2} screenSeed={i} />
+          <DeskPod position={[-6.4, 0, z]} rotationY={-Math.PI / 2} screenSeed={i + 3} />
+        </group>
+      ))}
+      {/* Bloque de escritorios derecho */}
+      {[-3.4, -2.1, -0.8].map((z, i) => (
+        <group key={`R${z}`}>
+          <DeskPod position={[3.6, 0, z]} rotationY={Math.PI / 2} screenSeed={i + 1} />
+          <DeskPod position={[5.4, 0, z]} rotationY={-Math.PI / 2} screenSeed={i + 4} />
+        </group>
+      ))}
+      {/* Fila de escritorios al fondo */}
+      <DeskPod position={[-1.7, 0, -4.6]} rotationY={0} screenSeed={2} />
+      <DeskPod position={[-0.3, 0, -4.6]} rotationY={0} screenSeed={5} />
+      <DeskPod position={[1.1, 0, -4.6]} rotationY={0} screenSeed={0} />
 
       {/* Devs sentados tecleando */}
-      <SittingDev
-        position={[-2.05, 0.16, -2.2]}
-        rotationY={Math.PI / 2}
-        look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[0] }}
-        typeOffset={0}
-      />
-      <SittingDev
-        position={[-2.05, 0.16, -0.9]}
-        rotationY={Math.PI / 2}
-        look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[1] }}
-        typeOffset={2}
-      />
-      <SittingDev
-        position={[-2.05, 0.16, 1.5]}
-        rotationY={Math.PI / 2}
-        look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[2] }}
-        typeOffset={7}
-      />
-      <SittingDev
-        position={[2.05, 0.16, -2.2]}
-        rotationY={-Math.PI / 2}
-        look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[2] }}
-        typeOffset={4}
-      />
-      <SittingDev
-        position={[2.05, 0.16, 1.3]}
-        rotationY={-Math.PI / 2}
-        look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[3] }}
-        typeOffset={9}
-      />
+      <SittingDev position={[-5.05, 0.16, -3.2]} rotationY={Math.PI / 2} look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[0] }} typeOffset={0} />
+      <SittingDev position={[-5.05, 0.16, -0.6]} rotationY={Math.PI / 2} look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[1] }} typeOffset={2} />
+      <SittingDev position={[-5.95, 0.16, -1.9]} rotationY={-Math.PI / 2} look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[2] }} typeOffset={7} />
+      <SittingDev position={[4.05, 0.16, -3.4]} rotationY={Math.PI / 2} look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[2] }} typeOffset={4} />
+      <SittingDev position={[4.05, 0.16, -0.8]} rotationY={Math.PI / 2} look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[3] }} typeOffset={9} />
+      <SittingDev position={[4.95, 0.16, -2.1]} rotationY={-Math.PI / 2} look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[1] }} typeOffset={5} />
+      <SittingDev position={[-1.7, 0.16, -5.05]} rotationY={0} look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[3] }} typeOffset={3} />
+      <SittingDev position={[1.1, 0.16, -5.05]} rotationY={0} look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[0] }} typeOffset={8} />
 
-      {/* Personajes caminando */}
+      {/* Personajes caminando por todo el mundo */}
       <Walker
-        path={[
-          [-0.2, 2.8],
-          [-0.2, -2.8],
-          [0.3, -2.8],
-          [0.3, 2.8],
-        ]}
-        speed={0.6}
+        path={[[-0.3, 7], [-0.3, -7], [0.4, -7], [0.4, 7]]}
+        speed={0.65}
         offset={0}
         look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[1] }}
       />
       <Walker
-        path={[
-          [-3.6, 2.2],
-          [-0.7, 2.2],
-          [-0.7, -2.6],
-          [-3.6, -2.6],
-        ]}
-        speed={0.5}
-        offset={3}
+        path={[[-8, 1.8], [8, 1.8], [8, 2.6], [-8, 2.6]]}
+        speed={0.55}
+        offset={5}
         look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[3] }}
       />
       <Walker
-        path={[
-          [3.7, 2.4],
-          [0.8, 2.4],
-          [0.8, -0.3],
-          [3.7, -0.3],
-        ]}
-        speed={0.45}
-        offset={6}
+        path={[[-7.4, -4], [-2.6, -4], [-2.6, 0.6], [-7.4, 0.6]]}
+        speed={0.5}
+        offset={3}
         look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[0] }}
       />
       <Walker
-        path={[
-          [3.9, -1],
-          [0.9, -1],
-          [0.9, -2.7],
-          [3.9, -2.7],
-        ]}
-        speed={0.55}
-        offset={9}
+        path={[[2.6, -4.2], [6.6, -4.2], [6.6, 0.8], [2.6, 0.8]]}
+        speed={0.45}
+        offset={8}
         look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[2] }}
       />
       <Walker
-        path={[
-          [-3.8, 0.6],
-          [-0.8, 0.6],
-          [-0.8, 2.6],
-          [-3.8, 2.6],
-        ]}
-        speed={0.42}
-        offset={12}
+        path={[[-3.4, 4], [3.4, 4], [3.4, 6.4], [-3.4, 6.4]]}
+        speed={0.5}
+        offset={11}
         look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[3] }}
       />
+      <Walker
+        path={[[-8.5, 5.5], [-1, 5.5], [-1, 2.4], [-8.5, 2.4]]}
+        speed={0.42}
+        offset={14}
+        look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[1] }}
+      />
+      <Walker
+        path={[[7.6, 5.8], [1.4, 5.8], [1.4, 3], [7.6, 3]]}
+        speed={0.58}
+        offset={17}
+        look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[0] }}
+      />
+      <Walker
+        path={[[-2, -6.4], [2.4, -6.4], [2.4, -3.2], [-2, -3.2]]}
+        speed={0.48}
+        offset={20}
+        look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[2] }}
+      />
 
-      {/* Pareja conversando junto al café */}
-      <StandingTalkers position={[-3.4, 0, -0.4]} rotationY={0.4} />
+      {/* Parejas conversando */}
+      <StandingTalkers position={[-3.2, 0, 2.2]} rotationY={0.4} />
+      <StandingTalkers position={[6.6, 0, -5]} rotationY={-0.7} />
 
-      {/* Zonas comunes */}
-      <MeetingArea position={[3.1, 0, 1.9]} />
-      <Sofa position={[-3.3, 0, 1.6]} rotationY={0.6} />
-      <CoffeeStation position={[-4.1, 0, -1.2]} />
-      <Whiteboard position={[3.5, 0, -2.6]} rotationY={-0.8} />
-      <Shelf position={[-1.6, 0, -2.95]} rotationY={0} />
-      <Shelf position={[1.4, 0, 2.9]} rotationY={Math.PI} />
-      <Plant position={[4.4, 0, -2.7]} />
-      <Plant position={[-4.4, 0, 2.6]} />
-      <Plant position={[4.3, 0, 0.6]} />
-      <Plant position={[-4.4, 0, -2.6]} />
-      <Plant position={[0.6, 0, -3]} />
+      {/* Zonas comunes repartidas por el mundo */}
+      <MeetingArea position={[6.8, 0, 4.6]} />
+      <MeetingArea position={[-7.6, 0, -5.6]} />
+      <Sofa position={[-1.2, 0, 5]} rotationY={Math.PI} />
+      <Sofa position={[1.6, 0, 4.6]} rotationY={-0.4} />
+      <Sofa position={[-7.8, 0, 4.2]} rotationY={0.9} />
+      <CoffeeStation position={[-4.6, 0, 5.8]} />
+      <CoffeeStation position={[8.2, 0, -1.4]} />
+      <Whiteboard position={[-2.8, 0, -5.6]} rotationY={0.2} />
+      <Whiteboard position={[7.4, 0, 1.2]} rotationY={-1.2} />
+      <Shelf position={[-6.8, 0, -6]} rotationY={0.3} />
+      <Shelf position={[3, 0, 6.6]} rotationY={Math.PI} />
+      <Shelf position={[-9.2, 0, 1]} rotationY={Math.PI / 2} />
+      {[
+        [-8.6, -2.4], [-3.4, -6.2], [2.2, -5.8], [8.4, -3.6], [9, 2.2],
+        [4.8, 6.2], [-0.4, 6.8], [-5.8, 3.2], [-9, 6], [0.8, 2.2],
+      ].map(([x, z]) => (
+        <Plant key={`${x},${z}`} position={[x, 0, z]} />
+      ))}
 
       <Sparkles
-        count={50}
-        scale={[11, 4, 8]}
+        count={80}
+        scale={[20, 5, 16]}
         size={1.8}
         speed={0.25}
         color={ACID}
