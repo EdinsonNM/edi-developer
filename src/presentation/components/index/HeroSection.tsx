@@ -151,10 +151,24 @@ export function HeroSection() {
       id="inicio"
       className="relative flex min-h-screen flex-col justify-center px-4 md:px-8 pt-24 pb-8 z-10 overflow-hidden"
     >
+      {/* Mundo 3D a pantalla completa, detrás del contenido */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        {shouldLoadScene && (
+          <SceneErrorBoundary>
+            <Suspense fallback={null}>
+              <HeroScene3D paused={!isHeroVisible} />
+            </Suspense>
+          </SceneErrorBoundary>
+        )}
+        {/* Gradiente para legibilidad del titular */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/50 to-transparent lg:via-ink/30" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
+      </div>
+
       <div ref={contentRef} className="relative z-10 w-full max-w-7xl mx-auto">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
           {/* Columna de texto */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left">
             <p className="font-mono text-sm tracking-[0.3em] uppercase text-acid mb-6 animate-fade-in-up opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
               Frontend Engineer · AI · 3D
             </p>
@@ -198,19 +212,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Mundo 3D isométrico */}
-          <div
-            className="order-1 lg:order-2 h-[38vh] sm:h-[45vh] lg:h-[68vh] animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards]"
-            aria-hidden="true"
-          >
-            {shouldLoadScene && (
-              <SceneErrorBoundary>
-                <Suspense fallback={null}>
-                  <HeroScene3D paused={!isHeroVisible} />
-                </Suspense>
-              </SceneErrorBoundary>
-            )}
-          </div>
+          {/* Columna vacía: el mundo 3D full-bleed ocupa este espacio visualmente */}
+          <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
         {/* Floating Icons Marquee */}

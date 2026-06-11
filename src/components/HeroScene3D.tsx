@@ -1,6 +1,6 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { RoundedBox, Sparkles } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 const ACID = "#c8f31d";
@@ -416,21 +416,26 @@ function CoffeeStation({ position }: { position: [number, number, number] }) {
 function Floor() {
   return (
     <group>
-      <RoundedBox args={[7.4, 0.35, 5]} radius={0.1} position={[0, -0.18, 0]}>
+      <RoundedBox args={[10, 0.35, 6.8]} radius={0.1} position={[0, -0.18, 0]}>
         <meshStandardMaterial color={DARK} roughness={0.75} />
       </RoundedBox>
-      <RoundedBox args={[5.8, 0.3, 3.8]} radius={0.1} position={[0.3, -0.56, 0.2]}>
+      <RoundedBox args={[8, 0.3, 5.4]} radius={0.1} position={[0.3, -0.56, 0.2]}>
         <meshStandardMaterial color={DARKER} roughness={0.85} />
       </RoundedBox>
       {/* Alfombra central del pasillo */}
       <mesh position={[0, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[1.1, 4.6]} />
+        <planeGeometry args={[1.1, 6.4]} />
         <meshStandardMaterial color="#191920" roughness={0.95} />
+      </mesh>
+      {/* Pasillo transversal */}
+      <mesh position={[0, 0.004, 0.2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[9.4, 0.9]} />
+        <meshStandardMaterial color="#17171d" roughness={0.95} />
       </mesh>
       {/* Líneas guía acid del piso */}
       {[-0.55, 0.55].map((x) => (
         <mesh key={x} position={[x, 0.006, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[0.02, 4.6]} />
+          <planeGeometry args={[0.02, 6.4]} />
           <meshStandardMaterial
             color={ACID}
             emissive={ACID}
@@ -442,13 +447,135 @@ function Floor() {
   );
 }
 
+/** Pareja de personajes de pie conversando con gestos */
+function StandingTalkers({
+  position,
+  rotationY = 0,
+}: {
+  position: [number, number, number];
+  rotationY?: number;
+}) {
+  const armARef = useRef<THREE.Group>(null);
+  const armBRef = useRef<THREE.Group>(null);
+  const bodyARef = useRef<THREE.Group>(null);
+  const bodyBRef = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    // Gestos al hablar, alternándose
+    if (armARef.current)
+      armARef.current.rotation.x = -0.5 + Math.max(0, Math.sin(t * 1.4)) * 0.5;
+    if (armBRef.current)
+      armBRef.current.rotation.x = -0.4 + Math.max(0, Math.sin(t * 1.4 + Math.PI)) * 0.5;
+    if (bodyARef.current) bodyARef.current.position.y = Math.sin(t * 2) * 0.01;
+    if (bodyBRef.current) bodyBRef.current.position.y = Math.sin(t * 2 + 1) * 0.01;
+  });
+
+  return (
+    <group position={position} rotation={[0, rotationY, 0]}>
+      <group position={[-0.28, 0, 0]} rotation={[0, Math.PI / 2.3, 0]} scale={0.62}>
+        <CharacterBody
+          look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[2] }}
+          armRRef={armARef}
+          bodyRef={bodyARef}
+        />
+      </group>
+      <group position={[0.28, 0, 0]} rotation={[0, -Math.PI / 2.3, 0]} scale={0.62}>
+        <CharacterBody
+          look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[3] }}
+          armRRef={armBRef}
+          bodyRef={bodyBRef}
+        />
+      </group>
+    </group>
+  );
+}
+
+function Whiteboard({
+  position,
+  rotationY = 0,
+}: {
+  position: [number, number, number];
+  rotationY?: number;
+}) {
+  return (
+    <group position={position} rotation={[0, rotationY, 0]}>
+      {[-0.45, 0.45].map((x) => (
+        <mesh key={x} position={[x, 0.5, 0]}>
+          <cylinderGeometry args={[0.025, 0.025, 1, 6]} />
+          <meshStandardMaterial color={METAL} />
+        </mesh>
+      ))}
+      <mesh position={[0, 0.75, 0]}>
+        <boxGeometry args={[1.1, 0.65, 0.04]} />
+        <meshStandardMaterial color="#e8e8ea" roughness={0.4} />
+      </mesh>
+      {/* Trazos */}
+      {[
+        { y: 0.95, w: 0.6, x: -0.15, acid: true },
+        { y: 0.85, w: 0.75, x: -0.05, acid: false },
+        { y: 0.75, w: 0.5, x: -0.2, acid: false },
+        { y: 0.62, w: 0.65, x: 0.05, acid: true },
+      ].map((line, i) => (
+        <mesh key={i} position={[line.x, line.y, 0.025]}>
+          <planeGeometry args={[line.w, 0.035]} />
+          <meshStandardMaterial color={line.acid ? "#8aa814" : "#3a3a42"} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function Shelf({ position, rotationY = 0 }: { position: [number, number, number]; rotationY?: number }) {
+  return (
+    <group position={position} rotation={[0, rotationY, 0]}>
+      <mesh position={[0, 0.55, 0]}>
+        <boxGeometry args={[1, 1.1, 0.3]} />
+        <meshStandardMaterial color={WOOD} />
+      </mesh>
+      {[0.85, 0.55, 0.25].map((y, row) => (
+        <group key={y}>
+          <mesh position={[0, y - 0.12, 0.13]}>
+            <boxGeometry args={[0.9, 0.025, 0.05]} />
+            <meshStandardMaterial color={METAL} />
+          </mesh>
+          {[-0.3, -0.1, 0.12, 0.3].map((x, i) => (
+            <mesh key={x} position={[x, y, 0.1]}>
+              <boxGeometry args={[0.07, 0.22, 0.12]} />
+              <meshStandardMaterial
+                color={(row * 4 + i) % 5 === 2 ? ACID : ["#2c2c36", "#3a3a46", "#23232c"][i % 3]}
+              />
+            </mesh>
+          ))}
+        </group>
+      ))}
+    </group>
+  );
+}
+
 function Office() {
   const groupRef = useRef<THREE.Group>(null);
+  const pointerRef = useRef({ x: 0, y: 0 });
+  const { size } = useThree();
 
-  useFrame(({ clock, pointer }) => {
+  // El canvas vive detrás del contenido del hero: leer el mouse desde window
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      pointerRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointerRef.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
+  useFrame(({ clock }) => {
     const group = groupRef.current;
     if (!group) return;
-    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.55;
+    const pointer = pointerRef.current;
+    // En pantallas anchas la oficina se corre a la derecha del titular
+    const shiftX = size.width >= 1024 ? size.width / 640 : 0;
+    group.position.x = THREE.MathUtils.lerp(group.position.x, shiftX, 0.08);
+    group.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.06 - 0.7;
     group.rotation.y = THREE.MathUtils.lerp(
       group.rotation.y,
       -Math.PI / 4 + pointer.x * 0.16,
@@ -466,38 +593,52 @@ function Office() {
       <Floor />
 
       {/* Zona de escritorios: dos filas mirando al pasillo central */}
-      <DeskPod position={[-1.6, 0, -1.3]} rotationY={Math.PI / 2} screenSeed={0} />
-      <DeskPod position={[-1.6, 0, 0]} rotationY={Math.PI / 2} screenSeed={1} />
-      <DeskPod position={[1.6, 0, -1.3]} rotationY={-Math.PI / 2} screenSeed={2} />
-      <DeskPod position={[1.6, 0, 0.9]} rotationY={-Math.PI / 2} screenSeed={3} />
+      <DeskPod position={[-1.6, 0, -2.2]} rotationY={Math.PI / 2} screenSeed={0} />
+      <DeskPod position={[-1.6, 0, -0.9]} rotationY={Math.PI / 2} screenSeed={1} />
+      <DeskPod position={[-1.6, 0, 1.5]} rotationY={Math.PI / 2} screenSeed={4} />
+      <DeskPod position={[1.6, 0, -2.2]} rotationY={-Math.PI / 2} screenSeed={2} />
+      <DeskPod position={[1.6, 0, -0.9]} rotationY={-Math.PI / 2} screenSeed={3} />
+      <DeskPod position={[1.6, 0, 1.3]} rotationY={-Math.PI / 2} screenSeed={5} />
 
       {/* Devs sentados tecleando */}
       <SittingDev
-        position={[-2.05, 0.16, -1.3]}
+        position={[-2.05, 0.16, -2.2]}
         rotationY={Math.PI / 2}
         look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[0] }}
         typeOffset={0}
       />
       <SittingDev
-        position={[-2.05, 0.16, 0]}
+        position={[-2.05, 0.16, -0.9]}
         rotationY={Math.PI / 2}
         look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[1] }}
         typeOffset={2}
       />
       <SittingDev
-        position={[2.05, 0.16, -1.3]}
+        position={[-2.05, 0.16, 1.5]}
+        rotationY={Math.PI / 2}
+        look={{ shirt: SHIRT_COLORS[3], skin: SKIN_TONES[2] }}
+        typeOffset={7}
+      />
+      <SittingDev
+        position={[2.05, 0.16, -2.2]}
         rotationY={-Math.PI / 2}
         look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[2] }}
         typeOffset={4}
+      />
+      <SittingDev
+        position={[2.05, 0.16, 1.3]}
+        rotationY={-Math.PI / 2}
+        look={{ shirt: SHIRT_COLORS[4], skin: SKIN_TONES[3] }}
+        typeOffset={9}
       />
 
       {/* Personajes caminando */}
       <Walker
         path={[
-          [-0.0, 2.0],
-          [0, -2.0],
-          [0.4, -2.0],
-          [0.4, 2.0],
+          [-0.2, 2.8],
+          [-0.2, -2.8],
+          [0.3, -2.8],
+          [0.3, 2.8],
         ]}
         speed={0.6}
         offset={0}
@@ -505,10 +646,10 @@ function Office() {
       />
       <Walker
         path={[
-          [-2.6, 1.6],
-          [-0.6, 1.6],
-          [-0.6, -1.9],
-          [-2.6, -1.9],
+          [-3.6, 2.2],
+          [-0.7, 2.2],
+          [-0.7, -2.6],
+          [-3.6, -2.6],
         ]}
         speed={0.5}
         offset={3}
@@ -516,27 +657,57 @@ function Office() {
       />
       <Walker
         path={[
-          [2.7, 1.8],
-          [0.7, 1.8],
-          [0.7, -0.5],
-          [2.7, -0.5],
+          [3.7, 2.4],
+          [0.8, 2.4],
+          [0.8, -0.3],
+          [3.7, -0.3],
         ]}
         speed={0.45}
         offset={6}
         look={{ shirt: SHIRT_COLORS[1], skin: SKIN_TONES[0] }}
       />
+      <Walker
+        path={[
+          [3.9, -1],
+          [0.9, -1],
+          [0.9, -2.7],
+          [3.9, -2.7],
+        ]}
+        speed={0.55}
+        offset={9}
+        look={{ shirt: SHIRT_COLORS[2], skin: SKIN_TONES[2] }}
+      />
+      <Walker
+        path={[
+          [-3.8, 0.6],
+          [-0.8, 0.6],
+          [-0.8, 2.6],
+          [-3.8, 2.6],
+        ]}
+        speed={0.42}
+        offset={12}
+        look={{ shirt: SHIRT_COLORS[0], skin: SKIN_TONES[3] }}
+      />
+
+      {/* Pareja conversando junto al café */}
+      <StandingTalkers position={[-3.4, 0, -0.4]} rotationY={0.4} />
 
       {/* Zonas comunes */}
-      <MeetingArea position={[2.3, 0, 1.7]} />
-      <Sofa position={[-2.4, 0, 1.7]} rotationY={0.5} />
-      <CoffeeStation position={[-3.1, 0, -0.9]} />
-      <Plant position={[3.3, 0, -2]} />
-      <Plant position={[-3.3, 0, 2.1]} />
-      <Plant position={[3.2, 0, 0.5]} />
+      <MeetingArea position={[3.1, 0, 1.9]} />
+      <Sofa position={[-3.3, 0, 1.6]} rotationY={0.6} />
+      <CoffeeStation position={[-4.1, 0, -1.2]} />
+      <Whiteboard position={[3.5, 0, -2.6]} rotationY={-0.8} />
+      <Shelf position={[-1.6, 0, -2.95]} rotationY={0} />
+      <Shelf position={[1.4, 0, 2.9]} rotationY={Math.PI} />
+      <Plant position={[4.4, 0, -2.7]} />
+      <Plant position={[-4.4, 0, 2.6]} />
+      <Plant position={[4.3, 0, 0.6]} />
+      <Plant position={[-4.4, 0, -2.6]} />
+      <Plant position={[0.6, 0, -3]} />
 
       <Sparkles
-        count={35}
-        scale={[8, 4, 6]}
+        count={50}
+        scale={[11, 4, 8]}
         size={1.8}
         speed={0.25}
         color={ACID}
@@ -545,6 +716,19 @@ function Office() {
       />
     </group>
   );
+}
+
+/** Ajusta el zoom de la cámara ortográfica al ancho disponible */
+function ResponsiveZoom() {
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    const zoom = THREE.MathUtils.clamp(size.width / 18, 42, 78);
+    camera.zoom = zoom;
+    camera.updateProjectionMatrix();
+  }, [camera, size]);
+
+  return null;
 }
 
 interface HeroScene3DProps {
@@ -558,12 +742,14 @@ export function HeroScene3D({ paused = false }: HeroScene3DProps) {
       orthographic
       frameloop={paused ? "never" : "always"}
       dpr={[1, 1.5]}
-      camera={{ zoom: 72, position: [10, 8, 10], near: 0.1, far: 100 }}
+      camera={{ zoom: 64, position: [10, 8, 10], near: 0.1, far: 100 }}
+      resize={{ debounce: 100 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: "transparent" }}
       onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
     >
       <Suspense fallback={null}>
+        <ResponsiveZoom />
         <ambientLight intensity={0.55} />
         <directionalLight position={[6, 10, 4]} intensity={1.2} color="#ffffff" />
         <pointLight position={[0, 3, 0]} intensity={8} color={ACID} distance={9} />
