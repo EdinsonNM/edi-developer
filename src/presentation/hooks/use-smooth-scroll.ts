@@ -28,7 +28,20 @@ export function useSmoothScroll() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // Las secciones lazy cambian la altura del documento al montarse:
+    // recalcular las posiciones de los ScrollTriggers cuando eso ocurre
+    let refreshTimeout: number | undefined;
+    const resizeObserver = new ResizeObserver(() => {
+      window.clearTimeout(refreshTimeout);
+      refreshTimeout = window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
+    });
+    resizeObserver.observe(document.body);
+
     return () => {
+      resizeObserver.disconnect();
+      window.clearTimeout(refreshTimeout);
       gsap.ticker.remove(raf);
       lenis.destroy();
     };

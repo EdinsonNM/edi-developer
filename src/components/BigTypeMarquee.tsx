@@ -27,15 +27,16 @@ export function BigTypeMarquee({ words, direction = 1 }: BigTypeMarqueeProps) {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         track,
-        { xPercent: direction === 1 ? 0 : -20 },
+        { xPercent: direction === 1 ? 0 : -30 },
         {
-          xPercent: direction === 1 ? -20 : 0,
+          xPercent: direction === 1 ? -30 : 0,
           ease: "none",
           scrollTrigger: {
             trigger: wrap,
             start: "top bottom",
             end: "bottom top",
-            scrub: 1,
+            scrub: 0.5,
+            invalidateOnRefresh: true,
           },
         }
       );
